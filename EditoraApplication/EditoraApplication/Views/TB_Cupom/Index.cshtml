@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EditoraApplication.Models.TB_Cupom>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_Desconto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_ini)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_fim)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor_Desconto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_ini)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_fim)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Cupom }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Cupom }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Cupom })
+        </td>
+    </tr>
+}
+
+</table>

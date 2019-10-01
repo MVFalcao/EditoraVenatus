@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EditoraApplication.Models.TB_Carrinho>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade_Livro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco_Total_Livro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TB_Compra.ID_Compra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TB_Livro.Titulo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade_Livro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preco_Total_Livro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TB_Compra.ID_Compra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TB_Livro.Titulo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Carrinho }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Carrinho }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Carrinho })
+        </td>
+    </tr>
+}
+
+</table>
