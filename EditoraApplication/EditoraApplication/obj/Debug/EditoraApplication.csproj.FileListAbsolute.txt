@@ -81,3 +81,16 @@ C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplica
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\obj\Debug\EditoraApplication.csproj.CopyComplete
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\obj\Debug\EditoraApplication.dll
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\obj\Debug\EditoraApplication.pdb
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\System.Net.Http.Formatting.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\System.Web.Http.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\System.Web.Http.WebHost.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\System.Net.Http.Formatting.xml
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\System.Web.Http.xml
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\System.Web.Http.WebHost.xml
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\pt-br\System.Net.Http.Formatting.resources.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\pt-br\System.Web.Http.resources.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\pt-br\System.Web.Http.WebHost.resources.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\EntityFramework.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\EntityFramework.SqlServer.dll
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\EntityFramework.xml
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraApplication\EditoraApplication\bin\EntityFramework.SqlServer.xml

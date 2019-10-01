@@ -45,16 +45,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -120,9 +137,96 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TB_AutorController.cs" />
+    <Compile Include="Controllers\TB_CarrinhoController.cs" />
+    <Compile Include="Controllers\TB_ClienteController.cs" />
+    <Compile Include="Controllers\TB_CompraController.cs" />
+    <Compile Include="Controllers\TB_CupomController.cs" />
+    <Compile Include="Controllers\TB_Cupom_LivroController.cs" />
+    <Compile Include="Controllers\TB_Cupom_PessoaController.cs" />
+    <Compile Include="Controllers\TB_EnderecoController.cs" />
+    <Compile Include="Controllers\TB_EscolaController.cs" />
+    <Compile Include="Controllers\TB_EstoqueController.cs" />
+    <Compile Include="Controllers\TB_LivrariaController.cs" />
+    <Compile Include="Controllers\TB_LivroController.cs" />
+    <Compile Include="Controllers\TB_Livro_AutorController.cs" />
+    <Compile Include="Controllers\TB_PessoaController.cs" />
+    <Compile Include="Controllers\TB_RedeSocialController.cs" />
+    <Compile Include="Controllers\TB_TelefoneController.cs" />
+    <Compile Include="Controllers\TB_TipoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BancoModell.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BancoModell.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BancoModell.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BancoModell.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BancoModell.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Autor.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Carrinho.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Cliente.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Compra.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Cupom.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Cupom_Livro.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Cupom_Pessoa.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Endereco.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Escola.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Estoque.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Livraria.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Livro.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Livro_Autor.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Pessoa.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_RedeSocial.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Telefone.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Tipo.cs">
+      <DependentUpon>BancoModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,8 +239,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\BancoModell.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BancoModell.edmx</DependentUpon>
+      <LastGenOutput>BancoModell.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BancoModell.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BancoModell.edmx</DependentUpon>
+      <LastGenOutput>BancoModell.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\BancoModell.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BancoModell.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BancoModell.edmx.diagram">
+      <DependentUpon>BancoModell.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -162,10 +283,100 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\TB_Autor\Create.cshtml" />
+    <Content Include="Views\TB_Autor\Delete.cshtml" />
+    <Content Include="Views\TB_Autor\Details.cshtml" />
+    <Content Include="Views\TB_Autor\Edit.cshtml" />
+    <Content Include="Views\TB_Autor\Index.cshtml" />
+    <Content Include="Views\TB_Escola\Create.cshtml" />
+    <Content Include="Views\TB_Escola\Delete.cshtml" />
+    <Content Include="Views\TB_Escola\Details.cshtml" />
+    <Content Include="Views\TB_Escola\Edit.cshtml" />
+    <Content Include="Views\TB_Escola\Index.cshtml" />
+    <Content Include="Views\TB_Carrinho\Create.cshtml" />
+    <Content Include="Views\TB_Carrinho\Delete.cshtml" />
+    <Content Include="Views\TB_Carrinho\Details.cshtml" />
+    <Content Include="Views\TB_Carrinho\Edit.cshtml" />
+    <Content Include="Views\TB_Carrinho\Index.cshtml" />
+    <Content Include="Views\TB_Cliente\Create.cshtml" />
+    <Content Include="Views\TB_Cliente\Delete.cshtml" />
+    <Content Include="Views\TB_Cliente\Details.cshtml" />
+    <Content Include="Views\TB_Cliente\Edit.cshtml" />
+    <Content Include="Views\TB_Cliente\Index.cshtml" />
+    <Content Include="Views\TB_Compra\Create.cshtml" />
+    <Content Include="Views\TB_Compra\Delete.cshtml" />
+    <Content Include="Views\TB_Compra\Details.cshtml" />
+    <Content Include="Views\TB_Compra\Edit.cshtml" />
+    <Content Include="Views\TB_Compra\Index.cshtml" />
+    <Content Include="Views\TB_Cupom\Create.cshtml" />
+    <Content Include="Views\TB_Cupom\Delete.cshtml" />
+    <Content Include="Views\TB_Cupom\Details.cshtml" />
+    <Content Include="Views\TB_Cupom\Edit.cshtml" />
+    <Content Include="Views\TB_Cupom\Index.cshtml" />
+    <Content Include="Views\TB_Cupom_Livro\Create.cshtml" />
+    <Content Include="Views\TB_Cupom_Livro\Delete.cshtml" />
+    <Content Include="Views\TB_Cupom_Livro\Details.cshtml" />
+    <Content Include="Views\TB_Cupom_Livro\Edit.cshtml" />
+    <Content Include="Views\TB_Cupom_Livro\Index.cshtml" />
+    <Content Include="Views\TB_Cupom_Pessoa\Create.cshtml" />
+    <Content Include="Views\TB_Cupom_Pessoa\Delete.cshtml" />
+    <Content Include="Views\TB_Cupom_Pessoa\Details.cshtml" />
+    <Content Include="Views\TB_Cupom_Pessoa\Edit.cshtml" />
+    <Content Include="Views\TB_Cupom_Pessoa\Index.cshtml" />
+    <Content Include="Views\TB_Endereco\Create.cshtml" />
+    <Content Include="Views\TB_Endereco\Delete.cshtml" />
+    <Content Include="Views\TB_Endereco\Details.cshtml" />
+    <Content Include="Views\TB_Endereco\Edit.cshtml" />
+    <Content Include="Views\TB_Endereco\Index.cshtml" />
+    <Content Include="Views\TB_Estoque\Create.cshtml" />
+    <Content Include="Views\TB_Estoque\Delete.cshtml" />
+    <Content Include="Views\TB_Estoque\Details.cshtml" />
+    <Content Include="Views\TB_Estoque\Edit.cshtml" />
+    <Content Include="Views\TB_Estoque\Index.cshtml" />
+    <Content Include="Views\TB_Livraria\Create.cshtml" />
+    <Content Include="Views\TB_Livraria\Delete.cshtml" />
+    <Content Include="Views\TB_Livraria\Details.cshtml" />
+    <Content Include="Views\TB_Livraria\Edit.cshtml" />
+    <Content Include="Views\TB_Livraria\Index.cshtml" />
+    <Content Include="Views\TB_Livro\Create.cshtml" />
+    <Content Include="Views\TB_Livro\Delete.cshtml" />
+    <Content Include="Views\TB_Livro\Details.cshtml" />
+    <Content Include="Views\TB_Livro\Edit.cshtml" />
+    <Content Include="Views\TB_Livro\Index.cshtml" />
+    <Content Include="Views\TB_Livro_Autor\Create.cshtml" />
+    <Content Include="Views\TB_Livro_Autor\Delete.cshtml" />
+    <Content Include="Views\TB_Livro_Autor\Details.cshtml" />
+    <Content Include="Views\TB_Livro_Autor\Edit.cshtml" />
+    <Content Include="Views\TB_Livro_Autor\Index.cshtml" />
+    <Content Include="Views\TB_Pessoa\Create.cshtml" />
+    <Content Include="Views\TB_Pessoa\Delete.cshtml" />
+    <Content Include="Views\TB_Pessoa\Details.cshtml" />
+    <Content Include="Views\TB_Pessoa\Edit.cshtml" />
+    <Content Include="Views\TB_Pessoa\Index.cshtml" />
+    <Content Include="Views\TB_Pessoa1\Create.cshtml" />
+    <Content Include="Views\TB_Pessoa1\Delete.cshtml" />
+    <Content Include="Views\TB_Pessoa1\Details.cshtml" />
+    <Content Include="Views\TB_Pessoa1\Edit.cshtml" />
+    <Content Include="Views\TB_Pessoa1\Index.cshtml" />
+    <Content Include="Views\TB_RedeSocial\Create.cshtml" />
+    <Content Include="Views\TB_RedeSocial\Delete.cshtml" />
+    <Content Include="Views\TB_RedeSocial\Details.cshtml" />
+    <Content Include="Views\TB_RedeSocial\Edit.cshtml" />
+    <Content Include="Views\TB_RedeSocial\Index.cshtml" />
+    <Content Include="Views\TB_Telefone\Create.cshtml" />
+    <Content Include="Views\TB_Telefone\Delete.cshtml" />
+    <Content Include="Views\TB_Telefone\Details.cshtml" />
+    <Content Include="Views\TB_Telefone\Edit.cshtml" />
+    <Content Include="Views\TB_Telefone\Index.cshtml" />
+    <Content Include="Views\TB_Tipo\Create.cshtml" />
+    <Content Include="Views\TB_Tipo\Delete.cshtml" />
+    <Content Include="Views\TB_Tipo\Details.cshtml" />
+    <Content Include="Views\TB_Tipo\Edit.cshtml" />
+    <Content Include="Views\TB_Tipo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Compra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -179,6 +390,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

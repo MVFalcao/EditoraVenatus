@@ -1,0 +1,50 @@
+﻿@model EditoraApplication.Models.TB_Compra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TB_Compra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco_total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preco_total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Pag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_Pag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TB_Cliente.ID_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_Cliente.ID_Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TB_Tipo.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_Tipo.Descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Compra }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

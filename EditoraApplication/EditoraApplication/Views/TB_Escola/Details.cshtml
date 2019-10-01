@@ -1,0 +1,74 @@
+﻿@model EditoraApplication.Models.TB_Escola
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TB_Escola</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome_Instituicao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome_Instituicao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNPJ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Responsavel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Responsavel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Livro_Adotado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Livro_Adotado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Serie_Adotada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serie_Adotada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Adotacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Adotacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TB_Cliente.ID_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_Cliente.ID_Cliente)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Escola }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
