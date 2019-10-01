@@ -1,0 +1,50 @@
+﻿@model EditoraAPI.Models.TB_Carrinho
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TB_Carrinho</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade_Livro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade_Livro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco_Total_Livro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preco_Total_Livro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TB_Compra.ID_Compra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_Compra.ID_Compra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TB_Livro.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TB_Livro.Titulo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Carrinho }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

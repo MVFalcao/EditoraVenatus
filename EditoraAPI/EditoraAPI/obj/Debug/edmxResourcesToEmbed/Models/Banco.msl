@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EditoraModelStoreContainer" CdmEntityContainer="EditoraEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EditoraModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Autor">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Autor">
+        <MappingFragment StoreEntitySet="TB_Autor">
+          <ScalarProperty Name="ID_Autor" ColumnName="ID_Autor" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Carrinho">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Carrinho">
+        <MappingFragment StoreEntitySet="TB_Carrinho">
+          <ScalarProperty Name="ID_Carrinho" ColumnName="ID_Carrinho" />
+          <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+          <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+          <ScalarProperty Name="Quantidade_Livro" ColumnName="Quantidade_Livro" />
+          <ScalarProperty Name="Preco_Total_Livro" ColumnName="Preco_Total_Livro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Cliente">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Cliente">
+        <MappingFragment StoreEntitySet="TB_Cliente">
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Compra">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Compra">
+        <MappingFragment StoreEntitySet="TB_Compra">
+          <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+          <ScalarProperty Name="ID_Tipo" ColumnName="ID_Tipo" />
+          <ScalarProperty Name="Preco_total" ColumnName="Preco_total" />
+          <ScalarProperty Name="Data_Pag" ColumnName="Data_Pag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Cupom">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Cupom">
+        <MappingFragment StoreEntitySet="TB_Cupom">
+          <ScalarProperty Name="ID_Cupom" ColumnName="ID_Cupom" />
+          <ScalarProperty Name="Valor_Desconto" ColumnName="Valor_Desconto" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Data_ini" ColumnName="Data_ini" />
+          <ScalarProperty Name="Data_fim" ColumnName="Data_fim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Cupom_Livro">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Cupom_Livro">
+        <MappingFragment StoreEntitySet="TB_Cupom_Livro">
+          <ScalarProperty Name="ID_Cupom_Livro" ColumnName="ID_Cupom_Livro" />
+          <ScalarProperty Name="ID_Cupom" ColumnName="ID_Cupom" />
+          <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Cupom_Pessoa">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Cupom_Pessoa">
+        <MappingFragment StoreEntitySet="TB_Cupom_Pessoa">
+          <ScalarProperty Name="ID_Cupom_Pessoa" ColumnName="ID_Cupom_Pessoa" />
+          <ScalarProperty Name="ID_Cupom" ColumnName="ID_Cupom" />
+          <ScalarProperty Name="ID_Pessoa" ColumnName="ID_Pessoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Endereco">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Endereco">
+        <MappingFragment StoreEntitySet="TB_Endereco">
+          <ScalarProperty Name="ID_Endereco" ColumnName="ID_Endereco" />
+          <ScalarProperty Name="ID_AutorCliente" ColumnName="ID_AutorCliente" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+          <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Escola">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Escola">
+        <MappingFragment StoreEntitySet="TB_Escola">
+          <ScalarProperty Name="ID_Escola" ColumnName="ID_Escola" />
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+          <ScalarProperty Name="Nome_Instituicao" ColumnName="Nome_Instituicao" />
+          <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
+          <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+          <ScalarProperty Name="Livro_Adotado" ColumnName="Livro_Adotado" />
+          <ScalarProperty Name="Serie_Adotada" ColumnName="Serie_Adotada" />
+          <ScalarProperty Name="Dt_Adotacao" ColumnName="Dt_Adotacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Estoque">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Estoque">
+        <MappingFragment StoreEntitySet="TB_Estoque">
+          <ScalarProperty Name="ID_Estoque" ColumnName="ID_Estoque" />
+          <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Livraria">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Livraria">
+        <MappingFragment StoreEntitySet="TB_Livraria">
+          <ScalarProperty Name="ID_Livraria" ColumnName="ID_Livraria" />
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+          <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
+          <ScalarProperty Name="Tipo_consignacao" ColumnName="Tipo_consignacao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Livro">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Livro">
+        <MappingFragment StoreEntitySet="TB_Livro">
+          <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Descrição" ColumnName="Descrição" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Data_Publicacao" ColumnName="Data_Publicacao" />
+          <ScalarProperty Name="Numero_Paginas" ColumnName="Numero_Paginas" />
+          <ScalarProperty Name="Ilustrador" ColumnName="Ilustrador" />
+          <ScalarProperty Name="Tipo_Livro" ColumnName="Tipo_Livro" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Livro_Autor">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Livro_Autor">
+        <MappingFragment StoreEntitySet="TB_Livro_Autor">
+          <ScalarProperty Name="ID_Livro_Autor" ColumnName="ID_Livro_Autor" />
+          <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+          <ScalarProperty Name="ID_Autor" ColumnName="ID_Autor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Pessoa">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Pessoa">
+        <MappingFragment StoreEntitySet="TB_Pessoa">
+          <ScalarProperty Name="ID_Pessoa" ColumnName="ID_Pessoa" />
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Desconto" ColumnName="Desconto" />
+          <ScalarProperty Name="Tipo_Pessoa" ColumnName="Tipo_Pessoa" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="data_nascimento" ColumnName="data_nascimento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_RedeSocial">
+      <EntityTypeMapping TypeName="EditoraModel.TB_RedeSocial">
+        <MappingFragment StoreEntitySet="TB_RedeSocial">
+          <ScalarProperty Name="ID_RedeSocial" ColumnName="ID_RedeSocial" />
+          <ScalarProperty Name="ID_AutorCliente" ColumnName="ID_AutorCliente" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Telefone">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Telefone">
+        <MappingFragment StoreEntitySet="TB_Telefone">
+          <ScalarProperty Name="ID_Telefone" ColumnName="ID_Telefone" />
+          <ScalarProperty Name="Tipo_Telefone" ColumnName="Tipo_Telefone" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="ID_AutorCliente" ColumnName="ID_AutorCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Tipo">
+      <EntityTypeMapping TypeName="EditoraModel.TB_Tipo">
+        <MappingFragment StoreEntitySet="TB_Tipo">
+          <ScalarProperty Name="ID_Tipo" ColumnName="ID_Tipo" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
