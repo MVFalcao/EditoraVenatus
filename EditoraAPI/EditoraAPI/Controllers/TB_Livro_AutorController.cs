@@ -2,126 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_Livro_AutorController : Controller
+    public class TB_Livro_AutorController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Livro_Autor
-        public ActionResult Index()
+        // GET: api/TB_Livro_Autor
+        public IQueryable<TB_Livro_Autor> GetTB_Livro_Autor()
         {
-            var tB_Livro_Autor = db.TB_Livro_Autor.Include(t => t.TB_Autor).Include(t => t.TB_Livro);
-            return View(tB_Livro_Autor.ToList());
+            return db.TB_Livro_Autor;
         }
 
-        // GET: TB_Livro_Autor/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Livro_Autor/5
+        [ResponseType(typeof(TB_Livro_Autor))]
+        public IHttpActionResult GetTB_Livro_Autor(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Livro_Autor tB_Livro_Autor = db.TB_Livro_Autor.Find(id);
             if (tB_Livro_Autor == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Livro_Autor);
+
+            return Ok(tB_Livro_Autor);
         }
 
-        // GET: TB_Livro_Autor/Create
-        public ActionResult Create()
+        // PUT: api/TB_Livro_Autor/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Livro_Autor(int id, TB_Livro_Autor tB_Livro_Autor)
         {
-            ViewBag.ID_Autor = new SelectList(db.TB_Autor, "ID_Autor", "CPF");
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo");
-            return View();
-        }
-
-        // POST: TB_Livro_Autor/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Livro_Autor,ID_Livro,ID_Autor")] TB_Livro_Autor tB_Livro_Autor)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Livro_Autor.Add(tB_Livro_Autor);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Livro_Autor.ID_Livro_Autor)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Livro_Autor).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_Livro_AutorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Autor = new SelectList(db.TB_Autor, "ID_Autor", "CPF", tB_Livro_Autor.ID_Autor);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Livro_Autor.ID_Livro);
-            return View(tB_Livro_Autor);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Livro_Autor/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Livro_Autor
+        [ResponseType(typeof(TB_Livro_Autor))]
+        public IHttpActionResult PostTB_Livro_Autor(TB_Livro_Autor tB_Livro_Autor)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Livro_Autor tB_Livro_Autor = db.TB_Livro_Autor.Find(id);
-            if (tB_Livro_Autor == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Autor = new SelectList(db.TB_Autor, "ID_Autor", "CPF", tB_Livro_Autor.ID_Autor);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Livro_Autor.ID_Livro);
-            return View(tB_Livro_Autor);
-        }
 
-        // POST: TB_Livro_Autor/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Livro_Autor,ID_Livro,ID_Autor")] TB_Livro_Autor tB_Livro_Autor)
-        {
-            if (ModelState.IsValid)
+            db.TB_Livro_Autor.Add(tB_Livro_Autor);
+
+            try
             {
-                db.Entry(tB_Livro_Autor).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Autor = new SelectList(db.TB_Autor, "ID_Autor", "CPF", tB_Livro_Autor.ID_Autor);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Livro_Autor.ID_Livro);
-            return View(tB_Livro_Autor);
+            catch (DbUpdateException)
+            {
+                if (TB_Livro_AutorExists(tB_Livro_Autor.ID_Livro_Autor))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Livro_Autor.ID_Livro_Autor }, tB_Livro_Autor);
         }
 
-        // GET: TB_Livro_Autor/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Livro_Autor/5
+        [ResponseType(typeof(TB_Livro_Autor))]
+        public IHttpActionResult DeleteTB_Livro_Autor(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Livro_Autor tB_Livro_Autor = db.TB_Livro_Autor.Find(id);
             if (tB_Livro_Autor == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Livro_Autor);
-        }
 
-        // POST: TB_Livro_Autor/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Livro_Autor tB_Livro_Autor = db.TB_Livro_Autor.Find(id);
             db.TB_Livro_Autor.Remove(tB_Livro_Autor);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Livro_Autor);
         }
 
         protected override void Dispose(bool disposing)
@@ -131,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_Livro_AutorExists(int id)
+        {
+            return db.TB_Livro_Autor.Count(e => e.ID_Livro_Autor == id) > 0;
         }
     }
 }

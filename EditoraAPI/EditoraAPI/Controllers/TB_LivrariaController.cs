@@ -2,122 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_LivrariaController : Controller
+    public class TB_LivrariaController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Livraria
-        public ActionResult Index()
+        // GET: api/TB_Livraria
+        public IQueryable<TB_Livraria> GetTB_Livraria()
         {
-            var tB_Livraria = db.TB_Livraria.Include(t => t.TB_Cliente);
-            return View(tB_Livraria.ToList());
+            return db.TB_Livraria;
         }
 
-        // GET: TB_Livraria/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Livraria/5
+        [ResponseType(typeof(TB_Livraria))]
+        public IHttpActionResult GetTB_Livraria(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Livraria tB_Livraria = db.TB_Livraria.Find(id);
             if (tB_Livraria == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Livraria);
+
+            return Ok(tB_Livraria);
         }
 
-        // GET: TB_Livraria/Create
-        public ActionResult Create()
+        // PUT: api/TB_Livraria/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Livraria(int id, TB_Livraria tB_Livraria)
         {
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente");
-            return View();
-        }
-
-        // POST: TB_Livraria/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Livraria,ID_Cliente,CNPJ,Tipo_consignacao,Nome")] TB_Livraria tB_Livraria)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Livraria.Add(tB_Livraria);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Livraria.ID_Livraria)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Livraria).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_LivrariaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Livraria.ID_Cliente);
-            return View(tB_Livraria);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Livraria/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Livraria
+        [ResponseType(typeof(TB_Livraria))]
+        public IHttpActionResult PostTB_Livraria(TB_Livraria tB_Livraria)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Livraria tB_Livraria = db.TB_Livraria.Find(id);
-            if (tB_Livraria == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Livraria.ID_Cliente);
-            return View(tB_Livraria);
-        }
 
-        // POST: TB_Livraria/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Livraria,ID_Cliente,CNPJ,Tipo_consignacao,Nome")] TB_Livraria tB_Livraria)
-        {
-            if (ModelState.IsValid)
+            db.TB_Livraria.Add(tB_Livraria);
+
+            try
             {
-                db.Entry(tB_Livraria).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Livraria.ID_Cliente);
-            return View(tB_Livraria);
+            catch (DbUpdateException)
+            {
+                if (TB_LivrariaExists(tB_Livraria.ID_Livraria))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Livraria.ID_Livraria }, tB_Livraria);
         }
 
-        // GET: TB_Livraria/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Livraria/5
+        [ResponseType(typeof(TB_Livraria))]
+        public IHttpActionResult DeleteTB_Livraria(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Livraria tB_Livraria = db.TB_Livraria.Find(id);
             if (tB_Livraria == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Livraria);
-        }
 
-        // POST: TB_Livraria/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Livraria tB_Livraria = db.TB_Livraria.Find(id);
             db.TB_Livraria.Remove(tB_Livraria);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Livraria);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_LivrariaExists(int id)
+        {
+            return db.TB_Livraria.Count(e => e.ID_Livraria == id) > 0;
         }
     }
 }

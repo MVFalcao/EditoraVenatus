@@ -2,117 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_ClienteController : Controller
+    public class TB_ClienteController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Cliente
-        public ActionResult Index()
+        // GET: api/TB_Cliente
+        public IQueryable<TB_Cliente> GetTB_Cliente()
         {
-            return View(db.TB_Cliente.ToList());
+            return db.TB_Cliente;
         }
 
-        // GET: TB_Cliente/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Cliente/5
+        [ResponseType(typeof(TB_Cliente))]
+        public IHttpActionResult GetTB_Cliente(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Cliente tB_Cliente = db.TB_Cliente.Find(id);
             if (tB_Cliente == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Cliente);
+
+            return Ok(tB_Cliente);
         }
 
-        // GET: TB_Cliente/Create
-        public ActionResult Create()
+        // PUT: api/TB_Cliente/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Cliente(int id, TB_Cliente tB_Cliente)
         {
-            return View();
-        }
-
-        // POST: TB_Cliente/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Cliente")] TB_Cliente tB_Cliente)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Cliente.Add(tB_Cliente);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Cliente.ID_Cliente)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Cliente).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_ClienteExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(tB_Cliente);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Cliente/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Cliente
+        [ResponseType(typeof(TB_Cliente))]
+        public IHttpActionResult PostTB_Cliente(TB_Cliente tB_Cliente)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Cliente tB_Cliente = db.TB_Cliente.Find(id);
-            if (tB_Cliente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tB_Cliente);
-        }
 
-        // POST: TB_Cliente/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Cliente")] TB_Cliente tB_Cliente)
-        {
-            if (ModelState.IsValid)
+            db.TB_Cliente.Add(tB_Cliente);
+
+            try
             {
-                db.Entry(tB_Cliente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(tB_Cliente);
+            catch (DbUpdateException)
+            {
+                if (TB_ClienteExists(tB_Cliente.ID_Cliente))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Cliente.ID_Cliente }, tB_Cliente);
         }
 
-        // GET: TB_Cliente/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Cliente/5
+        [ResponseType(typeof(TB_Cliente))]
+        public IHttpActionResult DeleteTB_Cliente(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Cliente tB_Cliente = db.TB_Cliente.Find(id);
             if (tB_Cliente == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Cliente);
-        }
 
-        // POST: TB_Cliente/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Cliente tB_Cliente = db.TB_Cliente.Find(id);
             db.TB_Cliente.Remove(tB_Cliente);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Cliente);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_ClienteExists(int id)
+        {
+            return db.TB_Cliente.Count(e => e.ID_Cliente == id) > 0;
         }
     }
 }

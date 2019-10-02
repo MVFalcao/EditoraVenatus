@@ -2,126 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_CompraController : Controller
+    public class TB_CompraController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Compra
-        public ActionResult Index()
+        // GET: api/TB_Compra
+        public IQueryable<TB_Compra> GetTB_Compra()
         {
-            var tB_Compra = db.TB_Compra.Include(t => t.TB_Cliente).Include(t => t.TB_Tipo);
-            return View(tB_Compra.ToList());
+            return db.TB_Compra;
         }
 
-        // GET: TB_Compra/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Compra/5
+        [ResponseType(typeof(TB_Compra))]
+        public IHttpActionResult GetTB_Compra(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Compra tB_Compra = db.TB_Compra.Find(id);
             if (tB_Compra == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Compra);
+
+            return Ok(tB_Compra);
         }
 
-        // GET: TB_Compra/Create
-        public ActionResult Create()
+        // PUT: api/TB_Compra/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Compra(int id, TB_Compra tB_Compra)
         {
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente");
-            ViewBag.ID_Tipo = new SelectList(db.TB_Tipo, "ID_Tipo", "Descricao");
-            return View();
-        }
-
-        // POST: TB_Compra/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Compra,ID_Cliente,ID_Tipo,Preco_total,Data_Pag")] TB_Compra tB_Compra)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Compra.Add(tB_Compra);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Compra.ID_Compra)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Compra).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_CompraExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Compra.ID_Cliente);
-            ViewBag.ID_Tipo = new SelectList(db.TB_Tipo, "ID_Tipo", "Descricao", tB_Compra.ID_Tipo);
-            return View(tB_Compra);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Compra/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Compra
+        [ResponseType(typeof(TB_Compra))]
+        public IHttpActionResult PostTB_Compra(TB_Compra tB_Compra)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Compra tB_Compra = db.TB_Compra.Find(id);
-            if (tB_Compra == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Compra.ID_Cliente);
-            ViewBag.ID_Tipo = new SelectList(db.TB_Tipo, "ID_Tipo", "Descricao", tB_Compra.ID_Tipo);
-            return View(tB_Compra);
-        }
 
-        // POST: TB_Compra/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Compra,ID_Cliente,ID_Tipo,Preco_total,Data_Pag")] TB_Compra tB_Compra)
-        {
-            if (ModelState.IsValid)
+            db.TB_Compra.Add(tB_Compra);
+
+            try
             {
-                db.Entry(tB_Compra).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Compra.ID_Cliente);
-            ViewBag.ID_Tipo = new SelectList(db.TB_Tipo, "ID_Tipo", "Descricao", tB_Compra.ID_Tipo);
-            return View(tB_Compra);
+            catch (DbUpdateException)
+            {
+                if (TB_CompraExists(tB_Compra.ID_Compra))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Compra.ID_Compra }, tB_Compra);
         }
 
-        // GET: TB_Compra/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Compra/5
+        [ResponseType(typeof(TB_Compra))]
+        public IHttpActionResult DeleteTB_Compra(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Compra tB_Compra = db.TB_Compra.Find(id);
             if (tB_Compra == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Compra);
-        }
 
-        // POST: TB_Compra/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Compra tB_Compra = db.TB_Compra.Find(id);
             db.TB_Compra.Remove(tB_Compra);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Compra);
         }
 
         protected override void Dispose(bool disposing)
@@ -131,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_CompraExists(int id)
+        {
+            return db.TB_Compra.Count(e => e.ID_Compra == id) > 0;
         }
     }
 }

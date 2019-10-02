@@ -2,122 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_PessoaController : Controller
+    public class TB_PessoaController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Pessoa
-        public ActionResult Index()
+        // GET: api/TB_Pessoa
+        public IQueryable<TB_Pessoa> GetTB_Pessoa()
         {
-            var tB_Pessoa = db.TB_Pessoa.Include(t => t.TB_Cliente);
-            return View(tB_Pessoa.ToList());
+            return db.TB_Pessoa;
         }
 
-        // GET: TB_Pessoa/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Pessoa/5
+        [ResponseType(typeof(TB_Pessoa))]
+        public IHttpActionResult GetTB_Pessoa(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Pessoa tB_Pessoa = db.TB_Pessoa.Find(id);
             if (tB_Pessoa == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Pessoa);
+
+            return Ok(tB_Pessoa);
         }
 
-        // GET: TB_Pessoa/Create
-        public ActionResult Create()
+        // PUT: api/TB_Pessoa/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Pessoa(int id, TB_Pessoa tB_Pessoa)
         {
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente");
-            return View();
-        }
-
-        // POST: TB_Pessoa/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Pessoa,ID_Cliente,CPF,Nome,Desconto,Tipo_Pessoa,Sexo,data_nascimento")] TB_Pessoa tB_Pessoa)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Pessoa.Add(tB_Pessoa);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Pessoa.ID_Pessoa)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Pessoa).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_PessoaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Pessoa.ID_Cliente);
-            return View(tB_Pessoa);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Pessoa/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Pessoa
+        [ResponseType(typeof(TB_Pessoa))]
+        public IHttpActionResult PostTB_Pessoa(TB_Pessoa tB_Pessoa)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Pessoa tB_Pessoa = db.TB_Pessoa.Find(id);
-            if (tB_Pessoa == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Pessoa.ID_Cliente);
-            return View(tB_Pessoa);
-        }
 
-        // POST: TB_Pessoa/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Pessoa,ID_Cliente,CPF,Nome,Desconto,Tipo_Pessoa,Sexo,data_nascimento")] TB_Pessoa tB_Pessoa)
-        {
-            if (ModelState.IsValid)
+            db.TB_Pessoa.Add(tB_Pessoa);
+
+            try
             {
-                db.Entry(tB_Pessoa).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Pessoa.ID_Cliente);
-            return View(tB_Pessoa);
+            catch (DbUpdateException)
+            {
+                if (TB_PessoaExists(tB_Pessoa.ID_Pessoa))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Pessoa.ID_Pessoa }, tB_Pessoa);
         }
 
-        // GET: TB_Pessoa/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Pessoa/5
+        [ResponseType(typeof(TB_Pessoa))]
+        public IHttpActionResult DeleteTB_Pessoa(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Pessoa tB_Pessoa = db.TB_Pessoa.Find(id);
             if (tB_Pessoa == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Pessoa);
-        }
 
-        // POST: TB_Pessoa/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Pessoa tB_Pessoa = db.TB_Pessoa.Find(id);
             db.TB_Pessoa.Remove(tB_Pessoa);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Pessoa);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_PessoaExists(int id)
+        {
+            return db.TB_Pessoa.Count(e => e.ID_Pessoa == id) > 0;
         }
     }
 }

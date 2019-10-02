@@ -2,117 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_TipoController : Controller
+    public class TB_TipoController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Tipo
-        public ActionResult Index()
+        // GET: api/TB_Tipo
+        public IQueryable<TB_Tipo> GetTB_Tipo()
         {
-            return View(db.TB_Tipo.ToList());
+            return db.TB_Tipo;
         }
 
-        // GET: TB_Tipo/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Tipo/5
+        [ResponseType(typeof(TB_Tipo))]
+        public IHttpActionResult GetTB_Tipo(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Tipo tB_Tipo = db.TB_Tipo.Find(id);
             if (tB_Tipo == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Tipo);
+
+            return Ok(tB_Tipo);
         }
 
-        // GET: TB_Tipo/Create
-        public ActionResult Create()
+        // PUT: api/TB_Tipo/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Tipo(int id, TB_Tipo tB_Tipo)
         {
-            return View();
-        }
-
-        // POST: TB_Tipo/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Tipo,Descricao")] TB_Tipo tB_Tipo)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Tipo.Add(tB_Tipo);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Tipo.ID_Tipo)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Tipo).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_TipoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(tB_Tipo);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Tipo/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Tipo
+        [ResponseType(typeof(TB_Tipo))]
+        public IHttpActionResult PostTB_Tipo(TB_Tipo tB_Tipo)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Tipo tB_Tipo = db.TB_Tipo.Find(id);
-            if (tB_Tipo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tB_Tipo);
-        }
 
-        // POST: TB_Tipo/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Tipo,Descricao")] TB_Tipo tB_Tipo)
-        {
-            if (ModelState.IsValid)
+            db.TB_Tipo.Add(tB_Tipo);
+
+            try
             {
-                db.Entry(tB_Tipo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(tB_Tipo);
+            catch (DbUpdateException)
+            {
+                if (TB_TipoExists(tB_Tipo.ID_Tipo))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Tipo.ID_Tipo }, tB_Tipo);
         }
 
-        // GET: TB_Tipo/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Tipo/5
+        [ResponseType(typeof(TB_Tipo))]
+        public IHttpActionResult DeleteTB_Tipo(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Tipo tB_Tipo = db.TB_Tipo.Find(id);
             if (tB_Tipo == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Tipo);
-        }
 
-        // POST: TB_Tipo/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Tipo tB_Tipo = db.TB_Tipo.Find(id);
             db.TB_Tipo.Remove(tB_Tipo);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Tipo);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_TipoExists(int id)
+        {
+            return db.TB_Tipo.Count(e => e.ID_Tipo == id) > 0;
         }
     }
 }

@@ -2,126 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_RedeSocialController : Controller
+    public class TB_RedeSocialController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_RedeSocial
-        public ActionResult Index()
+        // GET: api/TB_RedeSocial
+        public IQueryable<TB_RedeSocial> GetTB_RedeSocial()
         {
-            var tB_RedeSocial = db.TB_RedeSocial.Include(t => t.TB_Autor).Include(t => t.TB_Cliente);
-            return View(tB_RedeSocial.ToList());
+            return db.TB_RedeSocial;
         }
 
-        // GET: TB_RedeSocial/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_RedeSocial/5
+        [ResponseType(typeof(TB_RedeSocial))]
+        public IHttpActionResult GetTB_RedeSocial(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_RedeSocial tB_RedeSocial = db.TB_RedeSocial.Find(id);
             if (tB_RedeSocial == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_RedeSocial);
+
+            return Ok(tB_RedeSocial);
         }
 
-        // GET: TB_RedeSocial/Create
-        public ActionResult Create()
+        // PUT: api/TB_RedeSocial/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_RedeSocial(int id, TB_RedeSocial tB_RedeSocial)
         {
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Autor, "ID_Autor", "CPF");
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente");
-            return View();
-        }
-
-        // POST: TB_RedeSocial/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_RedeSocial,ID_AutorCliente,Email,Instagram,Twitter,Facebook")] TB_RedeSocial tB_RedeSocial)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_RedeSocial.Add(tB_RedeSocial);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_RedeSocial.ID_RedeSocial)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_RedeSocial).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_RedeSocialExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Autor, "ID_Autor", "CPF", tB_RedeSocial.ID_AutorCliente);
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_RedeSocial.ID_AutorCliente);
-            return View(tB_RedeSocial);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_RedeSocial/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_RedeSocial
+        [ResponseType(typeof(TB_RedeSocial))]
+        public IHttpActionResult PostTB_RedeSocial(TB_RedeSocial tB_RedeSocial)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_RedeSocial tB_RedeSocial = db.TB_RedeSocial.Find(id);
-            if (tB_RedeSocial == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Autor, "ID_Autor", "CPF", tB_RedeSocial.ID_AutorCliente);
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_RedeSocial.ID_AutorCliente);
-            return View(tB_RedeSocial);
-        }
 
-        // POST: TB_RedeSocial/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_RedeSocial,ID_AutorCliente,Email,Instagram,Twitter,Facebook")] TB_RedeSocial tB_RedeSocial)
-        {
-            if (ModelState.IsValid)
+            db.TB_RedeSocial.Add(tB_RedeSocial);
+
+            try
             {
-                db.Entry(tB_RedeSocial).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Autor, "ID_Autor", "CPF", tB_RedeSocial.ID_AutorCliente);
-            ViewBag.ID_AutorCliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_RedeSocial.ID_AutorCliente);
-            return View(tB_RedeSocial);
+            catch (DbUpdateException)
+            {
+                if (TB_RedeSocialExists(tB_RedeSocial.ID_RedeSocial))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_RedeSocial.ID_RedeSocial }, tB_RedeSocial);
         }
 
-        // GET: TB_RedeSocial/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_RedeSocial/5
+        [ResponseType(typeof(TB_RedeSocial))]
+        public IHttpActionResult DeleteTB_RedeSocial(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_RedeSocial tB_RedeSocial = db.TB_RedeSocial.Find(id);
             if (tB_RedeSocial == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_RedeSocial);
-        }
 
-        // POST: TB_RedeSocial/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_RedeSocial tB_RedeSocial = db.TB_RedeSocial.Find(id);
             db.TB_RedeSocial.Remove(tB_RedeSocial);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_RedeSocial);
         }
 
         protected override void Dispose(bool disposing)
@@ -131,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_RedeSocialExists(int id)
+        {
+            return db.TB_RedeSocial.Count(e => e.ID_RedeSocial == id) > 0;
         }
     }
 }

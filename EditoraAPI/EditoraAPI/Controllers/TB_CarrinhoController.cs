@@ -2,126 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_CarrinhoController : Controller
+    public class TB_CarrinhoController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Carrinho
-        public ActionResult Index()
+        // GET: api/TB_Carrinho
+        public IQueryable<TB_Carrinho> GetTB_Carrinho()
         {
-            var tB_Carrinho = db.TB_Carrinho.Include(t => t.TB_Compra).Include(t => t.TB_Livro);
-            return View(tB_Carrinho.ToList());
+            return db.TB_Carrinho;
         }
 
-        // GET: TB_Carrinho/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Carrinho/5
+        [ResponseType(typeof(TB_Carrinho))]
+        public IHttpActionResult GetTB_Carrinho(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Carrinho tB_Carrinho = db.TB_Carrinho.Find(id);
             if (tB_Carrinho == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Carrinho);
+
+            return Ok(tB_Carrinho);
         }
 
-        // GET: TB_Carrinho/Create
-        public ActionResult Create()
+        // PUT: api/TB_Carrinho/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Carrinho(int id, TB_Carrinho tB_Carrinho)
         {
-            ViewBag.ID_Compra = new SelectList(db.TB_Compra, "ID_Compra", "ID_Compra");
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo");
-            return View();
-        }
-
-        // POST: TB_Carrinho/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Carrinho,ID_Compra,ID_Livro,Quantidade_Livro,Preco_Total_Livro")] TB_Carrinho tB_Carrinho)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Carrinho.Add(tB_Carrinho);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Carrinho.ID_Carrinho)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Carrinho).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_CarrinhoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Compra = new SelectList(db.TB_Compra, "ID_Compra", "ID_Compra", tB_Carrinho.ID_Compra);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Carrinho.ID_Livro);
-            return View(tB_Carrinho);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Carrinho/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Carrinho
+        [ResponseType(typeof(TB_Carrinho))]
+        public IHttpActionResult PostTB_Carrinho(TB_Carrinho tB_Carrinho)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Carrinho tB_Carrinho = db.TB_Carrinho.Find(id);
-            if (tB_Carrinho == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Compra = new SelectList(db.TB_Compra, "ID_Compra", "ID_Compra", tB_Carrinho.ID_Compra);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Carrinho.ID_Livro);
-            return View(tB_Carrinho);
-        }
 
-        // POST: TB_Carrinho/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Carrinho,ID_Compra,ID_Livro,Quantidade_Livro,Preco_Total_Livro")] TB_Carrinho tB_Carrinho)
-        {
-            if (ModelState.IsValid)
+            db.TB_Carrinho.Add(tB_Carrinho);
+
+            try
             {
-                db.Entry(tB_Carrinho).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Compra = new SelectList(db.TB_Compra, "ID_Compra", "ID_Compra", tB_Carrinho.ID_Compra);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Carrinho.ID_Livro);
-            return View(tB_Carrinho);
+            catch (DbUpdateException)
+            {
+                if (TB_CarrinhoExists(tB_Carrinho.ID_Carrinho))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Carrinho.ID_Carrinho }, tB_Carrinho);
         }
 
-        // GET: TB_Carrinho/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Carrinho/5
+        [ResponseType(typeof(TB_Carrinho))]
+        public IHttpActionResult DeleteTB_Carrinho(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Carrinho tB_Carrinho = db.TB_Carrinho.Find(id);
             if (tB_Carrinho == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Carrinho);
-        }
 
-        // POST: TB_Carrinho/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Carrinho tB_Carrinho = db.TB_Carrinho.Find(id);
             db.TB_Carrinho.Remove(tB_Carrinho);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Carrinho);
         }
 
         protected override void Dispose(bool disposing)
@@ -131,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_CarrinhoExists(int id)
+        {
+            return db.TB_Carrinho.Count(e => e.ID_Carrinho == id) > 0;
         }
     }
 }

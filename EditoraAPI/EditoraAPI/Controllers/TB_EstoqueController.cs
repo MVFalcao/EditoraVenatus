@@ -2,122 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_EstoqueController : Controller
+    public class TB_EstoqueController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Estoque
-        public ActionResult Index()
+        // GET: api/TB_Estoque
+        public IQueryable<TB_Estoque> GetTB_Estoque()
         {
-            var tB_Estoque = db.TB_Estoque.Include(t => t.TB_Livro);
-            return View(tB_Estoque.ToList());
+            return db.TB_Estoque;
         }
 
-        // GET: TB_Estoque/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Estoque/5
+        [ResponseType(typeof(TB_Estoque))]
+        public IHttpActionResult GetTB_Estoque(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Estoque tB_Estoque = db.TB_Estoque.Find(id);
             if (tB_Estoque == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Estoque);
+
+            return Ok(tB_Estoque);
         }
 
-        // GET: TB_Estoque/Create
-        public ActionResult Create()
+        // PUT: api/TB_Estoque/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Estoque(int id, TB_Estoque tB_Estoque)
         {
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo");
-            return View();
-        }
-
-        // POST: TB_Estoque/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Estoque,ID_Livro,Quantidade")] TB_Estoque tB_Estoque)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Estoque.Add(tB_Estoque);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Estoque.ID_Estoque)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Estoque).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_EstoqueExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Estoque.ID_Livro);
-            return View(tB_Estoque);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Estoque/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Estoque
+        [ResponseType(typeof(TB_Estoque))]
+        public IHttpActionResult PostTB_Estoque(TB_Estoque tB_Estoque)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Estoque tB_Estoque = db.TB_Estoque.Find(id);
-            if (tB_Estoque == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Estoque.ID_Livro);
-            return View(tB_Estoque);
-        }
 
-        // POST: TB_Estoque/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Estoque,ID_Livro,Quantidade")] TB_Estoque tB_Estoque)
-        {
-            if (ModelState.IsValid)
+            db.TB_Estoque.Add(tB_Estoque);
+
+            try
             {
-                db.Entry(tB_Estoque).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Estoque.ID_Livro);
-            return View(tB_Estoque);
+            catch (DbUpdateException)
+            {
+                if (TB_EstoqueExists(tB_Estoque.ID_Estoque))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Estoque.ID_Estoque }, tB_Estoque);
         }
 
-        // GET: TB_Estoque/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Estoque/5
+        [ResponseType(typeof(TB_Estoque))]
+        public IHttpActionResult DeleteTB_Estoque(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Estoque tB_Estoque = db.TB_Estoque.Find(id);
             if (tB_Estoque == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Estoque);
-        }
 
-        // POST: TB_Estoque/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Estoque tB_Estoque = db.TB_Estoque.Find(id);
             db.TB_Estoque.Remove(tB_Estoque);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Estoque);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_EstoqueExists(int id)
+        {
+            return db.TB_Estoque.Count(e => e.ID_Estoque == id) > 0;
         }
     }
 }

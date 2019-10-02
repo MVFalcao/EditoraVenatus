@@ -2,126 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_Cupom_LivroController : Controller
+    public class TB_Cupom_LivroController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Cupom_Livro
-        public ActionResult Index()
+        // GET: api/TB_Cupom_Livro
+        public IQueryable<TB_Cupom_Livro> GetTB_Cupom_Livro()
         {
-            var tB_Cupom_Livro = db.TB_Cupom_Livro.Include(t => t.TB_Cupom).Include(t => t.TB_Livro);
-            return View(tB_Cupom_Livro.ToList());
+            return db.TB_Cupom_Livro;
         }
 
-        // GET: TB_Cupom_Livro/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Cupom_Livro/5
+        [ResponseType(typeof(TB_Cupom_Livro))]
+        public IHttpActionResult GetTB_Cupom_Livro(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Cupom_Livro tB_Cupom_Livro = db.TB_Cupom_Livro.Find(id);
             if (tB_Cupom_Livro == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Cupom_Livro);
+
+            return Ok(tB_Cupom_Livro);
         }
 
-        // GET: TB_Cupom_Livro/Create
-        public ActionResult Create()
+        // PUT: api/TB_Cupom_Livro/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Cupom_Livro(int id, TB_Cupom_Livro tB_Cupom_Livro)
         {
-            ViewBag.ID_Cupom = new SelectList(db.TB_Cupom, "ID_Cupom", "Nome");
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo");
-            return View();
-        }
-
-        // POST: TB_Cupom_Livro/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Cupom_Livro,ID_Cupom,ID_Livro")] TB_Cupom_Livro tB_Cupom_Livro)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Cupom_Livro.Add(tB_Cupom_Livro);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Cupom_Livro.ID_Cupom_Livro)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Cupom_Livro).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_Cupom_LivroExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Cupom = new SelectList(db.TB_Cupom, "ID_Cupom", "Nome", tB_Cupom_Livro.ID_Cupom);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Cupom_Livro.ID_Livro);
-            return View(tB_Cupom_Livro);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Cupom_Livro/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Cupom_Livro
+        [ResponseType(typeof(TB_Cupom_Livro))]
+        public IHttpActionResult PostTB_Cupom_Livro(TB_Cupom_Livro tB_Cupom_Livro)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Cupom_Livro tB_Cupom_Livro = db.TB_Cupom_Livro.Find(id);
-            if (tB_Cupom_Livro == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Cupom = new SelectList(db.TB_Cupom, "ID_Cupom", "Nome", tB_Cupom_Livro.ID_Cupom);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Cupom_Livro.ID_Livro);
-            return View(tB_Cupom_Livro);
-        }
 
-        // POST: TB_Cupom_Livro/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Cupom_Livro,ID_Cupom,ID_Livro")] TB_Cupom_Livro tB_Cupom_Livro)
-        {
-            if (ModelState.IsValid)
+            db.TB_Cupom_Livro.Add(tB_Cupom_Livro);
+
+            try
             {
-                db.Entry(tB_Cupom_Livro).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Cupom = new SelectList(db.TB_Cupom, "ID_Cupom", "Nome", tB_Cupom_Livro.ID_Cupom);
-            ViewBag.ID_Livro = new SelectList(db.TB_Livro, "ID_Livro", "Titulo", tB_Cupom_Livro.ID_Livro);
-            return View(tB_Cupom_Livro);
+            catch (DbUpdateException)
+            {
+                if (TB_Cupom_LivroExists(tB_Cupom_Livro.ID_Cupom_Livro))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Cupom_Livro.ID_Cupom_Livro }, tB_Cupom_Livro);
         }
 
-        // GET: TB_Cupom_Livro/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Cupom_Livro/5
+        [ResponseType(typeof(TB_Cupom_Livro))]
+        public IHttpActionResult DeleteTB_Cupom_Livro(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Cupom_Livro tB_Cupom_Livro = db.TB_Cupom_Livro.Find(id);
             if (tB_Cupom_Livro == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Cupom_Livro);
-        }
 
-        // POST: TB_Cupom_Livro/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Cupom_Livro tB_Cupom_Livro = db.TB_Cupom_Livro.Find(id);
             db.TB_Cupom_Livro.Remove(tB_Cupom_Livro);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Cupom_Livro);
         }
 
         protected override void Dispose(bool disposing)
@@ -131,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_Cupom_LivroExists(int id)
+        {
+            return db.TB_Cupom_Livro.Count(e => e.ID_Cupom_Livro == id) > 0;
         }
     }
 }

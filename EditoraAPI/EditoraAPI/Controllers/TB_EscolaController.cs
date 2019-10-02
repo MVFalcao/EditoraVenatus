@@ -2,122 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_EscolaController : Controller
+    public class TB_EscolaController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Escola
-        public ActionResult Index()
+        // GET: api/TB_Escola
+        public IQueryable<TB_Escola> GetTB_Escola()
         {
-            var tB_Escola = db.TB_Escola.Include(t => t.TB_Cliente);
-            return View(tB_Escola.ToList());
+            return db.TB_Escola;
         }
 
-        // GET: TB_Escola/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Escola/5
+        [ResponseType(typeof(TB_Escola))]
+        public IHttpActionResult GetTB_Escola(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Escola tB_Escola = db.TB_Escola.Find(id);
             if (tB_Escola == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Escola);
+
+            return Ok(tB_Escola);
         }
 
-        // GET: TB_Escola/Create
-        public ActionResult Create()
+        // PUT: api/TB_Escola/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Escola(int id, TB_Escola tB_Escola)
         {
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente");
-            return View();
-        }
-
-        // POST: TB_Escola/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Escola,ID_Cliente,Nome_Instituicao,CNPJ,Responsavel,Livro_Adotado,Serie_Adotada,Dt_Adotacao")] TB_Escola tB_Escola)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Escola.Add(tB_Escola);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Escola.ID_Escola)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Escola).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_EscolaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Escola.ID_Cliente);
-            return View(tB_Escola);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Escola/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Escola
+        [ResponseType(typeof(TB_Escola))]
+        public IHttpActionResult PostTB_Escola(TB_Escola tB_Escola)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Escola tB_Escola = db.TB_Escola.Find(id);
-            if (tB_Escola == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Escola.ID_Cliente);
-            return View(tB_Escola);
-        }
 
-        // POST: TB_Escola/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Escola,ID_Cliente,Nome_Instituicao,CNPJ,Responsavel,Livro_Adotado,Serie_Adotada,Dt_Adotacao")] TB_Escola tB_Escola)
-        {
-            if (ModelState.IsValid)
+            db.TB_Escola.Add(tB_Escola);
+
+            try
             {
-                db.Entry(tB_Escola).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.ID_Cliente = new SelectList(db.TB_Cliente, "ID_Cliente", "ID_Cliente", tB_Escola.ID_Cliente);
-            return View(tB_Escola);
+            catch (DbUpdateException)
+            {
+                if (TB_EscolaExists(tB_Escola.ID_Escola))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Escola.ID_Escola }, tB_Escola);
         }
 
-        // GET: TB_Escola/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Escola/5
+        [ResponseType(typeof(TB_Escola))]
+        public IHttpActionResult DeleteTB_Escola(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Escola tB_Escola = db.TB_Escola.Find(id);
             if (tB_Escola == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Escola);
-        }
 
-        // POST: TB_Escola/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Escola tB_Escola = db.TB_Escola.Find(id);
             db.TB_Escola.Remove(tB_Escola);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Escola);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_EscolaExists(int id)
+        {
+            return db.TB_Escola.Count(e => e.ID_Escola == id) > 0;
         }
     }
 }

@@ -2,117 +2,119 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_AutorController : Controller
+    public class TB_AutorController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Autor
-        public ActionResult Index()
+        // GET: api/TB_Autor
+        public IQueryable<TB_Autor> GetTB_Autor()
         {
-            return View(db.TB_Autor.ToList());
+            return db.TB_Autor;
         }
 
-        // GET: TB_Autor/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Autor/5
+        [ResponseType(typeof(TB_Autor))]
+        public IHttpActionResult GetTB_Autor(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Autor tB_Autor = db.TB_Autor.Find(id);
             if (tB_Autor == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Autor);
+
+            return Ok(tB_Autor);
         }
 
-        // GET: TB_Autor/Create
-        public ActionResult Create()
+        // PUT: api/TB_Autor/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Autor(int id, TB_Autor tB_Autor)
         {
-            return View();
-        }
-
-        // POST: TB_Autor/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Autor,CPF,Nome")] TB_Autor tB_Autor)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Autor.Add(tB_Autor);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Autor.ID_Autor)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Autor).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_AutorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(tB_Autor);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Autor/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Autor
+        [ResponseType(typeof(TB_Autor))]
+        public IHttpActionResult PostTB_Autor(TB_Autor tB_Autor)
         {
-            if (id == null)
+            // POST é para inserir coisas novas
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Autor tB_Autor = db.TB_Autor.Find(id);
-            if (tB_Autor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tB_Autor);
-        }
 
-        // POST: TB_Autor/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Autor,CPF,Nome")] TB_Autor tB_Autor)
-        {
-            if (ModelState.IsValid)
+            db.TB_Autor.Add(tB_Autor);
+
+            try
             {
-                db.Entry(tB_Autor).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(tB_Autor);
+            catch (DbUpdateException)
+            {
+                if (TB_AutorExists(tB_Autor.ID_Autor))
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Autor.ID_Autor }, tB_Autor);
         }
 
-        // GET: TB_Autor/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Autor/5
+        [ResponseType(typeof(TB_Autor))]
+        public IHttpActionResult DeleteTB_Autor(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Autor tB_Autor = db.TB_Autor.Find(id);
             if (tB_Autor == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Autor);
-        }
 
-        // POST: TB_Autor/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Autor tB_Autor = db.TB_Autor.Find(id);
             db.TB_Autor.Remove(tB_Autor);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Autor);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +124,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_AutorExists(int id)
+        {
+            return db.TB_Autor.Count(e => e.ID_Autor == id) > 0;
         }
     }
 }

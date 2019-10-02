@@ -2,117 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_LivroController : Controller
+    public class TB_LivroController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Livro
-        public ActionResult Index()
+        // GET: api/TB_Livro
+        public IQueryable<TB_Livro> GetTB_Livro()
         {
-            return View(db.TB_Livro.ToList());
+            return db.TB_Livro;
         }
 
-        // GET: TB_Livro/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Livro/5
+        [ResponseType(typeof(TB_Livro))]
+        public IHttpActionResult GetTB_Livro(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Livro tB_Livro = db.TB_Livro.Find(id);
             if (tB_Livro == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Livro);
+
+            return Ok(tB_Livro);
         }
 
-        // GET: TB_Livro/Create
-        public ActionResult Create()
+        // PUT: api/TB_Livro/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Livro(int id, TB_Livro tB_Livro)
         {
-            return View();
-        }
-
-        // POST: TB_Livro/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Livro,Titulo,Descrição,Preco,Data_Publicacao,Numero_Paginas,Ilustrador,Tipo_Livro,ISBN")] TB_Livro tB_Livro)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Livro.Add(tB_Livro);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Livro.ID_Livro)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Livro).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_LivroExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(tB_Livro);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Livro/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Livro
+        [ResponseType(typeof(TB_Livro))]
+        public IHttpActionResult PostTB_Livro(TB_Livro tB_Livro)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Livro tB_Livro = db.TB_Livro.Find(id);
-            if (tB_Livro == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tB_Livro);
-        }
 
-        // POST: TB_Livro/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Livro,Titulo,Descrição,Preco,Data_Publicacao,Numero_Paginas,Ilustrador,Tipo_Livro,ISBN")] TB_Livro tB_Livro)
-        {
-            if (ModelState.IsValid)
+            db.TB_Livro.Add(tB_Livro);
+
+            try
             {
-                db.Entry(tB_Livro).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(tB_Livro);
+            catch (DbUpdateException)
+            {
+                if (TB_LivroExists(tB_Livro.ID_Livro))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Livro.ID_Livro }, tB_Livro);
         }
 
-        // GET: TB_Livro/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Livro/5
+        [ResponseType(typeof(TB_Livro))]
+        public IHttpActionResult DeleteTB_Livro(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Livro tB_Livro = db.TB_Livro.Find(id);
             if (tB_Livro == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Livro);
-        }
 
-        // POST: TB_Livro/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Livro tB_Livro = db.TB_Livro.Find(id);
             db.TB_Livro.Remove(tB_Livro);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Livro);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_LivroExists(int id)
+        {
+            return db.TB_Livro.Count(e => e.ID_Livro == id) > 0;
         }
     }
 }

@@ -2,117 +2,118 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class TB_CupomController : Controller
+    public class TB_CupomController : ApiController
     {
         private EditoraEntities db = new EditoraEntities();
 
-        // GET: TB_Cupom
-        public ActionResult Index()
+        // GET: api/TB_Cupom
+        public IQueryable<TB_Cupom> GetTB_Cupom()
         {
-            return View(db.TB_Cupom.ToList());
+            return db.TB_Cupom;
         }
 
-        // GET: TB_Cupom/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/TB_Cupom/5
+        [ResponseType(typeof(TB_Cupom))]
+        public IHttpActionResult GetTB_Cupom(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Cupom tB_Cupom = db.TB_Cupom.Find(id);
             if (tB_Cupom == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Cupom);
+
+            return Ok(tB_Cupom);
         }
 
-        // GET: TB_Cupom/Create
-        public ActionResult Create()
+        // PUT: api/TB_Cupom/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTB_Cupom(int id, TB_Cupom tB_Cupom)
         {
-            return View();
-        }
-
-        // POST: TB_Cupom/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Cupom,Valor_Desconto,Nome,Data_ini,Data_fim")] TB_Cupom tB_Cupom)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.TB_Cupom.Add(tB_Cupom);
+                return BadRequest(ModelState);
+            }
+
+            if (id != tB_Cupom.ID_Cupom)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(tB_Cupom).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TB_CupomExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(tB_Cupom);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: TB_Cupom/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/TB_Cupom
+        [ResponseType(typeof(TB_Cupom))]
+        public IHttpActionResult PostTB_Cupom(TB_Cupom tB_Cupom)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
-            TB_Cupom tB_Cupom = db.TB_Cupom.Find(id);
-            if (tB_Cupom == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tB_Cupom);
-        }
 
-        // POST: TB_Cupom/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Cupom,Valor_Desconto,Nome,Data_ini,Data_fim")] TB_Cupom tB_Cupom)
-        {
-            if (ModelState.IsValid)
+            db.TB_Cupom.Add(tB_Cupom);
+
+            try
             {
-                db.Entry(tB_Cupom).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(tB_Cupom);
+            catch (DbUpdateException)
+            {
+                if (TB_CupomExists(tB_Cupom.ID_Cupom))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = tB_Cupom.ID_Cupom }, tB_Cupom);
         }
 
-        // GET: TB_Cupom/Delete/5
-        public ActionResult Delete(int? id)
+        // DELETE: api/TB_Cupom/5
+        [ResponseType(typeof(TB_Cupom))]
+        public IHttpActionResult DeleteTB_Cupom(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             TB_Cupom tB_Cupom = db.TB_Cupom.Find(id);
             if (tB_Cupom == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(tB_Cupom);
-        }
 
-        // POST: TB_Cupom/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TB_Cupom tB_Cupom = db.TB_Cupom.Find(id);
             db.TB_Cupom.Remove(tB_Cupom);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(tB_Cupom);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +123,11 @@ namespace EditoraAPI.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool TB_CupomExists(int id)
+        {
+            return db.TB_Cupom.Count(e => e.ID_Cupom == id) > 0;
         }
     }
 }
