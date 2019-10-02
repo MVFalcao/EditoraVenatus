@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EditoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TB_Autor">
+    <Key>
+      <PropertyRef Name="ID_Autor" />
+    </Key>
+    <Property Name="ID_Autor" Type="int" Nullable="false" />
+    <Property Name="CPF" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Carrinho">
+    <Key>
+      <PropertyRef Name="ID_Carrinho" />
+    </Key>
+    <Property Name="ID_Carrinho" Type="int" Nullable="false" />
+    <Property Name="ID_Compra" Type="int" Nullable="false" />
+    <Property Name="ID_Livro" Type="int" Nullable="false" />
+    <Property Name="Quantidade_Livro" Type="int" Nullable="false" />
+    <Property Name="Preco_Total_Livro" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Cliente">
+    <Key>
+      <PropertyRef Name="ID_Cliente" />
+    </Key>
+    <Property Name="ID_Cliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Compra">
+    <Key>
+      <PropertyRef Name="ID_Compra" />
+    </Key>
+    <Property Name="ID_Compra" Type="int" Nullable="false" />
+    <Property Name="ID_Cliente" Type="int" Nullable="false" />
+    <Property Name="ID_Tipo" Type="int" Nullable="false" />
+    <Property Name="Preco_total" Type="money" Nullable="false" />
+    <Property Name="Data_Pag" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Cupom">
+    <Key>
+      <PropertyRef Name="ID_Cupom" />
+    </Key>
+    <Property Name="ID_Cupom" Type="int" Nullable="false" />
+    <Property Name="Valor_Desconto" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Data_ini" Type="date" Nullable="false" />
+    <Property Name="Data_fim" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Cupom_Livro">
+    <Key>
+      <PropertyRef Name="ID_Cupom_Livro" />
+    </Key>
+    <Property Name="ID_Cupom_Livro" Type="int" Nullable="false" />
+    <Property Name="ID_Cupom" Type="int" Nullable="false" />
+    <Property Name="ID_Livro" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Cupom_Pessoa">
+    <Key>
+      <PropertyRef Name="ID_Cupom_Pessoa" />
+    </Key>
+    <Property Name="ID_Cupom_Pessoa" Type="int" Nullable="false" />
+    <Property Name="ID_Cupom" Type="int" Nullable="false" />
+    <Property Name="ID_Pessoa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Endereco">
+    <Key>
+      <PropertyRef Name="ID_Endereco" />
+    </Key>
+    <Property Name="ID_Endereco" Type="int" Nullable="false" />
+    <Property Name="ID_AutorCliente" Type="int" Nullable="false" />
+    <Property Name="CEP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cidade" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bairro" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Complemento" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Escola">
+    <Key>
+      <PropertyRef Name="ID_Escola" />
+    </Key>
+    <Property Name="ID_Escola" Type="int" Nullable="false" />
+    <Property Name="ID_Cliente" Type="int" Nullable="false" />
+    <Property Name="Nome_Instituicao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CNPJ" Type="int" Nullable="false" />
+    <Property Name="Responsavel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Livro_Adotado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Serie_Adotada" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Dt_Adotacao" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Estoque">
+    <Key>
+      <PropertyRef Name="ID_Estoque" />
+    </Key>
+    <Property Name="ID_Estoque" Type="int" Nullable="false" />
+    <Property Name="ID_Livro" Type="int" Nullable="false" />
+    <Property Name="Quantidade" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Livraria">
+    <Key>
+      <PropertyRef Name="ID_Livraria" />
+    </Key>
+    <Property Name="ID_Livraria" Type="int" Nullable="false" />
+    <Property Name="ID_Cliente" Type="int" Nullable="false" />
+    <Property Name="CNPJ" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tipo_consignacao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Livro">
+    <Key>
+      <PropertyRef Name="ID_Livro" />
+    </Key>
+    <Property Name="ID_Livro" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descrição" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Preco" Type="money" Nullable="false" />
+    <Property Name="Data_Publicacao" Type="date" Nullable="false" />
+    <Property Name="Numero_Paginas" Type="int" Nullable="false" />
+    <Property Name="Ilustrador" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tipo_Livro" Type="nchar" MaxLength="10" />
+    <Property Name="ISBN" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Livro_Autor">
+    <Key>
+      <PropertyRef Name="ID_Livro_Autor" />
+    </Key>
+    <Property Name="ID_Livro_Autor" Type="int" Nullable="false" />
+    <Property Name="ID_Livro" Type="int" Nullable="false" />
+    <Property Name="ID_Autor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Pessoa">
+    <Key>
+      <PropertyRef Name="ID_Pessoa" />
+    </Key>
+    <Property Name="ID_Pessoa" Type="int" Nullable="false" />
+    <Property Name="ID_Cliente" Type="int" Nullable="false" />
+    <Property Name="CPF" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Desconto" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Tipo_Pessoa" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sexo" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="data_nascimento" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_RedeSocial">
+    <Key>
+      <PropertyRef Name="ID_RedeSocial" />
+    </Key>
+    <Property Name="ID_RedeSocial" Type="int" Nullable="false" />
+    <Property Name="ID_AutorCliente" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Instagram" Type="nvarchar(max)" />
+    <Property Name="Twitter" Type="nvarchar(max)" />
+    <Property Name="Facebook" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TB_Telefone">
+    <Key>
+      <PropertyRef Name="ID_Telefone" />
+    </Key>
+    <Property Name="ID_Telefone" Type="int" Nullable="false" />
+    <Property Name="Tipo_Telefone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_AutorCliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Tipo">
+    <Key>
+      <PropertyRef Name="ID_Tipo" />
+    </Key>
+    <Property Name="ID_Tipo" Type="int" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_TB_Carrinho_TB_Carrinho">
+    <End Role="TB_Compra" Type="Self.TB_Compra" Multiplicity="1" />
+    <End Role="TB_Carrinho" Type="Self.TB_Carrinho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Compra">
+        <PropertyRef Name="ID_Compra" />
+      </Principal>
+      <Dependent Role="TB_Carrinho">
+        <PropertyRef Name="ID_Compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Carrinho_TB_Livro">
+    <End Role="TB_Livro" Type="Self.TB_Livro" Multiplicity="1" />
+    <End Role="TB_Carrinho" Type="Self.TB_Carrinho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Livro">
+        <PropertyRef Name="ID_Livro" />
+      </Principal>
+      <Dependent Role="TB_Carrinho">
+        <PropertyRef Name="ID_Livro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Compra_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Compra" Type="Self.TB_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_Compra">
+        <PropertyRef Name="ID_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Compra_TB_Tipo">
+    <End Role="TB_Tipo" Type="Self.TB_Tipo" Multiplicity="1" />
+    <End Role="TB_Compra" Type="Self.TB_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Tipo">
+        <PropertyRef Name="ID_Tipo" />
+      </Principal>
+      <Dependent Role="TB_Compra">
+        <PropertyRef Name="ID_Tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Cupom_Livro_TB_Cupom">
+    <End Role="TB_Cupom" Type="Self.TB_Cupom" Multiplicity="1" />
+    <End Role="TB_Cupom_Livro" Type="Self.TB_Cupom_Livro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cupom">
+        <PropertyRef Name="ID_Cupom" />
+      </Principal>
+      <Dependent Role="TB_Cupom_Livro">
+        <PropertyRef Name="ID_Cupom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Cupom_Livro_TB_Livro">
+    <End Role="TB_Livro" Type="Self.TB_Livro" Multiplicity="1" />
+    <End Role="TB_Cupom_Livro" Type="Self.TB_Cupom_Livro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Livro">
+        <PropertyRef Name="ID_Livro" />
+      </Principal>
+      <Dependent Role="TB_Cupom_Livro">
+        <PropertyRef Name="ID_Livro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Cupom_Pessoa_TB_Cupom">
+    <End Role="TB_Cupom" Type="Self.TB_Cupom" Multiplicity="1" />
+    <End Role="TB_Cupom_Pessoa" Type="Self.TB_Cupom_Pessoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cupom">
+        <PropertyRef Name="ID_Cupom" />
+      </Principal>
+      <Dependent Role="TB_Cupom_Pessoa">
+        <PropertyRef Name="ID_Cupom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Cupom_Pessoa_TB_Pessoa">
+    <End Role="TB_Pessoa" Type="Self.TB_Pessoa" Multiplicity="1" />
+    <End Role="TB_Cupom_Pessoa" Type="Self.TB_Cupom_Pessoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Pessoa">
+        <PropertyRef Name="ID_Pessoa" />
+      </Principal>
+      <Dependent Role="TB_Cupom_Pessoa">
+        <PropertyRef Name="ID_Pessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Endereco_TB_Autor">
+    <End Role="TB_Autor" Type="Self.TB_Autor" Multiplicity="1" />
+    <End Role="TB_Endereco" Type="Self.TB_Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Autor">
+        <PropertyRef Name="ID_Autor" />
+      </Principal>
+      <Dependent Role="TB_Endereco">
+        <PropertyRef Name="ID_AutorCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Endereco_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Endereco" Type="Self.TB_Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_Endereco">
+        <PropertyRef Name="ID_AutorCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Escola_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Escola" Type="Self.TB_Escola" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_Escola">
+        <PropertyRef Name="ID_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Estoque_TB_Livro">
+    <End Role="TB_Livro" Type="Self.TB_Livro" Multiplicity="1" />
+    <End Role="TB_Estoque" Type="Self.TB_Estoque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Livro">
+        <PropertyRef Name="ID_Livro" />
+      </Principal>
+      <Dependent Role="TB_Estoque">
+        <PropertyRef Name="ID_Livro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Livraria_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Livraria" Type="Self.TB_Livraria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_Livraria">
+        <PropertyRef Name="ID_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Livro_Autor_TB_Autor">
+    <End Role="TB_Autor" Type="Self.TB_Autor" Multiplicity="1" />
+    <End Role="TB_Livro_Autor" Type="Self.TB_Livro_Autor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Autor">
+        <PropertyRef Name="ID_Autor" />
+      </Principal>
+      <Dependent Role="TB_Livro_Autor">
+        <PropertyRef Name="ID_Autor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Livro_Autor_TB_Livro">
+    <End Role="TB_Livro" Type="Self.TB_Livro" Multiplicity="1" />
+    <End Role="TB_Livro_Autor" Type="Self.TB_Livro_Autor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Livro">
+        <PropertyRef Name="ID_Livro" />
+      </Principal>
+      <Dependent Role="TB_Livro_Autor">
+        <PropertyRef Name="ID_Livro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Pessoa_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Pessoa" Type="Self.TB_Pessoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_Pessoa">
+        <PropertyRef Name="ID_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_RedeSocial_TB_Autor">
+    <End Role="TB_Autor" Type="Self.TB_Autor" Multiplicity="1" />
+    <End Role="TB_RedeSocial" Type="Self.TB_RedeSocial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Autor">
+        <PropertyRef Name="ID_Autor" />
+      </Principal>
+      <Dependent Role="TB_RedeSocial">
+        <PropertyRef Name="ID_AutorCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_RedeSocial_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_RedeSocial" Type="Self.TB_RedeSocial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_RedeSocial">
+        <PropertyRef Name="ID_AutorCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Telefone_TB_Autor">
+    <End Role="TB_Autor" Type="Self.TB_Autor" Multiplicity="1" />
+    <End Role="TB_Telefone" Type="Self.TB_Telefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Autor">
+        <PropertyRef Name="ID_Autor" />
+      </Principal>
+      <Dependent Role="TB_Telefone">
+        <PropertyRef Name="ID_AutorCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Telefone_TB_Cliente">
+    <End Role="TB_Cliente" Type="Self.TB_Cliente" Multiplicity="1" />
+    <End Role="TB_Telefone" Type="Self.TB_Telefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Cliente">
+        <PropertyRef Name="ID_Cliente" />
+      </Principal>
+      <Dependent Role="TB_Telefone">
+        <PropertyRef Name="ID_AutorCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EditoraModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Autor" EntityType="Self.TB_Autor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Carrinho" EntityType="Self.TB_Carrinho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Cliente" EntityType="Self.TB_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Compra" EntityType="Self.TB_Compra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Cupom" EntityType="Self.TB_Cupom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Cupom_Livro" EntityType="Self.TB_Cupom_Livro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Cupom_Pessoa" EntityType="Self.TB_Cupom_Pessoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Endereco" EntityType="Self.TB_Endereco" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Escola" EntityType="Self.TB_Escola" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Estoque" EntityType="Self.TB_Estoque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Livraria" EntityType="Self.TB_Livraria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Livro" EntityType="Self.TB_Livro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Livro_Autor" EntityType="Self.TB_Livro_Autor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Pessoa" EntityType="Self.TB_Pessoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_RedeSocial" EntityType="Self.TB_RedeSocial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Telefone" EntityType="Self.TB_Telefone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Tipo" EntityType="Self.TB_Tipo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TB_Carrinho_TB_Carrinho" Association="Self.FK_TB_Carrinho_TB_Carrinho">
+      <End Role="TB_Compra" EntitySet="TB_Compra" />
+      <End Role="TB_Carrinho" EntitySet="TB_Carrinho" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Carrinho_TB_Livro" Association="Self.FK_TB_Carrinho_TB_Livro">
+      <End Role="TB_Livro" EntitySet="TB_Livro" />
+      <End Role="TB_Carrinho" EntitySet="TB_Carrinho" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Compra_TB_Cliente" Association="Self.FK_TB_Compra_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Compra" EntitySet="TB_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Compra_TB_Tipo" Association="Self.FK_TB_Compra_TB_Tipo">
+      <End Role="TB_Tipo" EntitySet="TB_Tipo" />
+      <End Role="TB_Compra" EntitySet="TB_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Cupom_Livro_TB_Cupom" Association="Self.FK_TB_Cupom_Livro_TB_Cupom">
+      <End Role="TB_Cupom" EntitySet="TB_Cupom" />
+      <End Role="TB_Cupom_Livro" EntitySet="TB_Cupom_Livro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Cupom_Livro_TB_Livro" Association="Self.FK_TB_Cupom_Livro_TB_Livro">
+      <End Role="TB_Livro" EntitySet="TB_Livro" />
+      <End Role="TB_Cupom_Livro" EntitySet="TB_Cupom_Livro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Cupom_Pessoa_TB_Cupom" Association="Self.FK_TB_Cupom_Pessoa_TB_Cupom">
+      <End Role="TB_Cupom" EntitySet="TB_Cupom" />
+      <End Role="TB_Cupom_Pessoa" EntitySet="TB_Cupom_Pessoa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Cupom_Pessoa_TB_Pessoa" Association="Self.FK_TB_Cupom_Pessoa_TB_Pessoa">
+      <End Role="TB_Pessoa" EntitySet="TB_Pessoa" />
+      <End Role="TB_Cupom_Pessoa" EntitySet="TB_Cupom_Pessoa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Endereco_TB_Autor" Association="Self.FK_TB_Endereco_TB_Autor">
+      <End Role="TB_Autor" EntitySet="TB_Autor" />
+      <End Role="TB_Endereco" EntitySet="TB_Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Endereco_TB_Cliente" Association="Self.FK_TB_Endereco_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Endereco" EntitySet="TB_Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Escola_TB_Cliente" Association="Self.FK_TB_Escola_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Escola" EntitySet="TB_Escola" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Estoque_TB_Livro" Association="Self.FK_TB_Estoque_TB_Livro">
+      <End Role="TB_Livro" EntitySet="TB_Livro" />
+      <End Role="TB_Estoque" EntitySet="TB_Estoque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Livraria_TB_Cliente" Association="Self.FK_TB_Livraria_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Livraria" EntitySet="TB_Livraria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Livro_Autor_TB_Autor" Association="Self.FK_TB_Livro_Autor_TB_Autor">
+      <End Role="TB_Autor" EntitySet="TB_Autor" />
+      <End Role="TB_Livro_Autor" EntitySet="TB_Livro_Autor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Livro_Autor_TB_Livro" Association="Self.FK_TB_Livro_Autor_TB_Livro">
+      <End Role="TB_Livro" EntitySet="TB_Livro" />
+      <End Role="TB_Livro_Autor" EntitySet="TB_Livro_Autor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Pessoa_TB_Cliente" Association="Self.FK_TB_Pessoa_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Pessoa" EntitySet="TB_Pessoa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_RedeSocial_TB_Autor" Association="Self.FK_TB_RedeSocial_TB_Autor">
+      <End Role="TB_Autor" EntitySet="TB_Autor" />
+      <End Role="TB_RedeSocial" EntitySet="TB_RedeSocial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_RedeSocial_TB_Cliente" Association="Self.FK_TB_RedeSocial_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_RedeSocial" EntitySet="TB_RedeSocial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Telefone_TB_Autor" Association="Self.FK_TB_Telefone_TB_Autor">
+      <End Role="TB_Autor" EntitySet="TB_Autor" />
+      <End Role="TB_Telefone" EntitySet="TB_Telefone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Telefone_TB_Cliente" Association="Self.FK_TB_Telefone_TB_Cliente">
+      <End Role="TB_Cliente" EntitySet="TB_Cliente" />
+      <End Role="TB_Telefone" EntitySet="TB_Telefone" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

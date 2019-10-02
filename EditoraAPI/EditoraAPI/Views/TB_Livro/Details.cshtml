@@ -1,0 +1,82 @@
+﻿@model EditoraAPI.Models.TB_Livro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TB_Livro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrição)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrição)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Publicacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_Publicacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero_Paginas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_Paginas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ilustrador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ilustrador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Livro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Livro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Livro }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
