@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,700&display=swap');
+
+.book-container {
+    max-width: 100%;
+    margin: 80px auto 50px;
+    padding: 0px 10%;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.left-content {
+    max-width: 400px;
+    text-align: center;
+}
+
+.left-content img {
+    width: 90%;
+    height: auto;
+}
+
+.left-content p#ISBN {
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.left-content p#synopsis {
+    font-weight: 400;
+    font-size: 17px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.main-content {
+    max-width: 400px;
+}
+
+.main-content h1 {
+    font: 700 50px;
+    color: #309AAC;
+}
+
+.main-content h2 {
+    font-weight: 600; 
+    font-size: 28px;
+    color: #309AAC;
+    margin-bottom: 18px;
+}
+
+.main-content p#book-price {
+    font-weight: 300;
+    font-size: 30px;
+    font-style: italic;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.main-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content form label {
+    font-weight: 400;
+    font-size: 15px;
+    font-style: italic;
+    color: #707070;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.main-content form input {
+    max-width: 80px;
+    height: 40px;
+    padding: 10px;
+    font: 400 18px Bahnschrift, Arial, sans-serif;
+    color: #3f3f3f;
+    margin-bottom: 30px;
+}
+
+.main-content form button {
+    max-width: 200px;
+    height: 40px;
+    margin-bottom: 60px;
+
+    border: transparent;
+    border-radius: 20px;
+
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(42, 136, 153);
+    cursor: pointer;
+}
+
+.main-content form button:hover {
+    background-color: rgb(30, 94, 105);
+}
+
+.main-content form button:active {
+    transform: translateY(2px);
+}
+
+.dropdown-container {
+    max-width: 100%;
+}
+
+.dropdown-container button.dropbtn {
+    width: 100%;
+
+    font: 300 18px 'Poppins', Arial, sans-serif;
+    font-style: italic;
+    color: rgb(35, 114, 128);
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    border: transparent;
+    cursor: pointer;
+}
+
+.dropdown-container button.dropbtn:hover {
+    color: rgb(28, 91, 102);
+}
+
+.dropdown-container button.dropbtn p#plus {
+    font-size: 20px;
+    font-style: normal;
+}
+
+.right-content {
+    padding-top: 3px;
+}
+
+.right-content p {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-style: italic;
+    color: #5f5f5f;
+}
