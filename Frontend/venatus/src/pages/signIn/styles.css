@@ -14,10 +14,15 @@
     align-items: center;
 }
 
+.signin-content a {
+    display: flex;
+    justify-content: center;
+}
+
 .signin-content img {
-    width: 50%;
+    width: 80%;
     height: auto;
-    margin-bottom: 20px;
+    margin: 0px auto 20px;
 }
 
 .signin-content p {

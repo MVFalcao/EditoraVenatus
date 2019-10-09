@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,700&display=swap');
 
-/* #books-container {
-} */
-
 /* Delimitador de área do input de busca */
-#books-container .search-wrapper {
+.search-wrapper {
     width: 100%;
     height: 50px;
     display: flex;
@@ -13,7 +10,7 @@
 }
 
 /* Parte visual do input */
-#books-container .search-wrapper .search-container {
+.search-container {
     box-sizing: border-box;
     max-width: 370px;
     height: 40px;
@@ -23,19 +20,19 @@
     transition: all .2s;
 }
 
-#books-container .search-wrapper .search-container:active {
+.search-container:active {
     transform: scale(1.02);
 }
 
 /* Alinhamento dos elementos do input */
-#books-container .search-wrapper .search-container form {
+.search-container form {
     display: flex;
     justify-content: space-between;
     align-content: center;
 }
 
 /* Stilização dos elementos do input */
-#books-container .search-wrapper .search-container form .search-input {
+.search-input {
     width: 80%;
     border: none;
     background-color: transparent;
@@ -47,7 +44,7 @@
     color: rgb(60, 60, 60);
 }
 
-#books-container .search-wrapper .search-container form .search-input::placeholder {
+.search-input::placeholder {
     font-family: 'Poppins', Arial, sans-serif;
     font-style: italic;
     font-weight: 300;
@@ -55,7 +52,7 @@
 }
 
 /* Ajuste do botão de busca */
-#books-container .search-wrapper .search-container form a {
+.search-container form a {
     width: 60px;
     height: 40px;
     display: flex;
@@ -64,27 +61,33 @@
 
     background-color: #309AAC;
     cursor: pointer;
+    transition: all .2s;
+}
+
+.search-container form a:hover {
+    background-color: rgb(36, 112, 126);
+    transform: scale(1.1);
 }
 
 /* Ajuste da imagem da lupa */
-#books-container .search-wrapper .search-container form a img {
+.search-container form a img {
     width: 32%;
     height: auto;
 }
 
 
-#books-container .allBooks-wrapper {
+.allBooks-wrapper {
     margin-top: 60px;
     width: 100%;
     text-align: center;
 }
 
-#books-container .allBooks-wrapper h1 {
+.allBooks-wrapper h1 {
     font-family: 'Poppins', Arial, sans-serif;
     font-size: 30px;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container {
+.allBooks-Container {
     box-sizing: border-box;
     width: 90%;
     margin: 20px auto;
@@ -92,7 +95,7 @@
     background-color: rgba(255, 191, 191, 0.74);
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul {
+.allBooks-Container ul {
     list-style: none;
     display: grid;
     justify-items: center;
@@ -100,7 +103,7 @@
     gap: 30px;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li {
+.allBooks-Container ul li {
     max-width: 250px;
     padding: 16px;
     background-color: rgba(255, 255, 255, 0.5);
@@ -111,24 +114,24 @@
     justify-items: space-between;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li a img {
+.allBooks-Container ul li a img {
     width: 100%;
     height: auto;
     margin-bottom: 15px;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li h2 {
+.allBooks-Container ul li h2 {
     font: italic 400 18px 'Poppins', sans-serif;
     color: #494646;
     margin-bottom: 22px;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li p {
+.allBooks-Container ul li p {
     font: italic 400 20px Bahnschrift, Arial, sans-serif;
     color: #309AAC;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li button {
+.allBooks-Container ul li button {
     margin: 30px auto 10px;
     width: 200px;
     height: 33px;
@@ -149,24 +152,24 @@
     transition: all .1s;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li button:hover {
+.allBooks-Container ul li button:hover {
     transform: translateY(-1px);
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li button:active {
+.allBooks-Container ul li button:active {
     transform: translateY(2px);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li button p {
+.allBooks-Container ul li button p {
     padding-top: 6px;
     font: 300 14px 'Poppins', Arial, sans-serif;
     color: rgb(56, 56, 56);
 }
 
-#books-container .allBooks-wrapper .allBooks-Container ul li button img {
+.allBooks-Container ul li button img {
     width: 10%;
     height: auto;
 }

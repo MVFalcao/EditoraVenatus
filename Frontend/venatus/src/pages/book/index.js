@@ -1,7 +1,31 @@
 import React, { Component } from 'react';
 
 import './styles.css';
-import nya from '../../assets/book/nya-grande.svg'
+import nya from '../../assets/book/nya-grande.svg';
+import age10 from '../../assets/book/10+.svg'
+
+let divClosedList = [true, true, true];
+
+function handleDiv(SymbolItem = "", contentDiv = "", item = 0) {
+    let SymbolEmt = document.querySelector(SymbolItem);
+    let dropdownContent = document.querySelector(contentDiv);
+
+    const showDiv = () => {
+        dropdownContent.style.display = "flex";
+    }
+    const hideDiv = () => {
+        dropdownContent.style.display = "none";
+    }
+    if (divClosedList[item]) {
+        showDiv();
+        SymbolEmt.innerHTML = "-";
+        divClosedList[item] = false;
+    } else {
+        hideDiv();
+        SymbolEmt.innerHTML = "+";
+        divClosedList[item] = true;
+    }
+}
 
 export default class book extends Component {
   render() {
@@ -21,15 +45,54 @@ export default class book extends Component {
                     <input type="number" id="book-quantity" defaultValue="1" min="1" required/>
                     <button type="submit">Adicionar ao Carrinho</button>
                 </form>
+
                 <div className="dropdown-container">
-                    <button className="dropbtn">
-                        <p>Descrição do Livro</p>
-                        <p id="plus">+</p>
-                    </button>
-                    <div className="dropdown-content">
-                        <p>Categoria: Aventura</p>
-                    </div>
-                </div> 
+                    <ul>
+                        <li>
+                            <button className="dropbtn" onClick={() => handleDiv('.plus.item-1','.dropdown-content.item-1', 0)}>
+                                <h3>Descrição do Livro</h3>
+                                <p className="plus item-1">+</p>
+                            </button>
+                            <div className="dropdown-content item-1">
+                                <p>Categoria: Aventura</p>
+                                <p id="info01">
+                                    Indicação: Maiores de 10 anos
+                                   <img src={age10} alt="Indicação de idade"/> 
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="categories-line item-1" />
+                        </li>
+                        <li>
+                            <button className="dropbtn" onClick={() => handleDiv('.plus.item-2','.dropdown-content.item-2', 1)}>
+                                <h3>Informações do Frete</h3>
+                                <p className="plus item-2">+</p>
+                            </button>
+                            <div className="dropdown-content item-2">
+                                <p> Frete incluso para todo o Brasil. </p>
+                                <p> 
+                                    Prazo de entrega: 7 a 10 dias úteis, a partir da confirmação do pagamento.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="categories-line item-2" />
+                        </li>
+                        <li>
+                            <button className="dropbtn" onClick={() => handleDiv('.plus.item-3','.dropdown-content.item-3', 2)}>
+                                <h3>Extras</h3>
+                                <p className="plus item-3">+</p>
+                            </button>
+                            <div className="dropdown-content item-3">
+                                <p> Livro autografado </p>
+                                <p>Brinde: 01 Marcador de livro em formato card.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+
             </div>
             <div className="right-content">
                 <p id="book-Author">Autor(a): Erica Falcão</p>

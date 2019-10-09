@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 import nya from '../../assets/main/nya.svg';
@@ -13,12 +14,12 @@ export default class main extends Component {
           <section className="main-content">
               <ul>
                 <li>
-                  <a href="/">
+                  <Link to="/bookPage">
                     <img src={nya} alt="Descrição do Livro" />
-                  </a>
+                  </Link>
                   <h2>Nya - #ConexãoPulmãoVerde</h2>
                   <p>R$ 39,90</p>
-                  <a href="/" id="BookBtn">Saiba mais</a>
+                  <Link to="/bookPage" id="BookBtn">Saiba mais</Link>
                 </li>
               </ul> 
           </section>

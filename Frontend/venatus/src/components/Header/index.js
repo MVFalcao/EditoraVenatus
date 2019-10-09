@@ -6,14 +6,30 @@ import carrinho from '../../assets/header/carrinho.svg';
 import line from '../../assets/header/linha.svg';
 import "./styles.css";
 
+// function paintActualTab() {
+//     let actualTab;    
+
+//     switch(window.location.pathname) {
+//         case "/allBooks":
+//             actualTab = document.querySelector('.item.item-1 a');
+//             actualTab.style.color = "#309AAC";    
+//         break;
+//         default:
+//             actualTab = document.querySelectorAll('.item a');
+//             actualTab.forEach(element => {
+//                 element.style.color = "#535151"
+//             }); 
+//     }
+// }
+
 const Header = () => {
     return <header id = "main-header">
         <div className="header-logo">
-            <a href="">
+            <Link to="/">
                 <img src={logo} alt= "Venatus" />
-            </a>
+            </Link>
             <div className="header-login">
-                <a href="/">Entre ou Cadastre-se</a>
+                <Link to="/Login">Entre ou Cadastre-se</Link>
             </div>
         </div>
         <div className="menu-container">
@@ -22,22 +38,22 @@ const Header = () => {
             </div>
             <div className="menu-navbar">
                 <div className="item item-1">
-                    <a href="/">Livros</a>
+                    <Link to="/allBooks">Livros</Link>
                 </div>
                 <div className="item item-2">
-                    <a href="/">Sobre Nós</a>
+                    <Link to="/">Sobre Nós</Link>
                 </div>
                 <div className="item item-3">
-                    <a href="/">Eventos</a>
+                    <Link to="/">Eventos</Link>
                 </div>
                 <div className="item item-4">
-                    <a href="/">Contato</a>
+                    <Link to="/">Contato</Link>
                 </div>
                 <div className="item-cart">
-                    <a href='/'>
+                    <Link to='/'>
                         <img src={carrinho} alt="Carrinho" />
                         <div className="cart-background">0</div>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className="header-line">

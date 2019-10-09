@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css'
 import logo from '../../assets/header/logo.svg';
@@ -7,9 +8,9 @@ export default class login extends Component {
   render() {
     return <div>
       <div className="login-container">
-        <a href="/">
+        <Link to="/">
           <img src={logo} alt="Logo Venatus"/>
-        </a>
+        </Link>
         <div className="login-content">
           <p>Tenha acesso a nossa editora</p>
           <form>
@@ -19,10 +20,10 @@ export default class login extends Component {
             <label htmlFor="password">Senha</label>
             <input id="password" type="password" placeholder="Digite sua senha" required />
             
-            <a href="/" id="forgot">Esqueceu a senha?</a>
+            <Link to="/" id="forgot">Esqueceu a senha?</Link>
             <button type="submit">Entrar</button>
           </form>
-          <p id="signup">Novo na Venatus? <a href="/">Crie uma conta</a></p>
+          <p id="signup">Novo na Venatus? <Link to="/SignIn">Crie uma conta</Link></p>
       </div>
       </div>
     </div>;

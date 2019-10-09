@@ -17,6 +17,7 @@
     padding: 20px 0px 10px;
     background: rgba(255, 191, 191, 0.74);
 }
+
 .main-container .main-background .main-content ul {
     padding: 20px 50px 30px;
     list-style: none;
@@ -47,15 +48,17 @@
     font: italic 400 18px 'Poppins', sans-serif;
     color: #494646;
     margin-bottom: 22px;
+    cursor: default;
 }
 
 .main-container .main-background .main-content ul li p {
     font: 19px bahnschrift, Arial, sans-serif;
     color: rgb(65, 59, 59);
+    cursor: default;
 }
 
 .main-container .main-background .main-content ul li a img {
-    transition: all .2s;
+    transition: all .1s;
 }
 
 .main-container .main-background .main-content ul li a img:hover {
