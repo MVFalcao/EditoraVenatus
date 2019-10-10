@@ -104,7 +104,7 @@
 }
 
 .main-content form button:active {
-    transform: translateY(2px);
+    transform: translateY(1px);
 }
 
 .dropdown-container {

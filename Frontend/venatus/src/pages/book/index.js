@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
 import './styles.css';
 import nya from '../../assets/book/nya-grande.svg';
 import age10 from '../../assets/book/10+.svg'
@@ -30,6 +33,8 @@ function handleDiv(SymbolItem = "", contentDiv = "", item = 0) {
 export default class book extends Component {
   render() {
     return (
+        <>
+        <Header />
         <div className="book-container">
             <div className="left-content">
                 <img src={nya} alt="Imagem do Livro" />
@@ -103,6 +108,8 @@ export default class book extends Component {
                 <p id="book-year">Ano de Publicação: 2019</p>
             </div>
         </div>
+        <Footer />
+        </>
     );
   }
 }

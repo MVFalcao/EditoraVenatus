@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
 import './styles.css';
 import lupa from '../../assets/allBooks/lupa-branca.svg'
 import nya from '../../assets/main/nya.svg';
@@ -9,6 +13,8 @@ import carrinho from '../../assets/header/carrinho.svg'
 export default class books extends Component {
     render() {
         return (
+            <>
+            <Header />
             <div id="books-container">
                 <div className="search-wrapper">
                     <div className="search-container">
@@ -31,7 +37,7 @@ export default class books extends Component {
                                 <h2>Nya - #ConexãoPulmãoVerde</h2>
                                 <p>R$ 39,90</p>
                                     <button>
-                                        <img src={carrinho} />
+                                        <img src={carrinho} alt="Carrinho" />
                                         <p>Adicionar ao Carrinho</p>
                                     </button>
                             </li>
@@ -39,6 +45,8 @@ export default class books extends Component {
                     </section>
                 </div>
             </div>
+            <Footer />
+            </>
     );
   }
 }
