@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditoraAPI", "EditoraAPI\EditoraAPI.csproj", "{183969D7-5B6E-44B4-AE07-C8A92EDA15C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditoraAPI.Tests", "EditoraAPI.Tests\EditoraAPI.Tests.csproj", "{7E9D7834-D18E-4663-B1DB-51CBEA50D61B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{183969D7-5B6E-44B4-AE07-C8A92EDA15C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183969D7-5B6E-44B4-AE07-C8A92EDA15C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183969D7-5B6E-44B4-AE07-C8A92EDA15C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183969D7-5B6E-44B4-AE07-C8A92EDA15C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9D7834-D18E-4663-B1DB-51CBEA50D61B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9D7834-D18E-4663-B1DB-51CBEA50D61B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9D7834-D18E-4663-B1DB-51CBEA50D61B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9D7834-D18E-4663-B1DB-51CBEA50D61B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02607804-D6BB-4A62-A5CA-C89D43D1DB9E}
+	EndGlobalSection
+EndGlobal
