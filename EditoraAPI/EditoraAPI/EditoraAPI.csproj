@@ -218,6 +218,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivrariasController.cs" />
     <Compile Include="Controllers\LivroesController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RedeSocialsController.cs" />
     <Compile Include="Controllers\TelefonesController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Livraria.cs" />
     <Compile Include="Models\Livro.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\RedeSocial.cs" />
     <Compile Include="Models\Telefone.cs" />

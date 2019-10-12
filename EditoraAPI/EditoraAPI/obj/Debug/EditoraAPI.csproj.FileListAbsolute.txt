@@ -246,7 +246,6 @@ C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\pt-br\
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\pt-br\Microsoft.AspNet.Identity.Owin.resources.dll
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\pt-br\Microsoft.AspNet.Identity.EntityFramework.resources.dll
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\pt-br\System.Web.Http.Owin.resources.dll
-C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CopyComplete
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.dll
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.pdb
