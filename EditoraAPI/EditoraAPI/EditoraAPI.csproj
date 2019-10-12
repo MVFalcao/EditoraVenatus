@@ -207,7 +207,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AutorsController.cs" />
+    <Compile Include="Controllers\CarrinhoesController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\CupomsController.cs" />
+    <Compile Include="Controllers\EnderecoesController.cs" />
+    <Compile Include="Controllers\EscolasController.cs" />
+    <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LivrariasController.cs" />
+    <Compile Include="Controllers\LivroesController.cs" />
+    <Compile Include="Controllers\PessoasController.cs" />
+    <Compile Include="Controllers\RedeSocialsController.cs" />
+    <Compile Include="Controllers\TelefonesController.cs" />
+    <Compile Include="Controllers\TipoesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
