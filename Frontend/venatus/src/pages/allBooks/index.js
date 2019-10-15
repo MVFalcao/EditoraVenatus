@@ -19,7 +19,12 @@ export default class books extends Component {
                 <div className="search-wrapper">
                     <div className="search-container">
                         <form>
-                            <input type="text" className="search-input" placeholder="O que você procura?"></input>
+                            <input 
+                            type="text" 
+                            className="search-input"
+                            placeholder="O que você procura?"
+                            required 
+                            />
                             <Link to="/" className="search-btn">
                                 <img src={lupa} alt="lupa"></img>
                             </Link>

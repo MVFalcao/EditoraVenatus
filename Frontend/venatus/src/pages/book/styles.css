@@ -119,6 +119,7 @@
 
 .dropdown-container button.dropbtn {
     width: 100%;
+    height: auto;
     margin-bottom: 10px;
 
     font: 300 18px 'Poppins', Arial, sans-serif;
@@ -134,12 +135,8 @@
     cursor: pointer;
 }
 
-.dropdown-container button.dropbtn:active {
-    transform: translateY(4px);
-}
-
 .dropdown-container button.dropbtn:hover {
-    color: rgb(30, 91, 102);
+    color: rgb(29, 100, 158);
 }
 
 .dropdown-container button.dropbtn h3 {
