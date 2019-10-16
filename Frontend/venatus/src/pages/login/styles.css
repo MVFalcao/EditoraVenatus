@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+
+.login-container {
+    margin: 100px auto;
+    max-width: 450px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container a img {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.login-container a img {
+    width: 75%;
+    height: auto;
+    margin: auto;
+}
+
+.login-content {
+    margin-top: 10px;
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.login-content > p {
+    margin-bottom: 20px;
+    text-align: center;
+    font: 300 21px 'Poppins', sans-serif;
+    letter-spacing: 2px;
+}
+
+.login-content form {
+    box-sizing: border-box;
+    max-width: 300px;
+    padding: 20px;
+    margin: auto;
+
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.login-content form label {
+    margin-bottom: 10px;
+    font-family: Bahnschrift, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.login-content form input {
+    height: 40px;
+    padding-left: 10px;
+
+    border: 1px solid black;
+    border-radius: 6px;
+
+    font: 300 16px 'Poppins', Arial, sans-serif;
+}
+
+.login-content form input#username {
+    margin-bottom: 20px;
+}
+
+.login-content a#forgot {
+    margin-top: 5px;
+    text-decoration: none;
+    font: 300 12px 'Poppins', Arial, sans-serif;
+    color: rgb(63, 132, 145);
+}
+
+.login-content a#forgot:hover {
+    text-decoration: underline;
+}
+
+.login-content form button {
+    width: 55%;
+    height: 33px;
+    margin: 30px auto 5px;
+    
+    border: none;
+    border-radius: 20px;
+    
+    font: 300 18px Bahnschrift, Arial, sans-serif;
+    color: white;
+    background-color: #309AAC;
+    cursor: pointer;
+}
+
+.login-content form button:hover {
+    background-color: rgb(50, 144, 158);
+}
+
+.login-content form button:active {
+    transform: translateY(1.5px);
+}
+
+.login-content p#signup {
+    margin-top: 30px;
+    font: 300 14px 'Poppins', Arial, sans-serif;
+    letter-spacing: 0px;
+}
+
+.login-content p#signup a {
+    text-decoration: none;
+    color: rgb(31, 164, 168);
+    font-weight: 400;
+}
+
+.login-content p#signup a:hover {
+    text-decoration: underline;
+}

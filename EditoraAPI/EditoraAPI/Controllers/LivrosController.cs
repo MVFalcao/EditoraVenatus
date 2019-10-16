@@ -12,17 +12,17 @@ using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class LivroesController : ApiController
+    public class LivrosController : ApiController
     {
         private BancoEditora db = new BancoEditora();
 
-        // GET: api/Livroes
-        public IQueryable<Livro> GetLivros()
+        // GET: api/Livros
+        public IEnumerable<Livro> GetLivros()
         {
-            return db.Livros;
+            return db.Livros.ToList<Livro>();
         }
 
-        // GET: api/Livroes/5
+        // GET: api/Livros/5
         [ResponseType(typeof(Livro))]
         public IHttpActionResult GetLivro(int id)
         {
@@ -35,7 +35,7 @@ namespace EditoraAPI.Controllers
             return Ok(livro);
         }
 
-        // PUT: api/Livroes/5
+        // PUT: api/Livros/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLivro(int id, Livro livro)
         {
@@ -70,7 +70,7 @@ namespace EditoraAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Livroes
+        // POST: api/Livros
         [ResponseType(typeof(Livro))]
         public IHttpActionResult PostLivro(Livro livro)
         {
@@ -85,7 +85,7 @@ namespace EditoraAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = livro.ID_Livro }, livro);
         }
 
-        // DELETE: api/Livroes/5
+        // DELETE: api/Livros/5
         [ResponseType(typeof(Livro))]
         public IHttpActionResult DeleteLivro(int id)
         {

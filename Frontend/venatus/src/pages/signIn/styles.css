@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700&display=swap');
+
+.signin-content {
+    max-width: 500px;
+    width: 100%;
+    margin: 50px auto 40px;
+    padding: 20px 20px 40px;
+
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signin-content a {
+    display: flex;
+    justify-content: center;
+}
+
+.signin-content img {
+    width: 80%;
+    height: auto;
+    margin: 0px auto 20px;
+}
+
+.signin-content p {
+    font: 300 15px 'Poppins', Arial, sans-serif;
+}
+
+.signin-content h1 {
+    margin-top: 20px;
+    font: 700 30px 'Poppins', Arial, sans-serif;
+}
+
+.signin-content form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.signin-content input {
+    margin: 6px 0px;
+    height: 50px;
+    padding-left: 10px; 
+    
+    border: 1px solid gray;
+    border-radius: 5px;
+
+    font: 300 16px 'Poppins', Arial, sans-serif;
+    background-color: rgba(221, 221, 221, 0.2);
+}
+
+.signin-content label {
+    margin-top: 40px;
+    font: 500 14px 'Poppins', Arial, sans-serif;
+}
+
+.signin-content label span {
+    color: rgb(196, 45, 45);
+}
+
+.signin-content .buttons {
+    width: 100%;
+    padding-left: 90px;
+    margin: 50px auto 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons button {
+    margin: 0px auto;
+    width: 120px;
+    height: 40px;
+    padding: auto;
+    
+    border: transparent;
+    border-radius: 20px;
+
+    color: white;
+    font: 300 14px 'Poppins', Arial, sans-serif;
+    background-color: rgb(63, 132, 145);
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: rgb(53, 108, 119);
+}
+
+.buttons button:active {
+    transform: translateY(2px);
+}
+
+.buttons a {
+    font: 300 15px 'Poppins', Arial, sans-serif;
+    text-decoration: none;
+    color: rgb(132, 45, 212);
+}
+
+.buttons a:hover {
+    text-decoration: underline;
+}
+
+.signin-container p#footer {
+    margin-bottom: 30px;
+    text-align: center;
+    font: 300 17px Bahnschrift, Arial, sans-serif;
+    color: rgb(102, 102, 102);
+}
+
