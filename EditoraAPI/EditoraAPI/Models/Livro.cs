@@ -10,6 +10,7 @@ namespace EditoraAPI.Models
     {
         [Key]
         public int ID_Livro { get; set; }
+        public string Titulo { get; set; }
         public int Numero_Paginas { get; set; }
         public string Categoria { get; set; }
         public string Descricao { get; set; }

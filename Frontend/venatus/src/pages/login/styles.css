@@ -40,9 +40,11 @@
     max-width: 300px;
     padding: 20px;
     margin: auto;
+
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+
     display: flex;
     flex-direction: column;
 }
@@ -50,13 +52,17 @@
 .login-content form label {
     margin-bottom: 10px;
     font-family: Bahnschrift, Arial, Helvetica, sans-serif;
+    font-size: 18px;
 }
 
 .login-content form input {
     height: 40px;
     padding-left: 10px;
-    border-radius: 6px;
+
     border: 1px solid black;
+    border-radius: 6px;
+
+    font: 300 16px 'Poppins', Arial, sans-serif;
 }
 
 .login-content form input#username {
