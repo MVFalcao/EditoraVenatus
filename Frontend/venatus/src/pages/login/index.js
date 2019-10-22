@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
 
 import './styles.css'
 import logo from '../../assets/header/logo.svg';
@@ -9,20 +10,35 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     
+    const response = await api.post('/Login', {
+      username,
+      password
+    });
+
+    console.log(response);
+    
+    // const {ID_Pessoa}
+
   } 
 
   return (
-    <>
+    <div className="login-wrapper">
+
       <div className="login-container">
+
         <Link to="/">
           <img src={logo} alt="Logo Venatus"/>
         </Link>
+
         <div className="login-content">
+
           <p>Tenha acesso a nossa editora</p>
+
           <form onSubmit={handleSubmit}>
+            
             <label htmlFor="username">Usuário</label>
             <input 
               id="username" 
@@ -42,12 +58,12 @@ function Login() {
             />
             
             <Link to="/" id="forgot">Esqueceu a senha?</Link>
-            <button type="submit">Entrar</button>
+            <button type="submit" onClick={() => handleSubmit()}>Entrar</button>
           </form>
-          <p id="signup">Novo na Venatus? <Link to="/SignIn">Crie uma conta</Link></p>
+          <p id="signup">Novo na Venatus? <Link to="/normal_SignUp">Crie uma conta</Link></p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

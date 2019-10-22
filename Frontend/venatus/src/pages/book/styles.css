@@ -133,10 +133,16 @@
     
     border: transparent;
     cursor: pointer;
+    transform: translateY(0px);
+    transition: all .2s;
 }
 
 .dropdown-container button.dropbtn:hover {
     color: rgb(29, 100, 158);
+}
+
+.dropdown-container button.dropbtn:active {
+    transform: translateY(3px);
 }
 
 .dropdown-container button.dropbtn h3 {

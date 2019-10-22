@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
+import api from '../../services/api';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -8,6 +9,24 @@ import nya from '../../assets/book/nya-grande.svg';
 import age10 from '../../assets/book/10+.svg'
 
 function Book() {
+
+    // useEffect(() => {
+    //     async function loadBook() {
+    //         const response = await api.get('/api/Livros', {
+    //             headers: ""
+    //         }).catch(function (error) {
+    //             console.log(error);
+    //         });
+    //         if(response != null) 
+    //         {
+    //             //console.log(response);
+    //             this.setState({allBooks: response.data});
+    //         }
+    //         // console.log(this.state.allBooks);
+    //     }
+
+    //     loadBook();
+    // });
 
     let divClosedList = [true, true, true];
 

@@ -115,9 +115,15 @@
 }
 
 .allBooks-Container ul li a img {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    width: 200px;
+    height: 290px;
     margin-bottom: 15px;
+    transition: all .1s;
+}
+
+.allBooks-Container ul li a img:hover {
+    transform: scale(1.1);
 }
 
 .allBooks-Container ul li h2 {
