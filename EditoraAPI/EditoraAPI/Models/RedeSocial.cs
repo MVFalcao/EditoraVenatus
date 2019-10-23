@@ -8,13 +8,11 @@ namespace EditoraAPI.Models
 {
     public class RedeSocial
     {
-        [Key]
-        public int ID_RedeSocial { get; set; }
-        public string email { get; set; }
-        public string Instagram { get; set; }
-        public string Twitter { get; set; }
-        public string Facebook { get; set; }
-        public List<Autor> autors { get; set; }
-        public List<Cliente> clientes { get; set; } 
+        [Key] public int ID_RedeSocial { get; set; }
+        [StringLength(20)] public string email { get; set; } = null;
+        [StringLength(20)] public string Instagram { get; set; } = null;
+        [StringLength(20)] public string Twitter { get; set; } = null;
+        [StringLength(20)] public string Facebook { get; set; } = null;
+        [Required] public int id_autor_cliente { get; set; } 
     }
 }

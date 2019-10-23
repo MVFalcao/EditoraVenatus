@@ -8,13 +8,10 @@ namespace EditoraAPI.Models
 {
     public class Cupom
     {
-        [Key]
-        public int ID_Cupom { get; set; }
-        public float Desconto { get; set; }
-        public string Nome { get; set; }
-        public DateTime Data_Ini { get; set; }
-        public DateTime Data_Fim { get; set; }
-        public List<Livro> livros { get; set; }
-        public List<Pessoa> pessoas { get; set; }
+        [Key] public int ID_Cupom { get; set; }
+        [Required] public float Desconto { get; set; }
+        [Required] [StringLength(50)] public string Nome { get; set; }
+        [Required] public DateTime Data_Ini { get; set; }
+        [Required] public DateTime Data_Fim { get; set; }
     }
 }
