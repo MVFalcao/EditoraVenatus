@@ -8,9 +8,8 @@ namespace EditoraAPI.Models
 {
     public class Estoque
     {
-        [Key]
-        public int ID_Estoque { get; set; }
-        public int quantidade { get; set; }
-        List<Livro> livros { get; set; }
+        [Key] public int ID_Estoque { get; set; }
+        [Required] public int quantidade { get; set; }
+        [Required] public int id_livro { get; set; } //FK
     }
 }

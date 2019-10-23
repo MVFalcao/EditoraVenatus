@@ -8,8 +8,7 @@ namespace EditoraAPI.Models
 {
     public class Cliente
     {
-        [Key]
-        public int ID_Cliente { get; set; }
+        [Key] public int ID_Cliente { get; set; }
 
     }
 }

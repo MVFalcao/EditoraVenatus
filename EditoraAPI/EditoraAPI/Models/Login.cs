@@ -8,11 +8,9 @@ namespace EditoraAPI.Models
 {
     public class Login
     {
-        [Key]
-        public int ID_Login { get; set; }
-        public List<Autor> autors { get; set; }
-        public List<Cliente> clientes { get; set; }
-        public string Usuario { get; set; }
-        public string Senha { get; set; }
+        [Key] public int ID_Login { get; set; }
+        [Required] public int id_autor_cliente { get; set; }
+        [Required] [StringLength(20)] public string Usuario { get; set; }
+        [Required] [StringLength(24)] public string Senha { get; set; }
     }
 }

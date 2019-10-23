@@ -8,11 +8,10 @@ namespace EditoraAPI.Models
 {
     public class Livraria
     {
-        [Key]
-        public int ID_Livraria { get; set; }
-        public List<Cliente> clientes { get; set; }
-        public string CNPJ { get; set; }
-        public string Tipo_Consignacao { get; set; }
-        public string Nome { get; set; }
+        [Key] public int ID_Livraria { get; set; }
+        [Required] public int id_cliente { get; set; } // fk
+        [Required] [StringLength(15)] public string CNPJ { get; set; }
+        [Required] [StringLength(50)] public string Tipo_Consignacao { get; set; }
+        [Required] [StringLength(50)] public string Nome { get; set; }
     }
 }

@@ -8,11 +8,8 @@ namespace EditoraAPI.Models
 {
     public class Autor
     {
-        [Key]
-        public int ID_Autor { get; set; }
-        public string CPF { get; set; }
-        public string Nome { get; set; }
-        public List<Autor> autors { get; set; }
-        public List<Cupom> cupoms { get; set; }
+        [Key] public int ID_Autor { get; set; }
+        [Required] [StringLength(15)] public string CPF { get; set; }
+        [Required] [StringLength(100)] public string Nome { get; set; }
     }
 }
