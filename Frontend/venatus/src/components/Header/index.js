@@ -23,7 +23,8 @@ import "./styles.css";
 // }
 
 const Header = () => {
-    return <header id = "main-header">
+    return (
+    <header id = "main-header">
         <div className="header-logo">
             <Link to="/">
                 <img src={logo} alt= "Venatus" />
@@ -61,6 +62,7 @@ const Header = () => {
             </div>
         </div>
     </header>
+    );
 };
 
 export default Header;

@@ -23,7 +23,7 @@ export default class books extends Component {
         });
         if(response != null) 
         {
-            //console.log(response);
+            console.log(response);
             this.setState({allBooks: response.data});
         }
         // console.log(this.state.allBooks);

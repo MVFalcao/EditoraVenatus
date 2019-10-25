@@ -123,7 +123,12 @@
 }
 
 .allBooks-Container ul li a img:hover {
-    transform: scale(1.1);
+    transform: scale(1.01);
+    box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
+}
+
+.allBooks-Container ul li a img:active {
+    transform: translateY(2px);
 }
 
 .allBooks-Container ul li h2 {

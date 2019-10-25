@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -6,46 +6,66 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 import './styles.css';
-import nya from '../../assets/main/nya.svg';
 import faixa_azul from '../../assets/main/faixa_azul.svg';
 
-export default function main() {
+export default class main extends Component {
 
-  return (
-    <>
-      <Header />
-      <div className="main-container">
+  state = {
+    allBooks: [],
+  }
 
-        <h1>Últimos Lançamentos</h1>
+  async loadBooks() {
+    const response = await api.get('/api/Livros').catch(function (error) {
+      console.log(error);
+    });
+    if (response != null) {
+      console.log(response);
+      this.setState({allBooks: response.data})
+    }
+  }
 
-        <div className="main-background">
+  componentDidMount() {
+    this.loadBooks();
+  }
 
-          <section className="main-content">
+  render () {
+    return (
+      <>
+        <Header />
+        <div className="main-container">
 
-              <ul>
-                <li>
+          <h1>Últimos Lançamentos</h1>
 
-                  <Link to="/bookPage">
-                    <img src={nya} alt="Descrição do Livro" />
-                  </Link>
-                  <h2>Nya - #ConexãoPulmãoVerde</h2>
-                  <p>R$ 39,90</p>
-                  <Link to="/bookPage" id="BookBtn">Saiba mais</Link>
+          <div className="main-background">
 
-                </li>
-              </ul>
-              
-          </section>
-        </div>
-        <div className="about-venatus">
-          <h1>Sobre Venatus</h1>
-          <p>Lorem ipsum vel bibendum pharetra sed ut feugiat massa eget accumsan mauris primis, habitant dui cras mauris tellus ligula dictum neque cursus ligula vitae. luctus sit habitasse a luctus vitae tristique torquent amet libero purus justo, varius nec aliquam tortor nisl diam dui risus eros arcu donec fusce, ut sagittis augue etiam est inceptos ante sollicitudin felis fames.</p>
-          <div className="about-line">
-            <img src={faixa_azul} alt="Faixa Azul" />
+            <section className="main-content">
+
+                <ul>
+                  {this.state.allBooks.reverse().map(book => (
+                    <li key={book.ID_Livro}>
+                      <Link to={`/bookPage/${book.ID_Livro}`}>
+                        <img src={book.Imagem_URL} alt={book.Titulo} />
+                      </Link>
+                      <h2>{book.Titulo} {book.SubTitulo}</h2>
+                      <p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
+                      <Link to={`/bookPage/${book.ID_Livro}`} id="BookBtn">Saiba mais</Link>
+                    </li>
+                  ))}
+                  
+                </ul>
+                
+            </section>
+          </div>
+          <div className="about-venatus">
+            <h1>Sobre Venatus</h1>
+            <p>Lorem ipsum vel bibendum pharetra sed ut feugiat massa eget accumsan mauris primis, habitant dui cras mauris tellus ligula dictum neque cursus ligula vitae. luctus sit habitasse a luctus vitae tristique torquent amet libero purus justo, varius nec aliquam tortor nisl diam dui risus eros arcu donec fusce, ut sagittis augue etiam est inceptos ante sollicitudin felis fames.</p>
+            <div className="about-line">
+              <img src={faixa_azul} alt="Faixa Azul" />
+            </div>
           </div>
         </div>
-      </div>
-      <Footer />
-    </>
-  );
+        <Footer />
+      </>
+    );
+  }
 }

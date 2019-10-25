@@ -16,7 +16,7 @@ export default function Routes() {
         <Switch>
             <Route path="/" exact component={ Main } />
             <Route path="/allBooks" component ={ AllBooks } />
-            <Route path="/bookPage" component ={ BookPage } />
+            <Route path="/bookPage/:id" component ={ BookPage } />
             <Route path="/Login" component ={ Login } />
             <Route path="/normal_SignUp" component ={ normalSignUp } />
             <Route path="/blog_SignUp" component ={ blogSignUp } />
