@@ -10,6 +10,6 @@ namespace EditoraAPI.Models
     {
         [Key] public int ID_Estoque { get; set; }
         [Required] public int quantidade { get; set; }
-        [Required] public int id_livro { get; set; } //FK
+        [Required] public List<Livro> id_livro { get; set; } //FK
     }
 }

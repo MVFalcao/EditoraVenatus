@@ -14,7 +14,7 @@ namespace EditoraAPI.Controllers
 {
     public class CarrinhoesController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Carrinhoes
         public IQueryable<Carrinho> GetCarrinhos()

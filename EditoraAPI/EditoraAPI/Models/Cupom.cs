@@ -13,5 +13,7 @@ namespace EditoraAPI.Models
         [Required] [StringLength(50)] public string Nome { get; set; }
         [Required] public DateTime Data_Ini { get; set; }
         [Required] public DateTime Data_Fim { get; set; }
+        public List<Livro> livros { get; set; }
+        public List<Pessoa> pessoas { get; set;}
     }
 }

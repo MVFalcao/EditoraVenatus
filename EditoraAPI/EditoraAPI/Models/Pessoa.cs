@@ -15,6 +15,7 @@ namespace EditoraAPI.Models
         [Required] [StringLength(20)] public string Tipo_pessoa { get; set; }
         [Required] [StringLength(1)] public string sexo { get; set; }
         [Required] public DateTime Data_Nascimento { get; set; }
-        [Required] public int id_cliente { get; set; } //FK
+        [Required] public List<Cliente> id_cliente { get; set; } //FK
+        public List<Cupom> cupoms { get; set; }
     }
 }

@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class TelefonesController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Telefones
-        public IQueryable<Telefone> GetTelefones()
+        public IQueryable<Telefone> Gettelefones()
         {
-            return db.Telefones;
+            return db.telefones;
         }
 
         // GET: api/Telefones/5
         [ResponseType(typeof(Telefone))]
         public IHttpActionResult GetTelefone(int id)
         {
-            Telefone telefone = db.Telefones.Find(id);
+            Telefone telefone = db.telefones.Find(id);
             if (telefone == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Telefones.Add(telefone);
+            db.telefones.Add(telefone);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = telefone.ID_Telefone }, telefone);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Telefone))]
         public IHttpActionResult DeleteTelefone(int id)
         {
-            Telefone telefone = db.Telefones.Find(id);
+            Telefone telefone = db.telefones.Find(id);
             if (telefone == null)
             {
                 return NotFound();
             }
 
-            db.Telefones.Remove(telefone);
+            db.telefones.Remove(telefone);
             db.SaveChanges();
 
             return Ok(telefone);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool TelefoneExists(int id)
         {
-            return db.Telefones.Count(e => e.ID_Telefone == id) > 0;
+            return db.telefones.Count(e => e.ID_Telefone == id) > 0;
         }
     }
 }

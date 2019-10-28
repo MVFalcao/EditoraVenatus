@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class LivrariasController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Livrarias
-        public IQueryable<Livraria> GetLivrarias()
+        public IQueryable<Livraria> Getlivrarias()
         {
-            return db.Livrarias;
+            return db.livrarias;
         }
 
         // GET: api/Livrarias/5
         [ResponseType(typeof(Livraria))]
         public IHttpActionResult GetLivraria(int id)
         {
-            Livraria livraria = db.Livrarias.Find(id);
+            Livraria livraria = db.livrarias.Find(id);
             if (livraria == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Livrarias.Add(livraria);
+            db.livrarias.Add(livraria);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = livraria.ID_Livraria }, livraria);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Livraria))]
         public IHttpActionResult DeleteLivraria(int id)
         {
-            Livraria livraria = db.Livrarias.Find(id);
+            Livraria livraria = db.livrarias.Find(id);
             if (livraria == null)
             {
                 return NotFound();
             }
 
-            db.Livrarias.Remove(livraria);
+            db.livrarias.Remove(livraria);
             db.SaveChanges();
 
             return Ok(livraria);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool LivrariaExists(int id)
         {
-            return db.Livrarias.Count(e => e.ID_Livraria == id) > 0;
+            return db.livrarias.Count(e => e.ID_Livraria == id) > 0;
         }
     }
 }

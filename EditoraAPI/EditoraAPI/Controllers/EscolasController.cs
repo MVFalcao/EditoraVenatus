@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class EscolasController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Escolas
-        public IQueryable<Escola> GetEscolas()
+        public IQueryable<Escola> Getescolas()
         {
-            return db.Escolas;
+            return db.escolas;
         }
 
         // GET: api/Escolas/5
         [ResponseType(typeof(Escola))]
         public IHttpActionResult GetEscola(int id)
         {
-            Escola escola = db.Escolas.Find(id);
+            Escola escola = db.escolas.Find(id);
             if (escola == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Escolas.Add(escola);
+            db.escolas.Add(escola);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = escola.ID_Escola }, escola);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Escola))]
         public IHttpActionResult DeleteEscola(int id)
         {
-            Escola escola = db.Escolas.Find(id);
+            Escola escola = db.escolas.Find(id);
             if (escola == null)
             {
                 return NotFound();
             }
 
-            db.Escolas.Remove(escola);
+            db.escolas.Remove(escola);
             db.SaveChanges();
 
             return Ok(escola);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool EscolaExists(int id)
         {
-            return db.Escolas.Count(e => e.ID_Escola == id) > 0;
+            return db.escolas.Count(e => e.ID_Escola == id) > 0;
         }
     }
 }

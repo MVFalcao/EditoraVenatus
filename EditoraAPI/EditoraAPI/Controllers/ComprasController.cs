@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class ComprasController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Compras
-        public IQueryable<Compra> GetCompras()
+        public IQueryable<Compra> Getcompras()
         {
-            return db.Compras;
+            return db.compras;
         }
 
         // GET: api/Compras/5
         [ResponseType(typeof(Compra))]
         public IHttpActionResult GetCompra(int id)
         {
-            Compra compra = db.Compras.Find(id);
+            Compra compra = db.compras.Find(id);
             if (compra == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Compras.Add(compra);
+            db.compras.Add(compra);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = compra.ID_Compra }, compra);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Compra))]
         public IHttpActionResult DeleteCompra(int id)
         {
-            Compra compra = db.Compras.Find(id);
+            Compra compra = db.compras.Find(id);
             if (compra == null)
             {
                 return NotFound();
             }
 
-            db.Compras.Remove(compra);
+            db.compras.Remove(compra);
             db.SaveChanges();
 
             return Ok(compra);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool CompraExists(int id)
         {
-            return db.Compras.Count(e => e.ID_Compra == id) > 0;
+            return db.compras.Count(e => e.ID_Compra == id) > 0;
         }
     }
 }

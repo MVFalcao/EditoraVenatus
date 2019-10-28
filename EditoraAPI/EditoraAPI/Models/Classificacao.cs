@@ -6,11 +6,11 @@ using System.Web;
 
 namespace EditoraAPI.Models
 {
-    public class Classificaco
+    public class Classificao
     {
         [Key] public int ID_Classificacao { get; set; }
-        [Required] public int id_cliente { get; set; } //fk
-        [Required] public int id_livro { get; set; } //fk
+        public List<Livro> livros { get; set; }
+        public List<Cliente> clientes { get; set; }
         [Required] public int Nota { get; set; }
         [Required] [StringLength(50)] public string Comentario { get; set; }
 

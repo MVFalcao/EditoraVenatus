@@ -13,6 +13,7 @@ namespace EditoraAPI.Models
         [StringLength(20)] public string Instagram { get; set; } = null;
         [StringLength(20)] public string Twitter { get; set; } = null;
         [StringLength(20)] public string Facebook { get; set; } = null;
-        [Required] public int id_autor_cliente { get; set; } 
+        [Required] public List<Autor> id_autor { get; set; }
+        [Required] public List<Cliente> id_cliente { get; set; }
     }
 }
