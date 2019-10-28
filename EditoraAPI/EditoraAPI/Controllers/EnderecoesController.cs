@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class EnderecoesController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Enderecoes
-        public IQueryable<Endereco> GetEnderecos()
+        public IQueryable<Endereco> Getenderecos()
         {
-            return db.Enderecos;
+            return db.enderecos;
         }
 
         // GET: api/Enderecoes/5
         [ResponseType(typeof(Endereco))]
         public IHttpActionResult GetEndereco(int id)
         {
-            Endereco endereco = db.Enderecos.Find(id);
+            Endereco endereco = db.enderecos.Find(id);
             if (endereco == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Enderecos.Add(endereco);
+            db.enderecos.Add(endereco);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = endereco.ID_Endereco }, endereco);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Endereco))]
         public IHttpActionResult DeleteEndereco(int id)
         {
-            Endereco endereco = db.Enderecos.Find(id);
+            Endereco endereco = db.enderecos.Find(id);
             if (endereco == null)
             {
                 return NotFound();
             }
 
-            db.Enderecos.Remove(endereco);
+            db.enderecos.Remove(endereco);
             db.SaveChanges();
 
             return Ok(endereco);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool EnderecoExists(int id)
         {
-            return db.Enderecos.Count(e => e.ID_Endereco == id) > 0;
+            return db.enderecos.Count(e => e.ID_Endereco == id) > 0;
         }
     }
 }

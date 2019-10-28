@@ -8,11 +8,11 @@ namespace EditoraAPI.Models
 {
     public class Carrinho
     {
-        [Key]
-        public int ID_Carrinho { get; set; }
+        [Key] public int ID_Carrinho { get; set; }
+        public int id_compra = -1;//no começo ele eh null e FK
         public List<Compra> compras { get; set; }
-        public List<Livro> livros { get; set; }
-        public int QuantidadeLivros { get; set; }
-        public float PrecoTotal { get; set; }
+        [Required] public List<Livro> livros { get; set; }
+        [Required] public int QuantidadeLivros { get; set; }
+        [Required] public float PrecoTotal { get; set; }
     }
 }

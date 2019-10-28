@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class EstoquesController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Estoques
-        public IQueryable<Estoque> GetEstoques()
+        public IQueryable<Estoque> Getestoques()
         {
-            return db.Estoques;
+            return db.estoques;
         }
 
         // GET: api/Estoques/5
         [ResponseType(typeof(Estoque))]
         public IHttpActionResult GetEstoque(int id)
         {
-            Estoque estoque = db.Estoques.Find(id);
+            Estoque estoque = db.estoques.Find(id);
             if (estoque == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Estoques.Add(estoque);
+            db.estoques.Add(estoque);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = estoque.ID_Estoque }, estoque);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Estoque))]
         public IHttpActionResult DeleteEstoque(int id)
         {
-            Estoque estoque = db.Estoques.Find(id);
+            Estoque estoque = db.estoques.Find(id);
             if (estoque == null)
             {
                 return NotFound();
             }
 
-            db.Estoques.Remove(estoque);
+            db.estoques.Remove(estoque);
             db.SaveChanges();
 
             return Ok(estoque);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool EstoqueExists(int id)
         {
-            return db.Estoques.Count(e => e.ID_Estoque == id) > 0;
+            return db.estoques.Count(e => e.ID_Estoque == id) > 0;
         }
     }
 }

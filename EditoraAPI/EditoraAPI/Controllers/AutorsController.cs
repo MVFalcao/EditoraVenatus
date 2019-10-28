@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class AutorsController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Autors
-        public IQueryable<Autor> GetAutors()
+        public IQueryable<Autor> Getautors()
         {
-            return db.Autors;
+            return db.autors;
         }
 
         // GET: api/Autors/5
         [ResponseType(typeof(Autor))]
         public IHttpActionResult GetAutor(int id)
         {
-            Autor autor = db.Autors.Find(id);
+            Autor autor = db.autors.Find(id);
             if (autor == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Autors.Add(autor);
+            db.autors.Add(autor);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = autor.ID_Autor }, autor);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Autor))]
         public IHttpActionResult DeleteAutor(int id)
         {
-            Autor autor = db.Autors.Find(id);
+            Autor autor = db.autors.Find(id);
             if (autor == null)
             {
                 return NotFound();
             }
 
-            db.Autors.Remove(autor);
+            db.autors.Remove(autor);
             db.SaveChanges();
 
             return Ok(autor);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool AutorExists(int id)
         {
-            return db.Autors.Count(e => e.ID_Autor == id) > 0;
+            return db.autors.Count(e => e.ID_Autor == id) > 0;
         }
     }
 }

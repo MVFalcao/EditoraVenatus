@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class RedeSocialsController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/RedeSocials
-        public IQueryable<RedeSocial> GetRedeSocials()
+        public IQueryable<RedeSocial> GetredeSocials()
         {
-            return db.RedeSocials;
+            return db.redeSocials;
         }
 
         // GET: api/RedeSocials/5
         [ResponseType(typeof(RedeSocial))]
         public IHttpActionResult GetRedeSocial(int id)
         {
-            RedeSocial redeSocial = db.RedeSocials.Find(id);
+            RedeSocial redeSocial = db.redeSocials.Find(id);
             if (redeSocial == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.RedeSocials.Add(redeSocial);
+            db.redeSocials.Add(redeSocial);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = redeSocial.ID_RedeSocial }, redeSocial);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(RedeSocial))]
         public IHttpActionResult DeleteRedeSocial(int id)
         {
-            RedeSocial redeSocial = db.RedeSocials.Find(id);
+            RedeSocial redeSocial = db.redeSocials.Find(id);
             if (redeSocial == null)
             {
                 return NotFound();
             }
 
-            db.RedeSocials.Remove(redeSocial);
+            db.redeSocials.Remove(redeSocial);
             db.SaveChanges();
 
             return Ok(redeSocial);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool RedeSocialExists(int id)
         {
-            return db.RedeSocials.Count(e => e.ID_RedeSocial == id) > 0;
+            return db.redeSocials.Count(e => e.ID_RedeSocial == id) > 0;
         }
     }
 }

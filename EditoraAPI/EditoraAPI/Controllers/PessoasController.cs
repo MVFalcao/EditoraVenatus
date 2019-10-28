@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class PessoasController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Pessoas
-        public IQueryable<Pessoa> GetPessoas()
+        public IQueryable<Pessoa> Getpessoas()
         {
-            return db.Pessoas;
+            return db.pessoas;
         }
 
         // GET: api/Pessoas/5
         [ResponseType(typeof(Pessoa))]
         public IHttpActionResult GetPessoa(int id)
         {
-            Pessoa pessoa = db.Pessoas.Find(id);
+            Pessoa pessoa = db.pessoas.Find(id);
             if (pessoa == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Pessoas.Add(pessoa);
+            db.pessoas.Add(pessoa);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = pessoa.ID_Pessoa }, pessoa);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Pessoa))]
         public IHttpActionResult DeletePessoa(int id)
         {
-            Pessoa pessoa = db.Pessoas.Find(id);
+            Pessoa pessoa = db.pessoas.Find(id);
             if (pessoa == null)
             {
                 return NotFound();
             }
 
-            db.Pessoas.Remove(pessoa);
+            db.pessoas.Remove(pessoa);
             db.SaveChanges();
 
             return Ok(pessoa);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool PessoaExists(int id)
         {
-            return db.Pessoas.Count(e => e.ID_Pessoa == id) > 0;
+            return db.pessoas.Count(e => e.ID_Pessoa == id) > 0;
         }
     }
 }

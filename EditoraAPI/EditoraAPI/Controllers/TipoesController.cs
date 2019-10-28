@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class TipoesController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Tipoes
-        public IQueryable<Tipo> GetTipos()
+        public IQueryable<Tipo> Gettipos()
         {
-            return db.Tipos;
+            return db.tipos;
         }
 
         // GET: api/Tipoes/5
         [ResponseType(typeof(Tipo))]
         public IHttpActionResult GetTipo(int id)
         {
-            Tipo tipo = db.Tipos.Find(id);
+            Tipo tipo = db.tipos.Find(id);
             if (tipo == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Tipos.Add(tipo);
+            db.tipos.Add(tipo);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tipo.ID_Tipo }, tipo);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Tipo))]
         public IHttpActionResult DeleteTipo(int id)
         {
-            Tipo tipo = db.Tipos.Find(id);
+            Tipo tipo = db.tipos.Find(id);
             if (tipo == null)
             {
                 return NotFound();
             }
 
-            db.Tipos.Remove(tipo);
+            db.tipos.Remove(tipo);
             db.SaveChanges();
 
             return Ok(tipo);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool TipoExists(int id)
         {
-            return db.Tipos.Count(e => e.ID_Tipo == id) > 0;
+            return db.tipos.Count(e => e.ID_Tipo == id) > 0;
         }
     }
 }

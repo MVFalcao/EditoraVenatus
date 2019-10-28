@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class CupomsController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Cupoms
-        public IQueryable<Cupom> GetCupoms()
+        public IQueryable<Cupom> Getcupoms()
         {
-            return db.Cupoms;
+            return db.cupoms;
         }
 
         // GET: api/Cupoms/5
         [ResponseType(typeof(Cupom))]
         public IHttpActionResult GetCupom(int id)
         {
-            Cupom cupom = db.Cupoms.Find(id);
+            Cupom cupom = db.cupoms.Find(id);
             if (cupom == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Cupoms.Add(cupom);
+            db.cupoms.Add(cupom);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = cupom.ID_Cupom }, cupom);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Cupom))]
         public IHttpActionResult DeleteCupom(int id)
         {
-            Cupom cupom = db.Cupoms.Find(id);
+            Cupom cupom = db.cupoms.Find(id);
             if (cupom == null)
             {
                 return NotFound();
             }
 
-            db.Cupoms.Remove(cupom);
+            db.cupoms.Remove(cupom);
             db.SaveChanges();
 
             return Ok(cupom);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool CupomExists(int id)
         {
-            return db.Cupoms.Count(e => e.ID_Cupom == id) > 0;
+            return db.cupoms.Count(e => e.ID_Cupom == id) > 0;
         }
     }
 }

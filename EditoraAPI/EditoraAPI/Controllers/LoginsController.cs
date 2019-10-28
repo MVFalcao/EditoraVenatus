@@ -14,19 +14,19 @@ namespace EditoraAPI.Controllers
 {
     public class LoginsController : ApiController
     {
-        private BancoEditora db = new BancoEditora();
+        private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Logins
-        public IQueryable<Login> GetLogins()
+        public IQueryable<Login> Getlogins()
         {
-            return db.Logins;
+            return db.logins;
         }
 
         // GET: api/Logins/5
         [ResponseType(typeof(Login))]
         public IHttpActionResult GetLogin(int id)
         {
-            Login login = db.Logins.Find(id);
+            Login login = db.logins.Find(id);
             if (login == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Logins.Add(login);
+            db.logins.Add(login);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = login.ID_Login }, login);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Login))]
         public IHttpActionResult DeleteLogin(int id)
         {
-            Login login = db.Logins.Find(id);
+            Login login = db.logins.Find(id);
             if (login == null)
             {
                 return NotFound();
             }
 
-            db.Logins.Remove(login);
+            db.logins.Remove(login);
             db.SaveChanges();
 
             return Ok(login);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool LoginExists(int id)
         {
-            return db.Logins.Count(e => e.ID_Login == id) > 0;
+            return db.logins.Count(e => e.ID_Login == id) > 0;
         }
     }
 }

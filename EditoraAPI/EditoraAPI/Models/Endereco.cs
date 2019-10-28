@@ -8,14 +8,14 @@ namespace EditoraAPI.Models
 {
     public class Endereco
     {
-        [Key]
-        public int ID_Endereco { get; set;}
-        public string CEP { get; set; }
-        public string Cidade { get; set; }
-        public string Bairro { get; set; }
-        public string Complemento { get; set; }
-        public List<Autor> autors { get; set; }
-        public List<Cliente> clientes { get; set; }
+        [Key] public int ID_Endereco { get; set;}
+        [Required] [StringLength(10)] public string CEP { get; set; }
+        [Required] [StringLength(30)] public string Cidade { get; set; }
+        [Required] [StringLength(30)] public string Bairro { get; set; }
+        [Required] [StringLength(50)] public string Complemento { get; set; }
+        [Required] public List<Autor> id_autor { get; set; }
+
+        [Required] public List<Cliente> id_cliente { get; set; } //FK de tb_autor OU tb_cliente
 
     }
 }
