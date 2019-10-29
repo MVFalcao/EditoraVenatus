@@ -18,10 +18,7 @@ function Login() {
       password
     });
 
-    console.log(response);
-    
-    // const {ID_Pessoa}
-
+    // console.log(response);
   } 
 
   return (
@@ -60,7 +57,7 @@ function Login() {
             <Link to="/" id="forgot">Esqueceu a senha?</Link>
             <button type="submit" onClick={() => handleSubmit()}>Entrar</button>
           </form>
-          <p id="signup">Novo na Venatus? <Link to="/normal_SignUp">Crie uma conta</Link></p>
+          <p id="signup">Novo na Venatus? <Link to="/signup">Crie uma conta</Link></p>
         </div>
       </div>
     </div>

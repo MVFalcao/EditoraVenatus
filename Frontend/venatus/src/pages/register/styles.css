@@ -3,7 +3,77 @@
 .signin-container {
     padding: 40px 0px 30px;
     width: 100%;
-    background-color: rgb(54, 54, 54);
+    min-height: 805px;
+    background-color: rgb(56, 56, 56);
+}
+
+.registerType-popup {
+    max-width: 500px;
+    height: 325px;
+    margin: 125px auto 25px;
+    padding-top: 10px;
+    
+    border: 1px solid gray;
+    border-radius: 10px;
+    
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+    
+    background-color: rgb(49, 49, 49);
+}
+
+.registerType-popup img {
+    width: 45%;
+}
+
+.line {
+    width: 400px;
+    height: 1px;
+    margin: 0px auto 25px;
+
+    background-color: white;
+
+    border-radius: 5px;
+}
+
+.registerType-popup h1 {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.register-buttons {
+    width: 100%;
+    margin-top: 40px;
+    padding: 0px 40px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.registerBtn {
+    width: 120px;
+    height: 40px;
+
+    font: italic 400 16px 'Poppins', arial, sans-serif;
+    color: white;
+
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+}
+
+.registerBtn.item-1 {
+    background-color: rgb(32, 127, 236);
+}
+
+.registerBtn.item-2 {
+    background-color: rgb(233, 131, 35);
+}
+
+.registerBtn.item-3 {
+    background-color: rgb(235, 96, 78);
 }
 
 .signin-content {
@@ -18,7 +88,7 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     background-color: white;
 
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
@@ -63,8 +133,26 @@
 }
 
 .signin-content label {
-    margin-top: 40px;
+    margin-top: 30px;
     font: 500 14px 'Poppins', Arial, sans-serif;
+}
+
+.socialMedia-container {
+    display: none;
+    margin-top: 30px;
+}
+
+.socialMedia-container input {
+    width: 100%;
+}
+
+.professorImage-container {
+    display: none;
+    margin-top: 30px;
+}
+
+.professorImage-container input {
+    width: 100%;
 }
 
 .signin-content label span {
@@ -141,6 +229,6 @@
     margin-bottom: 30px;
     text-align: center;
     font: 300 17px Bahnschrift, Arial, sans-serif;
-    color: rgb(102, 102, 102);
+    color: rgb(255, 255, 255);
 }
 

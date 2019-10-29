@@ -2,13 +2,11 @@ import React from 'react';
 import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Login from './pages/login';
-import normalSignUp from './pages/signUp/normal';
-import blogSignUp from './pages/signUp/blog';
-import professorSignUp from './pages/signUp/professor';
+import SignUp from './pages/register';
 import Main from './pages/main';
 import AllBooks from './pages/allBooks';
 import BookPage from './pages/book';
-import Events from './pages/events';
+import Events from './pages/allEvents';
 
 export default function Routes() {
   return (
@@ -18,10 +16,8 @@ export default function Routes() {
             <Route path="/allBooks" component ={ AllBooks } />
             <Route path="/bookPage/:id" component ={ BookPage } />
             <Route path="/Login" component ={ Login } />
-            <Route path="/normal_SignUp" component ={ normalSignUp } />
-            <Route path="/blog_SignUp" component ={ blogSignUp } />
-            <Route path="/professor_SignUp" component ={ professorSignUp } />
-            <Route path="/events" component={ Events } />
+            <Route path="/signup" component ={ SignUp } />
+            <Route path="/allEvents" component={ Events } />
         </Switch>
       </BrowserRouter>
   );

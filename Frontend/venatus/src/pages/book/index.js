@@ -5,7 +5,15 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 import './styles.css';
-import age10 from '../../assets/book/10+.svg'
+import AgeL from '../../assets/ageRating/L.svg';
+import Age10 from '../../assets/ageRating/10.svg';
+import Age12 from '../../assets/ageRating/12.svg';
+import Age14 from '../../assets/ageRating/14.svg';
+import Age16 from '../../assets/ageRating/16.svg';
+import Age18 from '../../assets/ageRating/18.svg';
+import ErrorImg from '../../assets/ageRating/Error.svg';
+
+
 
 export default class book extends Component {
 
@@ -26,6 +34,7 @@ export default class book extends Component {
 
     componentDidMount() {
         this.loadBooks();
+        this.handleAge();
     }
 
      handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
@@ -76,6 +85,43 @@ export default class book extends Component {
             SymbolEmtList[0].innerHTML = SymbolEmtList[1].innerHTML = "+";
         }
     }
+    
+    handleAge() {
+        const ageRating = this.state.allBooks.Classificacao_Indicativa;
+        const ageText = document.querySelector('p#info01');
+        const ageImg = document.querySelector('img#age-rating');
+
+        switch (ageRating) {
+            case 'L':
+                ageText.innerHTML = "Indicação: Livre para todas as idades";
+                ageImg.src = AgeL;
+            break;
+            case '10':
+                ageText.innerHTML = "Indicação: Maiores de 10 anos";
+                ageImg.src = Age10;
+            break;
+            case '12':
+                ageText.innerHTML = "Indicação: Maiores de 12 anos";
+                ageImg.src = Age12;
+            break;
+            case '14':
+                ageText.innerHTML = "Indicação: Maiores de 14 anos";
+                ageImg.src = Age14;
+            break;
+            case '16':
+                ageText.innerHTML = "Indicação: Maiores de 16 anos";
+                ageImg.src = Age16;
+            break;
+            case '18':
+                ageText.innerHTML = "Indicação: Maiores de 18 anos";
+                ageImg.src = Age18
+            break;
+            default:
+                ageText.innerHTML = "Não foi possível carregar os dados";
+                ageImg.src = ErrorImg;
+            break;
+        }
+    }
 
     render() {
         const allBooks = this.state.allBooks;
@@ -109,10 +155,10 @@ export default class book extends Component {
                                     </button>
                                     <div className="dropdown-content item-1">
                                         <p>Categoria: Aventura</p>
-                                        <p id="info01">
-                                            Indicação: Maiores de 10 anos
-                                            <img src={age10} alt="Indicação de idade"/> 
-                                        </p>
+                                        <div className="ageRating-container">
+                                            <p id="info01">Indicação: Não foi possível carregar os dados</p>
+                                            <img src={ErrorImg} alt="Indicação de idade" id="age-rating"/> 
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
