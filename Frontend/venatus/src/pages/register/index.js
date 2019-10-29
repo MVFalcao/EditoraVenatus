@@ -19,7 +19,7 @@ export default class signup extends Component {
     ConfirmPassword: '',
   }
 
-  handleLoginApi = async e => {
+  handleRegisterApi = async e => {
     const response = await api.get('/api/Login').catch(function (error) {
       console.log('Erro: ' + error.message);
     });
