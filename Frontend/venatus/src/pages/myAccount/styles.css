@@ -3,6 +3,8 @@
 .myaccount-container {
     width: 100%;
     margin: 50px 50px;
+    display: flex;
+    flex-direction: row;
 }
 
 .user-content {
@@ -29,7 +31,6 @@
 
 .account-pages {
     max-width: 250px;
-    /* padding: 15px 0px; */
 
     border: 1px solid black;
 }

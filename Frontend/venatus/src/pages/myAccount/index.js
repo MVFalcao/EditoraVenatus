@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import api from '../../services/api';
 
 import './styles.css';
 import userAvatar from '../../assets/myAccount/silhueta.png';
 import editAvatar from '../../assets/myAccount/lapis.svg';
 
 export default class myAccount extends Component {
+
+    state = {
+        Name: '',
+      }
+    
+      handleApi = async e => {
+        const response = await api.get('/api/Pessoa').catch(function (error) {
+          console.log('Erro: ' + error.message);
+        });
+        if (response != null) {
+          console.log(response);
+        }
+      } 
+
+
   render() {
     return (
 
@@ -27,6 +43,23 @@ export default class myAccount extends Component {
                         <li className="pages item-2"><Link>Meus Endereços</Link></li>
                         <li className="pages item-3"><Link>Minha Conta</Link></li>
                     </ul>
+                </div>
+            </div>
+            <div className="main-content">
+                <h2>Minha Conta</h2>
+                <p>Visualize e edite suas informações pessoas.</p>
+                <div className="line" />
+                <div className="user-info">
+                    <h3>Dados:</h3>
+                    
+                    <label htmlFor="name">Nome <span>*</span></label>
+                    
+                    <input 
+                    type="text" 
+                    id="name"
+                    value={this.state.Name} 
+                    onChange={e => this.setState({Name: e.target.value})}
+                    />
                 </div>
             </div>
 
