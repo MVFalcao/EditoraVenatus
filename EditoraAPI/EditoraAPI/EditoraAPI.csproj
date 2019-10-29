@@ -182,7 +182,6 @@
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivrariasController.cs" />
-    <Compile Include="Controllers\LivroesController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RedeSocialsController.cs" />
@@ -215,6 +214,10 @@
     <Compile Include="Migrations\201910291934399_banco4.cs" />
     <Compile Include="Migrations\201910291934399_banco4.Designer.cs">
       <DependentUpon>201910291934399_banco4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910292026161_2910Caique1.cs" />
+    <Compile Include="Migrations\201910292026161_2910Caique1.Designer.cs">
+      <DependentUpon>201910292026161_2910Caique1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
@@ -338,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910291934399_banco4.resx">
       <DependentUpon>201910291934399_banco4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910292026161_2910Caique1.resx">
+      <DependentUpon>201910292026161_2910Caique1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
