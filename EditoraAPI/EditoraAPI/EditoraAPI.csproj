@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JWT, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JWT.5.3.1\lib\net46\JWT.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -179,6 +182,7 @@
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivrariasController.cs" />
+    <Compile Include="Controllers\LivroesController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RedeSocialsController.cs" />
@@ -204,6 +208,14 @@
     <Compile Include="Migrations\201910291709242_Banco21.Designer.cs">
       <DependentUpon>201910291709242_Banco21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910291926011_banco3.cs" />
+    <Compile Include="Migrations\201910291926011_banco3.Designer.cs">
+      <DependentUpon>201910291926011_banco3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910291934399_banco4.cs" />
+    <Compile Include="Migrations\201910291934399_banco4.Designer.cs">
+      <DependentUpon>201910291934399_banco4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Carrinho.cs" />
@@ -223,6 +235,7 @@
     <Compile Include="Models\Telefone.cs" />
     <Compile Include="Models\Tipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\EncodingTokenLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -319,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910291709242_Banco21.resx">
       <DependentUpon>201910291709242_Banco21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910291926011_banco3.resx">
+      <DependentUpon>201910291926011_banco3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910291934399_banco4.resx">
+      <DependentUpon>201910291934399_banco4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,8 +14,8 @@ namespace EditoraAPI.Models
         [Required] public virtual List<Autor> id_autor { get; set; }
 
         [Required] public virtual List<Cliente> id_cliente { get; set; }
-        [JsonIgnore] [ForeignKey("id_autor")] public int Id_autor { get; set; }
-        [JsonIgnore] [ForeignKey("id_cliente")] public int Id_cliente { get; set; }
+        [JsonIgnore] [ForeignKey("id_autor")] public int autor { get; set; }
+        [JsonIgnore] [ForeignKey("id_cliente")] public int cliente { get; set; }
         [Required] [StringLength(20)] public string Usuario { get; set; }
         [Required] [StringLength(24)] public string Senha { get; set; }
     }

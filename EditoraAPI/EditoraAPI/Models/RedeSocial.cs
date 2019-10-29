@@ -17,7 +17,7 @@ namespace EditoraAPI.Models
         [StringLength(20)] public string Facebook { get; set; } = null;
         [JsonIgnore] public virtual List<Autor> id_autor { get; set; }
         [JsonIgnore] public virtual List<Cliente> id_cliente { get; set; }
-        [Required] [ForeignKey("id_autor")] public int Id_autor { get; set; }
-        [Required] [ForeignKey("id_cliente")] public int Id_cliente { get; set; }
+        [Required] [ForeignKey("id_autor")] public int Id_aut { get; set; }
+        [Required] [ForeignKey("id_cliente")] public int Id_cli { get; set; }
     }
 }
