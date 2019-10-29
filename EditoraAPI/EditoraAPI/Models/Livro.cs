@@ -22,8 +22,8 @@ namespace EditoraAPI.Models
         [Required] [StringLength(20)] public string Formato { get; set; }
         [Required] [StringLength(50)] public string SubTitulo { get; set; }
         [Required] public string Sinopse { get; set; }
-        [Required] public List<Autor> id_autore { get; set; }
-        public List<Cupom> cupoms { get; set; }
+        [Required] public virtual List<Autor> id_autore { get; set; }
+        public virtual List<Cupom> cupoms { get; set; }
         [Required] [StringLength(10)] public string Classificacao_Indicativa { get; set; } //idade(int) ou livre (string)
 
 
