@@ -173,7 +173,6 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CupomsController.cs" />
-    <Compile Include="Controllers\EnderecoesController.cs" />
     <Compile Include="Controllers\EscolasController.cs" />
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

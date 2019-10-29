@@ -47,7 +47,6 @@ export default class signup extends Component {
       'Data_Nascimento': bd,
       'sexo': 'M'
     }).catch(function (error) {
-      console.log(error.response);
       console.log("Error: " + error.message);
     });
   }
@@ -76,12 +75,7 @@ export default class signup extends Component {
       default:
         console.log("Continua a vida");
       break;
-        
-        
     }
-
-
-
   }
 
   // function handlePassword(password, confirmPassword) {
@@ -110,10 +104,7 @@ export default class signup extends Component {
             <button className="registerBtn item-2" onClick={() => this.handlePopUp(2)}>Professor</button>
             <button className="registerBtn item-3" onClick={() => this.handlePopUp(3)}>Blogueiro</button>
 
-          </div>
-          
-        
-
+          </div>       
         </div>
 
         <div className="signin-content">
@@ -142,7 +133,7 @@ export default class signup extends Component {
             id="username" 
             required
             value={this.state.Username} 
-            onChange={e => this.setState({username: e.target.value})} 
+            onChange={e => this.setState({Username: e.target.value})} 
             />
 
             <label htmlFor="email">Email <span>*</span></label>
@@ -150,7 +141,7 @@ export default class signup extends Component {
             id="email" 
             required
             value={this.state.Email}
-            onChange={e => this.setState({email: e.target.value})}
+            onChange={e => this.setState({Email: e.target.value})}
             />
 
             <label htmlFor="cpf">CPF <span>*</span></label>
@@ -158,7 +149,7 @@ export default class signup extends Component {
             id="cpf"
             required
             value={this.state.CPF}
-            onChange={e => this.setState({cpf: e.target.value})} 
+            onChange={e => this.setState({CPF: e.target.value})} 
             />
 
 
@@ -168,7 +159,7 @@ export default class signup extends Component {
             id="birthDate" 
             required
             value={this.state.Birthdate} 
-            onChange={e => this.setState({birthdate: e.target.value})} 
+            onChange={e => this.setState({Birthdate: e.target.value})} 
             />
             
             <div className="socialMedia-container">

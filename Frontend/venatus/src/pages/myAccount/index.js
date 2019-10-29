@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import api from '../../services/api';
 
+import Header from '../../components/Header';
+
 import './styles.css';
 import userAvatar from '../../assets/myAccount/silhueta.png';
 import editAvatar from '../../assets/myAccount/lapis.svg';
@@ -24,7 +26,8 @@ export default class myAccount extends Component {
 
   render() {
     return (
-
+        <>
+        <Header />
         <div className="myaccount-container">
             
             <div className="left-content">
@@ -45,7 +48,7 @@ export default class myAccount extends Component {
                     </ul>
                 </div>
             </div>
-            <div className="main-content">
+            <div className="middle-content">
                 <h2>Minha Conta</h2>
                 <p>Visualize e edite suas informações pessoas.</p>
                 <div className="line" />
@@ -62,9 +65,8 @@ export default class myAccount extends Component {
                     />
                 </div>
             </div>
-
-
         </div>
+        </>
     );
   }
 }

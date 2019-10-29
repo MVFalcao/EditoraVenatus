@@ -20,21 +20,33 @@ export default class book extends Component {
     state = {
         divClosedList: [true, true, true],
         allBooks: [],
+        author: []
     }
     
     async loadBooks() {
         const response = await api.get(`api/Livros/${this.props.match.params.id}`).catch(function(error) {
-            console.log('Algo deu errado ' + error.message);            
+            console.log('Algo deu errado: ' + error.message);
         });
         if(response != null) {
             console.log(response);
             this.setState({allBooks: response.data});
+            this.handleAge();
+            this.loadAuthors();
+        }
+    }
+
+    async loadAuthors() {
+        const response = await api.get(`api/Autors/${this.state.allBooks.Id_autor}`).catch(function(error) {
+            console.log('Algo deu errado: ' + error.message);   
+        });
+        if (response != null) {
+            console.log(response);
+            this.setState({author: response.data})
         }
     }
 
     componentDidMount() {
         this.loadBooks();
-        this.handleAge();
     }
 
      handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
@@ -89,7 +101,7 @@ export default class book extends Component {
     handleAge() {
         const ageRating = this.state.allBooks.Classificacao_Indicativa;
         const ageText = document.querySelector('p#info01');
-        const ageImg = document.querySelector('img#age-rating');
+        const ageImg = document.querySelector('img#age-rating');        
 
         switch (ageRating) {
             case 'L':
@@ -126,6 +138,7 @@ export default class book extends Component {
     render() {
         const allBooks = this.state.allBooks;
         const DatePublication = new Date(allBooks.Datapublicacao);
+        const author = this.state.author;
         
         return (
             <>
@@ -195,7 +208,7 @@ export default class book extends Component {
 
                     </div>
                     <div className="right-content">
-                        <p id="book-Author">Autor(a): Erica Falcão</p>
+                        <p id="book-Author">Autor(a): {author.Nome}</p>
                         <p id="book-Illustrator">Ilustrador(a): {allBooks.Ilustrador}</p>
                         <p id="book-Language">Idioma: {allBooks.Idioma}</p>
                         <p id="book-Format">Formato: {allBooks.Formato} cm</p>
