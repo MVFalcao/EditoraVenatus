@@ -7,6 +7,7 @@ import Main from './pages/main';
 import AllBooks from './pages/allBooks';
 import BookPage from './pages/book';
 import Events from './pages/allEvents';
+import myAccount from './pages/myAccount';
 
 export default function Routes() {
   return (
@@ -18,6 +19,7 @@ export default function Routes() {
             <Route path="/Login" component ={ Login } />
             <Route path="/signup" component ={ SignUp } />
             <Route path="/allEvents" component={ Events } />
+            <Route path="/myaccount" component={myAccount} />
         </Switch>
       </BrowserRouter>
   );
