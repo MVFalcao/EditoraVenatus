@@ -17,16 +17,16 @@ namespace EditoraAPI.Controllers
         private EditoraAPIContext db = new EditoraAPIContext();
 
         // GET: api/Carrinhoes
-        public IQueryable<Carrinho> GetCarrinhos()
+        public IQueryable<Carrinho> Getcarrinhos()
         {
-            return db.Carrinhos;
+            return db.carrinhos;
         }
 
         // GET: api/Carrinhoes/5
         [ResponseType(typeof(Carrinho))]
         public IHttpActionResult GetCarrinho(int id)
         {
-            Carrinho carrinho = db.Carrinhos.Find(id);
+            Carrinho carrinho = db.carrinhos.Find(id);
             if (carrinho == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace EditoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Carrinhos.Add(carrinho);
+            db.carrinhos.Add(carrinho);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = carrinho.ID_Carrinho }, carrinho);
@@ -89,13 +89,13 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Carrinho))]
         public IHttpActionResult DeleteCarrinho(int id)
         {
-            Carrinho carrinho = db.Carrinhos.Find(id);
+            Carrinho carrinho = db.carrinhos.Find(id);
             if (carrinho == null)
             {
                 return NotFound();
             }
 
-            db.Carrinhos.Remove(carrinho);
+            db.carrinhos.Remove(carrinho);
             db.SaveChanges();
 
             return Ok(carrinho);
@@ -112,7 +112,7 @@ namespace EditoraAPI.Controllers
 
         private bool CarrinhoExists(int id)
         {
-            return db.Carrinhos.Count(e => e.ID_Carrinho == id) > 0;
+            return db.carrinhos.Count(e => e.ID_Carrinho == id) > 0;
         }
     }
 }

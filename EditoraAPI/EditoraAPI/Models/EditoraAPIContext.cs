@@ -20,23 +20,23 @@ namespace EditoraAPI.Models
         }
 
         public System.Data.Entity.DbSet<EditoraAPI.Models.Autor> autors { get; set; }
-        public System.Data.Entity.DbSet<EditoraAPI.Models.Carrinho> Carrinhos { get; set; }
+        public System.Data.Entity.DbSet<EditoraAPI.Models.Carrinho> carrinhos { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Classificao> classificaos { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Cliente> clientes { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Compra> compras { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Cupom> cupoms { get; set; }
 
-        public System.Data.Entity.DbSet<EditoraAPI.Models.Endereco> enderecos { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Escola> escolas { get; set; }
+        public System.Data.Entity.DbSet<EditoraAPI.Models.Endereco> enderecos { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Estoque> estoques { get; set; }
+
         public System.Data.Entity.DbSet<EditoraAPI.Models.Livraria> livrarias { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Livro> livros { get; set; }
-        public System.Data.Entity.DbSet<EditoraAPI.Models.Login> logins { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Pessoa> pessoas { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.RedeSocial> redeSocials { get; set; }
+        public System.Data.Entity.DbSet<EditoraAPI.Models.Telefone>telefones { get; set; }
+        public System.Data.Entity.DbSet<EditoraAPI.Models.Tipo>  tipos { get; set; }
 
-        public System.Data.Entity.DbSet<EditoraAPI.Models.Telefone> telefones { get; set; }
 
-        public System.Data.Entity.DbSet<EditoraAPI.Models.Tipo> tipos { get; set; }
     }
 }
