@@ -39,9 +39,9 @@ export default class myAccount extends Component {
 
                 <div className="account-pages">
                     <ul>
-                        <li className="pages item-1"><Link>Meus Pedidos</Link></li>
-                        <li className="pages item-2"><Link>Meus Endereços</Link></li>
-                        <li className="pages item-3"><Link>Minha Conta</Link></li>
+                        <li className="pages item-1"><Link to="/">Meus Pedidos</Link></li>
+                        <li className="pages item-2"><Link to="/">Meus Endereços</Link></li>
+                        <li className="pages item-3"><Link to="/">Minha Conta</Link></li>
                     </ul>
                 </div>
             </div>
