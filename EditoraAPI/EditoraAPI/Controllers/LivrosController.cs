@@ -23,10 +23,10 @@ namespace EditoraAPI.Controllers
         }
 
         // GET: api/Livros por oredem de lançamento
-        /*public IQueryable<Livro> GetlivrosLancamentos()
+        public IQueryable<Livro> GetlivrosLancamentos()
         {
-            return db.livros.Where( );
-        }*/
+            //return db.livros.OrderBy(Datapublicacao);
+        }
 
         // GET: api/Livros/5
         [ResponseType(typeof(Livro))]
