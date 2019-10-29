@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +13,7 @@ namespace EditoraAPI.Models
         [Key] public int ID_Autor { get; set; }
         [Required] [StringLength(15)] public string CPF { get; set; }
         [Required] [StringLength(100)] public string Nome { get; set; }
-        [Required] public virtual List<Livro> livros { get; set; }
+        [JsonIgnore] public virtual List<Livro> livros { get; set; }
+        [Required] [ForeignKey("livros")] public int Id_livros { get; set; }
     }
 }
