@@ -316,3 +316,5 @@ E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\bin\
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\bin\pt-br\System.Web.WebPages.Razor.resources.dll
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CopyComplete
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations._2910Caique1.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.teste1.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations._2910Caique2.resources
