@@ -19,7 +19,7 @@ namespace EditoraAPI.Models
         [Required] public DateTime Data_Nascimento { get; set; }
         [JsonIgnore] public List<Cliente> id_cliente { get; set; } //FK
         [JsonIgnore] public virtual List<Cupom> cupoms { get; set; }
-        [Required] [ForeignKey("cupoms")] public int Id_cup { get; set; }
+        [ForeignKey("cupoms")] public int Id_cup { get; set; }
         [Required] [ForeignKey("id_cliente")] public int Id_cli { get; set; }
     }
 }

@@ -16,8 +16,8 @@ namespace EditoraAPI.Models
         [Required] [StringLength(30)] public string Bairro { get; set; }
         [Required] [StringLength(50)] public string Complemento { get; set; }
         [JsonIgnore] public virtual List<Autor> id_autor { get; set; }
-        [Required][ForeignKey("id_autor")] public int autor { get; set; }
-        [Required] [ForeignKey("id_cliente")] public int cliente { get; set; }
+        [ForeignKey("id_autor")] public int autor { get; set; }
+        [ForeignKey("id_cliente")] public int cliente { get; set; }
         [JsonIgnore] public virtual List<Cliente> id_cliente { get; set; } //FK de tb_autor OU tb_cliente
 
     }
