@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201910292026161_2910Caique1.Designer.cs">
       <DependentUpon>201910292026161_2910Caique1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910300001429_teste1.cs" />
+    <Compile Include="Migrations\201910300001429_teste1.Designer.cs">
+      <DependentUpon>201910300001429_teste1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910300009319_2910Caique2.cs" />
+    <Compile Include="Migrations\201910300009319_2910Caique2.Designer.cs">
+      <DependentUpon>201910300009319_2910Caique2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Carrinho.cs" />
@@ -344,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910292026161_2910Caique1.resx">
       <DependentUpon>201910292026161_2910Caique1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910300001429_teste1.resx">
+      <DependentUpon>201910300001429_teste1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910300009319_2910Caique2.resx">
+      <DependentUpon>201910300009319_2910Caique2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
