@@ -181,7 +181,6 @@
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivrariasController.cs" />
-    <Compile Include="Controllers\LivroesController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RedeSocialsController.cs" />
