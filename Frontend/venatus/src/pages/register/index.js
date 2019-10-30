@@ -29,7 +29,7 @@ export default class signup extends Component {
   } 
 
   componentDidMount() {
-    this.handleLoginApi();
+    this.handleRegisterApi();
   }
 
   handleSubmit = async event => {
@@ -151,7 +151,6 @@ export default class signup extends Component {
             value={this.state.CPF}
             onChange={e => this.setState({CPF: e.target.value})} 
             />
-
 
             <label htmlFor="birthDate">Data de Nascimento <span>*</span></label>
             <input

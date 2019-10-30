@@ -12,6 +12,9 @@ export default class myAccount extends Component {
 
     state = {
         Name: '',
+        LastName: '',
+        CPF: '',
+        Telephone: '',
       }
     
       handleApi = async e => {
@@ -50,19 +53,43 @@ export default class myAccount extends Component {
             </div>
             <div className="middle-content">
                 <h2>Minha Conta</h2>
-                <p>Visualize e edite suas informações pessoas.</p>
+                <p>Visualize e edite suas informações pessoais.</p>
                 <div className="line" />
                 <div className="user-info">
                     <h3>Dados:</h3>
-                    
-                    <label htmlFor="name">Nome <span>*</span></label>
-                    
-                    <input 
-                    type="text" 
-                    id="name"
-                    value={this.state.Name} 
-                    onChange={e => this.setState({Name: e.target.value})}
-                    />
+                    <form>
+                    <ul>
+                        <li>
+                            <label htmlFor="name">Nome</label>
+                            <input type="text" id="name"
+                            value={this.state.Name} 
+                            onChange={e => this.setState({Name: e.target.value})}
+                            />
+                        </li>
+                        <li>
+                            <label htmlFor="name">Sobrenome</label>
+                            <input type="text" id="name"
+                            value={this.state.LastName} 
+                            onChange={e => this.setState({LastName: e.target.value})}
+                            />
+                        </li>
+                        <li>
+                            <label htmlFor="cpf">CPF</label>
+                            <input type="text" id="cpf" readOnly
+                            value={this.state.CPF}
+                            onChange={e => this.setState({CPF: e.target.value})} 
+                            />
+                        </li>
+                        <li>
+                            <label htmlFor="telephone">Telefone</label>
+                            <input type="text" id="telephone" readOnly
+                            value={this.state.Telephone}
+                            onChange={e => this.setState({Telephone: e.target.value})} 
+                            />
+                        </li>
+                    </ul>
+                    <button>Atualizar</button>
+                    </form>
                 </div>
             </div>
         </div>
