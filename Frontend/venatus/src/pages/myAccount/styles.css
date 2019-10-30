@@ -7,7 +7,7 @@
     flex-direction: row;
 }
 
-.left-content {
+.left-info {
     margin-left: 120px;
 }
 
@@ -23,6 +23,7 @@
 .user-content img#avatar {
     width: 40%;
     height: auto;
+    margin-left: 75px;
     margin-bottom: 20px;
 
     border: 1px solid black;
@@ -31,6 +32,7 @@
 
 .user-content p {
     font: 400 20px 'Poppins', arial, sans-serif;
+    margin-left: 60px;
 }
 
 .account-pages {
@@ -83,7 +85,7 @@
 }
 
 .middle-content {
-    margin-left: 170px;
+    margin-left: 140px;
     padding: 20px 30px;
 
     border: 1px solid black;
@@ -157,8 +159,18 @@
     width: 150px;
     height: 40px;
     margin: 60px auto 0px;
+    padding-top: 5px;
 
     font: 300 18px 'Poppins', arial, sans-serif;
-
+    color: white;
+    background-color: rgb(109, 146, 226);
+    border: none;
     border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.user-info button:hover {
+    background-color: rgb(79, 79, 165);
 }

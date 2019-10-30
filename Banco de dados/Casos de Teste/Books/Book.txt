@@ -27,7 +27,7 @@
 	"Classificacao_Indicativa": "L",
 	"ISBN": "978-85-924294-1-6",
 	"Ilustrador": "Heitor Neto",
-	"Imagem_URL": "https://ericafalcaoescritora.files.wordpress.com/2018/03/leuriblog.jpg?w=226&zoom=2",
+	"Imagem_URL": "https://ericafalcaoescritora.files.wordpress.com/2019/03/20190310_123003.jpg?w=210&zoom=2",
 	"Datapublicacao": "01-01-2019",
 	"Preco": "39.90",
 	"Formato": "15 x 21",

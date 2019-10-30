@@ -33,7 +33,7 @@ export default class myAccount extends Component {
         <Header />
         <div className="myaccount-container">
             
-            <div className="left-content">
+            <div className="left-info">
 
                 <div className="user-content">
                     <img id="avatar" src={userAvatar} alt="Avatar do usuário"/>
