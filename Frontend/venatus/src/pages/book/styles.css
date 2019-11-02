@@ -126,15 +126,14 @@
     font: 300 18px 'Poppins', Arial, sans-serif;
     color: rgb(35, 114, 128);
     background-color: transparent;
+    border: none;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     
-    border: transparent;
     cursor: pointer;
-    transform: translateY(0px);
     transition: all .2s;
 }
 

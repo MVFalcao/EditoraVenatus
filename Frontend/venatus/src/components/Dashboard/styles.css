@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700&display=swap');
+
+.administrator-panel {
+    max-width: 320px;
+    min-width: 320px;
+    min-height: 767px;
+    padding-bottom: 20px;
+
+    color: rgb(231, 230, 230);
+    font-family: 'Poppins', arial, sans-serif;
+    background-color: #354052;
+}
+
+.dashboard-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    background-color: #29313f;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-header img {
+    max-width: 200px;
+    height: auto;
+}
+
+.administrator-panel h1 {
+    font-size: 20px;
+}
+
+.categories {
+    margin-top: 15px;
+    padding-left: 10px;
+}
+
+.categories button {
+    width: 100%;
+    margin-left: 5px;
+    padding-right: 25px;
+    
+    color: white;
+    font: 400 16px 'Poppins', arial, sans-serif;
+    background: none;
+    border: none;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.categories img {
+    width: 8px;
+    height: auto;
+}
+
+.categories h2 {
+    margin-bottom: 10px;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.categories.register h3 {
+    margin: 10px auto 10px 15px;
+
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.categories li {
+    margin: auto auto 8px 50px;
+
+    text-decoration: none;
+}
+
+.categories a {
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown {
+    display: none;
+}
+
+.dropdown.register {
+    display: none;
+    flex-direction: column;
+}
