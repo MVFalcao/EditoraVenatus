@@ -14,6 +14,7 @@
 .dashboard-header {
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 20px;
 
     background-color: #29313f;
 
@@ -23,6 +24,7 @@
 }
 
 .dashboard-header img {
+    margin-bottom: 10px;
     max-width: 200px;
     height: auto;
 }

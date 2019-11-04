@@ -14,7 +14,9 @@ import myAccount from './pages/myAccount';
 
 // Páginas do administrador
 import addBook from './pages/Administrator/manageBook/addBook';
+import editBookSelection from './pages/Administrator/manageBook/editBook/selection';
 import editBook from './pages/Administrator/manageBook/editBook';
+import deleteBook from './pages/Administrator/manageBook/deleteBook';
 
 export default function Routes() {
   return (
@@ -34,8 +36,9 @@ export default function Routes() {
             {/* Rotas do administrador */}
               {/* Gerenciamento de Livros */}
                 <Route path="/addbook" component= { addBook } />
-                <Route path="/editBook" component= { editBook } />
-
+                <Route path="/editbook/selection" component= { editBookSelection } />
+                <Route path="/editbook/:id" component={ editBook } />
+                <Route path="/deletebook/selection" component={deleteBook} />
 
         </Switch>
       </BrowserRouter>

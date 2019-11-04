@@ -20,7 +20,7 @@ export default class main extends Component {
     });
     if (response != null) {
       console.log(response);
-      this.setState({allBooks: response.data})
+      this.setState({allBooks: response.data});
     }
   }
 

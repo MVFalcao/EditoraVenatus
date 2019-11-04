@@ -118,8 +118,8 @@ export default class Dashboard extends Component {
 
                         <ol>
                             <li><Link to="/addBook">Adicionar Livro</Link></li>
-                            <li><Link to="/editBook">Editar Livro</Link></li>
-                            <li><Link to="/">Deletar Livro</Link></li>
+                            <li><Link to="/editbook/selection">Editar Livro</Link></li>
+                            <li><Link to="/deletebook/selection">Deletar Livro</Link></li>
                         </ol>
 
                     </div>
