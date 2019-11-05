@@ -21,6 +21,7 @@ export default class signup extends Component {
     ConfirmPassword: '',
 
     ProfessorImage: null,
+    BlogURL: '',
   }
 
   handleGender = (e, value) => {
@@ -45,6 +46,13 @@ export default class signup extends Component {
       'Tipo_Pessoa': this.state.PersonType,
       'Data_Nascimento': this.state.Data_Nascimento,
       'sexo': this.state.Gender,
+    }).catch(function (error) {
+      console.log("Error: " + error.message);
+    });
+
+    await api.post('/api/Login', {
+      'Login': this.state.Username,
+      'Password': this.state.Password,
     }).catch(function (error) {
       console.log("Error: " + error.message);
     });
@@ -178,20 +186,17 @@ export default class signup extends Component {
               </li>
 
               <li id="socialMedia-container">
-                {/* <div > */}
                   <label htmlFor="social-media">Link da rede social <span>*</span></label>
                   <input type="text" 
                     id="social-media"
                     placeholder="Sua rede social mais relevante"
                     required
-                    // value={this.state.CPF}
-                    // onChange={e => this.setState({cpf: e.target.value})} 
+                    value={this.state.BlogURL}
+                    onChange={e => this.setState({BlogURL: e.target.value})} 
                   />
-                {/* </div> */}
               </li>
               
               <li id="professorImage-container">
-                {/* <div > */}
                   <label htmlFor="professor-input">Comprovante de profissão <span>*</span></label>
                     <label id="professor-image" htmlFor="professor-input" className={this.state.ProfessorImage ? 'has-image' : ''} style={{ backgroundImage: `url(${this.state.ProfessorImage})`}}>  
                       <input type="file" 
@@ -203,7 +208,6 @@ export default class signup extends Component {
                       <img src={imgUpload} alt="IconeDeImagem"/>
                     </label>
                     {console.log(this.state.ProfessorImage)}
-                {/* </div> */}
               </li>
 
               <li id="gender-wrapper">

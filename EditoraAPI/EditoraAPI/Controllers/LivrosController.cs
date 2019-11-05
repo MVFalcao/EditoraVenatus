@@ -27,7 +27,7 @@ namespace EditoraAPI.Controllers
         {
             return db.livros.OrderBy(l => l.Datapublicacao);
         }*/
-
+        //[Route("jander/img")]
         // GET: api/Livros/5
         [ResponseType(typeof(Livro))]
         public IHttpActionResult GetLivro(int id)

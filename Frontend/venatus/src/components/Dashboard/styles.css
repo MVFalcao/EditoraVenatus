@@ -76,9 +76,13 @@
 }
 
 .categories li {
-    margin: auto auto 8px 50px;
+    margin: auto auto 15px 50px;
 
     text-decoration: none;
+}
+
+.categories li:hover {
+    transform: translateX(7px);
 }
 
 .categories a {
