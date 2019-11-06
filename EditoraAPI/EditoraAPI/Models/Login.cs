@@ -11,11 +11,11 @@ namespace EditoraAPI.Models
     public class Login
     {
         [Key] public int ID_Login { get; set; }
-        [Required] public virtual List<Autor> id_autor { get; set; }
+        [JsonIgnore] public virtual List<Autor> id_autor { get; set; }
 
-        [Required] public virtual List<Cliente> id_cliente { get; set; }
-        [JsonIgnore] [ForeignKey("id_autor")] public int autor { get; set; }
-        [JsonIgnore] [ForeignKey("id_cliente")] public int cliente { get; set; }
+        [JsonIgnore] public virtual List<Cliente> id_cliente { get; set; }
+         [ForeignKey("id_autor")] public int autor { get; set; }
+        [ForeignKey("id_cliente")] public int cliente { get; set; }
         [Required] [StringLength(20)] public string Usuario { get; set; }
         [Required] [StringLength(24)] public string Senha { get; set; }
     }

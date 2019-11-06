@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
     public class ComprasController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Compras
         public IQueryable<Compra> Getcompras()
         {
@@ -26,6 +27,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Compra))]
         public IHttpActionResult GetCompra(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Compra compra = db.compras.Find(id);
             if (compra == null)
             {
