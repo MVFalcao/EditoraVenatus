@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
@@ -20,19 +21,22 @@ namespace EditoraAPI.Controllers
         public IQueryable<Autor> Getautors()
         {
             return db.autors;
+            
         }
 
         // GET: api/Autors/5
         [ResponseType(typeof(Autor))]
         public IHttpActionResult GetAutor(int id)
         {
+            //var headers = Request.Headers;
+            //if(headers.Contains("jwt"))
             Autor autor = db.autors.Find(id);
             if (autor == null)
             {
                 return NotFound();
             }
 
-            return Ok(autor);
+            return Ok();
         }
 
         // PUT: api/Autors/5
