@@ -10,8 +10,9 @@ import BookPage from './pages/book';
 import Events from './pages/allEvents';
 
 // Páginas da conta do usuário
-import myAccount from './pages/User/myAccount';
-import Adressess from './pages/User/Adressess';
+import Account from './pages/User/myAccount';
+import Adressess from './pages/User/myAdressess';
+import Orders from './pages/User/myOrders';
 
 // Páginas do administrador
 import addBook from './pages/Administrator/manageBook/addBook';
@@ -32,8 +33,9 @@ export default function Routes() {
             <Route path="/allEvents" component={ Events } />
 
             {/* Rotas da conta do usuário */}
-            <Route path="/myaccount" component={ myAccount } />
+            <Route path="/account" component={ Account } />
             <Route path="/adressess" component={ Adressess } />
+            <Route path="/orders" component={ Orders } />
 
             {/* Rotas do administrador */}
               {/* Gerenciamento de Livros */}
