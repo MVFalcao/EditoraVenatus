@@ -25,7 +25,7 @@ namespace EditoraAPI.Controllers
         // GET: api/Livros/Lancamento
         /*public IQueryable<Livro> GetlivrosLancamentos()
         {
-            return db.livros.OrderBy(l => l.Datapublicacao);
+            return db.livros.OrderBy(l => l.Datapublicacao).ToList();
         }*/
 
         // GET: api/Livros/5
