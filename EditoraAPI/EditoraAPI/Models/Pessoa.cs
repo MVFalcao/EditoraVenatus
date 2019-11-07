@@ -13,6 +13,7 @@ namespace EditoraAPI.Models
         [Key] public int ID_Pessoa { get; set; }
         [Required] [StringLength(15)] public string CPF { get; set; }
         [Required] [StringLength(50)] public string Nome { get; set; }
+        [Required] [StringLength(50)] public string Sobrenome{ get; set; }
         [Required] public Boolean Desconto { get; set; }
         [Required] [StringLength(20)] public string Tipo_pessoa { get; set; }
         [Required] [StringLength(1)] public string sexo { get; set; }

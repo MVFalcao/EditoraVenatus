@@ -546,3 +546,5 @@ C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CopyComplete
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.dll
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.pdb
+C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
+C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco8.resources
