@@ -25,15 +25,16 @@ namespace EditoraAPI.Controllers
 
         // GET: api/Logins/5
         [ResponseType(typeof(Login))]
-        public IHttpActionResult GetLogin(int id)
+        public IHttpActionResult GetLogin(string user,string senha)
         {
+            var id = from l in db.Logins where l.Usuario == user && l.Senha == senha select l.ID_Login;
             Login login = db.Logins.Find(id);
             if (login == null)
             {
                 return NotFound();
             }
 
-            return Ok(en.EncodeLogin(id));
+            return Ok(en.EncodeLogin(login.ID_Login));
         }
 
         // PUT: api/Logins/5
