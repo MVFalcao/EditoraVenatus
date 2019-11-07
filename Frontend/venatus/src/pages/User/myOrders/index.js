@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import api from '../../../services/api';
 
 import Header from '../../../components/Header';
 import AccountPages from '../../../components/AccountPages';
+import UserInfo from '../../../components/UserInfo';
 
 import './styles.css';
-import userAvatar from '../../../assets/myAccount/silhueta.png';
-import editAvatar from '../../../assets/myAccount/lapis.svg';
 import Close from '../../../assets/myAccount/close.svg';
 
 export default class myOrders extends Component {
@@ -43,11 +41,29 @@ export default class myOrders extends Component {
         
         pageElement[item].style.backgroundColor = '#FFF5B3';
         textElement[item].style.color = "#2F99AC";
-      }
+    }
 
-      componentDidMount() {
-          this.handlePageColor(0);
-      }
+    componentDidMount() {
+        this.handlePageColor(0);
+    }
+
+    //#region HandleDiv() {
+        showPopUp = () => {
+            document.querySelector('.order-popup').style.display = "block";
+        }
+        
+        hidePopUp = () => {
+            document.querySelector('.order-popup').style.display = "none";
+        }
+
+        hidePopUpbyDiv = (e) => {
+            if (document.querySelector('.order-container').contains(e.target)) {
+                return
+            } else {
+                document.querySelector('.order-popup').style.display = "none";
+            }
+        }
+    //#endregion
 
 
   render() {
@@ -58,14 +74,7 @@ export default class myOrders extends Component {
             
             <div className="left-info">
 
-                <div className="user-content">
-                    <img id="avatar" src={userAvatar} alt="Avatar do usuário"/>
-                    {/* <button>
-                        <img id="pencil" src={editAvatar} alt="Editar avatar"/>
-                    </button> */}
-                    <p>Jander Silva</p>
-                </div>
-
+                <UserInfo />
                 <AccountPages />
                
             </div>
@@ -79,24 +88,116 @@ export default class myOrders extends Component {
                     <ul>
                         <li>
                             <p>PEDIDO: <span>#000001</span></p>
-                            <Link to="">VER RESUMO</Link>
+                            <button onClick={this.showPopUp}>VER RESUMO</button>
                         </li>
                     </ul>
                 </div>
             </div>
 
-        <div className="order-popup">
+        <div className="order-popup" onClick={this.hidePopUpbyDiv}>
+
             <div className="order-container">
+
                 <div className="order-header">
+
                     <div className="left-content">
+
                         <p>Pedido <span>#00001</span></p>
                         <p id="detail-paragraph">Detalhes da Compra</p>
+                   
                     </div>
-                    <button>
+                    <button onClick={() => this.hidePopUp()}>
                         <img src={Close} alt=""/>
                     </button>
+
                 </div>
+
                 <div className="line" />
+
+                <h2>Informações do Pedido</h2>
+                <div className="order info">
+
+                    <ul>
+
+                        <li>Data do Pedido: 06/11/2019</li>
+                        <li>Forma de Pagamento: Cartão de Crédito</li>
+                        <li>Status do Pedido: Pedido Concluído</li>
+
+                    </ul>
+
+                </div>
+                
+                <h2>Dados da Entrega</h2>
+                <div className="order ship">
+                    <div className="left-content">
+                        <ul>
+                            <li>Jander Silva</li>
+                            <li>Av.Bernardinho de Campos, Paralela, 98</li>
+                            <li>42030-000, Apt 506</li>
+                            <li>Salvador</li>
+                        </ul>
+                    </div>
+                    <div className="right-content">
+                        <ul>
+                            <li>
+                                <p>Sedex</p>
+                            </li>
+                            <li id="ship-code">
+                                <p>1HG673818XN2</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Produto</h2>
+                <div className="order product">
+                    <div className="left-content">
+                        <ul>
+                            <li><img src="https://ericafalcaoescritora.files.wordpress.com/2018/03/leuriblog.jpg?w=226&zoom=2" alt="Livro"/></li>
+                            <li>
+                                <p>Livro Leurianto - Dimensão Game</p>
+                                <p>Quantidade: 1</p>    
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="right-content">
+                        <ul>
+                            <li>
+                                <p>Total</p>
+                            </li>
+                            <li id="product-price">
+                                <p>R$ 39,90</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Valor da Compra</h2>
+                <div className="order cost">
+                    <ul>
+                        <li>
+                            <p>Produto:</p>
+                            <p>R$ 39,90</p>
+                        </li>
+                        <div className="line cost" />
+                        <li>
+                            <p>Frete:</p>
+                            <p>R$ 20,00</p>
+                        </li>
+                        <div className="line cost" />
+                        <li>
+                            <p>Desconto:</p>
+                            <p>R$ 5,00</p>
+                        </li>
+                    </ul>
+
+                </div>
+                
+                <section>
+                    <p>Total:</p>
+                    <p>R$ 64,90</p>
+                </section>
+
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { Component, useMemo } from 'react';
+import React, { Component } from 'react';
 import api from '../../../../services/api';
 
 import './styles.css';

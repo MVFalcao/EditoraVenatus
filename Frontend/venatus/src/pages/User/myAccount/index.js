@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import api from '../../../services/api';
 
 import Header from '../../../components/Header';
 import AccountPages from '../../../components/AccountPages';
+import UserInfo from '../../../components/UserInfo';
 
 import './styles.css';
 import userAvatar from '../../../assets/myAccount/silhueta.png';
@@ -47,14 +47,7 @@ export default class myAccount extends Component {
             
             <div className="left-info">
 
-                <div className="user-content">
-                    <img id="avatar" src={userAvatar} alt="Avatar do usuário"/>
-                    {/* <button>
-                        <img id="pencil" src={editAvatar} alt="Editar avatar"/>
-                    </button> */}
-                    <p>Jander Silva</p>
-                </div>
-
+                <UserInfo />
                 <AccountPages />
 
             </div>
