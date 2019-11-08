@@ -1,22 +1,22 @@
-.selectBook-wrapper {
+.selectBookstore-wrapper {
     display: flex;
     background-color: rgb(32, 32, 32);
 }
 
-.selectBook-container {
+.selectBookstore-container {
     width: 100%;
 
     font-family: 'Poppins', Arial, sans-serif;
     text-align: center;
 }
 
-.selectBook-container h1 {
-    margin-right: 60px;
+.selectBookstore-container h1 {
+    margin-right: 90px;
     color: white;
     font-size: 24px;
 }
 
-.selectBook-container ul {
+.selectBookstore-container ul {
     margin: 50px auto auto 60px;
 
     list-style: none;
@@ -26,7 +26,7 @@
     gap: 20px;
 }
 
-.selectBook-container ul li {
+.selectBookstore-container ul li {
     width: 190px;
     padding-bottom: 15px;
     
@@ -35,18 +35,18 @@
     background-color: rgb(62, 86, 136);
 }
 
-.selectBook-container ul li:hover {
+.selectBookstore-container ul li:hover {
     transform: translateY(-2px);
     border: none;
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5);
 }
 
-.selectBook-container ul li:active {
+.selectBookstore-container ul li:active {
     transform: translateY(2px);
     box-shadow: none
 }
 
-.selectBook-container ul li button {
+.selectBookstore-container ul li button {
     text-decoration: none;
     border: none;
     background: none;
@@ -59,17 +59,17 @@
     cursor: pointer;
 }
 
-.selectBook-container ul li img {
-    width: 190px;
-    height: 252px;
+.selectBookstore-container ul li img {
+    width: 100%;
+    height: auto;
     
     border-radius: 10px 10px 0px 0px;
 }
 
 
-.selectBook-container ul li h2 {
+.selectBookstore-container ul li h2 {
     margin-top: 10px;
 
     color: rgb(255, 255, 255);
-    font: 300 14px 'Poppins', arial, sans-serif;
+    font: 300 16px 'Poppins', arial, sans-serif;
 }

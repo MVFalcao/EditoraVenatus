@@ -1,8 +1,10 @@
-.selectBook-wrapper {
+.selectBookstore-wrapper {
     display: flex;
+    color: white;
+    background-color: #202020;
 }
 
-.selectBook-container {
+.selectBookstore-container {
     width: 100%;
     margin: 30px auto auto 60px;
 
@@ -10,11 +12,11 @@
     text-align: center;
 }
 
-.selectBook-container h1 {
+.selectBookstore-container h1 {
     font-size: 24px;
 }
 
-.selectBook-container ul {
+.selectBookstore-container ul {
     margin-top: 30px;
 
     list-style: none;
@@ -23,27 +25,26 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-.selectBook-container ul li {
+.selectBookstore-container ul li {
     width: 190px;
     padding-bottom: 10px;
     
-    border: 1px solid rgb(206, 206, 206);
     border-radius: 10px;
     background-color: rgb(62, 86, 136);
 }
 
-.selectBook-container ul li:hover {
+.selectBookstore-container ul li:hover {
     transform: translateY(-2px);
     border: none;
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5);
 }
 
-.selectBook-container ul li:active {
+.selectBookstore-container ul li:active {
     transform: translateY(2px);
     box-shadow: none
 }
 
-.selectBook-container ul li a {
+.selectBookstore-container ul li a {
     text-decoration: none;
 
     display: flex;
@@ -52,18 +53,18 @@
     align-items: center;
 }
 
-.selectBook-container ul li img {
-    width: 190px;
-    height: 252px;
+.selectBookstore-container ul li img {
+    width: 100%;
+    height: auto;
     
     border-radius: 10px 10px 0px 0px;
 }
 
 
-.selectBook-container ul li h2 {
+.selectBookstore-container ul li h2 {
     margin-top: 10px;
 
     color: rgb(255, 255, 255);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
 }

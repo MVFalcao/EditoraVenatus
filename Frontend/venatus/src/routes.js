@@ -24,6 +24,7 @@ import Orders from './pages/User/myOrders';
     import addBookstore from './pages/Administrator/manageBookstore/addBookstore';
     import editBookstoreSelection from './pages/Administrator/manageBookstore/editBookstore/selection';
     import editBookstore from './pages/Administrator/manageBookstore/editBookstore';
+    import deleteBookstore from './pages/Administrator/manageBookstore/deleteBookstore';
 
 export default function Routes() {
   return (
@@ -52,6 +53,7 @@ export default function Routes() {
                 <Route path="/addbookstore" component = {addBookstore} />
                 <Route path="/editbookstore/selection" component={ editBookstoreSelection } />
                 <Route path="/editbookstore/:id" component={ editBookstore } />
+                <Route path="/deletebookstore/" component={ deleteBookstore } />
                 
 
         </Switch>

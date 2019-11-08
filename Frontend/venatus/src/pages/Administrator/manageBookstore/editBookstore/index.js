@@ -14,10 +14,6 @@ export default class addBook extends Component {
       Bookstore: [],
     }
   
-  handlePreview = (event) => {
-    this.setState({Imagem_URL: URL.createObjectURL(event.target.files[0])});
-  }
-  
   async loadBookstore() {
     const response = await api.get(`/api/Livrarias/${this.props.match.params.id}`).catch(function(error) {
       console.log('Erro: ' + error.message);
@@ -26,7 +22,6 @@ export default class addBook extends Component {
       console.log(response);
       this.setState({Bookstore: response.data})
       this.loadBookstoreData();
-
     }
   }
     
@@ -45,14 +40,20 @@ export default class addBook extends Component {
     // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
     // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
 
-    await api.put('api/Livros', {
+    const response = await api.put(`api/Livrarias/${this.props.match.params.id}`, {
+      "ID_Livraria": this.state.Bookstore.ID_Livraria,
       "Nome": this.state.Nome,
       "CNPJ": this.state.CNPJ,
       "Tipo_Consignacao": this.state.TipoConsignacao,
+      "cliente": this.state.Bookstore.cliente,
     }).catch(function (error) {
       console.log(error.response);
       console.log("Error: " + error.message);
     });
+    if (response != null) {
+      console.log(response);
+      alert('Livraria editada com sucesso');
+    }
   }
 
   render() {
@@ -78,6 +79,7 @@ export default class addBook extends Component {
                       required
                       value={this.state.Nome} 
                       onChange={e => this.setState({Nome: e.target.value})}
+                      onFocus={e => e.target.select()}
                     />
                   </li>
 
@@ -89,14 +91,15 @@ export default class addBook extends Component {
                       required
                       value={this.state.CNPJ} 
                       onChange={e => this.setState({CNPJ: e.target.value})}
+                      onFocus={e => e.target.select()}
                     />
                   </li>
 
                   <li>
                     <label>Tipo Consignação <span>*</span></label>
                     <select value={this.state.TipoConsignacao} onChange={e => this.setState({TipoConsignacao: e.target.value})}>
-                      <option value="Consignado">Consignado</option>
-                      <option value="NaoConsignado">Não Consignado</option>
+                      <option value="consignado">Consignado</option>
+                      <option value="naoconsignado">Não Consignado</option>
                     </select>
                   </li>
 

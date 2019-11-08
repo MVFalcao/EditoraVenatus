@@ -5,7 +5,7 @@ import api from '../../../../../services/api';
 import Dashboard from '../../../../../components/Dashboard';
 
 import './styles.css';
-import BookstoreImg from '../../../../../assets/administrator/bookstoreImg.svg'
+import BookstoreImg from '../../../../../assets/administrator/bookstoreImg.svg';
 
 export default class editBook extends Component {
 
@@ -13,25 +13,25 @@ export default class editBook extends Component {
     allBookstores: [],
   }
 
-  async loadBooks() {
-    const response = await api.get('/api/Livros').catch(function (error) {
+  async loadBookstores() {
+    const response = await api.get('/api/Livrarias').catch(function (error) {
       console.log(error);
     });
     if (response != null) {
       console.log(response);
-      this.setState({allBooks: response.data});
+      this.setState({allBookstores: response.data});
     }
   }
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadBookstores();
   }
 
   render() {
     return (
-        <div className="selectBook-wrapper">
+        <div className="selectBookstore-wrapper">
           <Dashboard />
-          <div className="selectBook-container">
+          <div className="selectBookstore-container">
  
             <h1>Selecione a Livraria a ser editada</h1>
 
@@ -40,7 +40,7 @@ export default class editBook extends Component {
                 <li key={bookstore.ID_Livraria}>
                   <Link to={`/editbookstore/${bookstore.ID_Livraria}`}>
                     <img src={BookstoreImg} alt={bookstore.Titulo}/>
-                    <h2>{bookstore.Titulo} {bookstore.SubTitulo}</h2>
+                    <h2>{bookstore.Nome}</h2>
                   </Link>
                 </li>
               ))}

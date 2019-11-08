@@ -9,21 +9,50 @@ export default class addBook extends Component {
     state = {
       Nome: "",
       CNPJ: "",
-      //Ilustrador: "",
+      TipoConsignacao: "consignado",
+
+      Costumer: 0,
     }
+
+  deleteCostumer = async () => {
+    const responseCliente = await api.delete(`/api/Clientes/${this.state.Costumer}`).catch(function(error) {
+      console.log('Error -> DeleteCostumer: ' + error.message);
+    });
+      if (responseCliente != null) {
+        console.log('Erro na criação da Livraria, Cliente apagado');
+      }
+  }  
 
   handleSubmit = async event => {
     event.preventDefault();
     // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
     // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
+      
+    const responseCliente = await api.post('/api/Clientes', {
 
-    await api.post('api/Livrarias', {
+    }).catch(function (error) {
+        console.log(error.response);
+        console.log("Error: " + error.message);
+      });
+      if (responseCliente.status === 201) {
+        console.log(responseCliente);
+        this.setState({Costumer: responseCliente.data.ID_Cliente});
+      }
+
+    const responseLivraria = await api.post('/api/Livrarias', {
       "Nome": this.state.Nome,
       "CNPJ": this.state.CNPJ,
+      "Tipo_Consignacao": this.state.TipoConsignacao,
+      "cliente": this.state.Costumer
     }).catch(function (error) {
       console.log(error.response);
       console.log("Error: " + error.message);
+      this.deleteCostumer();
     });
+    if (responseLivraria.status === 201) {
+      console.log(responseLivraria);
+      alert('Livraria criada com sucesso');
+    }
   }
 
   render() {
@@ -47,16 +76,9 @@ export default class addBook extends Component {
                       type="text" 
                       id="nome"
                       required
-                      value={this.state.Titulo} 
-                      onChange={e => this.setState({Titulo: e.target.value})}
+                      value={this.state.Nome} 
+                      onChange={e => this.setState({Nome: e.target.value})}
                     />
-
-                    {/* <label>Autor <span>*</span></label>
-                    <select id="author-select" value={this.state.ID_Autor} onChange={e => this.setState({ID_Autor: e.target.value})}>
-                      {this.state.allAuthors.map(author => (
-                        <option key={author.ID_Autor} value={author.ID_Autor}>{author.Nome}</option>
-                        ))}
-                    </select> */}
                   </li>
 
                   <li>
@@ -65,31 +87,17 @@ export default class addBook extends Component {
                       type="text" 
                       id="CNPJ"
                       required
-                      value={this.state.ISBN} 
-                      onChange={e => this.setState({ISBN: e.target.value})}
+                      value={this.state.CNPJ} 
+                      onChange={e => this.setState({CNPJ: e.target.value})}
                     />
                   </li>
 
                   <li>
-                    <label htmlFor="dimensoes">Dimensões <span>*</span></label>
-                    <input 
-                      type="text"
-                      id="dimensoes"
-                      required
-                      value={this.state.Formato} 
-                      onChange={e => this.setState({Formato: e.target.value})}
-                    />
-
-                    {/* <label>Classificação Indicativa <span>*</span></label>
-                    <select value={this.state.Classificacao_Indicativa} onChange={e => this.setState({Classificacao_Indicativa: e.target.value})}>
-                      <option value="L">Livre</option>
-                      <option value="10">Maiores de 10 anos</option>
-                      <option value="12">Maiores de 12 anos</option>
-                      <option value="14">Maiores de 14 anos</option>
-                      <option value="16">Maiores de 16 anos</option>
-                      <option value="18">Maiores de 18 anos</option>
-                      {console.log(this.state.Classificacao_Indicativa)}
-                    </select> */}
+                  <label>Tipo Consignação <span>*</span></label>
+                    <select value={this.state.TipoConsignacao} onChange={e => this.setState({TipoConsignacao: e.target.value})}>
+                      <option value="consignado">Consignado</option>
+                      <option value="naoconsignado">Não Consignado</option>
+                    </select>
                   </li>
 
                 </ul>

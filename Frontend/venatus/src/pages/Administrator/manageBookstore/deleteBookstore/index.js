@@ -2,59 +2,61 @@ import React, { Component } from 'react';
 import api from '../../../../services/api';
 
 import Dashboard from '../../../../components/Dashboard';
+
 import './styles.css';
+import BookstoreImg from '../../../../assets/administrator/bookstoreImg.svg';
 
 export default class editBook extends Component {
 
   state = {
-    allBooks: [],
+    allBookstores: [],
     index: 0,
     books: [],
   }
 
-  async loadBooks() {
-    const response = await api.get('/api/Livros').catch(function (error) {
+  async loadBookstores() {
+    const response = await api.get('/api/Livrarias').catch(function (error) {
       console.log('Error: ' + error.message);
     });
     if (response != null) {
       console.log(response);
-      this.setState({allBooks: response.data});
+      this.setState({allBookstores: response.data});
     }
   }
 
-  async deleteBook(ID_Livro = 0) {
-    const response = await api.delete(`/api/Livros/${ID_Livro}`).catch(function(error) {
+  deleteBook = async (ID_Livraria = 0) => {
+    const response = await api.delete(`/api/Livrarias/${ID_Livraria}`).catch(function(error) {
       console.log('Error: ' + error.message);
     });
     if (response != null) {
-      alert('Livro apagado com sucesso');
+      alert('Livraria apagada com sucesso');
     }
   }
 
-  handleDeleteBook = (ID_Livro = 0, index = 0) => {
-    let confirmDelete = window.confirm(`Deseja realmente deletar o livro ${this.state.allBooks[index].Titulo} ${this.state.allBooks[index].SubTitulo}?`);
-    if (confirmDelete) this.deleteBook(ID_Livro);
+  handleDeleteBookstore = (ID_Livraria = 0, index = 0) => {
+    let confirmDelete = window.confirm(`Deseja realmente deletar a livraria ${this.state.allBookstores[index].Nome}?`);
+    if (confirmDelete) this.deleteBook(ID_Livraria);
     else return;
   }
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadBookstores();
   }
 
   render() {
     return (
-        <div className="selectBook-wrapper">
+        <div className="selectBookstore-wrapper">
           <Dashboard />
-          <div className="selectBook-container">
+          <div className="selectBookstore-container">
 
-            <h1>Selecione o livro a ser deletado</h1>
+            <h1>Selecione a Livraria a ser deletada</h1>
 
             <ul>
-              {this.state.allBooks.map((book, index) => (
-                <li key={book.ID_Livro}>
-                  <button onClick={() => this.handleDeleteBook(book.ID_Livro, index)}>
-                    <img src={book.Imagem_URL} alt={book.Titulo}/>
-                    <h2>{book.Titulo} {book.SubTitulo}</h2>
+              {this.state.allBookstores.map((bookstore, index) => (
+                <li key={bookstore.ID_Livraria}>
+                  <button onClick={() => this.handleDeleteBookstore(bookstore.ID_Livraria, index)}>
+                    <img src={BookstoreImg} alt={bookstore.Nome}/>
+                    <h2>{bookstore.Nome}</h2>
                   </button>
                 </li>
               ))}
