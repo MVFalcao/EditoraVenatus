@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700&display=swap');
 
 .administrator-panel {
-    max-width: 320px;
-    min-width: 320px;
+    width: 320px;
     min-height: 767px;
     padding-bottom: 20px;
 
@@ -56,14 +55,16 @@
     cursor: pointer;
 }
 
+.categories button.categoriesBtn {
+    margin-bottom: 10px;
+}
+
 .categories img {
     width: 8px;
     height: auto;
 }
 
 .categories h2 {
-    margin-bottom: 10px;
-
     font-size: 16px;
     font-weight: 500;
 }

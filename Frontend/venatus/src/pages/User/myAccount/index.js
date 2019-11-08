@@ -6,8 +6,6 @@ import AccountPages from '../../../components/AccountPages';
 import UserInfo from '../../../components/UserInfo';
 
 import './styles.css';
-import userAvatar from '../../../assets/myAccount/silhueta.png';
-import editAvatar from '../../../assets/myAccount/lapis.svg';
 
 export default class myAccount extends Component {
 

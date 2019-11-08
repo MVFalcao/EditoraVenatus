@@ -15,10 +15,15 @@ import Adressess from './pages/User/myAdressess';
 import Orders from './pages/User/myOrders';
 
 // Páginas do administrador
-import addBook from './pages/Administrator/manageBook/addBook';
-import editBookSelection from './pages/Administrator/manageBook/editBook/selection';
-import editBook from './pages/Administrator/manageBook/editBook';
-import deleteBook from './pages/Administrator/manageBook/deleteBook';
+  /* Genrenciamento de Livro */
+    import addBook from './pages/Administrator/manageBook/addBook';
+    import editBookSelection from './pages/Administrator/manageBook/editBook/selection';
+    import editBook from './pages/Administrator/manageBook/editBook';
+    import deleteBook from './pages/Administrator/manageBook/deleteBook';
+  /* Gerenciamento de Livraria */
+    import addBookstore from './pages/Administrator/manageBookstore/addBookstore';
+    import editBookstoreSelection from './pages/Administrator/manageBookstore/editBookstore/selection';
+    import editBookstore from './pages/Administrator/manageBookstore/editBookstore';
 
 export default function Routes() {
   return (
@@ -39,10 +44,15 @@ export default function Routes() {
 
             {/* Rotas do administrador */}
               {/* Gerenciamento de Livros */}
-                <Route path="/addbook" component= { addBook } />
-                <Route path="/editbook/selection" component= { editBookSelection } />
+                <Route path="/addbook" component={ addBook } />
+                <Route path="/editbook/selection" component={ editBookSelection } />
                 <Route path="/editbook/:id" component={ editBook } />
-                <Route path="/deletebook/selection" component={deleteBook} />
+                <Route path="/deletebook" component ={ deleteBook } />
+              {/* Gerenciamento de Livrarias */}
+                <Route path="/addbookstore" component = {addBookstore} />
+                <Route path="/editbookstore/selection" component={ editBookstoreSelection } />
+                <Route path="/editbookstore/:id" component={ editBookstore } />
+                
 
         </Switch>
       </BrowserRouter>
