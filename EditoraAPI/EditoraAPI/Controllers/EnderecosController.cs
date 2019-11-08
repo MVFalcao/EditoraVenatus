@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EditoraAPI.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,7 +15,7 @@ namespace EditoraAPI.Models
     public class EnderecosController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Enderecos
         public IQueryable<Endereco> Getenderecos()
         {
@@ -38,6 +39,7 @@ namespace EditoraAPI.Models
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEndereco(int id, Endereco endereco)
         {
+           
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -73,6 +75,23 @@ namespace EditoraAPI.Models
         [ResponseType(typeof(Endereco))]
         public IHttpActionResult PostEndereco(Endereco endereco)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

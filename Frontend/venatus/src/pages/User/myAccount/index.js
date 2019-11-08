@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import api from '../../services/api';
+import api from '../../../services/api';
 
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
+import AccountPages from '../../../components/AccountPages';
+import UserInfo from '../../../components/UserInfo';
 
 import './styles.css';
-import userAvatar from '../../assets/myAccount/silhueta.png';
-import editAvatar from '../../assets/myAccount/lapis.svg';
 
 export default class myAccount extends Component {
 
@@ -17,15 +16,26 @@ export default class myAccount extends Component {
         Telephone: '',
       }
     
-      handleApi = async e => {
+      loadPerson = async e => {
         const response = await api.get('/api/Pessoa').catch(function (error) {
           console.log('Erro: ' + error.message);
         });
         if (response != null) {
           console.log(response);
         }
-      } 
+      }
 
+      handlePageColor = (item = 0) => {
+        let pageElement = document.querySelectorAll('.pages');
+        let textElement = document.querySelectorAll('.pages a');
+
+        pageElement[item].style.backgroundColor = '#FFF5B3';
+        textElement[item].style.color = "#2F99AC";
+      }
+
+      componentDidMount() {
+          this.handlePageColor(2);
+      }
 
   render() {
     return (
@@ -35,21 +45,9 @@ export default class myAccount extends Component {
             
             <div className="left-info">
 
-                <div className="user-content">
-                    <img id="avatar" src={userAvatar} alt="Avatar do usuário"/>
-                    {/* <button>
-                        <img id="pencil" src={editAvatar} alt="Editar avatar"/>
-                    </button> */}
-                    <p>Jander Silva</p>
-                </div>
+                <UserInfo />
+                <AccountPages />
 
-                <div className="account-pages">
-                    <ul>
-                        <li className="pages item-1"><Link to="/">Meus Pedidos</Link></li>
-                        <li className="pages item-2"><Link to="/">Meus Endereços</Link></li>
-                        <li className="pages item-3"><Link to="/">Minha Conta</Link></li>
-                    </ul>
-                </div>
             </div>
             <div className="middle-content">
                 <h2>Minha Conta</h2>

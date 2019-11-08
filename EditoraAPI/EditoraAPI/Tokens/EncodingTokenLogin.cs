@@ -10,12 +10,17 @@ namespace EditoraAPI.Tokens
 {
     public class EncodingTokenLogin
     {
+         //+ 432000
         const string secret = "logis";
         public string EncodeLogin(int ID)
         {
+            IDateTimeProvider provider = new UtcDateTimeProvider();
+            var now = provider.GetNow();
+            var secondsExp = UnixEpoch.GetSecondsSince(now) + 432000;
             var payload = new Dictionary<string, object>
             {
                 { "ID", ID },
+                {"exp", secondsExp}
             };
            
 

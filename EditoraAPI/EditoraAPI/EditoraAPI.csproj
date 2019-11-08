@@ -182,6 +182,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivrariasController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RedeSocialsController.cs" />
     <Compile Include="Controllers\TelefonesController.cs" />
@@ -226,6 +227,14 @@
     <Compile Include="Migrations\201910300009319_2910Caique2.Designer.cs">
       <DependentUpon>201910300009319_2910Caique2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911051358150_banco7.cs" />
+    <Compile Include="Migrations\201911051358150_banco7.Designer.cs">
+      <DependentUpon>201911051358150_banco7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911061403405_banco8.cs" />
+    <Compile Include="Migrations\201911061403405_banco8.Designer.cs">
+      <DependentUpon>201911061403405_banco8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Carrinho.cs" />
@@ -235,7 +244,7 @@
     <Compile Include="Models\Cupom.cs" />
     <Compile Include="Models\EditoraAPIContext.cs" />
     <Compile Include="Models\Endereco.cs" />
-    <Compile Include="Models\EnderecosController.cs" />
+    <Compile Include="Controllers\EnderecosController.cs" />
     <Compile Include="Models\Escola.cs" />
     <Compile Include="Models\Estoque.cs" />
     <Compile Include="Models\Livraria.cs" />
@@ -358,6 +367,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910300009319_2910Caique2.resx">
       <DependentUpon>201910300009319_2910Caique2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911051358150_banco7.resx">
+      <DependentUpon>201911051358150_banco7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911061403405_banco8.resx">
+      <DependentUpon>201911061403405_banco8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
