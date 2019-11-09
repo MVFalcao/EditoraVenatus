@@ -11,21 +11,21 @@ import faixa_azul from '../../assets/main/faixa_azul.svg';
 export default class main extends Component {
 
   state = {
-    allBooks: [],
+    allRealeaseBooks: [],
   }
 
-  async loadBooks() {
-    const response = await api.get('/api/Livros').catch(function (error) {
+  async loadReleaseBooks() {
+    const response = await api.get('/api/Livros/Lancamento').catch(function (error) {
       console.log(error);
     });
     if (response != null) {
       console.log(response);
-      this.setState({allBooks: response.data});
+      this.setState({allRealeaseBooks: response.data});
     }
   }
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadReleaseBooks();
   }
 
   render () {
@@ -41,7 +41,7 @@ export default class main extends Component {
             <section className="main-content">
 
                 <ul>
-                  {this.state.allBooks.reverse().map(book => (
+                  {this.state.allRealeaseBooks.map(book => (
                     <li key={book.ID_Livro}>
                       <Link to={`/bookPage/${book.ID_Livro}`}>
                         <img src={book.Imagem_URL} alt={book.Titulo} />

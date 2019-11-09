@@ -49,6 +49,7 @@ export default class addBook extends Component {
     }).catch(function (error) {
       console.log(error.response);
       console.log("Error: " + error.message);
+      alert('Deu algo errado');
     });
     if (response != null) {
       console.log(response);

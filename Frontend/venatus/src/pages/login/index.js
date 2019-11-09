@@ -17,7 +17,7 @@ export default class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     
-    const response = await api.post('/api/Login', {
+    const response = await api.get('api/Logins', {
       "Username": this.state.Username,
       "Password": this.state.Password,
     }).then(response => {
@@ -25,10 +25,25 @@ export default class Login extends Component {
       this.setState({goToMain: true});
     }).catch(error => {
       console.log('Error: ' + error.message);
+      alert('Algo deu errado');
     });
 
     console.log(response);
   } 
+
+  async componentDidMount() {
+    try {
+        const response = await api.get('api/Login');
+
+        if(response != null) {
+            this.setState({goToMain: true});
+        }
+
+    } catch(error) 
+    {
+        console.log('Nenhuma conta está logada');
+    };
+}
 
   render() {
 
