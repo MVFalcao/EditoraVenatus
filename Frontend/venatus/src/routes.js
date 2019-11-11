@@ -26,6 +26,8 @@ import Orders from './pages/User/myOrders';
     import editBookstore from './pages/Administrator/manageBookstore/editBookstore';
     import deleteBookstore from './pages/Administrator/manageBookstore/deleteBookstore';
 
+    import Grafo from './components/Grafo';
+
 export default function Routes() {
   return (
       <BrowserRouter>
@@ -56,6 +58,7 @@ export default function Routes() {
                 <Route path="/deletebookstore/" component={ deleteBookstore } />
                 
 
+                <Route path="/grafo" component={ Grafo } />
         </Switch>
       </BrowserRouter>
   );
