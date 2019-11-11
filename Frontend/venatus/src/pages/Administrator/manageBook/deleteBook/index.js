@@ -9,7 +9,6 @@ export default class editBook extends Component {
   state = {
     allBooks: [],
     index: 0,
-    books: [],
   }
 
   async loadBooks() {
