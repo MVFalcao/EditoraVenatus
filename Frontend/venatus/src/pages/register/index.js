@@ -230,7 +230,7 @@ export default class signup extends Component {
                     checked = {this.state.Gender === 'F'}
                     onChange = {(e) => this.handleGender(e, 'F')}
                   />
-                  <label htmlFor="gender-m">Feminino</label>
+                  <label htmlFor="gender-f">Feminino</label>
 
                 </div>
                 {/* {console.log(this.state.Gender)} */}

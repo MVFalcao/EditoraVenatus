@@ -5,6 +5,7 @@
     width: 100%;
     min-height: 805px;
     background-color: rgb(56, 56, 56);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .registerType-popup {
@@ -21,13 +22,14 @@
     text-align: center;
     
     background-color: rgb(49, 49, 49);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 .registerType-popup img {
     width: 45%;
 }
 
-.line {
+.signin-container .line {
     width: 400px;
     height: 1px;
     margin: 0px auto 25px;
@@ -37,9 +39,9 @@
     border-radius: 5px;
 }
 
-.line.item-2 {
-    width: 800px;
-    background-color: rgb(204, 204, 204);
+.signin-content .line.item-2 {
+    width: 900px;
+    background-color: rgb(177, 177, 177);
 }
 
 .registerType-popup h1 {
@@ -54,6 +56,7 @@
 
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .registerBtn {
