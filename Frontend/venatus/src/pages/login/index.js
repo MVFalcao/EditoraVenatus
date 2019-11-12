@@ -1,67 +1,79 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import api from '../../services/api';
 
 import './styles.css'
 import logo from '../../assets/header/logo.svg';
 
-function Login() {
-  
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export default class Login extends Component {
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  state = {
+    Username: '',
+    Password: '',
+
+    goToMain: false,
+  }
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
     
-    const response = await api.post('/Login', {
-      username,
-      password
+    const response = await api.post('/api/Login', {
+      "Username": this.state.Username,
+      "Password": this.state.Password,
+    }).then(response => {
+      localStorage.setItem("jwt", response.data);
+      this.setState({goToMain: true});
+    }).catch(error => {
+      console.log('Error: ' + error.message);
     });
 
-    // console.log(response);
+    console.log(response);
   } 
 
-  return (
-    <div className="login-wrapper">
+  render() {
 
-      <div className="login-container">
+    if (this.state.goToMain) return <Redirect to='/Main' />
 
-        <Link to="/">
-          <img src={logo} alt="Logo Venatus"/>
-        </Link>
+    return (
+      <div className="login-wrapper">
 
-        <div className="login-content">
+        <div className="login-container">
 
-          <p>Tenha acesso a nossa editora</p>
+          <Link to="/">
+            <img src={logo} alt="Logo Venatus"/>
+          </Link>
 
-          <form onSubmit={handleSubmit}>
-            
-            <label htmlFor="username">Usuário</label>
-            <input 
-              id="username" 
-              type="text"
-              required
-              value={username}
-              onChange={event => setUsername(event.target.value)}
-            />
-            
-            <label htmlFor="password">Senha</label>
-            <input 
-              id="password" 
-              type="password"
-              required
-              value={password}
-              onChange={event => setPassword(event.target.value)}
-            />
-            
-            <Link to="/" id="forgot">Esqueceu a senha?</Link>
-            <button type="submit" onClick={() => handleSubmit()}>Entrar</button>
-          </form>
-          <p id="signup">Novo na Venatus? <Link to="/signup">Crie uma conta</Link></p>
+          <div className="login-content">
+
+            <p>Tenha acesso a nossa editora</p>
+
+            <form onSubmit={this.handleSubmit}>
+              
+              <label htmlFor="username">Usuário</label>
+              <input 
+                id="username" 
+                type="text"
+                required
+                value={this.state.Username}
+                onChange={event => this.setState({Username: event.target.value})}
+              />
+              
+              <label htmlFor="password">Senha</label>
+              <input 
+                id="password" 
+                type="password"
+                required
+                value={this.state.Password}
+                onChange={event => this.setState({Password: event.target.value})}
+              />
+              
+              <Link to="/" id="forgot">Esqueceu a senha?</Link>
+              <button type="submit" onClick={() => this.handleSubmit()}>Entrar</button>
+            </form>
+            <p id="signup">Novo na Venatus? <Link to="/signup">Crie uma conta</Link></p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default Login;
