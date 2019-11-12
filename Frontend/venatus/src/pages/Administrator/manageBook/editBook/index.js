@@ -55,7 +55,12 @@ export default class addBook extends Component {
         console.log(response);
         this.setState({allAuthors: response.data})
       }
-    }
+  }
+
+  handleDate = () => {
+    const dataPublicacao = this.state.Book.Datapublicacao.split("T");
+    return dataPublicacao[0];
+  }
     
   loadBookData() {
     this.setState({Titulo: this.state.Book.Titulo});
@@ -66,7 +71,7 @@ export default class addBook extends Component {
     this.setState({Classificacao_Indicativa: this.state.Book.Classificacao_Indicativa});
     this.setState({ISBN: this.state.Book.ISBN});
     this.setState({Ilustrador: this.state.Book.Ilustrador});
-    // this.setState({Datapublicacao: this.state.Book.Datapublicacao});
+    this.setState({Datapublicacao: this.handleDate()});
     this.setState({Formato: this.state.Book.Formato});
     this.setState({Preco: this.state.Book.Preco});
     this.setState({Sinopse: this.state.Book.Sinopse});
@@ -80,8 +85,6 @@ export default class addBook extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
-    // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
 
     await api.put('api/Livros', {
       "Titulo": this.state.Titulo,
