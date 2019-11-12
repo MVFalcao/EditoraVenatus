@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import api from '../../../../services/api';
+import Lottie from 'react-lottie';
 
 import Dashboard from '../../../../components/Dashboard';
+
 import './styles.css';
+
+import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
 export default class editBook extends Component {
 
   state = {
     allBooks: [],
-    index: 0,
   }
 
   async loadBooks() {
@@ -41,6 +44,16 @@ export default class editBook extends Component {
   }
 
   render() {
+
+    const defaultOptions = {
+      loop: false,
+      autoplay: true, 
+      animationData: OkAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
     return (
         <div className="selectBook-wrapper">
           <Dashboard />
@@ -58,6 +71,14 @@ export default class editBook extends Component {
                 </li>
               ))}
             </ul>
+
+            <div className="deletePopUp">
+            <Lottie options={defaultOptions}
+              height={400}
+              width={400}
+            />
+              <h1>Livro Apagado com sucesso</h1>
+            </div>
           </div>
         </div>
     );
