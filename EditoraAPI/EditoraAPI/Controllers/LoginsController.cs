@@ -23,18 +23,20 @@ namespace EditoraAPI.Controllers
             return db.Logins;
         }
 
+
+
+
         // GET: api/Logins/5
         [ResponseType(typeof(Login))]
-        public IHttpActionResult GetLogin(string user,string senha)
+        public IHttpActionResult GetLogin(int id)
         {
-            var id = from l in db.Logins where l.Usuario == user && l.Senha == senha select l.ID_Login;
             Login login = db.Logins.Find(id);
             if (login == null)
             {
                 return NotFound();
             }
 
-            return Ok(en.EncodeLogin(login.ID_Login));
+            return Ok(login);
         }
 
         // PUT: api/Logins/5
@@ -87,6 +89,21 @@ namespace EditoraAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = login.ID_Login }, login);
         }
 
+        [ResponseType(typeof(Login))]
+        public IHttpActionResult PostLoginPass(string login,string senha)
+        {
+            var id = from l in db.Logins where l.Senha == senha && l.Usuario == login select l.ID_Login;
+            Login log = db.Logins.Find(id.First());
+            if(log == null)
+            {
+                return NotFound();
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(en.EncodeLogin(log.ID_Login));
+        }
         // DELETE: api/Logins/5
         [ResponseType(typeof(Login))]
         public IHttpActionResult DeleteLogin(int id)
