@@ -36,7 +36,7 @@ namespace EditoraAPI.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(autor);
         }
 
         // PUT: api/Autors/5
