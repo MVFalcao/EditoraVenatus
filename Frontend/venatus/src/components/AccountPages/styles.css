@@ -1,0 +1,29 @@
+.account-pages {
+    max-width: 250px;
+
+    border: 1px solid black;
+}
+
+.account-pages ul {
+    list-style: none;
+}
+
+.account-pages ul li {
+    height: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.account-pages ul li a {
+    padding-left: 20px;
+    font: 400 18px 'Poppins', arial, sans-serif;
+    color: rgb(46, 46, 46);
+    text-decoration: none;
+}
+
+.account-pages ul li a:hover {
+    color: #2F99AC;
+}

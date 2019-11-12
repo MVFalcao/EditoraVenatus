@@ -1,0 +1,14 @@
+  {
+    "ID_Livraria": 1,
+    "cliente": 2,
+    "CNPJ": "32.409.238-46",
+    "Tipo_Consignacao": "consignado",
+    "Nome": "Saraiva"
+  },
+  {
+    "ID_Livraria": 2,
+    "cliente": 2,
+    "CNPJ": "62.731.420-50",
+    "Tipo_Consignacao": "naoconsignado",
+    "Nome": "Abril"
+  }
