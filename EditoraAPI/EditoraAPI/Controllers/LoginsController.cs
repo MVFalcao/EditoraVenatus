@@ -99,9 +99,6 @@ namespace EditoraAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            
-
             return Ok(en.EncodeLogin(log.ID_Login));
         }
         // DELETE: api/Logins/5
