@@ -93,7 +93,11 @@ namespace EditoraAPI.Controllers
         public IHttpActionResult PostLoginPass(string login,string senha)
         {
             var id = from l in db.Logins where l.Senha == senha && l.Usuario == login select l.ID_Login;
-            Login log = db.Logins.Find(id);
+            Login log = db.Logins.Find(id.First());
+            if(log == null)
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
