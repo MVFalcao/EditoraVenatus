@@ -39,12 +39,13 @@ namespace EditoraAPI.Controllers
                 // Ler conteúdo da requisição para CustomMultipartFormDataStreamProvider. 
                 await Request.Content.ReadAsMultipartAsync(provider);
 
-                foreach (MultipartFileData file in provider.FileData)
+                foreach (var file in provider.FileData)
                 {
                     files.Add(Path.GetFileName(file.LocalFileName));
                 }
                 // OK se tudo deu certo.
-                return Request.CreateResponse(HttpStatusCode.OK, files);
+                var URL = Url.Content(Path.Combine(fileSaveLocation, files[0]));
+                return Request.CreateResponse(HttpStatusCode.OK, URL);
             }
             catch (System.Exception e)
             {
