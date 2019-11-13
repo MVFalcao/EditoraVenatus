@@ -9,12 +9,18 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Mvc;
+using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
+using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace EditoraAPI.Controllers
 {
     public class UploadController : ApiController
     {
+        [HttpPost]
+        [Route("Upload")]
+        [ResponseType(typeof(List<string>))]
         public async Task<HttpResponseMessage> Post()
         {
             // Ver se POST é MultiPart? 
@@ -25,7 +31,7 @@ namespace EditoraAPI.Controllers
             // Preparar CustomMultipartFormDataStreamProvider para carga de dados
             // (veja mais abaixo)
 
-            string fileSaveLocation = HttpContext.Current.Server.MapPath("~/EditoraAPI/EditoraAPI/Images");
+            string fileSaveLocation = HttpContext.Current.Server.MapPath("~/Images");
             CustomMultipartFormDataStreamProvider provider = new CustomMultipartFormDataStreamProvider(fileSaveLocation);
             List<string> files = new List<string>();
             try
