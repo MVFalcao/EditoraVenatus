@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
 using EditoraAPI.Tokens;
+using Newtonsoft.Json;
 
 namespace EditoraAPI.Controllers
 {
@@ -38,7 +39,38 @@ namespace EditoraAPI.Controllers
 
             return Ok(login);
         }
+        // GET: api/GetToken
+        [Route("api/GetToken")]
+        [HttpGet]
+        public IHttpActionResult GetToken()
+        {
+            TData Cl;
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                    Cl = JsonConvert.DeserializeObject<TData>(en.ValidToken(headers.GetValues("jwt").First()));
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
 
+            }
+            else
+            {
+                return NotFound();
+            }
+            Login log = db.Logins.FirstOrDefault(l => l.ID_Login == Cl.id);
+            if (log == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(log);
+        }
         // PUT: api/Logins/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLogin(int id, Login login)
