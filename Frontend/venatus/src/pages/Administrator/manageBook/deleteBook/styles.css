@@ -73,3 +73,25 @@
     color: rgb(255, 255, 255);
     font: 300 14px 'Poppins', arial, sans-serif;
 }
+
+.selectBook-wrapper .deletePopUp {
+    width: 400px;
+    height: 200px;
+    margin: 140px auto 0px 620px;
+    padding-top: 30px;
+
+    background-color: rgba(182, 182, 182, 0.9);
+    border-radius: 10px;
+
+    text-align: center;
+    position: absolute;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.selectBook-wrapper .deletePopUp h1 {
+    margin: 0px;
+    margin-top: 10px;
+    font-size: 18px;
+}

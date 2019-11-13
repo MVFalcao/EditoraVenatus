@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import api from '../../../../services/api';
+import Lottie from 'react-lottie';
 
 import Dashboard from '../../../../components/Dashboard';
 
 import './styles.css';
 import BookstoreImg from '../../../../assets/administrator/bookstoreImg.svg';
+import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
 export default class editBook extends Component {
 
@@ -12,6 +14,8 @@ export default class editBook extends Component {
     allBookstores: [],
     index: 0,
     books: [],
+
+    isStopped: true,
   }
 
   async loadBookstores() {
@@ -29,7 +33,12 @@ export default class editBook extends Component {
       console.log('Error: ' + error.message);
     });
     if (response != null) {
-      alert('Livraria apagada com sucesso');
+      this.setState({isStopped: false});
+      this.handlePopUp();
+      this.loadBookstores();
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
     }
   }
 
@@ -39,11 +48,38 @@ export default class editBook extends Component {
     else return;
   }
 
+   //#region HandlePopUp() {
+    showPopUp = () => {
+      document.querySelector('.deletePopUp').style.display = "block";
+    }
+  
+  hidePopUp = () => {
+    document.querySelector('.deletePopUp').style.display = "none";
+  }
+
+  handlePopUp = () => {
+    this.showPopUp();
+    setTimeout(() => {
+      this.hidePopUp();
+    }, 3000);
+  }
+  //#endregion
+
   componentDidMount() {
     this.loadBookstores();
   }
 
   render() {
+
+    const defaultOptions = {
+      loop: false,
+      autoplay: false, 
+      animationData: OkAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
     return (
         <div className="selectBookstore-wrapper">
           <Dashboard />
@@ -62,6 +98,16 @@ export default class editBook extends Component {
               ))}
             </ul>
           </div>
+
+          <div className="deletePopUp">
+              <Lottie options={defaultOptions}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Livraria apagada com sucesso</h1>
+          </div>
+
         </div>
     );
   }

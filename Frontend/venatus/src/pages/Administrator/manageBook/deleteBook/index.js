@@ -5,13 +5,14 @@ import Lottie from 'react-lottie';
 import Dashboard from '../../../../components/Dashboard';
 
 import './styles.css';
-
 import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
 export default class editBook extends Component {
 
   state = {
     allBooks: [],
+
+    isStopped: true,
   }
 
   async loadBooks() {
@@ -29,7 +30,12 @@ export default class editBook extends Component {
       console.log('Error: ' + error.message);
     });
     if (response != null) {
-      alert('Livro apagado com sucesso');
+      this.setState({isStopped: false});
+      this.handlePopUp();
+      this.loadBooks();
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
     }
   }
 
@@ -39,6 +45,23 @@ export default class editBook extends Component {
     else return;
   }
 
+  //#region HandlePopUp() {
+  showPopUp = () => {
+      document.querySelector('.deletePopUp').style.display = "block";
+  }
+  
+  hidePopUp = () => {
+    document.querySelector('.deletePopUp').style.display = "none";
+  }
+
+  handlePopUp = () => {
+    this.showPopUp();
+    setTimeout(() => {
+      this.hidePopUp();
+    }, 3000);
+  }
+  //#endregion
+
   componentDidMount() {
     this.loadBooks();
   }
@@ -47,7 +70,7 @@ export default class editBook extends Component {
 
     const defaultOptions = {
       loop: false,
-      autoplay: true, 
+      autoplay: false, 
       animationData: OkAnimation,
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice'
@@ -73,10 +96,11 @@ export default class editBook extends Component {
             </ul>
 
             <div className="deletePopUp">
-            <Lottie options={defaultOptions}
-              height={400}
-              width={400}
-            />
+              <Lottie options={defaultOptions}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
               <h1>Livro Apagado com sucesso</h1>
             </div>
           </div>

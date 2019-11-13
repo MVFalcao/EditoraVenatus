@@ -2,7 +2,7 @@
 
 .administrator-panel {
     width: 320px;
-    min-height: 767px;
+    min-height: 100vh;
     padding-bottom: 20px;
 
     color: rgb(231, 230, 230);

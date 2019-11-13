@@ -73,3 +73,26 @@
     color: rgb(255, 255, 255);
     font: 300 16px 'Poppins', arial, sans-serif;
 }
+
+
+.selectBookstore-wrapper .deletePopUp {
+    width: 400px;
+    height: 200px;
+    margin: 140px auto 0px 620px;
+    padding-top: 30px;
+
+    background-color: rgba(216, 216, 216, 0.9);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.selectBookstore-wrapper .deletePopUp h1 {
+    margin: 0px;
+    margin-top: 10px;
+    font-size: 18px;
+}
