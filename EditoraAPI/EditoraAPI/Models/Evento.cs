@@ -17,6 +17,7 @@ namespace EditoraAPI.Models
         [Required] public DateTime Data_Evento { get; set; }
         [ForeignKey("id_escola")] public int Escola { get; set; }
         [ForeignKey("id_livraria")] public int Livraria { get; set; }
-        [JsonIgnore] public virtual List<Cliente> Id_Autor_ou_Livraria { get; set; } //FK de tb_autor OU tb_cliente
+        [JsonIgnore] public virtual List<Escola> Id_escola { get; set; }
+        [JsonIgnore] public virtual List<Livraria> Id_livraria { get; set; }
     }
 }
