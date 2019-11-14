@@ -25,6 +25,13 @@ export default class myAccount extends Component {
         }
       }
 
+      loadUserData = () => {
+        this.setState({Nome: this.state.User.Titulo});
+        this.setState({SubTitulo: this.state.Book.SubTitulo});
+        this.setState({Numero_Paginas: this.state.Book.Numero_Paginas});
+        this.setState({Categoria: this.state.Book.Categoria});
+      }
+
       handlePageColor = (item = 0) => {
         let pageElement = document.querySelectorAll('.pages');
         let textElement = document.querySelectorAll('.pages a');
@@ -33,7 +40,7 @@ export default class myAccount extends Component {
         textElement[item].style.color = "#2F99AC";
       }
 
-      componentDidMount() {
+      async componentDidMount() {
           this.handlePageColor(2);
       }
 

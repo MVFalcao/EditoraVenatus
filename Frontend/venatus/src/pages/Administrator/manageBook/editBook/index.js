@@ -138,6 +138,7 @@ export default class editBook extends Component {
 
   render() {
 
+    //#region AnimationsController
     const okAnimation = {
       loop: false,
       autoplay: false, 
@@ -155,6 +156,7 @@ export default class editBook extends Component {
         preserveAspectRatio: 'xMidYMid slice'
       }
     };
+//#endregion
 
     return (
       <div className="editBook-wrapper">

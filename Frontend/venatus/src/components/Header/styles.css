@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap');
 
 /* Define o tamanho do Header */
-header#main-header {
+.main-header {
     width: 100%;
     margin-top: 30px;
 }
@@ -13,24 +13,28 @@ header#main-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 /* Redimensiona a logo */
-header#main-header a img {
+.main-header a img {
     width: 100%;
     height: auto;
     transition: all .2s;
 }
 
-header#main-header a img:active {
+.main-header a img:active {
     transform: scale(1.02);
 }
 
 /* Div_Botão de Login/Logon */
 .header-login {
+    width: 160px;
+    height: 300px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
     position: absolute;
-    left: 75%;
+    top: 0px; left: 1150px; right: 0px; bottom: 0px;
 }
 
 /* Botão de Login/Logon */
@@ -43,9 +47,79 @@ header#main-header a img:active {
     text-decoration: underline;
 }
 
+.header-login button {
+    margin-top: 73px;
+    margin-left: 5px;
+
+    color: rgb(43, 43, 43);
+    border-radius: 20px;
+    border: none;
+    background: none;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.header-login button:hover {
+    color: teal;
+}
+
+.header-login button p {
+    margin-right: 10px;
+
+    font-size: 20px;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.header-login button img {
+    width: 17px;
+    height: 15px;
+}
+
+.header-login .account-dropdown {
+    position: absolute;
+    top: 115px; left: 0px; right: 0px; bottom: 0px;
+    display: none;
+}
+
+.header-login .account-dropdown ul {
+    padding: 10px 10px;
+    list-style: none;
+    
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.header-login .account-dropdown ul li {
+    margin-bottom: 10px;
+}
+
+.header-login .account-dropdown ul li #logoff {
+    margin-top: 20px;
+    margin-left: 40px;
+    
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+}
+
+.header-login .account-dropdown ul li #logoff:hover {
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+.header-login .account-dropdown ul li #logoff img {
+    width: 17%;
+    height: auto;
+    margin-left: 8px;
+}
+
 /* Div da linha */
 .header-line {
-    margin-top: 20px; 
+    margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -82,15 +156,15 @@ header#main-header a img:active {
 }
 
 /* Div do carrinho */
-header#main-header .menu-container .menu-navbar .item-cart {
+.menu-container .menu-navbar .item-cart {
    transition: all 0.1s;
 }
 
-header#main-header .menu-container .menu-navbar .item-cart:hover {
+.menu-container .menu-navbar .item-cart:hover {
     transform: scale(1.1)
  }
 
-header#main-header .menu-container .menu-navbar .item-cart a {
+.menu-container .menu-navbar .item-cart a {
     display: flex;
     flex-direction: row;
     justify-items: center;
@@ -99,23 +173,26 @@ header#main-header .menu-container .menu-navbar .item-cart a {
 }
 
 /* Imagem do carrinho */
-header#main-header .menu-container .menu-navbar .item-cart a img {
+.menu-container .menu-navbar .item-cart a img {
     width: 21px;
     height: 21px;
     margin-right: 7px;
 }
 
-header#main-header .menu-container .menu-navbar .item-cart a div.cart-background {
-    font-family: 'Quicksand', Arial, sans-serif;
-    box-sizing: border-box;
+.menu-container .menu-navbar .item-cart a div.cart-background {
     width: 20px;
     height: 20px;
-    background-color: rgb(63, 61, 61);
-    border-radius: 10px;
+    
     color: white;
+    font-family: 'Quicksand', Arial, sans-serif;
     font-size: 15px;
+    border-radius: 10px;
     letter-spacing: 0px;
+    background-color: rgb(63, 61, 61);
+    
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    box-sizing: border-box;
 }

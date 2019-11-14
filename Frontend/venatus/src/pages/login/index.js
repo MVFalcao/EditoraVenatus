@@ -28,24 +28,20 @@ export default class Login extends Component {
 
 //   async componentDidMount() {
 //     try {
-//         const response = await api.get('api/Logins');
+//         const response = await api.get('api/getToken');
 
 //         if(response != null) {
-//             // this.setState({goToMain: true});
+//             this.setState({goToMain: true});
 //             console.log(response);
 //         }
-
-        
-
-//     } catch(error) 
-//     {
+//     } catch(error) {
 //         console.log('Nenhuma conta está logada');
 //     };
 // }
 
   render() {
 
-    if (this.state.goToMain) return <Redirect to='/' />
+    // if (this.state.goToMain) return <Redirect to='/' />
 
     return (
       <div className="login-wrapper">

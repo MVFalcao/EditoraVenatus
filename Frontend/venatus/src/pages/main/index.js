@@ -44,7 +44,7 @@ export default class main extends Component {
                   {this.state.allRealeaseBooks.map(book => (
                     <li key={book.ID_Livro}>
                       <Link to={`/bookPage/${book.ID_Livro}`}>
-                        <img src={book.Imagem_URL} alt={book.Titulo} />
+                        <img src={book.Imagem_URL} />
                       </Link>
                       <h2>{book.Titulo} {book.SubTitulo}</h2>
                       <p>R$ {parseFloat(book.Preco).toFixed(2)}</p>

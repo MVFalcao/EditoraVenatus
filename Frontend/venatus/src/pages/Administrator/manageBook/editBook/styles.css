@@ -196,7 +196,8 @@ input[type=number] {
     margin: 140px auto 0px 620px;
     padding-top: 30px;
 
-    background-color: rgba(216, 216, 216, 0.856);
+    color: white;
+    background-color: rgba(68, 68, 68, 0.8);
     border-radius: 10px;
 
     text-align: center;

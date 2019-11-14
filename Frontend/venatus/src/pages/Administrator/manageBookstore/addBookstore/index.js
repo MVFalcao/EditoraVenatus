@@ -148,7 +148,7 @@ export default class addBook extends Component {
                 width={100}
                 isStopped={this.state.isStopped}
               />
-              <h1>Livraria editada com sucesso</h1>
+              <h1>Livraria adicionada com sucesso</h1>
             </div>
       </div>
     );

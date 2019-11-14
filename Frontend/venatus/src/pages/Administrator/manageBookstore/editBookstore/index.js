@@ -161,7 +161,7 @@ export default class editBookstore extends Component {
                 width={100}
                 isStopped={this.state.isStopped}
               />
-              <h1>Livro editado com sucesso</h1>
+              <h1>Livraria editada com sucesso</h1>
           </div>
 
           <div className="editPopUp error">
@@ -170,7 +170,7 @@ export default class editBookstore extends Component {
                 width={100}
                 isStopped={this.state.isStopped}
               />
-              <h1>Livro editado com sucesso</h1>
+              <h1>Livraria editada com sucesso</h1>
           </div>
 
       </div>
