@@ -39,6 +39,18 @@ namespace EditoraAPI.Controllers
 
             return Ok(login);
         }
+        [ResponseType(typeof(string))]
+        [Route("api/GetClienteLog/")]
+        public IHttpActionResult GetClientLog(int id)
+        {
+            var cli = from c in db.Logins where c.ID_Login == id select c.cliente;
+            if (cli == null || cli.First() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(cli.First());
+        }
         // GET: api/GetToken
         [Route("api/GetToken")]
         [HttpGet]
