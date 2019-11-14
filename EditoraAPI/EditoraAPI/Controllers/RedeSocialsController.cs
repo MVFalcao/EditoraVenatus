@@ -24,9 +24,11 @@ namespace EditoraAPI.Controllers
 
         // GET: api/RedeSocials/5
         [ResponseType(typeof(RedeSocial))]
-        public IHttpActionResult GetRedeSocial(int id)
+        [Route("api/RedeSocials/GetRedeSocialByCLiente")]
+        public IHttpActionResult GetRedeSocialByCLiente(int id)
         {
-            RedeSocial redeSocial = db.redeSocials.Find(id);
+            var id_red = from red in db.redeSocials where red.Id_cli == id select red.ID_RedeSocial;
+            RedeSocial redeSocial = db.redeSocials.Find(id_red.First());
             if (redeSocial == null)
             {
                 return NotFound();
@@ -34,7 +36,19 @@ namespace EditoraAPI.Controllers
 
             return Ok(redeSocial);
         }
+        [ResponseType(typeof(RedeSocial))]
+        [Route("api/RedeSocials/GetRedeSocialByAutor")]
+        public IHttpActionResult GetRedeSocialByAutor(int id)
+        {
+            var id_red = from red in db.redeSocials where red.Id_aut == id select red.ID_RedeSocial;
+            RedeSocial redeSocial = db.redeSocials.Find(id_red.First());
+            if (redeSocial == null)
+            {
+                return NotFound();
+            }
 
+            return Ok(redeSocial);
+        }
         // PUT: api/RedeSocials/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRedeSocial(int id, RedeSocial redeSocial)

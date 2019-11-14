@@ -26,7 +26,8 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Pessoa))]
         public IHttpActionResult GetPessoa(int id)
         {
-            Pessoa pessoa = db.pessoas.Find(id);
+            var pes = from p in db.pessoas where p.Id_cli == id select p.ID_Pessoa;
+            Pessoa pessoa = db.pessoas.Find(pes.First());
             if (pessoa == null)
             {
                 return NotFound();
