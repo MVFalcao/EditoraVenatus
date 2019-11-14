@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import api from '../../services/api';
 
 import "./styles.css";
@@ -34,6 +34,7 @@ export default class Header extends Component {
         isLogged: false,
         isClosed: true,
         isOver: false,
+        redirect: false,
     }
 
     async componentDidMount() {
@@ -41,10 +42,11 @@ export default class Header extends Component {
         await api.get('api/getToken', { headers: { "jwt": jwt }}).then(response => {
             this.setState({ user: response.data});
             this.setState({ isLogged: true});
-            console.log(response.data);
+            
+            // console.log(response.data);
         }
         ).catch(error => {
-            console.log('Error :' + error.message);
+            console.log('Token Error: ' + error.message);
         });
     }
 
@@ -60,13 +62,16 @@ export default class Header extends Component {
 
     handleDropdown = () => {
         let accountDropdown = document.querySelector('.account-dropdown');
+        let divHide = document.querySelector('.hide-menu');
         
         const show = () => {
+            divHide.style.display = "block";
             accountDropdown.style.display = "block";
             this.setState({isClosed: false});
         }
 
         const hide = () => {
+            divHide.style.display = "none";
             accountDropdown.style.display = "none";
             this.setState({isClosed: true});
         }
@@ -77,18 +82,41 @@ export default class Header extends Component {
             hide();
         } 
     }
+    
+    hidebyDiv = () => {
+        document.querySelector('.hide-menu').style.display = "none";
+        document.querySelector('.account-dropdown').style.display = "none";
+        this.setState({isClosed: true});
+    }
 
-    // hidebyDiv = (e) => {
-    //     if (document.querySelector('.header-logo').contains(e.target)) {
-    //         return
-    //     } else {
-    //         document.querySelector('.account-dropdown').style.display = "none";
-    //     }
-    // }
+    handleLogoff = () => {
+        localStorage.removeItem("jwt");
+        if (window.location.href === "http://localhost:3000/") {
+            window.location.reload();
+        } else {
+            this.setState({redirect: true});
+        } 
+    }
+
 
 
     render() {
+
+        if (this.state.redirect) return <Redirect to='/' />;
+
+        const hideMenu = {
+            width: '100%', 
+            minHeight: "900px",
+            position: "fixed",
+            display: "none",
+            top: "0px"
+        }
+
         return (
+            <>
+
+            <div className="hide-menu" style={hideMenu} onClick={this.hidebyDiv} />
+
             <header className="main-header">
 
                 <div className="header-logo">
@@ -118,16 +146,16 @@ export default class Header extends Component {
                                     </li>
                                     <div className="line" />
                                     <li>
-                                        <Link id="logoff" to="/">
+                                        <button id="logoff" onClick={() => this.handleLogoff()}>
                                             <p>Sair</p>
                                             <img src={out} alt="sair"/>    
-                                        </Link>
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
                         </>
                     :
-                        <Link to="/Login">Entre ou Cadastre-se</Link> 
+                        <Link to="/Login">Entre ou Cadastre-se</Link>
                     }
                     </div>
 
@@ -161,6 +189,7 @@ export default class Header extends Component {
                     </div>
                 </div>
             </header>
+            </>
             );
         };
     }

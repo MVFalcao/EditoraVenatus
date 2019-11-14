@@ -41,7 +41,7 @@ export default class Login extends Component {
 
   render() {
 
-    // if (this.state.goToMain) return <Redirect to='/' />
+    if (this.state.goToMain) return <Redirect to='/' />
 
     return (
       <div className="login-wrapper">

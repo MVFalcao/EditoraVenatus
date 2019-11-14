@@ -90,14 +90,40 @@
 
     font: 300 18px 'Poppins', arial, sans-serif;
     color: white;
-    background-color: rgb(109, 146, 226);
+    background-color: rgb(75, 107, 175);
     border: none;
     border-radius: 20px;
-
+    
     display: flex;
     justify-content: center;
+    
+    cursor: pointer;
 }
 
 .user-info button:hover {
-    background-color: rgb(79, 79, 165);
+    background-color: rgb(54, 77, 151);
+}
+
+.myaccount-wrapper .putPopUp {
+    width: 400px;
+    height: 200px;
+    margin: 350px auto 0px ;
+    padding-top: 30px;
+
+    color: white;
+    background-color: rgba(68, 68, 68, 0.8);
+    border-radius: 10px;
+
+    text-align: center;
+    position: absolute;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.myaccount-wrapper .putPopUp h1 {
+    margin: 0px;
+    margin-top: 20px;
+
+    font: 500 20px 'Poppins', arial, sans-serif;
 }
