@@ -41,6 +41,7 @@ namespace EditoraAPI.Controllers
 
                 foreach (var file in provider.FileData)
                 {
+                    
                     files.Add(Path.GetFileName(file.LocalFileName));
                 }
                 // OK se tudo deu certo.
