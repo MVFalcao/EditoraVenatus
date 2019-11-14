@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+
+.myorders-container {
+    width: 100%;
+    margin: 50px 0px;
+
+    font: 300 16px 'Poppins', arial, sans-serif;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.left-info {
+    margin-left: 120px;
+}
+
+.middle-content {
+    margin-left: 120px;
+    padding: 20px 30px;
+
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.middle-content h2 {
+    color: rgb(58, 58, 58);
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.middle-content p {
+    margin-top: 2px;
+    font-weight: 300; 
+    font-size: 18px;
+}
+
+.middle-content .line {
+    width: 100%;
+    height: 1px;
+    margin: 20px 0px 0px;
+
+    background-color: black;
+    border-radius: 5px;
+}
+
+.orders-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.orders-container ul {
+    list-style: none;
+}
+
+.orders-container ul li {
+    padding: 7px 20px;
+
+    font-size: 16px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.orders-container ul li p span {
+    margin-left: 7px;
+
+    color: #DD9B18;
+}
+
+.orders-container ul li button {
+    font-size: 16px;
+    color:#2F99AC;
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+.orders-container ul li button:hover {
+    color:rgb(48, 108, 119);
+}
+
+/* Order Pop-up */
+
+.order-popup {
+    width: 100%;
+
+    text-align: left;
+    background-color: rgba(49, 49, 49, 0.5);
+
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: 0; left: 0;
+    overflow-y: scroll;
+
+    display: none;
+}
+
+
+.order-container {
+    width: 800px;
+    margin: 50px auto;
+    padding: 20px 30px;
+
+    border-radius: 15px;
+    background-color: #F7F7F7;
+}
+
+/* Header */
+
+.order-header {
+    margin-left: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header .left-content {
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.order-header .left-content p {
+    font: 400 24px Bahnschrift, arial, sans-serif;
+    color: orange;
+}
+
+.order-header .left-content p#detail-paragraph {
+    margin-top: 5px;
+    font: 300 18px 'Poppins', arial, sans-serif;
+    color: rgb(99, 99, 99);
+}
+
+.order-header .left-content p span {
+    font: 300 18px 'Poppins', arial, sans-serif;
+    color: rgb(99, 99, 99);
+}
+
+.order-header button {
+    margin-right: 10px;
+    margin-bottom: 30px;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
+
+.order-header button:hover {
+    transform: scale(1.1);
+}
+
+.order-header button:active {
+    transform: translateY(2px);
+}
+
+.order-header button img {
+    width: 29px;
+    height: 29px;
+}
+
+.line {
+    margin-top: 20px;
+    width: 100%;
+    height: 1px;
+
+    background-color: gray;
+}
+
+.order-container h2 {
+    margin-bottom: 15px;
+
+    color: #707070;
+    font: 400 18px 'Poppins', sans-serif;
+}
+
+.order {
+    width: 100%;
+    margin-bottom: 20px;
+    
+    color: #707070;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.order ul {
+    padding: 15px 20px 5px;
+    list-style: none;
+}
+
+.order ul li {
+    margin-bottom: 6px;
+}
+
+/* Ship */
+
+.order.ship {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order.ship .left-content {
+    text-align: left;
+}
+
+.order.ship .right-content {
+    border-left: 1px solid rgb(207, 207, 207);
+}
+
+.order.ship .right-content ul {
+    padding: 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8.1px;
+}
+
+.order.ship .right-content ul li p {
+    margin-top: 30px;
+
+    font: 400 20px 'Poppins', arial, sans-serif;
+}
+
+.order.ship .right-content ul li#ship-code {
+    margin: 0px;
+    height: 55px;
+    
+    background-color: rgb(233, 233, 233);
+
+    display: flex;
+    align-items: center;
+
+}
+
+.order.ship .right-content ul #ship-code p {
+    margin: 0px 20px;
+
+    font-size: 18px;
+    color: #E0A52F;
+}
+
+/* Product */
+
+.order.product {
+    margin: 0px 0px 20px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.order.product .left-content ul {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 0px;
+
+    display: flex;
+}
+
+.order.product .left-content ul li {
+    margin: 0px;
+}
+
+.order.product .left-content ul li img {
+    width: 101px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.order.product .left-content ul > li:nth-child(2) {
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order.product .right-content {
+    border-left: 1px solid rgb(207, 207, 207);
+}
+
+.order.product .right-content ul {
+    margin-top: 40px;
+    padding: 0px;
+
+    font: 400 18px 'Poppins', arial, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6.6px;
+}
+
+.order.product .right-content ul li#product-price {
+    margin: 0px;
+    height: 55px;
+    
+    background-color: rgb(233, 233, 233);
+
+    display: flex;
+    align-items: center;
+
+}
+
+.order.product .right-content ul li#product-price p {
+    margin: 0px 40px;
+    
+    color: #E0A52F;
+}
+
+/* Cost */
+
+.order.cost {
+    margin: 0px;
+    padding: 0px;
+}
+
+.order.cost ul {
+    margin: 0px;
+    padding: 10px 0px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.order.cost ul li {
+    margin: 0px 30px;
+
+    color: #474343;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order.cost .line.cost {
+    margin: 8px 0px 10px;
+}
+
+/* Total */
+
+.order-container section {
+    margin: 30px 22px 10px 31px;
+
+    font-size: 20px;
+    font-weight: 400;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-container section > p:nth-child(2) {
+    color: #E0A52F;
+}

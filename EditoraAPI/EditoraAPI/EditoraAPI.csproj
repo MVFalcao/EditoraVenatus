@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CupomsController.cs" />
+    <Compile Include="Controllers\EnderecosController.cs" />
     <Compile Include="Controllers\EscolasController.cs" />
     <Compile Include="Controllers\EstoquesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Controllers\RedeSocialsController.cs" />
     <Compile Include="Controllers\TelefonesController.cs" />
     <Compile Include="Controllers\TipoesController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -244,7 +246,6 @@
     <Compile Include="Models\Cupom.cs" />
     <Compile Include="Models\EditoraAPIContext.cs" />
     <Compile Include="Models\Endereco.cs" />
-    <Compile Include="Models\EnderecosController.cs" />
     <Compile Include="Models\Escola.cs" />
     <Compile Include="Models\Estoque.cs" />
     <Compile Include="Models\Evento.cs" />

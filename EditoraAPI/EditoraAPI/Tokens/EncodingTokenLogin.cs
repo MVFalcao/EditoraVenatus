@@ -8,6 +8,11 @@ using System.Web;
 
 namespace EditoraAPI.Tokens
 {
+    public class TData {
+        public int id;
+        public float exp;
+    }
+
     public class EncodingTokenLogin
     {
          //+ 432000

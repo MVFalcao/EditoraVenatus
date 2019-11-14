@@ -24,9 +24,11 @@ namespace EditoraAPI.Controllers
 
         // GET: api/Telefones/5
         [ResponseType(typeof(Telefone))]
-        public IHttpActionResult GetTelefone(int id)
+        [Route("api/Telefones/GetTelefoneByCliente")]
+        public IHttpActionResult GetTelefoneByCliente(int id)
         {
-            Telefone telefone = db.telefones.Find(id);
+            var tel = from t in db.telefones where t.Id_c == id select t.ID_Telefone;
+            Telefone telefone = db.telefones.Find(tel.First());
             if (telefone == null)
             {
                 return NotFound();
@@ -35,6 +37,19 @@ namespace EditoraAPI.Controllers
             return Ok(telefone);
         }
 
+        [ResponseType(typeof(Telefone))]
+        [Route("api/Telefones/GetTelefoneByAutor")]
+        public IHttpActionResult GetTelefoneByAutor(int id)
+        {
+            var tel = from t in db.telefones where t.Id_a == id select t.ID_Telefone;
+            Telefone telefone = db.telefones.Find(tel.First());
+            if (telefone == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(telefone);
+        }
         // PUT: api/Telefones/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTelefone(int id, Telefone telefone)

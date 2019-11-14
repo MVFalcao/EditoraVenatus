@@ -20,7 +20,9 @@ export default class book extends Component {
     state = {
         divClosedList: [true, true, true],
         allBooks: [],
-        author: []
+        author: [],
+
+        Quantity: 1,
     }
     
     async loadBooks() {
@@ -135,6 +137,7 @@ export default class book extends Component {
         }
     }
 
+
     render() {
         const allBooks = this.state.allBooks;
         const DatePublication = new Date(allBooks.Datapublicacao);
@@ -143,20 +146,35 @@ export default class book extends Component {
         return (
             <>
                 <Header />
+
                 <div className="book-container">
+
                     <div className="left-content">
+
                         <img src={allBooks.Imagem_URL} alt={allBooks.Titulo} />
                         <p id="ISBN">ISBN: {allBooks.ISBN}</p>
                         <p id="synopsis">Sinopse: {allBooks.Sinopse}</p>
+
                     </div>
+
                     <div className="main-content">
+
                         <h1>{allBooks.Titulo}</h1>
                         <h2>{allBooks.SubTitulo}</h2>
-                        <p id="book-price">R$ {parseFloat(allBooks.Preco).toFixed(2)}</p>
+                        <p id="book-price">R$ {parseFloat(allBooks.Preco * this.state.Quantity).toFixed(2)}</p>
+
                         <form>
+
                             <label htmlFor="book-quantity">Quantidade</label>
-                            <input type="number" id="book-quantity" defaultValue="1" min="1" required/>
+                            <input type="number" 
+                                id="book-quantity"
+                                min="1" 
+                                required
+                                value={this.state.Quantity}
+                                onChange={e => this.setState({ Quantity: e.target.value })}
+                            />
                             <button type="submit">Adicionar ao Carrinho</button>
+                        
                         </form>
 
                         <div className="dropdown-container">
