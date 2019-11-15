@@ -51,7 +51,7 @@
 .header-login button {
     margin-left: 5px;
 
-    color: rgb(43, 43, 43);
+    color: rgb(90, 90, 90);
     border-radius: 20px;
     border: none;
     background: none;
@@ -101,7 +101,8 @@
     margin-top: 20px;
     margin-left: 40px;
     
-    font: 300 20px 'Poppins', arial, sans-serif;
+    color: #535353;
+    font: 400 20px 'Poppins', arial, sans-serif;
     background: none;
     border: none;
 
@@ -111,7 +112,7 @@
 
 .header-login .account-dropdown ul li #logoff:hover {
     transform: scale(1.1);
-    color: black;
+    color: rgb(41, 41, 41);
 }
 
 .header-login .account-dropdown ul li #logoff img {
