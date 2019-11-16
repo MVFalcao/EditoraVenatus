@@ -38,5 +38,6 @@ namespace EditoraAPI.Models
         public System.Data.Entity.DbSet<EditoraAPI.Models.Tipo>  tipos { get; set; }
 
         public System.Data.Entity.DbSet<EditoraAPI.Models.Login> Logins { get; set; }
+        public System.Data.Entity.DbSet<EditoraAPI.Models.Evento> eventos { get; set; }
     }
 }
