@@ -15,7 +15,7 @@ export default class myOrders extends Component {
         Person: [],
     }
     
-    loadAdressess = async e => {
+    loadAdressess = async () => {
         const response = await api.get('/api/Enderecos').catch(function (error) {
         console.log('Erro: ' + error.message);
     });
@@ -25,7 +25,7 @@ export default class myOrders extends Component {
         }
     }
 
-    loadPerson = async e => {
+    loadPerson = async () => {
         const response = await api.get('/api/Pessoas').catch(function (error) {
             console.log('Erro: ' + error.message);
         });

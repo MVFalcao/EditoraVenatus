@@ -28,7 +28,7 @@ export default class main extends Component {
     this.loadReleaseBooks();
   }
 
-  render () {
+  render() {
     return (
       <>
         <Header />

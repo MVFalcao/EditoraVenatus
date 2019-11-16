@@ -8,23 +8,10 @@ import editAvatar from '../../assets/myAccount/lapis.svg';
 export default class UserInfo extends Component {
 
   state = {
-    ID_Cliente: 0,
+    ID_Cliente: localStorage.getItem("ID_Cliente"),
 
     user: [],
     person: [],
-  }
-
-  loadLogin = async () => {
-    const jwt = localStorage.getItem("jwt");
-    await api.get('api/getToken', { headers: { "jwt": jwt }}).then(response => {
-        this.setState({user: response.data});
-        this.setState({ID_Cliente: this.state.user.cliente})
-        
-        this.loadPerson();
-    }
-    ).catch(error => {
-        console.log('Token Error: ' + error.message);
-    });
   }
 
   loadPerson = async () => {
@@ -38,7 +25,7 @@ export default class UserInfo extends Component {
   }
 
   componentDidMount() {
-    this.loadLogin();
+    this.loadPerson();
   }
 
   render() {

@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,&display=swap');
+
+.address-popUpContainer {
+    width: 100%;
+
+    text-align: left;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: rgba(49, 49, 49, 0.5);
+
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: 0; left: 0;
+    overflow-y: scroll;
+}
 
 .myaccount-container {
     width: 100%;
@@ -43,13 +55,13 @@
     border-radius: 5px;
 }
 
+.middle-content ul {
+    list-style: none;
+}
+
 .adress-container {
     width: 100%;
     margin-top: 30px;
-}
-
-.adress-container ul {
-    list-style: none;
 }
 
 .adress-container ul li {
@@ -58,22 +70,11 @@
 }
 
 .adressess-buttons {
-    width: 100%;
     margin-top: 45px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.adressess-buttons a {
-    color: rgb(59, 59, 59);
-}
-
-.adressess-buttons a:hover {
-    color: rgb(19, 45, 117);
 }
 
 .adressess-buttons .deleteBtn {
-    margin-right: 70px;
+    margin-left: 40px;
 }
 
 .adressess-buttons button {
@@ -87,9 +88,40 @@
 }
 
 .adressess-buttons button:hover {
-    color: rgb(19, 45, 117);
+    color: rgb(22, 22, 22);
 }
 
 .line.light {
     background-color: rgb(150, 150, 150);
+}
+
+.middle-content #add-addressBtn {
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+
+    color: white;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 300;
+    background-color: #309AAC;
+    border: none;
+    border-radius: 20px;
+    
+    cursor: pointer;
+}
+
+.middle-content #add-addressBtn:hover {
+    background-color: rgb(35, 116, 131);
+}
+
+.address-popup {
+    margin: auto;
+    width: 100%;
+    min-height: 1100px;
+    
+    background-color: rgba(49, 49, 49, 0.5);
+
+    position: absolute;
+    top: 0px; left: 0px; right: 0px; bottom: 0px;
+    display: none;
 }

@@ -31,34 +31,34 @@ export default class addBook extends Component {
 
     const responseCliente = await api.post('/api/Clientes', {
 
-    }).catch(function (error) {
+    }).catch(error => {
         console.log(error.response);
         console.log("Error: " + error.message);
       });
     if (responseCliente.status === 201) {
-      console.log(responseCliente);
-      this.setState({Costumer: responseCliente.data.ID_Cliente});
+        console.log(responseCliente);
+        this.setState({Costumer: responseCliente.data.ID_Cliente});
     }
 
     const responseLivraria = await api.post('/api/Livrarias', {
-      "Nome": this.state.Nome,
-      "CNPJ": this.state.CNPJ,
-      "Tipo_Consignacao": this.state.TipoConsignacao,
-      "cliente": this.state.Costumer
+		"Nome": this.state.Nome,
+		"CNPJ": this.state.CNPJ,
+		"Tipo_Consignacao": this.state.TipoConsignacao,
+		"cliente": this.state.Costumer
     })
     .catch(function (error) {
-      console.log(error.response);
-      console.log("Error: " + error.message);
-      this.deleteCostumer();
+        console.log(error.response);
+        console.log("Error: " + error.message);
+        this.deleteCostumer();
     });
     if (responseLivraria.status === 201) {
-      console.log(responseLivraria);
+        console.log(responseLivraria);
 
-      this.setState({isStopped: false});
-      this.handlePopUp();
-      setTimeout(() => {
-        this.setState({isStopped: true});
-      }, 3000);
+        this.setState({isStopped: false});
+        this.handlePopUp();
+        setTimeout(() => {
+            this.setState({isStopped: true});
+        }, 3000);
     }
   }
 

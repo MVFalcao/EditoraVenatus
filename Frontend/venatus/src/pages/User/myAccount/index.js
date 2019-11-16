@@ -41,7 +41,7 @@ export default class myAccount extends Component {
         const jwt = localStorage.getItem("jwt");
         await api.get('api/getToken', { headers: { "jwt": jwt }}).then(response => {
             this.setState({ user: response.data});
-            this.setState({id_Cliente: this.state.user.cliente})
+            this.setState({id_Cliente: this.state.user.cliente});
             
             this.loadPerson();
             this.loadTelephone();
@@ -232,7 +232,7 @@ export default class myAccount extends Component {
           EyeElement.type = "password";
         }
 
-        if (this.state.hideList[item]) {
+        if (this.state.hideList[item] === true) {
           showPassword();
           let a = this.state.hideList;
           a[item] = false;
@@ -370,7 +370,7 @@ export default class myAccount extends Component {
 
                                   <li>
                                       <label htmlFor="email">Email</label>
-                                      <input type="email" id="email" readOnly style={{cursor: 'default'}, {paddingLeft: '2px'}}
+                                      <input type="email" id="email" readOnly style={{cursor: 'default', paddingLeft: '2px'}}
                                         value={this.state.Email}
                                       />
                                   </li>

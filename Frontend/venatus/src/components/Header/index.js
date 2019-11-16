@@ -44,11 +44,19 @@ export default class Header extends Component {
             this.setState({ isLogged: true});
             
             // console.log(response.data);
-        }
-        ).catch(error => {
+        }).catch(error => {
             console.log('Token Error: ' + error.message);
         });
+
+        // this.handleCloseTab();
     }
+
+    // handleCloseTab = () => {
+    //     window.addEventListener("beforeunload", event => {  
+    //         event.preventDefault();
+    //         localStorage.removeItem("jwt");
+    //     });
+    // }
 
     handleArrow = () => {
         if (this.state.isOver) {
@@ -98,8 +106,6 @@ export default class Header extends Component {
         } 
     }
 
-
-
     render() {
 
         if (this.state.redirect) return <Redirect to='/' />;
@@ -109,7 +115,7 @@ export default class Header extends Component {
             minHeight: "900px",
             position: "fixed",
             display: "none",
-            top: "0px"
+            top: "0px",
         }
 
         return (
@@ -139,7 +145,7 @@ export default class Header extends Component {
                                         <Link to="/orders">Meus Pedidos</Link>
                                     </li>
                                     <li>
-                                        <Link to="/adressess">Meus Endereços</Link>
+                                        <Link to="/addressess">Meus Endereços</Link>
                                     </li>
                                     <li>
                                         <Link to="/account">Minha Conta</Link>

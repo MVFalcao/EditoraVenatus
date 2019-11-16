@@ -24,6 +24,14 @@ export default class Login extends Component {
       console.log('Error: ' + error.message);
       alert('Algo deu errado');
     });
+
+    const jwt = localStorage.getItem("jwt");
+    await api.get('api/getToken', { headers: { "jwt": jwt }}).then(res => {
+      localStorage.setItem("ID_Cliente", res.data.cliente);          
+    }).catch(error => {
+        console.log(' Error: ' + error.message);
+    });
+
   } 
 
 //   async componentDidMount() {
