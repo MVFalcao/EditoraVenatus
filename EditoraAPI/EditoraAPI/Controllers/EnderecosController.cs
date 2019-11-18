@@ -28,29 +28,44 @@ namespace EditoraAPI.Models
         [Route("api/GetClienteEndereco/")]
         public IHttpActionResult GetEndereco(int id)
         {
-            var end = from ed in db.enderecos where ed.cliente == id select new {ed.autor,ed.Bairro,ed.CEP,ed.Cidade,ed.cliente,ed.Complemento,ed.ID_Endereco};
-            //Endereco endereco = db.enderecos.Find(id_end.First());
-            if (end == null)
+            try
+            {
+                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                //Endereco endereco = db.enderecos.Find(id_end.First());
+                if (end == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(end);
+            }
+            catch (Exception e)
             {
                 return NotFound();
             }
-
-            return Ok(end);
+            
         }
         [ResponseType(typeof(Endereco))]
         [Route("api/GetAutorEndereco/")]
         public IHttpActionResult GetEnderecoAutor(int id)
         {
-            var jason = string.Empty;
-            var end = from ed in db.enderecos where ed.autor == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
-            //Endereco endereco = db.enderecos.Find(id_end.First());
-            if (end == null)
+            try
+            {
+                //var jason = string.Empty;
+                var end = from ed in db.enderecos where ed.autor == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                //Endereco endereco = db.enderecos.Find(id_end.First());
+                if (end == null)
+                {
+                    return NotFound();
+                }
+                //JavaScriptSerializer jss = new JavaScriptSerializer();
+                //jason = jss.Serialize(end);
+                return Ok(end);
+            }
+            catch (Exception e)
             {
                 return NotFound();
             }
-            //JavaScriptSerializer jss = new JavaScriptSerializer();
-            //jason = jss.Serialize(end);
-            return Ok(end);
         }
         // PUT: api/Enderecos/5
         [ResponseType(typeof(void))]
