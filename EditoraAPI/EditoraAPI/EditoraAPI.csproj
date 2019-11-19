@@ -239,9 +239,25 @@
     <Compile Include="Migrations\201911061403405_banco8.Designer.cs">
       <DependentUpon>201911061403405_banco8.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911141301170_banco9.cs" />
-    <Compile Include="Migrations\201911141301170_banco9.Designer.cs">
-      <DependentUpon>201911141301170_banco9.cs</DependentUpon>
+    <Compile Include="Migrations\201911141229049_banco9.cs" />
+    <Compile Include="Migrations\201911141229049_banco9.Designer.cs">
+      <DependentUpon>201911141229049_banco9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911141238092_banco10.cs" />
+    <Compile Include="Migrations\201911141238092_banco10.Designer.cs">
+      <DependentUpon>201911141238092_banco10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911172042358_banco11.cs" />
+    <Compile Include="Migrations\201911172042358_banco11.Designer.cs">
+      <DependentUpon>201911172042358_banco11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911180059408_banco12.cs" />
+    <Compile Include="Migrations\201911180059408_banco12.Designer.cs">
+      <DependentUpon>201911180059408_banco12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911180102119_banco13.cs" />
+    <Compile Include="Migrations\201911180102119_banco13.Designer.cs">
+      <DependentUpon>201911180102119_banco13.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
@@ -260,6 +276,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\RedeSocial.cs" />
+    <Compile Include="Models\RegistroControleMercadoria.cs" />
     <Compile Include="Models\Telefone.cs" />
     <Compile Include="Models\Tipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -382,8 +399,20 @@
     <EmbeddedResource Include="Migrations\201911061403405_banco8.resx">
       <DependentUpon>201911061403405_banco8.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911141301170_banco9.resx">
-      <DependentUpon>201911141301170_banco9.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911141229049_banco9.resx">
+      <DependentUpon>201911141229049_banco9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911141238092_banco10.resx">
+      <DependentUpon>201911141238092_banco10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911172042358_banco11.resx">
+      <DependentUpon>201911172042358_banco11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911180059408_banco12.resx">
+      <DependentUpon>201911180059408_banco12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911180102119_banco13.resx">
+      <DependentUpon>201911180102119_banco13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
