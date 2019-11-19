@@ -17,7 +17,7 @@ export default class addBook extends Component {
       Classificacao_Indicativa: "",
       ISBN: "",
       Ilustrador: "",
-      Imagem_URL: null,
+      Imagem_URL: "",
       Datapublicacao: "",
       Preco: 1.00,
       Formato: "",
@@ -25,10 +25,14 @@ export default class addBook extends Component {
       ID_Autor: 0,
   
       allAuthors: [],
+
+      image: "",
     }
 
-  handlePreview = (event) => {
-    this.setState({Imagem_URL: URL.createObjectURL(event.target.files[0])});
+  handlePreview =async (event) => {
+    await this.setState({Imagem_URL: URL.createObjectURL(event.target.files[0])});
+    console.log(this.state.Imagem_URL);
+    
   };
 
   async loadAuthors() {
@@ -43,30 +47,51 @@ export default class addBook extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
-    // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
 
-    await api.post('api/Livros', {
-      "Titulo": this.state.Titulo,
-      "SubTitulo": this.state.SubTitulo,
-      "Numero_Paginas": this.state.Numero_Paginas,
-      "Categoria": this.state.Categoria,
-      "Descricao": " ",
-      "Idioma": this.state.Idioma,
-      "Classificacao_Indicativa": this.state.Classificacao_Indicativa,
-      "ISBN": this.state.ISBN,
-      "Ilustrador": this.state.Ilustrador,
-      "Imagem_URL": " "/*this.state.Imagem_URL*/,
-      "Datapublicacao": this.state.Datapublicacao,
-      "Preco": this.state.Preco,
-      "Formato": this.state.Formato,
-      "Sinopse": this.state.Sinopse,
-      "ID_Autor": this.state.ID_Autor,
-    }).catch(function (error) {
-      console.log(error.response);
-      console.log("Error: " + error.message);
-    });
+    // await this.handleFile();
+
+    // await api.post('api/Livros', {
+    //   "Titulo": this.state.Titulo,
+    //   "SubTitulo": this.state.SubTitulo,
+    //   "Numero_Paginas": this.state.Numero_Paginas,
+    //   "Categoria": this.state.Categoria,
+    //   "Descricao": " ",
+    //   "Idioma": this.state.Idioma,
+    //   "Classificacao_Indicativa": this.state.Classificacao_Indicativa,
+    //   "ISBN": this.state.ISBN,
+    //   "Ilustrador": this.state.Ilustrador,
+    //   "Imagem_URL": this.state.image.URL,
+    //   "Datapublicacao": this.state.Datapublicacao,
+    //   "Preco": this.state.Preco,
+    //   "Formato": this.state.Formato,
+    //   "Sinopse": this.state.Sinopse,
+    //   "ID_Autor": this.state.ID_Autor,
+    // }).then(res => {
+    //   console.log(res.data);
+    // }).catch(function (error) {
+    //   console.log("Error: " + error.message);
+    // });
   }
+
+  handleFile = async e => {
+    let config = {
+        headers: {
+            Accept: '',
+            'Content-Type': 'multipart/form-data',
+        },
+    };
+    let formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    const { data } = await api.post(`/Upload`,
+        formData,
+        config
+    ).then(res => {
+      console.log(res.data);
+    }).catch(error => {
+      console.log('Image error: ' + error.message);
+    });
+    this.setState({ image: data[0].URL });
+  };
 
   componentDidMount() {
     this.loadAuthors();
