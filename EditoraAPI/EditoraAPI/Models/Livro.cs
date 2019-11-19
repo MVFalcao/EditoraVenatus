@@ -17,7 +17,7 @@ namespace EditoraAPI.Models
         [Required] [StringLength(50)] public string Descricao { get; set; }
         [Required] [StringLength(20)] public string ISBN { get; set ; }
         [Required] [StringLength(50)] public string Ilustrador { get; set; }
-        public string Imagem_URL { get; set; }
+        [Required] public string Imagem_URL { get; set; }
         [Required] public DateTime Datapublicacao { get; set; }
         [Required] public float Preco { get; set; }
         [Required] [StringLength(20)] public string Idioma { get; set; }
