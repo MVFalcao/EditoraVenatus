@@ -11,6 +11,7 @@ namespace EditoraAPI.Models
     public class Endereco
     {
         [Key] public int ID_Endereco { get; set;}
+        public string Nome_Proprietario { get; set; }
         [Required] [StringLength(10)] public string CEP { get; set; }
         [Required] [StringLength(30)] public string Cidade { get; set; }
         [Required] [StringLength(30)] public string Bairro { get; set; }
