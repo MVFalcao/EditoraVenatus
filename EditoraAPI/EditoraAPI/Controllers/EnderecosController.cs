@@ -30,7 +30,7 @@ namespace EditoraAPI.Models
         {
             try
             {
-                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.Nome_Proprietario, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.Logradouro, ed.Numero, ed.ID_Endereco };
                 //Endereco endereco = db.enderecos.Find(id_end.First());
                 if (end == null)
                 {
