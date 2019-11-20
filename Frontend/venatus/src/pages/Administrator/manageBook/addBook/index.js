@@ -29,10 +29,8 @@ export default class addBook extends Component {
       image: "",
     }
 
-  handlePreview =async (event) => {
+  handlePreview = async event => {
     await this.setState({Imagem_URL: URL.createObjectURL(event.target.files[0])});
-    console.log(this.state.Imagem_URL);
-    
   };
 
   async loadAuthors() {
@@ -48,7 +46,7 @@ export default class addBook extends Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-    // await this.handleFile();
+    // await this.handleFileUpload();
 
     // await api.post('api/Livros', {
     //   "Titulo": this.state.Titulo,
@@ -73,11 +71,10 @@ export default class addBook extends Component {
     // });
   }
 
-  handleFile = async e => {
+  handleFileUpload = async e => {
     let config = {
         headers: {
-            Accept: '',
-            'Content-Type': 'multipart/form-data',
+			'Content-Type': 'multipart/form-data',
         },
     };
     let formData = new FormData();
@@ -86,11 +83,10 @@ export default class addBook extends Component {
         formData,
         config
     ).then(res => {
-      console.log(res.data);
+      console.log(res);
     }).catch(error => {
       console.log('Image error: ' + error.message);
     });
-    this.setState({ image: data[0].URL });
   };
 
   componentDidMount() {

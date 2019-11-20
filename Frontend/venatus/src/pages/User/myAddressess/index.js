@@ -38,6 +38,7 @@ export default class myAdressess extends Component {
     deleteAddress = async (ID_Endereco = 0) => {
         await api.delete(`api/Enderecos/${ID_Endereco}`).then(res => {
             console.log(res.data);
+            this.loadAdressess();
         }).catch(error => {
             console.log('Delete Error: ' + error.message);
         });
@@ -45,7 +46,7 @@ export default class myAdressess extends Component {
 
     handleDeleteAddress = (ID_Endereco = 0) => {
         let confirmDelete = window.confirm(`Deseja realmente deletar este endereço?`);
-        if (confirmDelete) this.deleteBook(ID_Endereco);
+        if (confirmDelete) this.deleteAddress(ID_Endereco);
         else return;
       }
     
@@ -96,7 +97,16 @@ export default class myAdressess extends Component {
     }
 
   render() {
+    
+    const noAddressStyle = {
+        margin: '140px 20px 0px',
+    }
 
+    const addAddressBtnStyle = {
+        margin: '40px 150px 0px'
+    }
+
+    
     return (
 
         <>
@@ -112,48 +122,63 @@ export default class myAdressess extends Component {
 
                 <div className="middle-content">
 
-                    <h2>Meus Endereços</h2>
+                    {this.state.allAdressess.length === 0 ? 
+                        <div className="no-address" style={noAddressStyle}>
+                            <p>Você não possui nenhum endereço cadastrado <span role="img" aria-label="Sad">😥</span></p>
+                        </div> 
+                    : 
+                    //#region withAddress
 
-                    <p>Adicione e edite os endereços de envio dos produtos.</p>
+                    <>
+                        <h2>Meus Endereços</h2>
 
-                    <div className="line" />
+                        <p>Adicione e edite os endereços de envio dos produtos.</p>
 
-                        <ul>
+                        <div className="line" />
 
-                        {/* {this.state.allAdressess.map((address) => ( */}
+                            <ul>
 
-                            <li>
+                            {this.state.allAdressess.map( address => (
 
-                                <div className="adress-container">
+                                <li key={address.ID_Endereco}>
 
-                                    <ul>
+                                    <div className="adress-container">
 
-                                        <li>Jander Silva</li>
-                                        <li>Av. Bernardinho de Campos, {this.state.allAdressess.Bairro}, 98</li>
-                                        <li>{this.state.allAdressess.CEP}, {this.state.allAdressess.Complemento}</li>
-                                        <li>{this.state.allAdressess.Cidade}</li>
+                                        <ul>
 
-                                    </ul>
+                                            <li>Jander Silva</li>
+                                            <li>Av. Bernardinho de Campos, {address.Bairro}, 98</li>
+                                            <li>{address.CEP}, {address.Complemento}</li>
+                                            <li>{address.Cidade}</li>
 
-                                </div>
+                                        </ul>
 
-                                <div className="adressess-buttons">
+                                    </div>
 
-                                    <button onClick={() => this.handleEditPopUp()}>Editar</button>
-                                    <button className="deleteBtn" onClick={() => this.handleDeleteAddress()}>Apagar</button>
-                                    {/* <button>Tornar este endereço padrão</button> */}
-                                
-                                </div>
+                                    <div className="adressess-buttons">
 
-                                <div className="line light" style={{backgroundColor: 'background-color: rgb(150, 150, 150)'}}/>
+                                        <button onClick={() => this.handleEditPopUp()}>Editar</button>
+                                        <button className="deleteBtn" onClick={() => this.handleDeleteAddress(address.ID_Endereco)}>Apagar</button>
+                                        {/* <button>Tornar este endereço padrão</button> */}
+                                    
+                                    </div>
 
-                            </li>
-                        
-                        {/* ))} */}
+                                    <div className="line light" style={{backgroundColor: 'background-color: rgb(150, 150, 150)'}}/>
 
-                        </ul>
+                                </li>
+                            
+                            ))}
 
-                        <button id="add-addressBtn" onClick={() => this.handleAddPopUp()}>Adicionar novo endereço</button>
+                            </ul>
+                        </>
+
+                        //#endregion
+                    }
+
+                    <button id="add-addressBtn" 
+                        style={this.state.allAdressess.length === 0 ? addAddressBtnStyle : {}} 
+                        onClick={() => this.handleAddPopUp()}
+                    >Adicionar novo endereço</button>
 
                 </div>
 

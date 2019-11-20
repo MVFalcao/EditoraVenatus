@@ -1,0 +1,20 @@
+{
+  "ID_Endereco": 1,
+  "Nome_Proprietario": "Jander Silva",
+  "CEP": "41150-000",
+  "Cidade": "Salvador",
+  "Bairro": "Cabula",
+  "Complemento": "AN-303",
+  "autor": 0,
+  "cliente": 2
+}
+{
+  "ID_Endereco": 8,
+  "Nome_Proprietario": null,
+  "CEP": "4623743-23",
+  "Cidade": "São Paulo",
+  "Bairro": "Vila Basileia",
+  "Complemento": "33",
+  "autor": 0,
+  "cliente": 2
+}
