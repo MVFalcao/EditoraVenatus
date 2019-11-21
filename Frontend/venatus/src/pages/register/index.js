@@ -67,13 +67,11 @@ export default class signup extends Component {
 
 	handlePasswordVerification = async e => {
 		await this.setState({Password: e.target.value});
-		console.log('Senha: ' + this.state.Password);
 		this.handlePassword();
 	}
 
 	handleConfirmPasswordVerification = async e => {
 		await this.setState({ConfirmPassword: e.target.value});
-		console.log('Confirm: ' + this.state.ConfirmPassword);
 		this.handlePassword();
 	}
 

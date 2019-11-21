@@ -21,15 +21,15 @@ export default class newAddress extends Component {
         ID_Endereco: localStorage.getItem("ID_Endereco"),
     }
 
-    // loadAddress = async () => {
-    //      await api.get(`api/Enderecos/${this.state.ID_Endereco}`).then(res => {
-    //          this.setState({address: res.data});
-    //          this.loadAddressData();
-    //         console.log(res.data);
-    //     }).catch(error => {
-    //     console.log('Adressess Error: ' + error.message);
-    //     });
-    // }
+    loadAddress = async () => {
+         await api.get(`api/GetEndereco?id=${this.state.ID_Endereco}`).then(res => {
+             this.setState({address: res.data});
+             this.loadAddressData();
+            console.log(res.data);
+        }).catch(error => {
+        console.log('Adressess Error: ' + error.message);
+        });
+    }
 
     loadAddressData = () => {
         this.setState({Nome: this.state.address.Nome_Proprietario});
