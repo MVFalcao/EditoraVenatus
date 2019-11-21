@@ -332,6 +332,7 @@ C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\E
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations._2910Caique2.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco7.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.GenerateResource.cache
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CoreCompileInputs.cache
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\EditoraAPI.dll.config
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\EditoraAPI.dll
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\EditoraAPI.pdb
@@ -545,7 +546,14 @@ C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.pdb
 C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco8.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco8.resources
-C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco9.resources
-C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco9.resources
-C:\Users\falcao\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco8.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco7.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco9.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco10.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco11.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco12.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco13.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco14.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco15.resources

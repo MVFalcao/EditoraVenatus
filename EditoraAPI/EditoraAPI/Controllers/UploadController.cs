@@ -18,7 +18,6 @@ namespace EditoraAPI.Controllers
 {
     public class UploadController : ApiController
     {
-       
         [HttpPost]
         [Route("Upload")]
         [ResponseType(typeof(List<string>))]
@@ -46,7 +45,7 @@ namespace EditoraAPI.Controllers
                     files.Add(Path.GetFileName(file.LocalFileName));
                 }
                 // OK se tudo deu certo.
-                var URL = Url.Content(Path.Combine("~/Images", files[0]));
+                var URL = Url.Content(Path.Combine(fileSaveLocation, files[0]));
                 return Request.CreateResponse(HttpStatusCode.OK, URL);
             }
             catch (System.Exception e)
@@ -62,18 +61,7 @@ namespace EditoraAPI.Controllers
 
         public override string GetLocalFileName(HttpContentHeaders headers)
         {
-            return AlfanumericoAleatorio(40)+"_"+headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-        }
-         public static string AlfanumericoAleatorio(int tamanho)
-        {
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            var result = new string(
-                Enumerable.Repeat(chars, tamanho)
-                          .Select(s => s[random.Next(s.Length)])
-                          .ToArray());
-            return result;
+            return headers.ContentDisposition.FileName.Replace("\"", string.Empty);
         }
     }
-    
 }
