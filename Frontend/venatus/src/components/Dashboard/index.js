@@ -101,7 +101,7 @@ export default class Dashboard extends Component {
                     <div className="dropdown book">
 
                         <ol>
-                            <li><Link to="/addBook">Adicionar Livro</Link></li>
+                            <li><Link to="/addbook">Adicionar Livro</Link></li>
                             <li><Link to="/editbook/selection">Editar Livro</Link></li>
                             <li><Link to="/deletebook">Deletar Livro</Link></li>
                         </ol>

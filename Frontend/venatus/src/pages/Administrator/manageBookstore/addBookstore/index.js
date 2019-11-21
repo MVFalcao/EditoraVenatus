@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import api from '../../../../services/api';
+import Lottie from 'react-lottie';
 
 import './styles.css';
 import Dashboard from '../../../../components/Dashboard';
+import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
 export default class addBook extends Component {
 
@@ -12,6 +14,7 @@ export default class addBook extends Component {
       TipoConsignacao: "consignado",
 
       Costumer: 0,
+      isStopped: true,
     }
 
   deleteCostumer = async () => {
@@ -25,47 +28,78 @@ export default class addBook extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
-    // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
-      
+
     const responseCliente = await api.post('/api/Clientes', {
 
-    }).catch(function (error) {
+    }).catch(error => {
         console.log(error.response);
         console.log("Error: " + error.message);
       });
-      if (responseCliente.status === 201) {
+    if (responseCliente.status === 201) {
         console.log(responseCliente);
         this.setState({Costumer: responseCliente.data.ID_Cliente});
-      }
+    }
 
     const responseLivraria = await api.post('/api/Livrarias', {
-      "Nome": this.state.Nome,
-      "CNPJ": this.state.CNPJ,
-      "Tipo_Consignacao": this.state.TipoConsignacao,
-      "cliente": this.state.Costumer
-    }).catch(function (error) {
-      console.log(error.response);
-      console.log("Error: " + error.message);
-      this.deleteCostumer();
+		"Nome": this.state.Nome,
+		"CNPJ": this.state.CNPJ,
+		"Tipo_Consignacao": this.state.TipoConsignacao,
+		"cliente": this.state.Costumer
+    })
+    .catch(function (error) {
+        console.log(error.response);
+        console.log("Error: " + error.message);
+        this.deleteCostumer();
     });
     if (responseLivraria.status === 201) {
-      console.log(responseLivraria);
-      alert('Livraria criada com sucesso');
+        console.log(responseLivraria);
+
+        this.setState({isStopped: false});
+        this.handlePopUp();
+        setTimeout(() => {
+            this.setState({isStopped: true});
+        }, 3000);
     }
   }
 
+  //#region HandlePopUp() {
+    showPopUp = () => {
+      document.querySelector('.addPopUp').style.display = "block";
+  }
+  
+  hidePopUp = () => {
+    document.querySelector('.addPopUp').style.display = "none";
+  }
+
+  handlePopUp = () => {
+    this.showPopUp();
+    setTimeout(() => {
+      this.hidePopUp();
+    }, 3000);
+  }
+  //#endregion
+
   render() {
+
+    const defaultOptions = {
+      loop: false,
+      autoplay: false, 
+      animationData: OkAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
     return (
-      <div className="addBook-wrapper">
+      <div className="addBookstore-wrapper">
 
           <Dashboard />
 
-          <div className="addBook-container">
+          <div className="addBookstore-container">
 
             <h1>Cadastro de Livraria</h1>
 
-            <div className="addBook-data">
+            <div className="addBookstore-data">
           
               <form onSubmit={this.handleSubmit}>
                 <ul className="section item-1">
@@ -107,6 +141,15 @@ export default class addBook extends Component {
               </form>
             </div>
           </div>
+
+          <div className="addPopUp">
+              <Lottie options={defaultOptions}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Livraria adicionada com sucesso</h1>
+            </div>
       </div>
     );
   }

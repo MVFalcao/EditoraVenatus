@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,&display=swap');
+
+.address-popUpContainer {
+    width: 100%;
+
+    text-align: left;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: rgba(49, 49, 49, 0.5);
+
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: 0; left: 0;
+    overflow-y: scroll;
+}
+
+.myaccount-container {
+    width: 100%;
+    margin: 50px 0px;
+
+    font: 300 14px 'Poppins', arial, sans-serif;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.left-info {
+    margin-left: 120px;
+}
+
+.middle-content {
+    margin-left: 120px;
+    padding: 20px 30px;
+
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.middle-content h2 {
+    color: rgb(58, 58, 58);
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.middle-content p {
+    margin-top: 2px;
+    font-weight: 300; 
+    font-size: 18px;
+}
+
+.middle-content ul {
+    list-style: none;
+}
+
+.adress-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.adress-container ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.adressess-buttons {
+    margin-top: 45px;
+}
+
+.adressess-buttons .deleteBtn {
+    margin-left: 40px;
+}
+
+.adressess-buttons button {
+    font: 300 14px 'Poppins', Arial, sans-serif;
+    color: rgb(59, 59, 59);
+    text-decoration: underline;
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
+
+.adressess-buttons button:hover {
+    color: rgb(22, 22, 22);
+}
+
+.middle-content #add-addressBtn {
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+
+    color: white;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 300;
+    background-color: #309AAC;
+    border: none;
+    border-radius: 20px;
+    
+    cursor: pointer;
+}
+
+.middle-content #add-addressBtn:hover {
+    background-color: rgb(35, 116, 131);
+}
+
+.address-popup {
+    margin: auto;
+    width: 100%;
+    min-height: 1200px;
+    
+    background-color: rgba(49, 49, 49, 0.5);
+
+    position: absolute;
+    top: 0px; left: 0px; right: 0px; bottom: 0px;
+    display: none;
+}

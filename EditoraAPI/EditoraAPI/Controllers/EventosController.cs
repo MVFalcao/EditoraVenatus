@@ -12,44 +12,44 @@ using EditoraAPI.Models;
 
 namespace EditoraAPI.Controllers
 {
-    public class EnderecoesController : ApiController
+    public class EventosController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
 
-        // GET: api/Enderecoes
-        public IQueryable<Endereco> Getenderecos()
+        // GET: api/Eventos
+        public IQueryable<Evento> Geteventos()
         {
-            return db.enderecos;
+            return db.eventos;
         }
 
-        // GET: api/Enderecoes/5
-        [ResponseType(typeof(Endereco))]
-        public IHttpActionResult GetEndereco(int id)
+        // GET: api/Eventos/5
+        [ResponseType(typeof(Evento))]
+        public IHttpActionResult GetEvento(int id)
         {
-            Endereco endereco = db.enderecos.Find(id);
-            if (endereco == null)
+            Evento evento = db.eventos.Find(id);
+            if (evento == null)
             {
                 return NotFound();
             }
 
-            return Ok(endereco);
+            return Ok(evento);
         }
 
-        // PUT: api/Enderecoes/5
+        // PUT: api/Eventos/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEndereco(int id, Endereco endereco)
+        public IHttpActionResult PutEvento(int id, Evento evento)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != endereco.ID_Endereco)
+            if (id != evento.ID_Evento)
             {
                 return BadRequest();
             }
 
-            db.Entry(endereco).State = EntityState.Modified;
+            db.Entry(evento).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace EditoraAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EnderecoExists(id))
+                if (!EventoExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace EditoraAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Enderecoes
-        [ResponseType(typeof(Endereco))]
-        public IHttpActionResult PostEndereco(Endereco endereco)
+        // POST: api/Eventos
+        [ResponseType(typeof(Evento))]
+        public IHttpActionResult PostEvento(Evento evento)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.enderecos.Add(endereco);
+            db.eventos.Add(evento);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = endereco.ID_Endereco }, endereco);
+            return CreatedAtRoute("DefaultApi", new { id = evento.ID_Evento }, evento);
         }
 
-        // DELETE: api/Enderecoes/5
-        [ResponseType(typeof(Endereco))]
-        public IHttpActionResult DeleteEndereco(int id)
+        // DELETE: api/Eventos/5
+        [ResponseType(typeof(Evento))]
+        public IHttpActionResult DeleteEvento(int id)
         {
-            Endereco endereco = db.enderecos.Find(id);
-            if (endereco == null)
+            Evento evento = db.eventos.Find(id);
+            if (evento == null)
             {
                 return NotFound();
             }
 
-            db.enderecos.Remove(endereco);
+            db.eventos.Remove(evento);
             db.SaveChanges();
 
-            return Ok(endereco);
+            return Ok(evento);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace EditoraAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool EnderecoExists(int id)
+        private bool EventoExists(int id)
         {
-            return db.enderecos.Count(e => e.ID_Endereco == id) > 0;
+            return db.eventos.Count(e => e.ID_Evento == id) > 0;
         }
     }
 }

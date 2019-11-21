@@ -19,6 +19,10 @@
     border-radius: 20px;
 }
 
+.middle-content.i2 {
+    margin-top: 40px;
+}
+
 .middle-content h2 {
     font: 700 30px 'Poppins', arial, sans-serif;
     color: rgb(58, 58, 58);
@@ -38,16 +42,16 @@
     border-radius: 5px;
 }
 
+.middle-content h3 {
+    margin-top: 15px;
+    font: 600 24px 'Poppins', arial, sans-serif;
+    color: rgb(75, 75, 75);
+}
+
 .user-info {
     width: 500px;
     margin-top: 15px;
     font: 600 24px 'Poppins', arial, sans-serif;
-}
-
-.user-info h3 {
-    margin-top: 15px;
-    font: 600 24px 'Poppins', arial, sans-serif;
-    color: rgb(75, 75, 75);
 }
 
 .user-info form {
@@ -58,12 +62,27 @@
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 30px;
+    gap: 30px;
+    
+}
+
+.middle-content.i2 .user-info form ul {
+    display: flex;
+    flex-direction: column;
 }
 
 .user-info form ul li {
     display: flex;
     flex-direction: column;
+}
+
+.middle-content.i2 .user-info form ul li {
+    margin: 10px 20px 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .user-info form ul li label {
@@ -72,14 +91,14 @@
 }
 
 .user-info form ul li input {
-    max-width: 230px;
+    width: 240px;
     height: 40px;
     margin-top: 5px;
     padding-left: 15px;
 
     font: 300 20px 'Poppins', arial, sans-serif;
 
-    border-radius: 20px;
+    border-radius: 13px;
 }
 
 .user-info button {
@@ -90,14 +109,47 @@
 
     font: 300 18px 'Poppins', arial, sans-serif;
     color: white;
-    background-color: rgb(109, 146, 226);
+    background-color: rgb(75, 107, 175);
     border: none;
     border-radius: 20px;
-
+    
     display: flex;
     justify-content: center;
+    
+    cursor: pointer;
 }
 
 .user-info button:hover {
-    background-color: rgb(79, 79, 165);
+    background-color: rgb(54, 77, 151);
+}
+
+.middle-content.i2 .user-info button {
+    background-color: rgb(192, 70, 70);
+}
+
+.middle-content.i2 .user-info button:hover {
+    background-color: rgb(151, 54, 54);
+}
+
+.myaccount-wrapper .putPopUp {
+    width: 400px;
+    height: 200px;
+    padding-top: 30px;
+
+    color: white;
+    background-color: rgba(68, 68, 68, 0.8);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 350px; left: 550px; right: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.myaccount-wrapper .putPopUp h1 {
+    margin: 0px;
+    margin-top: 20px;
+
+    font: 500 20px 'Poppins', arial, sans-serif;
 }

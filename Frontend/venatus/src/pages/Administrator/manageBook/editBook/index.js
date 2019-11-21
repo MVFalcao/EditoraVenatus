@@ -1,42 +1,43 @@
 import React, { Component } from 'react';
 import api from '../../../../services/api';
+import Lottie from 'react-lottie';
+
+import Dashboard from '../../../../components/Dashboard';
 
 import './styles.css';
-import Dashboard from '../../../../components/Dashboard';
 import Camera from '../../../../assets/administrator/camera.svg';
+import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
+import ErrorAnimation from '../../../../assets/Animations/ErrorPopUp.json';
 
-export default class addBook extends Component {
+export default class editBook extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      Titulo: "",
-      SubTitulo: "",
-      Numero_Paginas: 1,
-      Categoria: "",
-      Descricao: "",
-      Idioma: "",
-      Classificacao_Indicativa: "",
-      ISBN: "",
-      Ilustrador: "",
-      Imagem_URL: null,
-      Datapublicacao: "",
-      Preco: 1.00,
-      Formato: "",
-      Sinopse: "",
-      ID_Autor: 0,
-  
-      Book: [],
-      allAuthors: [],
-    }
-    this.handlePreview = this.handlePreview.bind(this);
+  state = {
+    Titulo: "",
+    SubTitulo: "",
+    Numero_Paginas: 1,
+    Categoria: "",
+    Descricao: "",
+    Idioma: "",
+    Classificacao_Indicativa: "",
+    ISBN: "",
+    Ilustrador: "",
+    Imagem_URL: null,
+    Datapublicacao: "",
+    Preco: 1.00,
+    Formato: "",
+    Sinopse: "",
+    ID_Autor: 0,
+
+    Book: [],
+    allAuthors: [],
+    isStopped: true,
   }
   
-  handlePreview(event) {
+  handlePreview = event => {
     this.setState({Imagem_URL: URL.createObjectURL(event.target.files[0])});
   }
   
-  async loadBook() {
+  loadBook = async () => {
     const response = await api.get(`/api/Livros/${this.props.match.params.id}`).catch(function(error) {
       console.log('Erro: ' + error.message);
     });
@@ -47,17 +48,22 @@ export default class addBook extends Component {
     }
   }
   
-  async loadAuthors() {
+  loadAuthors = async () => {
     const response = await api.get(`api/Autors`).catch(function(error) {
-        console.log('Algo deu errado: ' + error.message);   
+        console.log('Error: ' + error.message);
       });
       if (response != null) {
         console.log(response);
-        this.setState({allAuthors: response.data})
+        this.setState({allAuthors: response.data});
       }
-    }
+  }
+
+  handleDate = () => {
+    const dataPublicacao = this.state.Book.Datapublicacao.split("T");
+    return dataPublicacao[0];
+  }
     
-  loadBookData() {
+  loadBookData = () => {
     this.setState({Titulo: this.state.Book.Titulo});
     this.setState({SubTitulo: this.state.Book.SubTitulo});
     this.setState({Numero_Paginas: this.state.Book.Numero_Paginas});
@@ -66,7 +72,7 @@ export default class addBook extends Component {
     this.setState({Classificacao_Indicativa: this.state.Book.Classificacao_Indicativa});
     this.setState({ISBN: this.state.Book.ISBN});
     this.setState({Ilustrador: this.state.Book.Ilustrador});
-    // this.setState({Datapublicacao: this.state.Book.Datapublicacao});
+    this.setState({Datapublicacao: this.handleDate()});
     this.setState({Formato: this.state.Book.Formato});
     this.setState({Preco: this.state.Book.Preco});
     this.setState({Sinopse: this.state.Book.Sinopse});
@@ -80,10 +86,8 @@ export default class addBook extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
-    // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
 
-    await api.put('api/Livros', {
+    const response = await api.put('api/Livros', {
       "Titulo": this.state.Titulo,
       "SubTitulo": this.state.SubTitulo,
       "Numero_Paginas": this.state.Numero_Paginas,
@@ -99,22 +103,70 @@ export default class addBook extends Component {
       "Formato": this.state.Formato,
       "Sinopse": this.state.Sinopse,
       "ID_Autor": this.state.ID_Autor,
-    }).catch(function (error) {
-      console.log(error.response);
+    }).catch(error => {
       console.log("Error: " + error.message);
+
+      this.setState({isStopped: false});
+      this.handlePopUp("error");
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
     });
+    if (response != null) {
+      this.setState({isStopped: false});
+      this.handlePopUp("success");
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
+    }
+  }
+
+  showPopUp = (element="") => {
+    document.querySelector(`.editPopUp.${element}`).style.display = "block";
+  }
+  
+  hidePopUp = (element="") => {
+    document.querySelector(`.editPopUp.${element}`).style.display = "none";
+  }
+
+  handlePopUp = (element = "") => {
+    this.showPopUp(element);
+    setTimeout(() => {
+      this.hidePopUp(element);
+    }, 3000);
   }
 
   render() {
+
+    //#region AnimationsController
+    const okAnimation = {
+      loop: false,
+      autoplay: false, 
+      animationData: OkAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
+    const errorAnimation = {
+      loop: false,
+      autoplay: false, 
+      animationData: ErrorAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+//#endregion
+
     return (
-      <div className="addBook-wrapper">
+      <div className="editBook-wrapper">
           <Dashboard />
 
-          <div className="addBook-container">
+          <div className="editBook-container">
 
             <h1>Edição de Livro</h1>
 
-            <div className="addBook-data">
+            <div className="editBook-data">
           
               <form onSubmit={this.handleSubmit}>
                 <ul className="section item-1">
@@ -282,11 +334,30 @@ export default class addBook extends Component {
 
                 </ul>
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit">Atualizar</button>
 
               </form>
             </div>
           </div>
+          
+          <div className="editPopUp success">
+              <Lottie options={okAnimation}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Livro editado com sucesso</h1>
+          </div>
+
+          <div className="editPopUp error">
+              <Lottie options={errorAnimation}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Algo deu errado</h1>
+          </div>
+
       </div>
     );
   }

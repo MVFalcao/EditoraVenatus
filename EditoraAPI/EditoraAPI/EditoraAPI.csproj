@@ -67,6 +67,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
@@ -177,8 +178,10 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CupomsController.cs" />
+    <Compile Include="Controllers\EnderecosController.cs" />
     <Compile Include="Controllers\EscolasController.cs" />
     <Compile Include="Controllers\EstoquesController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivrariasController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
@@ -187,6 +190,7 @@
     <Compile Include="Controllers\RedeSocialsController.cs" />
     <Compile Include="Controllers\TelefonesController.cs" />
     <Compile Include="Controllers\TipoesController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -235,6 +239,34 @@
     <Compile Include="Migrations\201911061403405_banco8.Designer.cs">
       <DependentUpon>201911061403405_banco8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911141229049_banco9.cs" />
+    <Compile Include="Migrations\201911141229049_banco9.Designer.cs">
+      <DependentUpon>201911141229049_banco9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911141238092_banco10.cs" />
+    <Compile Include="Migrations\201911141238092_banco10.Designer.cs">
+      <DependentUpon>201911141238092_banco10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911172042358_banco11.cs" />
+    <Compile Include="Migrations\201911172042358_banco11.Designer.cs">
+      <DependentUpon>201911172042358_banco11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911180059408_banco12.cs" />
+    <Compile Include="Migrations\201911180059408_banco12.Designer.cs">
+      <DependentUpon>201911180059408_banco12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911180102119_banco13.cs" />
+    <Compile Include="Migrations\201911180102119_banco13.Designer.cs">
+      <DependentUpon>201911180102119_banco13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911191851253_banco14.cs" />
+    <Compile Include="Migrations\201911191851253_banco14.Designer.cs">
+      <DependentUpon>201911191851253_banco14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911192128574_banco15.cs" />
+    <Compile Include="Migrations\201911192128574_banco15.Designer.cs">
+      <DependentUpon>201911192128574_banco15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Carrinho.cs" />
@@ -244,14 +276,15 @@
     <Compile Include="Models\Cupom.cs" />
     <Compile Include="Models\EditoraAPIContext.cs" />
     <Compile Include="Models\Endereco.cs" />
-    <Compile Include="Controllers\EnderecosController.cs" />
     <Compile Include="Models\Escola.cs" />
     <Compile Include="Models\Estoque.cs" />
+    <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Livraria.cs" />
     <Compile Include="Models\Livro.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\RedeSocial.cs" />
+    <Compile Include="Models\RegistroControleMercadoria.cs" />
     <Compile Include="Models\Telefone.cs" />
     <Compile Include="Models\Tipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -373,6 +406,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911061403405_banco8.resx">
       <DependentUpon>201911061403405_banco8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911141229049_banco9.resx">
+      <DependentUpon>201911141229049_banco9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911141238092_banco10.resx">
+      <DependentUpon>201911141238092_banco10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911172042358_banco11.resx">
+      <DependentUpon>201911172042358_banco11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911180059408_banco12.resx">
+      <DependentUpon>201911180059408_banco12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911180102119_banco13.resx">
+      <DependentUpon>201911180102119_banco13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911191851253_banco14.resx">
+      <DependentUpon>201911191851253_banco14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911192128574_banco15.resx">
+      <DependentUpon>201911192128574_banco15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import api from '../../../../services/api';
+import Lottie from 'react-lottie';
 
 import Dashboard from '../../../../components/Dashboard';
+
 import './styles.css';
+import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
 export default class editBook extends Component {
 
   state = {
     allBooks: [],
-    index: 0,
-    books: [],
+
+    isStopped: true,
   }
 
   async loadBooks() {
@@ -27,7 +30,12 @@ export default class editBook extends Component {
       console.log('Error: ' + error.message);
     });
     if (response != null) {
-      alert('Livro apagado com sucesso');
+      this.setState({isStopped: false});
+      this.handlePopUp();
+      this.loadBooks();
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
     }
   }
 
@@ -37,11 +45,38 @@ export default class editBook extends Component {
     else return;
   }
 
+  //#region HandlePopUp() {
+  showPopUp = () => {
+      document.querySelector('.deletePopUp').style.display = "block";
+  }
+  
+  hidePopUp = () => {
+    document.querySelector('.deletePopUp').style.display = "none";
+  }
+
+  handlePopUp = () => {
+    this.showPopUp();
+    setTimeout(() => {
+      this.hidePopUp();
+    }, 3000);
+  }
+  //#endregion
+
   componentDidMount() {
     this.loadBooks();
   }
 
   render() {
+
+    const defaultOptions = {
+      loop: false,
+      autoplay: false, 
+      animationData: OkAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
     return (
         <div className="selectBook-wrapper">
           <Dashboard />
@@ -59,6 +94,15 @@ export default class editBook extends Component {
                 </li>
               ))}
             </ul>
+
+            <div className="deletePopUp">
+              <Lottie options={defaultOptions}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Livro Apagado com sucesso</h1>
+            </div>
           </div>
         </div>
     );
