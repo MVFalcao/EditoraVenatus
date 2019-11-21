@@ -24,7 +24,7 @@ namespace EditoraAPI.Models
         }
 
         [ResponseType(typeof(Endereco))]
-        [Route("api/GetClienteEndereco/")]
+        [Route("api/GetEndereco/")]
         public IHttpActionResult GetEndereco(int id)
         {
             try
