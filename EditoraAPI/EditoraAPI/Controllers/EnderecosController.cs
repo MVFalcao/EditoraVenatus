@@ -23,10 +23,32 @@ namespace EditoraAPI.Models
             return db.enderecos;
         }
 
-        // GET: api/Enderecos/5
         [ResponseType(typeof(Endereco))]
         [Route("api/GetClienteEndereco/")]
         public IHttpActionResult GetEndereco(int id)
+        {
+            try
+            {
+                var end = from ed in db.enderecos where ed.ID_Endereco == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                //Endereco endereco = db.enderecos.Find(id_end.First());
+                if (end == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(end);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
+        }
+
+        // GET: api/Enderecos/5
+        [ResponseType(typeof(Endereco))]
+        [Route("api/GetClienteEndereco/")]
+        public IHttpActionResult GetEnderecocliente(int id)
         {
             try
             {
