@@ -14,25 +14,42 @@ export default class Login extends Component {
     goToMain: false,
   }
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
+  handleSubmit = async event => {
+    event.preventDefault();
     
-    const response = await api.post('/api/Login', {
-      "Username": this.state.Username,
-      "Password": this.state.Password,
-    }).then(response => {
-      localStorage.setItem("jwt", response.data);
+    await api.post(`api/Logins?login=${this.state.Username}&senha=${this.state.Password}`).then(res => {
+      localStorage.setItem("jwt", res.data);
       this.setState({goToMain: true});
     }).catch(error => {
       console.log('Error: ' + error.message);
+      alert('Algo deu errado');
     });
 
-    console.log(response);
+    const jwt = localStorage.getItem("jwt");
+    await api.get('api/getToken', { headers: { "jwt": jwt }}).then(res => {
+      localStorage.setItem("ID_Cliente", res.data.cliente);          
+    }).catch(error => {
+        console.log(' Error: ' + error.message);
+    });
+
   } 
+
+//   async componentDidMount() {
+//     try {
+//         const response = await api.get('api/getToken');
+
+//         if(response != null) {
+//             this.setState({goToMain: true});
+//             console.log(response);
+//         }
+//     } catch(error) {
+//         console.log('Nenhuma conta está logada');
+//     };
+// }
 
   render() {
 
-    if (this.state.goToMain) return <Redirect to='/Main' />
+    if (this.state.goToMain) return <Redirect to='/' />
 
     return (
       <div className="login-wrapper">
@@ -68,7 +85,7 @@ export default class Login extends Component {
               />
               
               <Link to="/" id="forgot">Esqueceu a senha?</Link>
-              <button type="submit" onClick={() => this.handleSubmit()}>Entrar</button>
+              <button type="submit" onClick={(e) => this.handleSubmit(e)}>Entrar</button>
             </form>
             <p id="signup">Novo na Venatus? <Link to="/signup">Crie uma conta</Link></p>
           </div>

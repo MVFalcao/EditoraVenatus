@@ -11,7 +11,7 @@ import Events from './pages/allEvents';
 
 // Páginas da conta do usuário
 import Account from './pages/User/myAccount';
-import Adressess from './pages/User/myAdressess';
+import Adressess from './pages/User/myAddressess';
 import Orders from './pages/User/myOrders';
 
 // Páginas do administrador
@@ -25,6 +25,9 @@ import Orders from './pages/User/myOrders';
     import editBookstoreSelection from './pages/Administrator/manageBookstore/editBookstore/selection';
     import editBookstore from './pages/Administrator/manageBookstore/editBookstore';
     import deleteBookstore from './pages/Administrator/manageBookstore/deleteBookstore';
+
+    
+    import Grafo from './components/Grafo';
 
 export default function Routes() {
   return (
@@ -40,7 +43,7 @@ export default function Routes() {
 
             {/* Rotas da conta do usuário */}
             <Route path="/account" component={ Account } />
-            <Route path="/adressess" component={ Adressess } />
+            <Route path="/addressess" component={ Adressess } />
             <Route path="/orders" component={ Orders } />
 
             {/* Rotas do administrador */}
@@ -56,6 +59,7 @@ export default function Routes() {
                 <Route path="/deletebookstore/" component={ deleteBookstore } />
                 
 
+                <Route path="/grafo" component={ Grafo } />
         </Switch>
       </BrowserRouter>
   );

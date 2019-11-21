@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+
+.addAddress-container {
+    width: 800px;
+    margin: 50px 350px;
+    padding: 30px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    border-radius: 15px;
+    background-color: #F7F7F7;
+
+    position: absolute;
+    top: 0px;
+    justify-content: center;
+}
+
+/* Header */
+.addAddress-container .address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addAddress-container .address-header h1 {
+    color: rgb(97, 97, 97);
+    font-weight: 300;
+    font-size: 34px;
+}
+
+.addAddress-container .address-header button {
+    margin-right: 10px;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+.addAddress-container .address-header button:hover {
+    transform: scale(1.1);
+}
+
+.addAddress-container .address-header button:active {
+    transform: translateY(2px);
+}
+
+.addAddress-container .address-header button img {
+    width: 29px;
+    height: 29px;
+}
+
+/* Form */
+
+.addAddress-container form {
+    margin: 50px auto 10px;
+    padding: 0px 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.addAddress-container .name {
+    margin-bottom: 30px;
+}
+
+.addAddress-container ul {
+    margin: auto;
+    padding: 0px;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+    column-gap: 70px;
+}
+
+.addAddress-container ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+.addAddress-container ul li label {
+    margin-bottom: 10px;
+
+    color: rgb(85, 85, 85);
+    font-size: 17px;
+}
+
+.addAddress-container ul li label span {
+    color: rgb(196, 44, 44);
+}
+
+.addAddress-container input {
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+
+    font-size: 18px;
+    color: rgb(53, 53, 53);
+    box-shadow: 2px 3px 5px rgba(54, 54, 54, 0.5);
+}
+
+/* Button */
+
+.addAddress-container #add-addressBtn {
+    width: 190px;
+    height: 35px;
+    margin: 40px 20px 0px;
+
+    color: white;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+
+    border: none;
+    border-radius: 8px;
+    background-color: #309AAC;
+
+    cursor: pointer;
+}
+
+.addAddress-container #add-addressBtn:hover {
+    background-color: rgb(32, 105, 117);
+}

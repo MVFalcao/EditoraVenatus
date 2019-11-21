@@ -5,6 +5,7 @@
     width: 100%;
     min-height: 805px;
     background-color: rgb(56, 56, 56);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .registerType-popup {
@@ -21,13 +22,14 @@
     text-align: center;
     
     background-color: rgb(49, 49, 49);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 .registerType-popup img {
     width: 45%;
 }
 
-.line {
+.signin-container .line {
     width: 400px;
     height: 1px;
     margin: 0px auto 25px;
@@ -37,9 +39,9 @@
     border-radius: 5px;
 }
 
-.line.item-2 {
-    width: 800px;
-    background-color: rgb(204, 204, 204);
+.signin-content .line.item-2 {
+    width: 900px;
+    background-color: rgb(177, 177, 177);
 }
 
 .registerType-popup h1 {
@@ -54,6 +56,7 @@
 
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .registerBtn {
@@ -175,6 +178,16 @@
     font: 500 16px 'Poppins', Arial, sans-serif;
 }
 
+.signin-content img.eye {
+    width: 8%;
+    height: auto;
+
+    position: absolute;
+    right: '0px'; bottom: '0px';
+
+    cursor: pointer;
+}
+
 #socialMedia-container {
     display: none;
 }
@@ -279,5 +292,28 @@
     text-align: center;
     font: 300 17px Bahnschrift, Arial, sans-serif;
     color: rgb(255, 255, 255);
+}
+
+.signin-container .addPopUp {
+    width: 400px;
+    height: 200px;
+    padding-top: 30px;
+
+    color: white;
+    background-color: rgba(68, 68, 68, 0.8);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 180px; left: 550px; right: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.signin-container .addPopUp h1 {
+    margin: 0px;
+    margin-top: 20px;
+
+    font: 500 20px 'Poppins', arial, sans-serif;
 }
 

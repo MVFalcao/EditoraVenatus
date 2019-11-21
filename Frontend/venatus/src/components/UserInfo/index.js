@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
+import api from '../../services/api';
 
 import'./styles.css';
 import userAvatar from '../../assets/myAccount/silhueta.png';
 import editAvatar from '../../assets/myAccount/lapis.svg';
 
 export default class UserInfo extends Component {
+
+  state = {
+    ID_Cliente: localStorage.getItem("ID_Cliente"),
+
+    user: [],
+    person: [],
+  }
+
+  loadPerson = async () => {
+    await api.get(`/api/Pessoas/${this.state.ID_Cliente}`).then(response => {
+        this.setState({ person: response.data});
+        // console.log(response.data);
+    }
+    ).catch(error => {
+        console.log('Pessoa Error: ' + error.message);
+    });
+  }
+
+  componentDidMount() {
+    this.loadPerson();
+  }
+
   render() {
     return (
         <div className="user-content">
@@ -12,7 +35,7 @@ export default class UserInfo extends Component {
             <button>
                 <img id="pencil" src={editAvatar} alt="Editar avatar"/>
             </button>
-            <p>Jander Silva</p>
+        <p>{this.state.person.Nome} {this.state.person.Sobrenome}</p>
         </div>
     );
   }

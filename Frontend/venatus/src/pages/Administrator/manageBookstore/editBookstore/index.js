@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import api from '../../../../services/api';
+import Lottie from 'react-lottie';
 
 import './styles.css';
 import Dashboard from '../../../../components/Dashboard';
+import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
+import ErrorAnimation from '../../../../assets/Animations/ErrorPopUp.json';
 
-export default class addBook extends Component {
+export default class editBookstore extends Component {
 
-    state = {
-      Nome: "",
-      CNPJ: "",
-      TipoConsignacao: "",
-  
-      Bookstore: [],
-    }
+  state = {
+    Nome: "",
+    CNPJ: "",
+    TipoConsignacao: "",
+
+    Bookstore: [],
+    isStopped: true,
+  }
   
   async loadBookstore() {
     const response = await api.get(`/api/Livrarias/${this.props.match.params.id}`).catch(function(error) {
@@ -37,8 +41,6 @@ export default class addBook extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    // const dataPublicaoSplit = this.state.Datapublicacao.split("-");
-    // const dp = dataPublicaoSplit[1] + "/" + dataPublicaoSplit[2] + "/" + dataPublicaoSplit[0];
 
     const response = await api.put(`api/Livrarias/${this.props.match.params.id}`, {
       "ID_Livraria": this.state.Bookstore.ID_Livraria,
@@ -46,27 +48,69 @@ export default class addBook extends Component {
       "CNPJ": this.state.CNPJ,
       "Tipo_Consignacao": this.state.TipoConsignacao,
       "cliente": this.state.Bookstore.cliente,
-    }).catch(function (error) {
-      console.log(error.response);
+    }).catch(error => {
       console.log("Error: " + error.message);
+      
+      this.setState({isStopped: false});
+      this.handlePopUp("error");
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
     });
     if (response != null) {
-      console.log(response);
-      alert('Livraria editada com sucesso');
+      this.setState({isStopped: false});
+      this.handlePopUp("success");
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
     }
   }
 
+  showPopUp = (element="") => {
+    document.querySelector(`.editPopUp.${element}`).style.display = "block";
+  }
+  
+  hidePopUp = (element="") => {
+    document.querySelector(`.editPopUp.${element}`).style.display = "none";
+  }
+
+  handlePopUp = (element = "") => {
+    this.showPopUp(element);
+    setTimeout(() => {
+      this.hidePopUp(element);
+    }, 3000);
+  }
+
   render() {
+
+    const okAnimation = {
+      loop: false,
+      autoplay: false, 
+      animationData: OkAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
+    const errorAnimation = {
+      loop: false,
+      autoplay: false, 
+      animationData: ErrorAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
     return (
-      <div className="addBook-wrapper">
+      <div className="editBookstore-wrapper">
 
           <Dashboard />
 
-          <div className="addBook-container">
+          <div className="editBookstore-container">
 
             <h1>Edição de Livraria</h1>
 
-            <div className="addBook-data">
+            <div className="editBookstore-data">
           
               <form onSubmit={this.handleSubmit}>
                 <ul className="section item-1">
@@ -110,6 +154,25 @@ export default class addBook extends Component {
               </form>
             </div>
           </div>
+
+          <div className="editPopUp success">
+              <Lottie options={okAnimation}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Livraria editada com sucesso</h1>
+          </div>
+
+          <div className="editPopUp error">
+              <Lottie options={errorAnimation}
+                height={100}
+                width={100}
+                isStopped={this.state.isStopped}
+              />
+              <h1>Livraria editada com sucesso</h1>
+          </div>
+
       </div>
     );
   }

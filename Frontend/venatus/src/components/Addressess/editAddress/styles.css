@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+
+.editAddress-container {
+    width: 800px;
+    margin: 50px 350px 20px;
+    padding: 30px 30px 35px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    border-radius: 15px;
+    background-color: #F7F7F7;
+
+    position: absolute;
+    top: 0px;
+    justify-content: center;
+}
+
+/* Header */
+.address-container .editAddress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editAddress-container .editAddress-header h1 {
+    color: rgb(97, 97, 97);
+    font-weight: 300;
+    font-size: 34px;
+}
+
+.editAddress-container .editAddress-header button {
+    margin-right: 10px;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+.editAddress-container .editAddress-header button:hover {
+    transform: scale(1.1);
+}
+
+.editAddress-container .editAddress-header button:active {
+    transform: translateY(2px);
+}
+
+.editAddress-container .editAddress-header button img {
+    width: 29px;
+    height: 29px;
+}
+
+/* Form */
+
+.editAddress-container form {
+    margin: 30px auto 60px;
+    margin-top: 50px;
+    padding: 0px 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.editAddress-container .name {
+    margin-bottom: 30px;
+}
+
+.editAddress-container ul {
+    margin: auto;
+    padding: 0px;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+    column-gap: 70px;
+}
+
+.editAddress-container ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+.editAddress-container ul li label {
+    margin-bottom: 10px;
+
+    color: rgb(85, 85, 85);
+    font-size: 17px;
+}
+
+.editAddress-container ul li label span {
+    color: rgb(196, 44, 44);
+}
+
+.editAddress-container input {
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+
+    font-size: 18px;
+    color: rgb(53, 53, 53);
+    box-shadow: 2px 3px 5px rgba(54, 54, 54, 0.5);
+}
+
+/* Buttons */
+.editAddress-container .addressess-buttons {
+    margin-top: 50px;
+    padding: 0px 50px;
+}
+
+.editAddress-container .addressess-buttons button {
+    width: 190px;
+    height: 35px;
+    margin-right: 10px;
+
+    color: white;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+
+    border: none;
+    border-radius: 8px;
+    background-color: #309AAC;
+
+    cursor: pointer;
+}
+
+.editAddress-container .addressess-buttons button:hover {
+    background-color: rgb(32, 105, 117);
+}
+
+.editAddress-container .addressess-buttons button#cancel {
+    color: rgb(73, 73, 73);
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    text-decoration: underline;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
+
+.editAddress-container .addressess-buttons button#cancel:hover {
+    color: rgb(43, 43, 43);
+}
