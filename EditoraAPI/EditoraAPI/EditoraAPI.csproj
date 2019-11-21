@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201911192128574_banco15.Designer.cs">
       <DependentUpon>201911192128574_banco15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911212029589_banco16.cs" />
+    <Compile Include="Migrations\201911212029589_banco16.Designer.cs">
+      <DependentUpon>201911212029589_banco16.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Carrinho.cs" />
@@ -427,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911192128574_banco15.resx">
       <DependentUpon>201911192128574_banco15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911212029589_banco16.resx">
+      <DependentUpon>201911212029589_banco16.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
