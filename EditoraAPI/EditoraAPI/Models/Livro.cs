@@ -25,9 +25,9 @@ namespace EditoraAPI.Models
         [Required] [StringLength(50)] public string SubTitulo { get; set; }
         [Required] public string Sinopse { get; set; }
 
-        [Required][ForeignKey("id_autore")]public int Id_autor { get; set; }
+        [Required][ForeignKey("id_autores")]public int Id_autor { get; set; }
         [Required][ForeignKey("cupoms")]public int Id_cupom { get; set; }
-        [JsonIgnore] public virtual List<Autor> id_autore { get; set; }
+        [JsonIgnore] public virtual List<Autor> id_autores { get; set; }
         [JsonIgnore] public virtual List<Cupom> cupoms { get; set; }
         [Required] [StringLength(10)] public string Classificacao_Indicativa { get; set; } //idade(int) ou livre (string)
 
