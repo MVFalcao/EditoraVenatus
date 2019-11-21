@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
 
-.address-container {
+.addAddress-container {
     width: 800px;
     margin: 50px 350px;
-    padding: 30px 30px 35px;
+    padding: 30px;
 
     font-family: 'Poppins', Arial, sans-serif;
     border-radius: 15px;
@@ -15,19 +15,19 @@
 }
 
 /* Header */
-.address-container .address-header {
+.addAddress-container .address-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.address-container .address-header h1 {
+.addAddress-container .address-header h1 {
     color: rgb(97, 97, 97);
     font-weight: 300;
     font-size: 34px;
 }
 
-.address-container .address-header button {
+.addAddress-container .address-header button {
     margin-right: 10px;
 
     background: none;
@@ -36,35 +36,34 @@
     cursor: pointer;
 }
 
-.address-container .address-header button:hover {
+.addAddress-container .address-header button:hover {
     transform: scale(1.1);
 }
 
-.address-container .address-header button:active {
+.addAddress-container .address-header button:active {
     transform: translateY(2px);
 }
 
-.address-container .address-header button img {
+.addAddress-container .address-header button img {
     width: 29px;
     height: 29px;
 }
 
 /* Form */
 
-.address-container form {
-    margin: 30px auto 60px;
-    margin-top: 50px;
+.addAddress-container form {
+    margin: 50px auto 10px;
     padding: 0px 15px;
 
     display: flex;
     flex-direction: column;
 }
 
-.address-container .name {
+.addAddress-container .name {
     margin-bottom: 30px;
 }
 
-.address-container ul {
+.addAddress-container ul {
     margin: auto;
     padding: 0px;
 
@@ -76,23 +75,23 @@
     column-gap: 70px;
 }
 
-.address-container ul li {
+.addAddress-container ul li {
     display: flex;
     flex-direction: column;
 }
 
-.address-container ul li label {
+.addAddress-container ul li label {
     margin-bottom: 10px;
 
     color: rgb(85, 85, 85);
     font-size: 17px;
 }
 
-.address-container ul li label span {
+.addAddress-container ul li label span {
     color: rgb(196, 44, 44);
 }
 
-.address-container input {
+.addAddress-container input {
     width: 300px;
     height: 40px;
     padding-left: 10px;
@@ -102,16 +101,12 @@
     box-shadow: 2px 3px 5px rgba(54, 54, 54, 0.5);
 }
 
-/* Buttons */
-.address-container .addressess-buttons {
-    margin-top: 50px;
-    padding: 0px 50px;
-}
+/* Button */
 
-.address-container .addressess-buttons button {
+.addAddress-container #add-addressBtn {
     width: 190px;
     height: 35px;
-    margin-right: 40px;
+    margin: 40px 20px 0px;
 
     color: white;
     font-family: 'Poppins', Arial, sans-serif;
@@ -125,12 +120,6 @@
     cursor: pointer;
 }
 
-.address-container .addressess-buttons button:hover {
+.addAddress-container #add-addressBtn:hover {
     background-color: rgb(32, 105, 117);
-}
-
-.address-container .addressess-buttons a {
-    color: rgb(53, 53, 53);
-    font-weight: 300;
-    font-size: 18px;
 }

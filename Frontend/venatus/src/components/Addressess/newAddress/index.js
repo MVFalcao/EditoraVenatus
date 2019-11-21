@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import api from '../../../services/api';
 
 import './styles.css';
@@ -18,13 +17,14 @@ export default class newAddress extends Component {
         Complemento: '',
 
         adress: [],
+        ID_Cliente: localStorage.getItem("ID_Cliente"),
     }
 
     handleSubmit = async event => {
         event.preventDefault();
 
         await api.post('api/Enderecos', {
-            "Nome": this.state.Nome,
+            "Nome_Proprietario": this.state.Nome,
             "CEP": this.state.CEP,
             "Estado": this.state.Estado,
             "Cidade": this.state.Cidade,
@@ -32,8 +32,10 @@ export default class newAddress extends Component {
             "Bairro": this.state.Bairro,
             "Numero": this.state.Numero,
             "Complemento": this.state.Complemento,
+            "cliente": this.state.ID_Cliente,
         }).then(res => {
             console.log(res.data);
+            window.location.reload();
         }).catch(error => {
             console.log(error.response);
             console.log("Error: " + error.message);
@@ -42,7 +44,7 @@ export default class newAddress extends Component {
 
     render() {
         return (
-            <div className="address-container">
+            <div className="addAddress-container">
 
                 <div className="address-header">
 
@@ -56,7 +58,7 @@ export default class newAddress extends Component {
 
                 <div className="line" />
 
-                <form>
+                <form onSubmit={this.handleSubmit}>
 
                     <ul>
 
@@ -153,15 +155,12 @@ export default class newAddress extends Component {
                         </li>
                         
                     </ul>
+            
+                    <div className="line" />
+                    
+                    <button id="add-addressBtn" type="submit">Adicionar Endereço</button>
 
                 </form>
-            
-                <div className="line" />
-                
-                <div className="addressess-buttons">
-                    <button>Adicionar Endereço</button>
-                    <Link to="/addressess">Cancelar</Link>
-                </div>
 
             </div>
     );

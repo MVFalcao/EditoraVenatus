@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
 
-.address-container {
+.editAddress-container {
     width: 800px;
-    margin: 50px 350px;
+    margin: 50px 350px 20px;
     padding: 30px 30px 35px;
 
     font-family: 'Poppins', Arial, sans-serif;
@@ -15,19 +15,19 @@
 }
 
 /* Header */
-.address-container .address-header {
+.address-container .editAddress-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.address-container .address-header h1 {
+.editAddress-container .editAddress-header h1 {
     color: rgb(97, 97, 97);
     font-weight: 300;
     font-size: 34px;
 }
 
-.address-container .address-header button {
+.editAddress-container .editAddress-header button {
     margin-right: 10px;
 
     background: none;
@@ -36,22 +36,22 @@
     cursor: pointer;
 }
 
-.address-container .address-header button:hover {
+.editAddress-container .editAddress-header button:hover {
     transform: scale(1.1);
 }
 
-.address-container .address-header button:active {
+.editAddress-container .editAddress-header button:active {
     transform: translateY(2px);
 }
 
-.address-container .address-header button img {
+.editAddress-container .editAddress-header button img {
     width: 29px;
     height: 29px;
 }
 
 /* Form */
 
-.address-container form {
+.editAddress-container form {
     margin: 30px auto 60px;
     margin-top: 50px;
     padding: 0px 15px;
@@ -60,11 +60,11 @@
     flex-direction: column;
 }
 
-.address-container .name {
+.editAddress-container .name {
     margin-bottom: 30px;
 }
 
-.address-container ul {
+.editAddress-container ul {
     margin: auto;
     padding: 0px;
 
@@ -76,23 +76,23 @@
     column-gap: 70px;
 }
 
-.address-container ul li {
+.editAddress-container ul li {
     display: flex;
     flex-direction: column;
 }
 
-.address-container ul li label {
+.editAddress-container ul li label {
     margin-bottom: 10px;
 
     color: rgb(85, 85, 85);
     font-size: 17px;
 }
 
-.address-container ul li label span {
+.editAddress-container ul li label span {
     color: rgb(196, 44, 44);
 }
 
-.address-container input {
+.editAddress-container input {
     width: 300px;
     height: 40px;
     padding-left: 10px;
@@ -103,12 +103,12 @@
 }
 
 /* Buttons */
-.address-container .addressess-buttons {
+.editAddress-container .addressess-buttons {
     margin-top: 50px;
     padding: 0px 50px;
 }
 
-.address-container .addressess-buttons button {
+.editAddress-container .addressess-buttons button {
     width: 190px;
     height: 35px;
     margin-right: 10px;
@@ -125,11 +125,11 @@
     cursor: pointer;
 }
 
-.address-container .addressess-buttons button:hover {
+.editAddress-container .addressess-buttons button:hover {
     background-color: rgb(32, 105, 117);
 }
 
-.address-container .addressess-buttons button#cancel {
+.editAddress-container .addressess-buttons button#cancel {
     color: rgb(73, 73, 73);
     font-family: 'Poppins', Arial, sans-serif;
     font-weight: 300;
@@ -142,6 +142,6 @@
     cursor: pointer;
 }
 
-.address-container .addressess-buttons button#cancel:hover {
+.editAddress-container .addressess-buttons button#cancel:hover {
     color: rgb(43, 43, 43);
 }

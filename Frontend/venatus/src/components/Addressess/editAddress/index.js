@@ -16,14 +16,38 @@ export default class newAddress extends Component {
         Numero: '',
         Complemento: '',
 
-        adress: [],
+        address: [],
+        ID_Cliente: localStorage.getItem("ID_Cliente"),
+        ID_Endereco: localStorage.getItem("ID_Endereco"),
+    }
+
+    // loadAddress = async () => {
+    //      await api.get(`api/Enderecos/${this.state.ID_Endereco}`).then(res => {
+    //          this.setState({address: res.data});
+    //          this.loadAddressData();
+    //         console.log(res.data);
+    //     }).catch(error => {
+    //     console.log('Adressess Error: ' + error.message);
+    //     });
+    // }
+
+    loadAddressData = () => {
+        this.setState({Nome: this.state.address.Nome_Proprietario});
+        this.setState({CEP: this.state.address.CEP});
+        this.setState({Estado: this.state.address.Estado});
+        this.setState({Cidade: this.state.address.Cidade});
+        this.setState({Logradouro: this.state.address.Logradouro});
+        this.setState({Bairro: this.state.address.Bairro});
+        this.setState({Numero: this.state.address.Numero});
+        this.setState({Complemento: this.state.address.Complemento});
     }
 
     handleSubmit = async event => {
         event.preventDefault();
 
-        await api.put('api/Enderecos', {
-            "Nome": this.state.Nome,
+        await api.put(`api/Enderecos/${this.state.ID_Endereco}`, {
+            "ID_Endereco": this.state.ID_Endereco,
+            "Nome_Proprietario": this.state.Nome,
             "CEP": this.state.CEP,
             "Estado": this.state.Estado,
             "Cidade": this.state.Cidade,
@@ -31,8 +55,10 @@ export default class newAddress extends Component {
             "Bairro": this.state.Bairro,
             "Numero": this.state.Numero,
             "Complemento": this.state.Complemento,
+            "cliente": this.state.ID_Cliente,
         }).then(res => {
             console.log(res.data);
+            window.location.reload();
         }).catch(error => {
             console.log(error.response);
             console.log("Error: " + error.message);
@@ -41,11 +67,11 @@ export default class newAddress extends Component {
 
     render() {
         return (
-            <div className="address-container">
+            <div className="addAddress-container">
 
                 <div className="address-header">
 
-                    <h1>Editar o endereço</h1>
+                    <h1>Editar endereço</h1>
 
                     <button onClick={() => window.location.reload()}>
                         <img src={Close} alt=""/>
@@ -55,7 +81,7 @@ export default class newAddress extends Component {
 
                 <div className="line" />
 
-                <form>
+                <form onSubmit={this.handleSubmit}>
 
                     <ul>
 
@@ -67,7 +93,6 @@ export default class newAddress extends Component {
                                 required
                                 value={this.state.Nome} 
                                 onChange={e => this.setState({Nome: e.target.value})}
-                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -153,15 +178,12 @@ export default class newAddress extends Component {
                         </li>
                         
                     </ul>
+            
+                    <div className="line" />
+                    
+                    <button id="edit-addressBtn" type="submit">Adicionar Endereço</button>
 
                 </form>
-            
-                <div className="line" />
-                
-                <div className="addressess-buttons">
-                    <button>Atualizar</button>
-                    <button id="cancel" onClick={() => window.location.reload()}>Cancelar</button>
-                </div>
 
             </div>
     );

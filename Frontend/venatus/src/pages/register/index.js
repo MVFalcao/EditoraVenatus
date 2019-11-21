@@ -209,7 +209,6 @@ export default class signup extends Component {
 		} else {
 			return;
 		}
-		this.handleDelete();
 		if (a.every(elem => elem === true)) {
 			this.setState({isStopped: false});
             this.handleAnimationPopUp("success");
@@ -316,11 +315,11 @@ export default class signup extends Component {
 
 		//#region eyeStyles
 		const eyeImg = {
-			top: '730px', left: '545px',
+			top: '43px', left: '260px',
 		}
 		
 		const eyeImg2 = {
-			top: '730px', left: '877px',
+			top: '43px', left: '263px',
 		}
 		//#endregion
 
@@ -408,6 +407,7 @@ export default class signup extends Component {
 								<input type="text" 
 								id="cpf"
 								required
+								maxLength="14"
 								value={this.state.CPF}
 								onChange={e => this.setState({CPF: e.target.value})} 
 								/>
@@ -430,6 +430,8 @@ export default class signup extends Component {
 								type="text"
 								id="telephone" 
 								required
+								maxLength="15"
+								placeholder="(DDD) 9xxxx-xxxx"
 								value={this.state.Telephone} 
 								onChange={e => this.setState({Telephone: e.target.value})} 
 								/>
@@ -485,7 +487,7 @@ export default class signup extends Component {
 
 							<li id="organizer-li" style={{display: "none"}} />
 
-							<li>
+							<li style={{position: 'relative'}}>
 								<label id="password-label" htmlFor="password">Senha <span>*</span></label>
 								<input 
 									type="password" 
@@ -500,7 +502,7 @@ export default class signup extends Component {
 
 							<div className="password-warning" style={passwordDiv}>As senhas estão diferentes</div>
 
-							<li>
+							<li style={{position: 'relative'}}>
 								<label htmlFor="confirm-password">Confirme a senha <span>*</span></label>
 								<input 
 									type="password" 

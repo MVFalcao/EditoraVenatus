@@ -77,8 +77,11 @@ export default class myAdressess extends Component {
         }
     }
     
-    handleEditPopUp = () => {
+    handleEditPopUp = (ID_Endereco = 0) => {
+        console.log(ID_Endereco);
         const popUpElement = document.querySelector('.address-popup.i2');
+        localStorage.setItem("ID_Endereco", ID_Endereco);
+        
         
         const showPopUp = () => {
             popUpElement.style.display = "block";
@@ -146,8 +149,8 @@ export default class myAdressess extends Component {
 
                                         <ul>
 
-                                            <li>Jander Silva</li>
-                                            <li>Av. Bernardinho de Campos, {address.Bairro}, 98</li>
+                                            <li>{address.Nome_Proprietario}</li>
+                                            <li>{address.Logradouro}, {address.Bairro}, {address.Numero}</li>
                                             <li>{address.CEP}, {address.Complemento}</li>
                                             <li>{address.Cidade}</li>
 
@@ -157,7 +160,7 @@ export default class myAdressess extends Component {
 
                                     <div className="adressess-buttons">
 
-                                        <button onClick={() => this.handleEditPopUp()}>Editar</button>
+                                        <button onClick={() => this.handleEditPopUp(address.ID_Endereco)}>Editar</button>
                                         <button className="deleteBtn" onClick={() => this.handleDeleteAddress(address.ID_Endereco)}>Apagar</button>
                                         {/* <button>Tornar este endereço padrão</button> */}
                                     
