@@ -1,15 +1,59 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import CytoscapeComponent from 'react-cytoscapejs';
+import api from '../../services/api';
 
-export default class MyApp extends Component {
+export default class Demo extends Component {
+  
+  state = {
+    w: 0,
+    h: 0,
+    elements: [],
+    allBooks: [],
+  }
 
-  render(){
-    const elements = [
-       { data: { id: 'one', label: 'Node 1' }, position: { x: 100, y: 100 } },
-       { data: { id: 'two', label: 'Node 2' }, position: { x: 200, y: 200 } },
-       { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
-    ];
+  loadBooks = async () => {
+    await api.get('api/Livros').then(res => {
+      console.log(res.data);
+	  this.setState({allBooks: res.data});
+	  this.loadNodes();
+    }).catch(error => {
+      console.log('Boooks -> ' + error);
+    })
+  }
 
-    return <CytoscapeComponent elements={elements} style={ { width: '600px', height: '600px' } } />;
+  loadNodes = () => {
+    for (const book of this.state.allBooks) {
+		let a = { data: { id: book.ID_Livro } };
+		this.setState({elements: this.state.elements.concat(a)});
+	}
+	console.log(this.state.elements);
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      w: window.innerWidth,
+      h:window.innerHeight
+    });
+	this.setUpListeners();
+	this.loadBooks();
+  }
+  
+  setUpListeners = () => {
+    this.cy.on('click', 'node', (event) => {
+      console.log(event.target)
+    });
+  }
+  
+  render() {
+
+    return(
+      <div>
+        <CytoscapeComponent
+            elements={this.state.elements}
+            style={{ width: this.state.w, height: this.state.h }}
+            cy={(cy) => {this.cy = cy}}
+        />
+      </div>
+    );
   }
 }

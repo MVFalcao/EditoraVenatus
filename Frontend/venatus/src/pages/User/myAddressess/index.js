@@ -166,7 +166,7 @@ export default class myAdressess extends Component {
                                     
                                     </div>
 
-                                    <div className="line light" style={{backgroundColor: 'background-color: rgb(150, 150, 150)'}}/>
+                                    <div className="line light" style={{backgroundColor: 'rgb(150, 150, 150)'}}/>
 
                                 </li>
                             
