@@ -14,6 +14,6 @@ namespace EditoraAPI.Models
         [Required] [StringLength(15)] public string CPF { get; set; }
         [Required] [StringLength(100)] public string Nome { get; set; }
         [JsonIgnore] public virtual List<Livro> livros { get; set; }
-        [Required] [ForeignKey("livros")] public int Id_livros { get; set; }
+        [ForeignKey("livros")] public int Id_livros { get; set; }
     }
 }

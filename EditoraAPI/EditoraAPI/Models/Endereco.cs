@@ -15,6 +15,7 @@ namespace EditoraAPI.Models
         [Required] [StringLength(10)] public string CEP { get; set; }
         [Required] public string Logradouro { get; set; }
         [Required] [StringLength(10)] public string Numero { get; set; }
+        [Required] [StringLength(30)] public string Estado { get; set; }
         [Required] [StringLength(30)] public string Cidade { get; set; }
         [Required] [StringLength(30)] public string Bairro { get; set; }
         [Required] [StringLength(50)] public string Complemento { get; set; }
