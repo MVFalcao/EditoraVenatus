@@ -8,86 +8,90 @@ import Camera from '../../../../assets/administrator/camera.svg';
 export default class addBook extends Component {
 
     state = {
-      Titulo: "",
-      SubTitulo: "",
-      Numero_Paginas: 1,
-      Categoria: "",
-      Descricao: "",
-      Idioma: "",
-      Classificacao_Indicativa: "",
-      ISBN: "",
-      Ilustrador: "",
-      Imagem_URL: "",
-      Datapublicacao: "",
-      Preco: 1.00,
-      Formato: "",
-      Sinopse: "",
-      ID_Autor: 0,
-  
-      allAuthors: [],
+		Titulo: "",
+		SubTitulo: "",
+		Numero_Paginas: 1,
+		Categoria: "",
+		Descricao: "",
+		Idioma: "",
+		Classificacao_Indicativa: "L",
+		ISBN: "",
+		Ilustrador: "",
+		Datapublicacao: "",
+		Preco: 1.00,
+		Formato: "",
+		Sinopse: "",
+		ImagemURL: "",
+		ID_Autor: 1,
+	
+		allAuthors: [],
 
-      image: "",
+		Image: null,
+		ImagemPreview: "",
+
     }
 
-  handlePreview = async event => {
-    await this.setState({Imagem_URL: URL.createObjectURL(event.target.files[0])});
-  };
+	handleUploadImage = event => {
+		this.setState({ImagemPreview: URL.createObjectURL(event.target.files[0])});
+		this.setState({Image: event.target.files[0]});
+	}
 
-  async loadAuthors() {
-    const response = await api.get(`api/Autors`).catch(function(error) {
-        console.log('Algo deu errado: ' + error.message);   
-    });
-    if (response != null) {
-        console.log(response);
-        this.setState({allAuthors: response.data})
-    }
-  }
+	async loadAuthors() {
+		await api.get(`api/Autors`).then(res => {
+			console.log(res);
+			this.setState({allAuthors: res.data})
+		}).catch(error => {
+			console.log('Authors => ' + error);   
+		});
+	}
 
   handleSubmit = async event => {
     event.preventDefault();
 
-    // await this.handleFileUpload();
+    await this.handleFileUpload();
 
-    // await api.post('api/Livros', {
-    //   "Titulo": this.state.Titulo,
-    //   "SubTitulo": this.state.SubTitulo,
-    //   "Numero_Paginas": this.state.Numero_Paginas,
-    //   "Categoria": this.state.Categoria,
-    //   "Descricao": " ",
-    //   "Idioma": this.state.Idioma,
-    //   "Classificacao_Indicativa": this.state.Classificacao_Indicativa,
-    //   "ISBN": this.state.ISBN,
-    //   "Ilustrador": this.state.Ilustrador,
-    //   "Imagem_URL": this.state.image.URL,
-    //   "Datapublicacao": this.state.Datapublicacao,
-    //   "Preco": this.state.Preco,
-    //   "Formato": this.state.Formato,
-    //   "Sinopse": this.state.Sinopse,
-    //   "ID_Autor": this.state.ID_Autor,
-    // }).then(res => {
-    //   console.log(res.data);
-    // }).catch(function (error) {
-    //   console.log("Error: " + error.message);
-    // });
+    await api.post('api/Livros', {
+      "Titulo": this.state.Titulo,
+      "SubTitulo": this.state.SubTitulo,
+      "Numero_Paginas": this.state.Numero_Paginas,
+      "Categoria": this.state.Categoria,
+      "Descricao": "a",
+      "Idioma": this.state.Idioma,
+      "Classificacao_Indicativa": this.state.Classificacao_Indicativa,
+      "ISBN": this.state.ISBN,
+      "Ilustrador": this.state.Ilustrador,
+      "Imagem_URL": this.state.ImagemURL,
+      "Datapublicacao": this.state.Datapublicacao,
+      "Preco": this.state.Preco,
+      "Formato": this.state.Formato,
+      "Sinopse": this.state.Sinopse,
+	  "Id_autor": this.state.ID_Autor,
+	  "Id_cupom": 0,
+    }).then(res => {
+      console.log(res.data);
+    }).catch(error => {
+      console.log("Book => " + error);
+    });
   }
 
-  handleFileUpload = async e => {
-    let config = {
-        headers: {
-			'Content-Type': 'multipart/form-data',
-        },
-    };
-    let formData = new FormData();
-    formData.append('image', e.target.files[0]);
-    const { data } = await api.post(`/Upload`,
-        formData,
-        config
-    ).then(res => {
-      console.log(res);
-    }).catch(error => {
-      console.log('Image error: ' + error.message);
-    });
-  };
+	handleFileUpload = async () => {
+		let config = {
+			headers: {
+				'content-type': 'multipart/form-data',
+			},
+		};
+		let formData = new FormData();
+		formData.append('image', this.state.Image);
+		await api.post(`/Upload`,
+			formData,
+			config
+		).then(res => {
+			console.log(res);
+			this.setState({ImagemURL: res.data});
+		}).catch(error => {
+			console.log('Image => ' + error);
+		});
+ 	};
 
   componentDidMount() {
     this.loadAuthors();
@@ -128,10 +132,12 @@ export default class addBook extends Component {
 
                     <label>Autor <span>*</span></label>
                     <select id="author-select" value={this.state.ID_Autor} onChange={e => this.setState({ID_Autor: e.target.value})}>
-                      {this.state.allAuthors.map(author => (
-                        <option key={author.ID_Autor} value={author.ID_Autor}>{author.Nome}</option>
-                        ))}
+                      	{this.state.allAuthors.map(author => (
+                        	<option key={author.ID_Autor} value={author.ID_Autor}>{author.Nome}</option>
+						))}
                     </select>
+					{console.log(this.state.ID_Autor)}
+					
 
                     <label htmlFor="dataPublicacao">Data de Publicação <span>*</span></label>
                     <input 
@@ -246,15 +252,14 @@ export default class addBook extends Component {
 
                   <li id="imagem-container">
                     <label id="label-imagem" htmlFor="imagemURL">Imagem do Livro <span>*</span></label>
-                    <label id="imagem-livro" htmlFor="imagemURL" className={this.state.Imagem_URL ? 'has-image' : ''} style={{ backgroundImage: `url(${this.state.Imagem_URL})`}}>
+                    <label id="imagem-livro" htmlFor="imagemURL" className={this.state.ImagemPreview ? 'has-image' : ''} style={{ backgroundImage: `url(${this.state.ImagemPreview})`}}>
                       <input 
                         type="file" 
                         id="imagemURL"
                         required
                         accept=".png, .jpg, .jpeg"
-                        onChange={this.handlePreview}
+                        onChange={this.handleUploadImage}
                       />
-                      {/* {console.log(this.state.Imagem_URL)} */}
                       <img src={Camera} alt="IconeDeCamera"/>
                     </label>
                   </li>

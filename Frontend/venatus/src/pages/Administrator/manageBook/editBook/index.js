@@ -21,7 +21,7 @@ export default class editBook extends Component {
     Classificacao_Indicativa: "",
     ISBN: "",
     Ilustrador: "",
-    Imagem_URL: null,
+    ImagemURL: null,
     Datapublicacao: "",
     Preco: 1.00,
     Formato: "",
@@ -69,6 +69,7 @@ export default class editBook extends Component {
     this.setState({Numero_Paginas: this.state.Book.Numero_Paginas});
     this.setState({Categoria: this.state.Book.Categoria});
     this.setState({Idioma: this.state.Book.Idioma});
+    this.setState({ImagemURL: this.state.Book.Imagem_URL});
     this.setState({Classificacao_Indicativa: this.state.Book.Classificacao_Indicativa});
     this.setState({ISBN: this.state.Book.ISBN});
     this.setState({Ilustrador: this.state.Book.Ilustrador});
@@ -76,7 +77,7 @@ export default class editBook extends Component {
     this.setState({Formato: this.state.Book.Formato});
     this.setState({Preco: this.state.Book.Preco});
     this.setState({Sinopse: this.state.Book.Sinopse});
-    this.setState({ID_Autor: this.state.Book.ID_Autor});
+    this.setState({ID_Autor: this.state.Book.Id_autor});
   }
 
   componentDidMount() {
@@ -319,7 +320,7 @@ export default class editBook extends Component {
 
                   <li id="imagem-container">
                     <label id="label-imagem" htmlFor="imagemURL">Imagem do Livro <span>*</span></label>
-                    <label id="imagem-livro" htmlFor="imagemURL" className={this.state.Imagem_URL ? 'has-image' : ''} style={{ backgroundImage: `url(${this.state.Imagem_URL})`}}>
+                    <label id="imagem-livro" htmlFor="imagemURL" className={this.state.ImagemURL ? 'has-image' : ''} style={{ backgroundImage: `url(${this.state.ImagemURL})`}}>
                       <input 
                         type="file" 
                         id="imagemURL"

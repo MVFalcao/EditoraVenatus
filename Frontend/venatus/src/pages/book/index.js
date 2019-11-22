@@ -185,7 +185,7 @@ export default class book extends Component {
                                         <p className="plus item-1">+</p>
                                     </button>
                                     <div className="dropdown-content item-1">
-                                        <p>Categoria: Aventura</p>
+                                        <p>Categoria: {allBooks.Categoria} </p>
                                         <div className="ageRating-container">
                                             <p id="info01">Indicação: Não foi possível carregar os dados</p>
                                             <img src={ErrorImg} alt="Indicação de idade" id="age-rating"/> 
