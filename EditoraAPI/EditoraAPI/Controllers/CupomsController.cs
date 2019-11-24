@@ -21,7 +21,24 @@ namespace EditoraAPI.Controllers
         {
             return db.cupoms;
         }
-
+        [ResponseType(typeof(Cupom))]
+        [Route("api/ValidateCupom/")]
+        public IHttpActionResult ValidateCupom(string senha)
+        {
+            try
+            {
+                var cup = from c in db.cupoms where c.Nome == senha select c.ID_Cupom;
+                if (cup == null)
+                {
+                    return NotFound();
+                }
+                return Ok(cup);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
         // GET: api/Cupoms/5
         [ResponseType(typeof(Cupom))]
         public IHttpActionResult GetCupom(int id)
