@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Mvc;
+using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 using RouteAttribute = System.Web.Http.RouteAttribute;
 
@@ -48,11 +49,40 @@ namespace EditoraAPI.Controllers
                 var URL = Url.Content(Path.Combine("~/Images", files[0]));
                 return Request.CreateResponse(HttpStatusCode.OK, URL);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
             }
         }
+        
+        [HttpDelete]
+        [Route("DeletUpload")]
+        [ResponseType(typeof(List<string>))]
+        public HttpResponseMessage Delete(string image)
+        {
+            //var imagem = Path.GetFullPath(image);
+            //var imagem = Url.Content(Path.Combine("~/Images", image));
+            var imagem = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), image);
+            try
+            {
+
+                if (File.Exists(imagem))
+                {
+                    File.Delete(imagem);
+                    return Request.CreateResponse(HttpStatusCode.Accepted);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
+        }
+        
     }
 
     public class CustomMultipartFormDataStreamProvider : MultipartFormDataStreamProvider
