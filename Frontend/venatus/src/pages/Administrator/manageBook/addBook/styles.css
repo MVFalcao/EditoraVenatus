@@ -1,11 +1,3 @@
-/* body {
-    overflow-x: hidden;
-} */
-
-.administrator-panel {
-    height: 1000px;
-}
-
 .addBook-wrapper {
     display: flex;
     background-color: rgb(32, 32, 32);
@@ -172,7 +164,7 @@ input[type=number] {
 .addBook-data button {
     width: 200px;
     height: 40px;
-    margin: 40px auto 10px;
+    margin: 40px auto 30px;
 
     font: 300 16px 'Poppins', arial, sans-serif;
     color: white;

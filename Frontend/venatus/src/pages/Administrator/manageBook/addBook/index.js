@@ -30,6 +30,14 @@ export default class addBook extends Component {
       ImagemPreview: "",
     }
 
+  
+
+	handleDashboardSize = () => {
+		let elementSize = document.querySelector('.addBook-wrapper').offsetHeight;
+		console.log(elementSize);
+		document.querySelector('.administrator-panel').style.height = `${elementSize}px`;
+	}  
+
 	handleUploadImage = event => {
 		this.setState({ImagemPreview: URL.createObjectURL(event.target.files[0])});
 		this.setState({Image: event.target.files[0]});
@@ -37,7 +45,7 @@ export default class addBook extends Component {
 
 	async loadAuthors() {
 		await api.get(`api/Autors`).then(res => {
-			console.log(res);
+			console.log(res.data);
 			this.setState({allAuthors: res.data})
 		}).catch(error => {
 			console.log('Authors => ' + error);   
@@ -85,7 +93,7 @@ export default class addBook extends Component {
 			formData,
 			config
 		).then(res => {
-			console.log(res);
+			console.log(res.data);
 			this.setState({ImagemURL: res.data});
 		}).catch(error => {
 			console.log('Image => ' + error);
@@ -94,6 +102,7 @@ export default class addBook extends Component {
 
   componentDidMount() {
     this.loadAuthors();
+    this.handleDashboardSize();
   }
 
   render() {
@@ -133,10 +142,8 @@ export default class addBook extends Component {
                     <select id="author-select" value={this.state.ID_Autor} onChange={e => this.setState({ID_Autor: e.target.value})}>
                       	{this.state.allAuthors.map(author => (
                         	<option key={author.ID_Autor} value={author.ID_Autor}>{author.Nome}</option>
-						))}
+					            	))}
                     </select>
-					{console.log(this.state.ID_Autor)}
-					
 
                     <label htmlFor="dataPublicacao">Data de Publicação <span>*</span></label>
                     <input 
