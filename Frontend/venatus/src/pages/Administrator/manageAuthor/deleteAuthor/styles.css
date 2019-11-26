@@ -1,35 +1,36 @@
 .selectAuthor-wrapper {
     display: flex;
-    color: white;
-    background-color: #202020;
+    background-color: rgb(32, 32, 32);
 }
 
 .selectAuthor-container {
     width: 100%;
-    margin: 30px auto auto 60px;
 
     font-family: 'Poppins', Arial, sans-serif;
     text-align: center;
 }
 
 .selectAuthor-container h1 {
+    margin-right: 90px;
+    color: white;
     font-size: 24px;
 }
 
 .selectAuthor-container ul {
-    margin-top: 50px;
+    margin: 50px auto auto 60px;
 
     list-style: none;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 50px;
+    gap: 20px;
 }
 
 .selectAuthor-container ul li {
     width: 190px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     
+    border: none;
     border-radius: 10px;
     background-color: rgb(62, 86, 136);
 }
@@ -45,13 +46,17 @@
     box-shadow: none
 }
 
-.selectAuthor-container ul li a {
+.selectAuthor-container ul li button {
     text-decoration: none;
+    border: none;
+    background: none;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .selectAuthor-container ul li img {
@@ -66,6 +71,28 @@
     margin-top: 10px;
 
     color: rgb(255, 255, 255);
-    font-size: 16px;
-    font-weight: 300;
+    font: 300 16px 'Poppins', arial, sans-serif;
+}
+
+
+.selectAuthor-wrapper .deletePopUp {
+    width: 400px;
+    height: 200px;
+    margin: 140px auto 0px 620px;
+    padding-top: 30px;
+
+    background-color: rgba(68, 68, 68, 0.8);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.selectAuthor-wrapper .deletePopUp h1 {
+    margin: 0px;
+    margin-top: 10px;
+    font-size: 18px;
 }

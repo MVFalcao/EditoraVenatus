@@ -10,37 +10,36 @@ import BookstoreImg from '../../../../../assets/administrator/bookstoreImg.svg';
 export default class editBook extends Component {
 
   state = {
-    allBookstores: [],
+    allAuthors: [],
   }
 
-  async loadBookstores() {
-    const response = await api.get('/api/Livrarias').catch(function (error) {
-      console.log(error);
+  async loadAuthors() {
+    api.get('/api/Autors').then(res => {
+      console.log(res.data);
+      this.setState({allAuthors: res.data});
+    }).catch(error => {
+      console.log('Authors -> ' + error);
     });
-    if (response != null) {
-      console.log(response);
-      this.setState({allBookstores: response.data});
-    }
   }
 
   componentDidMount() {
-    this.loadBookstores();
+    this.loadAuthors();
   }
 
   render() {
     return (
-        <div className="selectBookstore-wrapper">
+        <div className="selectAuthor-wrapper">
           <Dashboard />
-          <div className="selectBookstore-container">
+          <div className="selectAuthor-container">
  
-            <h1>Selecione a Livraria a ser editada</h1>
+            <h1>Selecione o Autor a ser editado</h1>
 
             <ul>
-              {this.state.allBookstores.map(bookstore => (
-                <li key={bookstore.ID_Livraria}>
-                  <Link to={`/editbookstore/${bookstore.ID_Livraria}`}>
-                    <img src={BookstoreImg} alt={bookstore.Titulo}/>
-                    <h2>{bookstore.Nome}</h2>
+              {this.state.allAuthors.map(author => (
+                <li key={author.ID_Autor}>
+                  <Link to={`/editauthor/${author.ID_Autor}`}>
+                    <img src={BookstoreImg} alt={author.Nome}/>
+                    <h2>{author.Nome}</h2>
                   </Link>
                 </li>
               ))}

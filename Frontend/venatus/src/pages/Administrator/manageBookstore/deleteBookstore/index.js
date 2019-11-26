@@ -8,7 +8,7 @@ import './styles.css';
 import BookstoreImg from '../../../../assets/administrator/bookstoreImg.svg';
 import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
-export default class editBook extends Component {
+export default class deleteBookstore extends Component {
 
   state = {
     allBookstores: [],
