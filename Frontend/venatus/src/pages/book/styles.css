@@ -65,63 +65,31 @@
     margin-bottom: 20px;
 }
 
-.main-content form {
-    display: flex;
-    flex-direction: column;
+.main-content img {
+    margin-top: 20px;
+
+    transition: all .1s;
 }
 
-.main-content form label {
-    font-weight: 400;
-    font-size: 15px;
-    font-style: italic;
-    color: #5a5a5a;
-    flex-direction: column;
-    margin-bottom: 10px;
+.main-content img:hover {
+    transform: scale(1.1);
 }
 
-.main-content form input {
-    max-width: 80px;
-    height: 40px;
-    padding: 10px;
-    margin-bottom: 30px;
-
-    border: 1px solid grey;
-    border-radius: 4px;
-    
-    font: 400 18px Bahnschrift, Arial, sans-serif;
-    color: #3f3f3f;
-}
-
-.main-content form button {
-    max-width: 200px;
-    height: 40px;
-    margin-bottom: 60px;
-
-    border: transparent;
-    border-radius: 20px;
-
-    font: italic 300 14px Bahnschrift, Arial, sans-serif;
-    color: white;
-    background-color: rgb(42, 136, 153);
-    cursor: pointer;
-}
-
-.main-content form button:hover {
-    background-color: rgb(30, 94, 105);
-}
-
-.main-content form button:active {
-    transform: translateY(1px);
+.main-content img:active {
+    transform: translateY(2px);
 }
 
 .dropdown-container {
     max-width: 100%;
+    margin-top: 40px;
+
     position: relative;
 }
 
 .dropdown-container ul {
-   list-style: none;
-   width: 400px;
+    width: 400px;
+    
+    list-style: none;
 }
 
 .dropdown-container button.dropbtn {

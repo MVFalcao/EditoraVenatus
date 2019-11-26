@@ -363,10 +363,11 @@ export default class signup extends Component {
 							<li>
 								<label htmlFor="name">Nome <span>*</span></label>
 								<input type="text" 
-								id="name"
-								required
-								value={this.state.Name} 
-								onChange={e => this.setState({Name: e.target.value})}
+									id="name"
+									title="Digite seu nome"
+									required
+									value={this.state.Name} 
+									onChange={e => this.setState({Name: e.target.value})}
 								/>
 							</li>
 
@@ -374,6 +375,7 @@ export default class signup extends Component {
 								<label htmlFor="last-name">Sobrenome <span>*</span></label>
 								<input type="text" 
 								id="last-name"
+								title="Digite seu sobrenome"
 								required
 								value={this.state.LastName} 
 								onChange={e => this.setState({LastName: e.target.value})}
@@ -382,8 +384,9 @@ export default class signup extends Component {
 
 							<li>
 								<label htmlFor="username">Usuário <span>*</span></label>
-								<input type="text" 
-								id="username" 
+								<input type="text"
+								id="username"
+								title="Crie um nome de usuário"
 								required
 								value={this.state.Username} 
 								onChange={e => this.setState({Username: e.target.value})} 
@@ -393,7 +396,8 @@ export default class signup extends Component {
 							<li>
 								<label htmlFor="email">Email <span>*</span></label>
 								<input type="email" 
-								id="email" 
+								id="email"
+								title="Digite seu email"
 								required
 								value={this.state.Email}
 								onChange={e => this.setState({Email: e.target.value})}

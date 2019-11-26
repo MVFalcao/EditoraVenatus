@@ -13,8 +13,6 @@ import Age16 from '../../assets/ageRating/16.svg';
 import Age18 from '../../assets/ageRating/18.svg';
 import ErrorImg from '../../assets/ageRating/Error.svg';
 
-
-
 export default class book extends Component {
 
     state = {
@@ -163,19 +161,12 @@ export default class book extends Component {
                         <h2>{allBooks.SubTitulo}</h2>
                         <p id="book-price">R$ {parseFloat(allBooks.Preco * this.state.Quantity).toFixed(2)}</p>
 
-                        <form>
-
-                            <label htmlFor="book-quantity">Quantidade</label>
-                            <input type="number" 
-                                id="book-quantity"
-                                min="1" 
-                                required
-                                value={this.state.Quantity}
-                                onChange={e => this.setState({ Quantity: e.target.value })}
-                            />
-                            <button type="submit">Adicionar ao Carrinho</button>
-                        
-                        </form>
+                        <a 
+                            href="https://pag.ae/7US_QW_7Q/button" 
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
+                            alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
+                        </a>
 
                         <div className="dropdown-container">
                             <ul>

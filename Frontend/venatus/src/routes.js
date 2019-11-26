@@ -25,6 +25,10 @@ import Orders from './pages/User/myOrders';
     import editBookstoreSelection from './pages/Administrator/manageBookstore/editBookstore/selection';
     import editBookstore from './pages/Administrator/manageBookstore/editBookstore';
     import deleteBookstore from './pages/Administrator/manageBookstore/deleteBookstore';
+  /* Gerenciamento de Autores */
+    import addAuthor from './pages/Administrator/manageAuthor/addAuthor';
+    import editAuthor from './pages/Administrator/manageAuthor/editAuthor';
+    import editAuthorSelection from './pages/Administrator/manageAuthor/editAuthor/selection';
 
     
     import Grafo from './components/Grafo';
@@ -53,10 +57,15 @@ export default function Routes() {
                 <Route path="/editbook/:id" component={ editBook } />
                 <Route path="/deletebook" component ={ deleteBook } />
               {/* Gerenciamento de Livrarias */}
-                <Route path="/addbookstore" component = {addBookstore} />
+                <Route path="/addbookstore" component={addBookstore} />
                 <Route path="/editbookstore/selection" component={ editBookstoreSelection } />
                 <Route path="/editbookstore/:id" component={ editBookstore } />
                 <Route path="/deletebookstore/" component={ deleteBookstore } />
+              {/* Gerenciamento de Autores */}
+                <Route path="/addauthor" component={ addAuthor } />
+                <Route path="/editauthor/:id" component={ editAuthor } />
+                <Route path="/editauthor/selection" component={ editAuthorSelection } />
+
                 
 
                 <Route path="/grafo" component={ Grafo } />

@@ -8,27 +8,26 @@ import Camera from '../../../../assets/administrator/camera.svg';
 export default class addBook extends Component {
 
     state = {
-		Titulo: "",
-		SubTitulo: "",
-		Numero_Paginas: 1,
-		Categoria: "",
-		Descricao: "",
-		Idioma: "",
-		Classificacao_Indicativa: "L",
-		ISBN: "",
-		Ilustrador: "",
-		Datapublicacao: "",
-		Preco: 1.00,
-		Formato: "",
-		Sinopse: "",
-		ImagemURL: "",
-		ID_Autor: 1,
-	
-		allAuthors: [],
+      Titulo: "",
+      SubTitulo: "",
+      Numero_Paginas: 1,
+      Categoria: "",
+      Descricao: "",
+      Idioma: "",
+      Classificacao_Indicativa: "L",
+      ISBN: "",
+      Ilustrador: "",
+      Datapublicacao: "",
+      Preco: 1.00,
+      Formato: "",
+      Sinopse: "",
+      ImagemURL: "",
+      ID_Autor: 1,
+    
+      allAuthors: [],
 
-		Image: null,
-		ImagemPreview: "",
-
+      Image: null,
+      ImagemPreview: "",
     }
 
 	handleUploadImage = event => {
