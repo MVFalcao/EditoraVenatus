@@ -44,7 +44,7 @@ export default function Routes() {
             <Route path="/bookPage/:id" component ={ BookPage } />
             <Route path="/Login" component ={ Login } />
             <Route path="/signup" component ={ SignUp } />
-            <Route path="/allEvents" component={ Events } />
+            <Route path="/events" component={ Events } />
 
             {/* Rotas da conta do usuário */}
             <Route path="/account" component={ Account } />

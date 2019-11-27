@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../../services/api';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -9,29 +8,12 @@ import './styles.css';
 
 export default class allEvents extends Component {
 
-	state = {
-		allEvents: [],
-	}
+	loadEvents = () => {
 
-	loadEvents = async () => {
-		await api.get(`api/Eventos`).then(res => {
-			console.log(res.data);
-			this.setState({allEvents: res.data});
-		}).catch(error => {
-      	console.log('Events -> ' + error);
-		});
-	}
-
-	componentDidMount() {
-		this.loadEvents();
 	}
 	
 	render() {
-
-		const lastEvent = this.state.allEvents[0];
-
   		return (
-
       	<div className="event-wrapper">
             
 				<Header />
@@ -43,13 +25,13 @@ export default class allEvents extends Component {
 					<div className="recentEvent-container">
 
                 	<div className="recent-event">
-						
+
                     	<Link to="/">
-								<img src={lastEvent.Imagem_URL} alt={lastEvent.Titulo}/>
+								<img src="https://ericafalcaoescritora.files.wordpress.com/2019/06/img-20190528-wa0039.jpg" alt="Evento mais recente"/>
                     	</Link>
-							<h2>{lastEvent.Titulo} - Livraria Cultura</h2>
-		  					<p>{lastEvent.d}</p>
-                    	<Link to="/" id="know-more">Saiba Mais</Link>
+                    	<h2>Lançamento Livro Nya - Livraria Cultura</h2>
+                    <p>09 de Junho de 2019</p>
+                    <Link to="/" id="know-more">Saiba Mais</Link>
 
 						</div>
 

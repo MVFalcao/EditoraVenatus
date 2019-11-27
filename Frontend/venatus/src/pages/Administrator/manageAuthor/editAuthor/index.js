@@ -17,7 +17,7 @@ export default class editBookstore extends Component {
 		isStopped: true,
 	}
   
-	async loadAuthor() {
+	loadAuthor = async () => {
 		await api.get(`/api/Autors/${this.props.match.params.id}`).then(res => {
 			console.log(res.data);
 			this.setState({Author: res.data})
