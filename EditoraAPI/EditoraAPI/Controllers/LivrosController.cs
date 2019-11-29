@@ -44,6 +44,20 @@ namespace EditoraAPI.Controllers
             return Ok(livro);
         }
 
+        //GET : api/LivrosNome
+        [ResponseType(typeof(Livro))]
+        [Route("api/GetLivrosNome/")]
+        public IHttpActionResult GetLivrosNome(string Nome)
+        {
+            Livro livro = db.livros.Find(Nome);
+            if (livro == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(livro);
+        }
+
         // PUT: api/Livros/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLivro(int id, Livro livro)
