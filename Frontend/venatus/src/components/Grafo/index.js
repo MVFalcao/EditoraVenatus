@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
+import CytoscapeComponent from 'react-cytoscapejs';
 import api from '../../services/api';
 
-import CytoscapeComponent from 'react-cytoscapejs';
-// import Cytoscape from 'cytoscape';
-// import CoseBilkent from 'cytoscape-cose-bilkent';
-
-// Cytoscape.use( CoseBilkent );
-
-export default class Demo extends Component {
+export default class Graph extends Component {
   
-  state = {
-    w: 0,
-	 h: 0,
+  	state = {
+    	w: 0, h: 0,
 	 
-	 elements: [],
+	 	elements: [],
 	 
-	 allBooks: [],
-	 allAuthors: [],
-  }
+	 	allBooks: [],
+	 	allAuthors: [],
+	}
+	
 
+	//#region APIcalls
   	loadBooks = async () => {
     	await api.get('api/Livros').then(res => {
       	// console.log(res.data);
@@ -41,8 +37,9 @@ export default class Demo extends Component {
 			console.log('Authors -> ' + error);   
 	  });
 	}
+	//#endregion
 
-
+	//#region Nodes&Edges
   	handleNodes = async () => {
 		let positionX = 100; let positionY = 100;
 		
@@ -67,7 +64,17 @@ export default class Demo extends Component {
 			positionY = 200;
 			for (const author of this.state.allAuthors) {
 				positionX += 200;
-				let node = { data: { id: author.Nome, label: author.Nome }, position: {x: positionX, y: positionY} };
+				let node = { 
+					data: { 
+						id: author.Nome, 
+						label: author.Nome, 
+					}, 
+					position: {
+						x: positionX, 
+						y: positionY
+					},
+					classes: 'authors'
+				};
 				this.setState({elements: this.state.elements.concat(node)});
 			}
 		}
@@ -96,36 +103,105 @@ export default class Demo extends Component {
 			}
 		});
 	}
+	//#endregion
 
   	componentDidMount = () => {
     	this.setState({
-      	w: window.innerWidth,
-      	h: window.innerHeight
-    	});
+      		w: window.innerWidth,
+      		h: window.innerHeight
+		});
+		
 		this.setUpListeners();
-
 		this.loadBooks();
   	}
   
 	setUpListeners = () => {
 		this.cy.on('click', 'node', (event) => {
-			console.log(event.target)
+			console.log(event.target);
 		});
 	}
   
   render() {
 
+	const styles = [
+			{
+			  selector: 'node',
+			  style: {
+				width: 30,
+				height:30,
+
+				borderWidth: 2,
+				borderColor: 'cyan',
+				backgroundColor: '#606060',
+
+				content: 'data(label)',
+				color : 'black',
+				textOpacity: 1,
+				fontFamily: 'Bahnschrift',
+				fontSize: '12px',
+				fontWeight: '300',
+				textMaxWidth: '10px',
+				textValign: 'top',
+				textHalign: 'center',
+			  }
+			},
+			{
+				selector: '.authors',
+				style: {
+					width: 27,
+					height: 27,
+
+					shape: 'rectangle',
+
+					fontSize: '12px',
+					borderColor: 'orange',
+				}
+			},
+			{
+			  selector: 'edge',
+			  style: {
+				width: 5,
+			  }
+			}
+	]
+
 	const layout = {
-		name: 'random',
+		name: 'cose',
+  		ready: function(){},
+  		stop: function(){},
+  		animate: true,
+  		animationEasing: undefined,
+  		animationDuration: undefined,
+  		animateFilter: function ( node, i ){ return true; },
+  		animationThreshold: 250,
+  		refresh: 20,
+		fit: true,
+		padding: 30,
+		boundingBox: undefined,
+		nodeDimensionsIncludeLabels: false,
+		randomize: false,
+		componentSpacing: 40,
+		nodeRepulsion: function( node ){ return 2048; },
+		nodeOverlap: 4,
+		edgeElasticity: function( edge ){ return 32; },
+		nestingFactor: 1.2,
+		gravity: 1,
+		numIter: 1000,
+		initialTemp: 1000,
+		coolingFactor: 0.99,
+		minTemp: 1.0
 	};
 
 	return(
         	<CytoscapeComponent
 				elements={this.state.elements}
-            style={{ width: this.state.w, height: this.state.h }}
+				stylesheet={styles}
+            	style={{ width: this.state.w, height: this.state.h}}
 				layout={layout}
 				cy={(cy) => {this.cy = cy}}
         	/>
+
+			// <div style={{font}}></div>
     );
   }
 }
