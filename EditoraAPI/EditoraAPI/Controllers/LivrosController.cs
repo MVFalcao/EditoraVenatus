@@ -36,23 +36,7 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Livro))]
         public IHttpActionResult GetLivro(int id)
         {
-            var headers = Request.Headers;
-            if (headers.Contains("jwt"))
-            {
-                try
-                {
-                    en.ValidToken(headers.GetValues("jwt").First());
-                }
-                catch (Exception e)
-                {
-                    return NotFound();
-                }
-
-            }
-            else
-            {
-                return NotFound();
-            }
+            
             Livro livro = db.livros.Find(id);
             if (livro == null)
             {
