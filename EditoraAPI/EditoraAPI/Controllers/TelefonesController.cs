@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
     public class TelefonesController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Telefones
         public IQueryable<Telefone> Gettelefones()
         {
@@ -27,6 +28,23 @@ namespace EditoraAPI.Controllers
         [Route("api/Telefones/GetTelefoneByCliente")]
         public IHttpActionResult GetTelefoneByCliente(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             try
             {
                 var tel = from t in db.telefones where t.Id_c == id select t.ID_Telefone;
@@ -47,6 +65,23 @@ namespace EditoraAPI.Controllers
         [Route("api/Telefones/GetTelefoneByAutor")]
         public IHttpActionResult GetTelefoneByAutor(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             try
             {
                 var tel = from t in db.telefones where t.Id_a == id select t.ID_Telefone;
@@ -66,6 +101,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTelefone(int id, Telefone telefone)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -101,6 +153,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Telefone))]
         public IHttpActionResult PostTelefone(Telefone telefone)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -116,6 +185,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Telefone))]
         public IHttpActionResult DeleteTelefone(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Telefone telefone = db.telefones.Find(id);
             if (telefone == null)
             {

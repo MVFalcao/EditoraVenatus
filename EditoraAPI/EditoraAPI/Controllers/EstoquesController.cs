@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
     public class EstoquesController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Estoques
         public IQueryable<Estoque> Getestoques()
         {
@@ -26,12 +27,29 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Estoque))]
         public IHttpActionResult GetEstoque(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Estoque estoque = db.estoques.Find(id);
             if (estoque == null)
             {
                 return NotFound();
             }
-
+            
             return Ok(estoque);
         }
 
@@ -39,6 +57,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEstoque(int id, Estoque estoque)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +109,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Estoque))]
         public IHttpActionResult PostEstoque(Estoque estoque)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -89,6 +141,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Estoque))]
         public IHttpActionResult DeleteEstoque(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Estoque estoque = db.estoques.Find(id);
             if (estoque == null)
             {

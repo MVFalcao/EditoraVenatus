@@ -27,6 +27,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Escola))]
         public IHttpActionResult GetEscola(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Escola escola = db.escolas.Find(id);
             if (escola == null)
             {
@@ -40,6 +57,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEscola(int id, Escola escola)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -107,6 +141,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Escola))]
         public IHttpActionResult DeleteEscola(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Escola escola = db.escolas.Find(id);
             if (escola == null)
             {
