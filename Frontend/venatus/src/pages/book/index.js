@@ -12,90 +12,95 @@ import Age14 from '../../assets/ageRating/14.svg';
 import Age16 from '../../assets/ageRating/16.svg';
 import Age18 from '../../assets/ageRating/18.svg';
 import ErrorImg from '../../assets/ageRating/Error.svg';
+import Cupom from '../../assets/allBooks/cupoun.svg';
 
 export default class book extends Component {
 
     state = {
+        Cupom: "",
+
         divClosedList: [true, true, true],
         allBooks: [],
         author: [],
-
-        Quantity: 1,
     }
     
-    async loadBooks() {
-        const response = await api.get(`api/Livros/${this.props.match.params.id}`).catch(function(error) {
-            console.log('Algo deu errado: ' + error.message);
-        });
-        if(response != null) {
-            console.log(response);
-            this.setState({allBooks: response.data});
-            this.handleAge();
-            this.loadAuthors();
-        }
-    }
+    //#region APIcalls
+        loadBooks = async () => {
+            await api.get(`api/Livros/${this.props.match.params.id}`).then(res => {
+                console.log(res.data);
 
-    async loadAuthors() {
-        await api.get(`api/Autors/${this.state.allBooks.Id_autor}`).then(res => {
-            console.log(res.data);
-            this.setState({author: res.data});
-        }).catch(error => {
-            console.log('Authors -> : ' + error);   
-        });
-    }
+                this.setState({allBooks: res.data});
+                this.handleAge();
+                this.loadAuthors();
+            }).catch(error => {
+                console.log('loadBooks -> ' + error);
+            });
+        }
+
+        async loadAuthors() {
+            await api.get(`api/Autors/${this.state.allBooks.Id_autor}`).then(res => {
+                console.log(res.data);
+                this.setState({author: res.data});
+            }).catch(error => {
+                console.log('Authors -> : ' + error);   
+            });
+        }
+    //#endregion
 
     componentDidMount() {
         this.loadBooks();
     }
 
-     handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
-        let SymbolEmt = document.querySelector(SymbolItem);
-        let dropdownContent = document.querySelector(contentDiv);
+    //#region HandleDropdown
+        handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
+            let SymbolEmt = document.querySelector(SymbolItem);
+            let dropdownContent = document.querySelector(contentDiv);
 
-        const showDiv = () => {
-            dropdownContent.style.display = "flex";
+            const showDiv = () => {
+                dropdownContent.style.display = "flex";
+            }
+            const hideDiv = () => {
+                dropdownContent.style.display = "none";
+            }
+            if (this.state.divClosedList[item]) {
+                showDiv();
+                SymbolEmt.innerHTML = "-";
+                let a = this.state.divClosedList;
+                a[item] = false;
+                this.setState({divClosedList: a});
+                this.handleDivClose(contentDiv);
+            } else {
+                hideDiv();
+                SymbolEmt.innerHTML = "+";
+                let a = this.state.divClosedList;
+                a[item] = true;
+                this.setState({divClosedList: a});
+            }
         }
-        const hideDiv = () => {
-            dropdownContent.style.display = "none";
-        }
-        if (this.state.divClosedList[item]) {
-            showDiv();
-            SymbolEmt.innerHTML = "-";
-            let a = this.state.divClosedList;
-            a[item] = false;
-            this.setState({divClosedList: a});
-            this.handleDivClose(contentDiv);
-        } else {
-            hideDiv();
-            SymbolEmt.innerHTML = "+";
-            let a = this.state.divClosedList;
-            a[item] = true;
-            this.setState({divClosedList: a});
-        }
-    }
 
-    handleDivClose(contentDiv = "") {
-        let SymbolEmtList = document.querySelectorAll('.plus');
-        let dropdownContentList = document.querySelectorAll('.dropdown-content');
-        let a = this.state.divClosedList;
-        
-        if (contentDiv === '.dropdown-content.item-1') {
-            a[1] = a[2] = true;
-            this.setState({divClosedList: a});
-            dropdownContentList[1].style.display = dropdownContentList[2].style.display = "none";
-            SymbolEmtList[1].innerHTML = SymbolEmtList[2].innerHTML = "+";
-        } else if (contentDiv === '.dropdown-content.item-2') {
-            a[0] = a[2] = true;
-            this.setState({divClosedList: a});
-            dropdownContentList[0].style.display = dropdownContentList[2].style.display = "none";
-            SymbolEmtList[0].innerHTML = SymbolEmtList[2].innerHTML = "+";
-        } else {
-            a[0] = a[1] = true;
-            this.setState({divClosedList: a});
-            dropdownContentList[0].style.display = dropdownContentList[1].style.display = "none";
-            SymbolEmtList[0].innerHTML = SymbolEmtList[1].innerHTML = "+";
+        handleDivClose(contentDiv = "") {
+            let SymbolEmtList = document.querySelectorAll('.plus');
+            let dropdownContentList = document.querySelectorAll('.dropdown-content');
+            let a = this.state.divClosedList;
+            
+            if (contentDiv === '.dropdown-content.item-1') {
+                a[1] = a[2] = true;
+                this.setState({divClosedList: a});
+                dropdownContentList[1].style.display = dropdownContentList[2].style.display = "none";
+                SymbolEmtList[1].innerHTML = SymbolEmtList[2].innerHTML = "+";
+            } else if (contentDiv === '.dropdown-content.item-2') {
+                a[0] = a[2] = true;
+                this.setState({divClosedList: a});
+                dropdownContentList[0].style.display = dropdownContentList[2].style.display = "none";
+                SymbolEmtList[0].innerHTML = SymbolEmtList[2].innerHTML = "+";
+            } else {
+                a[0] = a[1] = true;
+                this.setState({divClosedList: a});
+                dropdownContentList[0].style.display = dropdownContentList[1].style.display = "none";
+                SymbolEmtList[0].innerHTML = SymbolEmtList[1].innerHTML = "+";
+            }
         }
-    }
+    //#endregion
     
     handleAge() {
         const ageRating = this.state.allBooks.Classificacao_Indicativa;
@@ -167,6 +172,18 @@ export default class book extends Component {
                             <img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
                             alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
                         </a>
+
+                        <div className="cupoun-container">
+                            <label htmlFor="cupom">Cupom de Desconto</label>
+                            <input 
+                                type="text" 
+                                id="cupom"
+                                required
+                                value={this.state.Cupom} 
+                                onChange={e => this.setState({Cupom: e.target.value})}
+                            />
+
+                        </div>
 
                         <div className="dropdown-container">
 
