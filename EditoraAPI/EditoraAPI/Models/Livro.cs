@@ -23,7 +23,7 @@ namespace EditoraAPI.Models
         [Required] public float Preco { get; set; }
         [Required] [StringLength(20)] public string Idioma { get; set; }
         [Required] [StringLength(20)] public string Formato { get; set; }
-        [Required] [StringLength(50)] public string SubTitulo { get; set; }
+        [StringLength(50)] public string SubTitulo { get; set; }
         [Required] public string Sinopse { get; set; }
 
         [Required][ForeignKey("id_autores")]public int Id_autor { get; set; }
