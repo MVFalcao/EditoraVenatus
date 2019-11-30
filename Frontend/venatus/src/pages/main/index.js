@@ -42,15 +42,18 @@ export default class main extends Component {
 
 							<ul>
 								
-								{this.state.allRealeaseBooks.map(book => (
-								<li key={book.ID_Livro}>
-									<Link to={`/bookPage/${book.ID_Livro}`}>
-										<img src={book.Imagem_URL} alt="" />
-									</Link>
-									<h2>{book.Titulo} {book.SubTitulo}</h2>
-									<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
-									<Link to={`/bookPage/${book.ID_Livro}`} id="BookBtn">Saiba mais</Link>
-								</li>
+								{this.state.allRealeaseBooks.map((book, index) => (
+									(index < 4) ?
+									<li key={book.ID_Livro}>
+										<Link to={`/bookPage/${book.ID_Livro}`}>
+											<img src={book.Imagem_URL} alt="" />
+										</Link>
+										<h2>{book.Titulo} {book.SubTitulo}</h2>
+										<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
+										<Link to={`/bookPage/${book.ID_Livro}`} id="BookBtn">Saiba mais</Link>
+									</li>
+								:
+									<></>
 								))}
 								
 							</ul>
