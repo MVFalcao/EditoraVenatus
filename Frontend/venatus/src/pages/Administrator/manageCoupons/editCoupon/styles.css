@@ -1,0 +1,119 @@
+.editCoupon-wrapper {
+    display: flex;
+    background-color: rgb(32, 32, 32);
+}
+
+.editCoupon-container {
+    width: 100%;
+    margin-top: 40px;
+
+    font: 400 18px 'Poppins', arial, sans-serif;
+    color: white;
+}
+
+.editCoupon-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.editCoupon-data {
+    margin: auto 40px;
+    padding: 20px 20px;
+
+    border-radius: 20px;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+}
+
+.editCoupon-data form {
+    display: flex;
+    flex-direction: column;
+}
+
+.editCoupon-data form ul.section.item-1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.editCoupon-data form ul.section.item-1 input {
+    width: 300px;
+    margin-bottom: 20px;
+    height: 40px;
+    padding-left: 10px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    color: white;
+    border-color: rgb(83, 83, 83);
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: rgb(26, 26, 26);
+}
+
+.editCoupon-data form ul.section.item-1 input:focus {
+    box-shadow: 0px 0px 7px rgb(0, 153, 255);
+}
+
+.editCoupon-data form ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+.editCoupon-data label {
+    margin-bottom: 10px;
+}
+
+.editCoupon-data span {
+    color: rgb(226, 68, 68);
+}
+
+.editCoupon-data #pagSeguro {
+    font-size: 14px;
+}
+
+.editCoupon-data #pagSeguro::placeholder {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.editCoupon-data button {
+    width: 200px;
+    height: 40px;
+    margin: 40px auto 30px;
+
+    font: 300 16px 'Poppins', arial, sans-serif;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(80, 103, 207);
+
+    cursor: pointer;
+}
+
+.editCoupon-data button:hover {
+    background-color: rgb(54, 74, 161);
+}
+
+.editCoupon-wrapper .editPopUp {
+    width: 400px;
+    height: 200px;
+    margin: 230px auto 0px 670px;
+    padding-top: 30px;
+
+    color: white;
+    background-color: rgba(45, 48, 50, 0.9);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.editCoupon-wrapper .editPopUp h1 {
+    margin: 0px;
+    margin-top: 20px;
+
+    font: 500 20px 'Poppins', arial, sans-serif;
+}

@@ -36,13 +36,12 @@ export default class book extends Component {
     }
 
     async loadAuthors() {
-        const response = await api.get(`api/Autors/${this.state.allBooks.Id_autor}`).catch(function(error) {
-            console.log('Algo deu errado: ' + error.message);   
+        await api.get(`api/Autors/${this.state.allBooks.Id_autor}`).then(res => {
+            console.log(res.data);
+            this.setState({author: res.data});
+        }).catch(error => {
+            console.log('Authors -> : ' + error);   
         });
-        if (response != null) {
-            console.log(response);
-            this.setState({author: response.data})
-        }
     }
 
     componentDidMount() {

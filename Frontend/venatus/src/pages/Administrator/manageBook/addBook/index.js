@@ -38,7 +38,7 @@ export default class addBook extends Component {
 
 	handleDashboardSize = () => {
 		let elementSize = document.querySelector('.addBook-wrapper').offsetHeight;
-		document.querySelector('.administrator-panel').style.height = `${elementSize}px`;
+		document.querySelector('.administrator-panel').style.minHeight = `${elementSize}px`;
 	}  
 
 	handleUploadImage = event => {
@@ -61,21 +61,21 @@ export default class addBook extends Component {
     await this.handleFileUpload();
 
     await api.post('api/Livros', {
-			"Titulo": this.state.Titulo,
-			"SubTitulo": this.state.SubTitulo,
-			"Numero_Paginas": this.state.Numero_Paginas,
-			"Categoria": this.state.Categoria,
-			"Descricao": "a",
-			"Idioma": this.state.Idioma,
-			"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
-			"ISBN": this.state.ISBN,
-			"Ilustrador": this.state.Ilustrador,
-			"Imagem_URL": this.state.ImagemURL,
-			"Botao_URL": this.state.PagSeguroURL,
-			"Datapublicacao": this.state.Datapublicacao,
-			"Preco": this.state.Preco,
-			"Formato": this.state.Formato,
-			"Sinopse": this.state.Sinopse,
+		"Titulo": this.state.Titulo,
+		"SubTitulo": this.state.SubTitulo,
+		"Numero_Paginas": this.state.Numero_Paginas,
+		"Categoria": this.state.Categoria,
+		"Descricao": "a",
+		"Idioma": this.state.Idioma,
+		"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
+		"ISBN": this.state.ISBN,
+		"Ilustrador": this.state.Ilustrador,
+		"Imagem_URL": this.state.ImagemURL,
+		"Botao_URL": this.state.PagSeguroURL,
+		"Datapublicacao": this.state.Datapublicacao,
+		"Preco": this.state.Preco,
+		"Formato": this.state.Formato,
+		"Sinopse": this.state.Sinopse,
 		"Id_autor": this.state.ID_Autor,
 		"Id_cupom": 0,
 		}).then(res => {
@@ -360,11 +360,11 @@ export default class addBook extends Component {
 
 
 				<div className="addPopUp success">
-              <Lottie options={okAnimationSettings}
-                height={100}
-                width={100}
-                isStopped={this.state.isStopped}
-              />
+					<Lottie options={okAnimationSettings}
+						height={100}
+						width={100}
+						isStopped={this.state.isStopped}
+					/>
               <h1>Livro adicionado com sucesso</h1>
 				</div>
 
