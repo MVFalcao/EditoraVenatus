@@ -360,11 +360,11 @@ export default class addBook extends Component {
 
 
 				<div className="addPopUp success">
-              <Lottie options={okAnimationSettings}
-                height={100}
-                width={100}
-                isStopped={this.state.isStopped}
-              />
+					<Lottie options={okAnimationSettings}
+						height={100}
+						width={100}
+						isStopped={this.state.isStopped}
+					/>
               <h1>Livro adicionado com sucesso</h1>
 				</div>
 
