@@ -9,7 +9,7 @@ import AngleRight from '../../assets/Dashboard/angle-right.svg';
 export default class Dashboard extends Component {
 
     state = {
-        divClosedList: [true, true, true, true, true, true, true],
+        divClosedList: [true, true, true, true, true, true, true, true],
     }
 
      handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
@@ -129,20 +129,38 @@ export default class Dashboard extends Component {
                
                 <div className="categories event-manager">
 
-                <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-6', '.dropdown.event', 5)}>
-                    <h2><span role="img" aria-label="calendar">🗓️ </span>Gerenciamento de Eventos</h2>
-                    <img className="angle item-6" src={AngleRight} alt="Seta" />
-                </button>
+                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-6', '.dropdown.event', 5)}>
+                        <h2><span role="img" aria-label="calendar">🗓️ </span>Gerenciamento de Eventos</h2>
+                        <img className="angle item-6" src={AngleRight} alt="Seta" />
+                    </button>
 
-                <div className="dropdown event">
+                    <div className="dropdown event">
 
-                    <ol>
-                        <li><Link to="/">Adicionar Evento</Link></li>
-                        <li><Link to="/">Editar Evento</Link></li>
-                        <li><Link to="/">Deletar Evento</Link></li>
-                    </ol>
+                        <ol>
+                            <li><Link to="/">Adicionar Evento</Link></li>
+                            <li><Link to="/">Editar Evento</Link></li>
+                            <li><Link to="/">Deletar Evento</Link></li>
+                        </ol>
 
+                    </div>
                 </div>
+               
+                <div className="categories coupon-manager">
+
+                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-7', '.dropdown.coupon', 6)}>
+                        <h2><span role="img" aria-label="calendar">🎫 </span>Gerenciamento de Cupons</h2>
+                        <img className="angle item-7" src={AngleRight} alt="Seta" />
+                    </button>
+
+                    <div className="dropdown coupon">
+
+                        <ol>
+                            <li><Link to="/addcoupon">Adicionar Cupom</Link></li>
+                            <li><Link to="/editcoupon/selection">Editar Cupom</Link></li>
+                            <li><Link to="/deletecoupon">Deletar Cupom</Link></li>
+                        </ol>
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -30,44 +30,54 @@ import Orders from './pages/User/myOrders';
 		import editAuthor from './pages/Administrator/manageAuthor/editAuthor';
 		import editAuthorSelection from './pages/Administrator/manageAuthor/editAuthor/selection';
 		import deleteAuthor from './pages/Administrator/manageAuthor/deleteAuthor';
+	/* Gerenciamento de Cupons */
+		import addCoupon from './pages/Administrator/manageCoupons/addCoupon';
+		import editCouponSelection from './pages/Administrator/manageCoupons/editCoupon/selection';
+		import editCoupon from './pages/Administrator/manageCoupons/editCoupon';
+		import deleteCoupon from './pages/Administrator/manageCoupons/deleteCoupon';
 
     
     	import Grafo from './components/Grafo';
 
 export default function Routes() {
-  	return (
-      <BrowserRouter>
+	return (
+      	<BrowserRouter>
         	<Switch>
-            {/* Rotas do usuário */}
-            <Route path="/" exact component={ Main } />
-            <Route path="/allBooks" component ={ AllBooks } />
-            <Route path="/bookPage/:id" component ={ BookPage } />
-            <Route path="/Login" component ={ Login } />
-            <Route path="/signup" component ={ SignUp } />
-            <Route path="/events" component={ Events } />
+            
+			{/* Rotas do usuário */}
+				<Route path="/" exact component={ Main } />
+				<Route path="/allBooks" component ={ AllBooks } />
+				<Route path="/bookPage/:id" component ={ BookPage } />
+				<Route path="/Login" component ={ Login } />
+				<Route path="/signup" component ={ SignUp } />
+				<Route path="/events" component={ Events } />
 
             {/* Rotas da conta do usuário */}
-            <Route path="/account" component={ Account } />
-            <Route path="/addressess" component={ Adressess } />
-            <Route path="/orders" component={ Orders } />
+				<Route path="/account" component={ Account } />
+				<Route path="/addressess" component={ Adressess } />
+				<Route path="/orders" component={ Orders } />
 
             {/* Rotas do administrador */}
               	{/* Gerenciamento de Livros */}
-						<Route path="/addbook" component={ addBook } />
-						<Route path="/editbook/selection" component={ editBookSelection } />
-						<Route path="/editbook/:id" component={ editBook } />
-						<Route path="/deletebook" component ={ deleteBook } />
+					<Route path="/addbook" component={ addBook } />
+					<Route path="/editbook/selection" component={ editBookSelection } />
+					<Route path="/editbook/:id" component={ editBook } />
+					<Route path="/deletebook" component ={ deleteBook } />
               	{/* Gerenciamento de Livrarias */}
-						<Route path="/addbookstore" component={addBookstore} />
-						<Route path="/editbookstore/selection" component={ editBookstoreSelection } />
-						<Route path="/editbookstore/:id" component={ editBookstore } />
-						<Route path="/deletebookstore/" component={ deleteBookstore } />
+					<Route path="/addbookstore" component={addBookstore} />
+					<Route path="/editbookstore/selection" component={ editBookstoreSelection } />
+					<Route path="/editbookstore/:id" component={ editBookstore } />
+					<Route path="/deletebookstore/" component={ deleteBookstore } />
               	{/* Gerenciamento de Autores */}
-						<Route path="/addauthor" component={ addAuthor } />
-						<Route path="/editauthor/selection" component={ editAuthorSelection } />
-						<Route path="/editauthor/:id" component={ editAuthor } />
-						<Route path="/deleteauthor" component={ deleteAuthor } />
-                
+					<Route path="/addauthor" component={ addAuthor } />
+					<Route path="/editauthor/selection" component={ editAuthorSelection } />
+					<Route path="/editauthor/:id" component={ editAuthor } />
+					<Route path="/deleteauthor" component={ deleteAuthor } />
+                {/* Gerenciamento de Cupom */}
+					<Route path="/addcoupon" component={ addCoupon } />
+					<Route path="/editcoupon/selection" component={ editCouponSelection } />
+					<Route path="/editcoupon/:id" component={ editCoupon } />
+					<Route path="/deletecoupon" component={ deleteCoupon } />
 
                 	<Route path="/grafo" component={ Grafo } />
         	</Switch>
