@@ -97,6 +97,12 @@
     position: relative;
 }
 
+/* Grafo */
+
+.main-container .graph {
+    width: 100%;
+}
+
 .main-container .about-venatus p {
     font-family: bahnschrift, Arial, sans-serif;
     padding: 0px 40px;

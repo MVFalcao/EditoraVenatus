@@ -133,43 +133,59 @@ export default class Header extends Component {
                     
 
                     <div className="header-login">
+                    
                     { this.state.isLogged ?
                         <>
+
                             <button onClick={() => this.handleDropdown()} onMouseOver={this.handleArrow} onMouseOut={this.handleArrow}>
                                 <p>{this.state.user.Usuario}</p>
                                 <img src={userArrow} alt="seta" />    
                             </button>
+
                             <div className="account-dropdown">
+
                                 <ul>
                                     <li>
                                         <Link to="/orders">Meus Pedidos</Link>
                                     </li>
+
                                     <li>
                                         <Link to="/addressess">Meus Endereços</Link>
                                     </li>
+
                                     <li>
                                         <Link to="/account">Minha Conta</Link>
                                     </li>
+
                                     <div className="line" />
+
                                     <li>
                                         <button id="logoff" onClick={() => this.handleLogoff()}>
                                             <p>Sair</p>
                                             <img src={out} alt="sair"/>    
                                         </button>
                                     </li>
+
                                 </ul>
+
                             </div>
+
                         </>
+
                     :
+
                         <Link to="/Login">Entre ou Cadastre-se</Link>
                     }
                     </div>
 
                     </div>
+
                 <div className="menu-container">
+
                     <div className="header-line">
                         <img src={line} alt="line1" />
                     </div>
+                    
                     <div className="menu-navbar">
                         <div className="item item-1">
                             <Link to="/allBooks">Livros</Link>
@@ -178,7 +194,7 @@ export default class Header extends Component {
                             <Link to="/">Sobre Nós</Link>
                         </div>
                         <div className="item item-3">
-                            <Link to="/allEvents">Eventos</Link>
+                            <Link to="/events">Eventos</Link>
                         </div>
                         <div className="item item-4">
                             <Link to="/">Contato</Link>

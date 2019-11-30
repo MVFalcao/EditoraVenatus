@@ -21,25 +21,29 @@ export default class newAddress extends Component {
         ID_Endereco: localStorage.getItem("ID_Endereco"),
     }
 
-    // loadAddress = async () => {
-    //      await api.get(`api/Enderecos/${this.state.ID_Endereco}`).then(res => {
-    //          this.setState({address: res.data});
-    //          this.loadAddressData();
-    //         console.log(res.data);
-    //     }).catch(error => {
-    //     console.log('Adressess Error: ' + error.message);
-    //     });
-    // }
+    loadAddress = async () => {
+         await api.get(`api/GetEndereco?id=${this.state.ID_Endereco}`).then(res => {
+             this.setState({address: res.data});
+             this.loadAddressData();
+            console.log(res.data);
+        }).catch(error => {
+        console.log('Adressess Error: ' + error.message);
+        });
+    }
 
     loadAddressData = () => {
-        this.setState({Nome: this.state.address.Nome_Proprietario});
-        this.setState({CEP: this.state.address.CEP});
-        this.setState({Estado: this.state.address.Estado});
-        this.setState({Cidade: this.state.address.Cidade});
-        this.setState({Logradouro: this.state.address.Logradouro});
-        this.setState({Bairro: this.state.address.Bairro});
-        this.setState({Numero: this.state.address.Numero});
-        this.setState({Complemento: this.state.address.Complemento});
+        this.setState({Nome: this.state.address[0].Nome_Proprietario});
+        this.setState({CEP: this.state.address[0].CEP});
+        this.setState({Estado: this.state.address[0].Estado});
+        this.setState({Cidade: this.state.address[0].Cidade});
+        this.setState({Logradouro: this.state.address[0].Logradouro});
+        this.setState({Bairro: this.state.address[0].Bairro});
+        this.setState({Numero: this.state.address[0].Numero});
+        this.setState({Complemento: this.state.address[0].Complemento});
+    }
+
+    componentDidMount() {
+        this.loadAddress();
     }
 
     handleSubmit = async event => {
@@ -67,9 +71,9 @@ export default class newAddress extends Component {
 
     render() {
         return (
-            <div className="addAddress-container">
+            <div className="editAddress-container">
 
-                <div className="address-header">
+                <div className="editAddress-header">
 
                     <h1>Editar endereço</h1>
 
@@ -91,8 +95,9 @@ export default class newAddress extends Component {
                                 type="text" 
                                 id="nome"
                                 required
-                                value={this.state.Nome} 
+                                defaultValue={this.state.Nome} 
                                 onChange={e => this.setState({Nome: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -104,8 +109,9 @@ export default class newAddress extends Component {
                                 type="text" 
                                 id="CEP"
                                 required
-                                value={this.state.CEP} 
+                                defaultValue={this.state.CEP} 
                                 onChange={e => this.setState({CEP: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -117,8 +123,9 @@ export default class newAddress extends Component {
                                 type="text"
                                 id="estado"
                                 required
-                                value={this.state.Estado} 
+                                defaultValue={this.state.Estado} 
                                 onChange={e => this.setState({Estado: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -128,8 +135,9 @@ export default class newAddress extends Component {
                                 type="text"
                                 id="cidade"
                                 required
-                                value={this.state.Cidade} 
+                                defaultValue={this.state.Cidade} 
                                 onChange={e => this.setState({Cidade: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -139,8 +147,9 @@ export default class newAddress extends Component {
                                 type="text"
                                 id="logradouro"
                                 required
-                                value={this.state.Logradouro} 
+                                defaultValue={this.state.Logradouro} 
                                 onChange={e => this.setState({Logradouro: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -150,8 +159,9 @@ export default class newAddress extends Component {
                                 type="text"
                                 id="bairro"
                                 required
-                                value={this.state.Bairro} 
+                                defaultValue={this.state.Bairro} 
                                 onChange={e => this.setState({Bairro: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -161,8 +171,9 @@ export default class newAddress extends Component {
                                 type="text"
                                 id="numero"
                                 required
-                                value={this.state.Numero} 
+                                defaultValue={this.state.Numero} 
                                 onChange={e => this.setState({Numero: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
 
@@ -172,8 +183,9 @@ export default class newAddress extends Component {
                                 type="text"
                                 id="complemento"
                                 required
-                                value={this.state.Complemento} 
+                                defaultValue={this.state.Complemento} 
                                 onChange={e => this.setState({Complemento: e.target.value})}
+                                onFocus={e => e.target.select()}
                             />
                         </li>
                         
@@ -181,7 +193,7 @@ export default class newAddress extends Component {
             
                     <div className="line" />
                     
-                    <button id="edit-addressBtn" type="submit">Adicionar Endereço</button>
+                    <button id="edit-addressBtn" type="submit">Atualizar Endereço</button>
 
                 </form>
 

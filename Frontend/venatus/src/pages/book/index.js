@@ -13,8 +13,6 @@ import Age16 from '../../assets/ageRating/16.svg';
 import Age18 from '../../assets/ageRating/18.svg';
 import ErrorImg from '../../assets/ageRating/Error.svg';
 
-
-
 export default class book extends Component {
 
     state = {
@@ -139,6 +137,7 @@ export default class book extends Component {
 
 
     render() {
+        
         const allBooks = this.state.allBooks;
         const DatePublication = new Date(allBooks.Datapublicacao);
         const author = this.state.author;
@@ -163,78 +162,97 @@ export default class book extends Component {
                         <h2>{allBooks.SubTitulo}</h2>
                         <p id="book-price">R$ {parseFloat(allBooks.Preco * this.state.Quantity).toFixed(2)}</p>
 
-                        <form>
-
-                            <label htmlFor="book-quantity">Quantidade</label>
-                            <input type="number" 
-                                id="book-quantity"
-                                min="1" 
-                                required
-                                value={this.state.Quantity}
-                                onChange={e => this.setState({ Quantity: e.target.value })}
-                            />
-                            <button type="submit">Adicionar ao Carrinho</button>
-                        
-                        </form>
+                        <a 
+                            href={allBooks.Botao_URL} 
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
+                            alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
+                        </a>
 
                         <div className="dropdown-container">
+
                             <ul>
+
                                 <li>
+
                                     <button className="dropbtn" onClick={() => this.handleDiv('.plus.item-1','.dropdown-content.item-1', 0)}>
                                         <h3>Descrição do Livro</h3>
                                         <p className="plus item-1">+</p>
                                     </button>
+
                                     <div className="dropdown-content item-1">
-                                        <p>Categoria: Aventura</p>
+
+                                        <p>Categoria: {allBooks.Categoria} </p>
+
                                         <div className="ageRating-container">
+
                                             <p id="info01">Indicação: Não foi possível carregar os dados</p>
-                                            <img src={ErrorImg} alt="Indicação de idade" id="age-rating"/> 
+                                            <img src={ErrorImg} alt="Indicação de idade" id="age-rating"/>
+
                                         </div>
+
                                     </div>
+
                                 </li>
+
                                 <li>
                                     <div className="categories-line item-1" />
                                 </li>
+
                                 <li>
+
                                     <button className="dropbtn" onClick={() => this.handleDiv('.plus.item-2','.dropdown-content.item-2', 1)}>
                                         <h3>Informações do Frete</h3>
                                         <p className="plus item-2">+</p>
                                     </button>
+
                                     <div className="dropdown-content item-2">
+
                                         <p> Frete incluso para todo o Brasil. </p>
-                                        <p> 
-                                            Prazo de entrega: 7 a 10 dias úteis, a partir da confirmação do pagamento.
-                                        </p>
+                                        <p> Prazo de entrega: 7 a 10 dias úteis, a partir da confirmação do pagamento. </p>
+
                                     </div>
+
                                 </li>
+
                                 <li>
                                     <div className="categories-line item-2" />
                                 </li>
+
                                 <li>
+
                                     <button className="dropbtn" onClick={() => this.handleDiv('.plus.item-3','.dropdown-content.item-3', 2)}>
                                         <h3>Extras</h3>
                                         <p className="plus item-3">+</p>
                                     </button>
+
                                     <div className="dropdown-content item-3">
+
                                         <p> Livro autografado </p>
                                         <p>Brinde: 01 Marcador de livro em formato card.</p>
+
                                     </div>
                                 </li>
+
                             </ul>
 
                         </div>
 
                     </div>
                     <div className="right-content">
+
                         <p id="book-Author">Autor(a): {author.Nome}</p>
                         <p id="book-Illustrator">Ilustrador(a): {allBooks.Ilustrador}</p>
                         <p id="book-Language">Idioma: {allBooks.Idioma}</p>
                         <p id="book-Format">Formato: {allBooks.Formato} cm</p>
                         <p id="book-pages">N° de Páginas: {allBooks.Numero_Paginas}</p>
                         <p id="book-year">Ano de Publicação: {DatePublication.getFullYear()}</p>
+
                     </div>
                 </div>
+
             <Footer />
+
             </>
         );
     }

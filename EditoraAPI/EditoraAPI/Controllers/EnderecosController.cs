@@ -41,7 +41,7 @@ namespace EditoraAPI.Models {
                 return NotFound();
             }
             try {
-                var end = from ed in db.enderecos where ed.ID_Endereco == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                var end = from ed in db.enderecos where ed.ID_Endereco == id select new { ed.autor, ed.cliente, ed.Nome_Proprietario, ed.Cidade, ed.Estado, ed.Bairro, ed.CEP, ed.Complemento, ed.Logradouro, ed.Numero, ed.ID_Endereco };
                 //Endereco endereco = db.enderecos.Find(id_end.First());
                 if(end == null) {
                     return NotFound();
@@ -77,9 +77,9 @@ namespace EditoraAPI.Models {
                 return NotFound();
             }
             try {
-                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.cliente, ed.Nome_Proprietario, ed.Cidade, ed.Estado, ed.Bairro, ed.CEP, ed.Complemento, ed.Logradouro, ed.Numero, ed.ID_Endereco };
                 //Endereco endereco = db.enderecos.Find(id_end.First());
-                if(end == null) {
+                if (end == null) {
                     return NotFound();
                 }
 

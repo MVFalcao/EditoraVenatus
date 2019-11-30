@@ -1,0 +1,71 @@
+.selectAuthor-wrapper {
+    display: flex;
+    color: white;
+    background-color: #202020;
+}
+
+.selectAuthor-container {
+    width: 100%;
+    margin: 30px auto auto 60px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+}
+
+.selectAuthor-container h1 {
+    font-size: 24px;
+}
+
+.selectAuthor-container ul {
+    margin-top: 50px;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 50px;
+}
+
+.selectAuthor-container ul li {
+    width: 190px;
+    padding-bottom: 10px;
+    
+    border-radius: 10px;
+    background-color: rgb(62, 86, 136);
+}
+
+.selectAuthor-container ul li:hover {
+    transform: translateY(-2px);
+    border: none;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5);
+}
+
+.selectAuthor-container ul li:active {
+    transform: translateY(2px);
+    box-shadow: none
+}
+
+.selectAuthor-container ul li a {
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectAuthor-container ul li img {
+    width: 100%;
+    height: auto;
+    
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+.selectAuthor-container ul li h2 {
+    margin-top: 10px;
+
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 300;
+}

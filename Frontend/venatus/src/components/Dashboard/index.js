@@ -9,7 +9,7 @@ import AngleRight from '../../assets/Dashboard/angle-right.svg';
 export default class Dashboard extends Component {
 
     state = {
-        divClosedList: [true, true, true, true, true],
+        divClosedList: [true, true, true, true, true, true, true],
     }
 
      handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
@@ -53,14 +53,14 @@ export default class Dashboard extends Component {
                 <div className="categories register">
 
                     <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-1', '.dropdown.register', 0)}>
-                        <h2> Gerenciamento de Cadastros</h2>
+                        <h2><span role="img" aria-label="handshake">🤝🏼 </span>Gerenciamento de Parcerias</h2>
                         <img className="angle item-1" src={AngleRight} alt="Seta"/>
                     </button>
 
                     <div className="dropdown register">
 
                         <button onClick={() => this.handleDiv('.angle.item-2', '.dropdown.bookstore', 1)}>
-                            <h3>Livrarias</h3>
+                            <h3><span role="img" aria-label="books">📚 </span>Livrarias</h3>
                             <img className="angle item-2" src={AngleRight} alt="Seta" />
                         </button>
 
@@ -75,7 +75,7 @@ export default class Dashboard extends Component {
                         </div>
 
                             <button onClick={() => this.handleDiv('.angle.item-3', '.dropdown.school', 2)}>
-                                <h3>Escolas</h3>
+                                <h3><span role="img" aria-label="school">🏫 </span>Escolas</h3>
                                 <img className="angle item-3" src={AngleRight} alt="Seta" />
                             </button>
 
@@ -91,11 +91,29 @@ export default class Dashboard extends Component {
                     </div>
                 </div>
 
+                <div className="categories author-manager">
+
+                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-4', '.dropdown.author', 3)}>
+                        <h2><span role="img" aria-label="pencil">✏️ </span>Gerenciamento de Autores</h2>
+                        <img className="angle item-4" src={AngleRight} alt="Seta" />
+                    </button>
+
+                    <div className="dropdown author">
+
+                        <ol>
+                            <li><Link to="/addauthor">Adicionar Autor</Link></li>
+                            <li><Link to="/editauthor/selection">Editar Autor</Link></li>
+                            <li><Link to="/deleteauthor">Deletar Autor</Link></li>
+                        </ol>
+
+                    </div>
+                </div>
+
                 <div className="categories book-manager">
 
-                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-4', '.dropdown.book', 3)}>
-                        <h2>Gerenciamento de Livros</h2>
-                        <img className="angle item-4" src={AngleRight} alt="Seta" />
+                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-5', '.dropdown.book', 4)}>
+                        <h2><span role="img" aria-label="book">📖 </span>Gerenciamento de Livros</h2>
+                        <img className="angle item-5" src={AngleRight} alt="Seta" />
                     </button>
 
                     <div className="dropdown book">
@@ -111,9 +129,9 @@ export default class Dashboard extends Component {
                
                 <div className="categories event-manager">
 
-                <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-5', '.dropdown.event', 4)}>
-                    <h2>Gerenciamento de Eventos</h2>
-                    <img className="angle item-5" src={AngleRight} alt="Seta" />
+                <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-6', '.dropdown.event', 5)}>
+                    <h2><span role="img" aria-label="calendar">🗓️ </span>Gerenciamento de Eventos</h2>
+                    <img className="angle item-6" src={AngleRight} alt="Seta" />
                 </button>
 
                 <div className="dropdown event">

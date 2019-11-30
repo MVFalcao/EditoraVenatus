@@ -3,7 +3,7 @@
 .editAddress-container {
     width: 800px;
     margin: 50px 350px 20px;
-    padding: 30px 30px 35px;
+    padding: 30px 30px 15px;
 
     font-family: 'Poppins', Arial, sans-serif;
     border-radius: 15px;
@@ -15,7 +15,7 @@
 }
 
 /* Header */
-.address-container .editAddress-header {
+.editAddress-container .editAddress-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -103,15 +103,11 @@
 }
 
 /* Buttons */
-.editAddress-container .addressess-buttons {
-    margin-top: 50px;
-    padding: 0px 50px;
-}
 
-.editAddress-container .addressess-buttons button {
+.editAddress-container #edit-addressBtn {
     width: 190px;
     height: 35px;
-    margin-right: 10px;
+    margin: 40px 25px 0px;
 
     color: white;
     font-family: 'Poppins', Arial, sans-serif;
@@ -125,23 +121,6 @@
     cursor: pointer;
 }
 
-.editAddress-container .addressess-buttons button:hover {
+.editAddress-container #edit-addressBtn:hover {
     background-color: rgb(32, 105, 117);
-}
-
-.editAddress-container .addressess-buttons button#cancel {
-    color: rgb(73, 73, 73);
-    font-family: 'Poppins', Arial, sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-    text-decoration: underline;
-
-    border: none;
-    background: none;
-
-    cursor: pointer;
-}
-
-.editAddress-container .addressess-buttons button#cancel:hover {
-    color: rgb(43, 43, 43);
 }
