@@ -5,4 +5,4 @@ Desenvolvimento de um website para Editora Venatus e Projeto Integrador 2019.2 -
 ## Tecnologias
 ### React, .NET MVC e SQLServer.
 * React-Cytoscape;
-* Lottie-Cytoscape;
+* React-Lottie;
