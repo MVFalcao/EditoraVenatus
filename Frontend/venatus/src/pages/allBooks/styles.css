@@ -107,7 +107,7 @@
     justify-items: space-between;
 }
 
-.allBooks-Container ul li a img {
+.allBooks-Container ul li #bookImg img {
     max-width: 100%;
     width: 200px;
     height: 290px;
@@ -115,12 +115,12 @@
     transition: all .1s;
 }
 
-.allBooks-Container ul li a img:hover {
+.allBooks-Container ul li #bookImg img:hover {
     transform: scale(1.01);
     box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
 }
 
-.allBooks-Container ul li a img:active {
+.allBooks-Container ul li #bookImg img:active {
     transform: translateY(2px);
 }
 
@@ -131,51 +131,23 @@
 }
 
 .allBooks-Container ul li p {
-    font: italic 400 20px Bahnschrift, Arial, sans-serif;
+    margin-bottom: 25px;
+
     color: #309AAC;
+    font: italic 400 20px Bahnschrift, Arial, sans-serif;
 }
 
-.allBooks-Container ul li button {
-    margin: 30px auto 10px;
-    width: 200px;
-    height: 33px;
-    padding: 0px 11px;
-
-    border-radius: 15px;
-    border: none;
-
-    font: 300 10px 'Poppins', Arial, sans-serif;
-    color: #309AAC;
-    background-color: white;
-
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-
+.allBooks-Container ul li #pagseguro {
     cursor: pointer;
     transition: all .1s;
 }
 
-.allBooks-Container ul li button:hover {
-    transform: translateY(-1px);
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+.allBooks-Container ul li #pagseguro:hover {
+    transform: scale(1.05);
 }
 
-.allBooks-Container ul li button:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    outline: none;
-}
-
-.allBooks-Container ul li button p {
-    padding-top: 6px;
-    font: 300 14px 'Poppins', Arial, sans-serif;
-    color: rgb(56, 56, 56);
-}
-
-.allBooks-Container ul li button img {
-    width: 10%;
-    height: auto;
+.allBooks-Container ul li #pagseguro:active {
+    transform: scale(0.96);
 }
 
 

@@ -7,7 +7,6 @@ import Footer from '../../components/Footer';
 
 import './styles.css';
 import lupa from '../../assets/allBooks/lupa-branca.svg'
-import carrinho from '../../assets/header/carrinho.svg'
 
 
 export default class books extends Component {
@@ -32,8 +31,8 @@ export default class books extends Component {
 	}
 
 	handleSearch = async event => {
-		this.setState({Search: event.target.value});
-		await api.get(`api/GetLivrosNome`).then(res => {
+		await this.setState({Search: event.target.value});
+		await api.get(`api/GetLivrosNome?Nome=${this.state.Search}`).then(res => {
 			console.log(res);
 		}).catch(error => {
 			console.log('Search -> ' + error);
@@ -89,7 +88,7 @@ export default class books extends Component {
 
 									this.state.allBooks.map(book => (
 										<li key={book.ID_Livro}>
-												<Link to={`/bookPage/${book.ID_Livro}`}>
+												<Link id="bookImg" to={`/bookPage/${book.ID_Livro}`}>
 													<img src={book.Imagem_URL} alt={book.Titulo} />
 												</Link>
 
@@ -97,7 +96,7 @@ export default class books extends Component {
 
 												<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
 
-												<a 
+												<a id="pagseguro"
 													href={book.Botao_URL} 
 													target="_blank" rel="noopener noreferrer">
 													<img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
@@ -107,25 +106,28 @@ export default class books extends Component {
 										)
 									)
 								:
-									this.state.searchBooks.map(book => (
-										<li key={book.ID_Livro}>
-												<Link to={`/bookPage/${book.ID_Livro}`}>
-													<img src={book.Imagem_URL} alt={book.Titulo} />
-												</Link>
+									this.state.Search === 0 ?
+										<p>Não foi encontrado nenhum livro <span role="img" aria-label="Sad">😥</span></p>
+									:
+										this.state.searchBooks.map(book => (
+											<li key={book.ID_Livro}>
+													<Link to={`/bookPage/${book.ID_Livro}`}>
+														<img src={book.Imagem_URL} alt={book.Titulo} />
+													</Link>
 
-												<h2>{book.Titulo} {book.SubTitulo}</h2>
+													<h2>{book.Titulo} {book.SubTitulo}</h2>
 
-												<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
+													<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
 
-												<a 
-													href={book.Botao_URL} 
-													target="_blank" rel="noopener noreferrer">
-													<img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
-													alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
-												</a>
-										</li>
-									)
-								)}
+													<a 
+														href={book.Botao_URL} 
+														target="_blank" rel="noopener noreferrer">
+														<img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
+														alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
+													</a>
+											</li>
+										)
+									)}
 							</ul>
 
 						</section>
