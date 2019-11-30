@@ -332,7 +332,6 @@ C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\E
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations._2910Caique2.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco7.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.GenerateResource.cache
-C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CoreCompileInputs.cache
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\EditoraAPI.dll.config
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\EditoraAPI.dll
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\bin\EditoraAPI.pdb
@@ -551,7 +550,6 @@ E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco7.resources
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco9.resources
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco10.resources
-E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco11.resources
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco12.resources
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco13.resources
@@ -566,3 +564,25 @@ D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\
 D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco13.resources
 D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco14.resources
 D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco15.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco16.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco17.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco18.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco19.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco20.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco16.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco17.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco18.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco19.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco20.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco9.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco10.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco11.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco12.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco13.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco14.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco15.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco16.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco17.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco18.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco19.resources
+C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco20.resources

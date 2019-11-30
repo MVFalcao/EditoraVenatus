@@ -267,6 +267,26 @@
     <Compile Include="Migrations\201911192128574_banco15.Designer.cs">
       <DependentUpon>201911192128574_banco15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911212029589_banco16.cs" />
+    <Compile Include="Migrations\201911212029589_banco16.Designer.cs">
+      <DependentUpon>201911212029589_banco16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911212226140_banco17.cs" />
+    <Compile Include="Migrations\201911212226140_banco17.Designer.cs">
+      <DependentUpon>201911212226140_banco17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911291651520_banco18.cs" />
+    <Compile Include="Migrations\201911291651520_banco18.Designer.cs">
+      <DependentUpon>201911291651520_banco18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911291658030_banco19.cs" />
+    <Compile Include="Migrations\201911291658030_banco19.Designer.cs">
+      <DependentUpon>201911291658030_banco19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911291826121_banco20.cs" />
+    <Compile Include="Migrations\201911291826121_banco20.Designer.cs">
+      <DependentUpon>201911291826121_banco20.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Carrinho.cs" />
@@ -427,6 +447,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911192128574_banco15.resx">
       <DependentUpon>201911192128574_banco15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911212029589_banco16.resx">
+      <DependentUpon>201911212029589_banco16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911212226140_banco17.resx">
+      <DependentUpon>201911212226140_banco17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291651520_banco18.resx">
+      <DependentUpon>201911291651520_banco18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291658030_banco19.resx">
+      <DependentUpon>201911291658030_banco19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291826121_banco20.resx">
+      <DependentUpon>201911291826121_banco20.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

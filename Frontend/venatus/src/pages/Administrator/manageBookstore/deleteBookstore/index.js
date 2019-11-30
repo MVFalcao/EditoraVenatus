@@ -8,7 +8,7 @@ import './styles.css';
 import BookstoreImg from '../../../../assets/administrator/bookstoreImg.svg';
 import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
-export default class editBook extends Component {
+export default class deleteBookstore extends Component {
 
   state = {
     allBookstores: [],
@@ -28,7 +28,7 @@ export default class editBook extends Component {
     }
   }
 
-  deleteBook = async (ID_Livraria = 0) => {
+  deleteBookstore = async (ID_Livraria = 0) => {
     const response = await api.delete(`/api/Livrarias/${ID_Livraria}`).catch(function(error) {
       console.log('Error: ' + error.message);
     });
@@ -44,7 +44,7 @@ export default class editBook extends Component {
 
   handleDeleteBookstore = (ID_Livraria = 0, index = 0) => {
     let confirmDelete = window.confirm(`Deseja realmente deletar a livraria ${this.state.allBookstores[index].Nome}?`);
-    if (confirmDelete) this.deleteBook(ID_Livraria);
+    if (confirmDelete) this.deleteBookstore(ID_Livraria);
     else return;
   }
 
@@ -53,16 +53,16 @@ export default class editBook extends Component {
       document.querySelector('.deletePopUp').style.display = "block";
     }
   
-  hidePopUp = () => {
-    document.querySelector('.deletePopUp').style.display = "none";
-  }
+    hidePopUp = () => {
+      document.querySelector('.deletePopUp').style.display = "none";
+    }
 
-  handlePopUp = () => {
-    this.showPopUp();
-    setTimeout(() => {
-      this.hidePopUp();
-    }, 3000);
-  }
+    handlePopUp = () => {
+      this.showPopUp();
+      setTimeout(() => {
+        this.hidePopUp();
+      }, 3000);
+    }
   //#endregion
 
   componentDidMount() {

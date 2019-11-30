@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap');
+
+* {
+    scrollbar-color: #2a2c2e #1c1e1f;
+}
+
+body {
+    overflow-x: hidden;
+}
 
 .administrator-panel {
     width: 320px;

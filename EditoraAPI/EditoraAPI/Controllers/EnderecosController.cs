@@ -23,8 +23,25 @@ namespace EditoraAPI.Models {
         [ResponseType(typeof(Endereco))]
         [Route("api/GetEndereco/")]
         public IHttpActionResult GetEndereco(int id) {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             try {
-                var end = from ed in db.enderecos where ed.ID_Endereco == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                var end = from ed in db.enderecos where ed.ID_Endereco == id select new { ed.autor, ed.cliente, ed.Nome_Proprietario, ed.Cidade, ed.Estado, ed.Bairro, ed.CEP, ed.Complemento, ed.Logradouro, ed.Numero, ed.ID_Endereco };
                 //Endereco endereco = db.enderecos.Find(id_end.First());
                 if(end == null) {
                     return NotFound();
@@ -42,10 +59,27 @@ namespace EditoraAPI.Models {
         [ResponseType(typeof(Endereco))]
         [Route("api/GetClienteEndereco/")]
         public IHttpActionResult GetEnderecocliente(int id) {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             try {
-                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
+                var end = from ed in db.enderecos where ed.cliente == id select new { ed.autor, ed.cliente, ed.Nome_Proprietario, ed.Cidade, ed.Estado, ed.Bairro, ed.CEP, ed.Complemento, ed.Logradouro, ed.Numero, ed.ID_Endereco };
                 //Endereco endereco = db.enderecos.Find(id_end.First());
-                if(end == null) {
+                if (end == null) {
                     return NotFound();
                 }
 
@@ -59,6 +93,23 @@ namespace EditoraAPI.Models {
         [ResponseType(typeof(Endereco))]
         [Route("api/GetAutorEndereco/")]
         public IHttpActionResult GetEnderecoAutor(int id) {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             try {
                 //var jason = string.Empty;
                 var end = from ed in db.enderecos where ed.autor == id select new { ed.autor, ed.Bairro, ed.CEP, ed.Cidade, ed.cliente, ed.Complemento, ed.ID_Endereco };
@@ -77,8 +128,25 @@ namespace EditoraAPI.Models {
         // PUT: api/Enderecos/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEndereco(int id, Endereco endereco) {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
 
-            if(!ModelState.IsValid) {
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
@@ -105,8 +173,24 @@ namespace EditoraAPI.Models {
         // POST: api/Enderecos
         [ResponseType(typeof(Endereco))]
         public IHttpActionResult PostEndereco(Endereco endereco) {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
 
-            if(!ModelState.IsValid) {
+            }
+            else
+            {
+                return NotFound();
+            }
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
@@ -119,6 +203,23 @@ namespace EditoraAPI.Models {
         // DELETE: api/Enderecos/5
         [ResponseType(typeof(Endereco))]
         public IHttpActionResult DeleteEndereco(int id) {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Endereco endereco = db.enderecos.Find(id);
             if(endereco == null) {
                 return NotFound();

@@ -34,4 +34,42 @@
 	"Sinopse": "Você conhecerá Nya e sua turma. Uma galerinha superanimada que vai enfrentar o síndico Carrancudo mais mal-humorado do pedaço para salvar a Vovó Figueira, uma árvore centenária do condomínio onde moram. E, claro, que eles contarão com as redes sociais para deixar tudo ainda mais emocionante.",
 	"Id_autor": "1",
 	"Id_cupom": "1"
+
+  	"ID_Livro": 7,
+    	"Titulo": "O guia do mochileiro",
+    	"Numero_Paginas": 208,
+    	"Categoria": "Ficção científica",
+    	"Descricao": "a",
+    	"ISBN": "978-8599296578",
+    	"Ilustrador": "Nenhum",
+    	"Imagem_URL": "https://localhost:44321/Images/UQT4JJLH2WRC1BD9UNQKQ4IIJ8DHJBTBLLN4MZZH_Guia.jpg",
+    	"Datapublicacao": "1979-10-12T00:00:00",
+    	"Preco": 23.1,
+    	"Idioma": "Português",
+    	"Formato": "20,8 x 14 x 1,4",
+    	"SubTitulo": "das Galáxias",
+    	"Sinopse": "Considerado um dos maiores clássicos da literatura de ficção científica, O guia do mochileiro das galáxias vem encantando gerações de leitores ao redor do mundo com seu humor afiado. Este é o primeiro título da famosa série escrita por Douglas Adams, que conta as aventuras espaciais do inglês Arthur Dent e de seu amigo Ford Prefect.",
+    	"Id_autor": 4,
+    	"Id_cupom": 0,
+    	"Classificacao_Indicativa": "L"
+
+	"ID_Livro": 7,
+        "Titulo": "Doutor Sono",
+        "Numero_Paginas": 480,
+        "Categoria": "Suspense",
+        "Descricao": "a",
+        "ISBN": "9788581052434",
+        "Ilustrador": "Nenhum",
+        "Imagem_URL": "https://localhost:44321/Images/Q9JV3T0GNVUP47YH9ICJVAM8504ALUXZ24QPZK3K_DoutorSono.jpg",
+        "Botao_URL": "https://pag.ae/7US_QW_7Q/button",
+        "Datapublicacao": "2013-01-01T00:00:00",
+        "Preco": 40.0,
+        "Idioma": "Português",
+        "Formato": "230 x 160 x 28",
+        "SubTitulo": "_",
+        "Sinopse": "Mais de trinta anos depois, Stephen King revela a seus leitores o que aconteceu a Danny Torrance, o garoto no centro de O iluminado, depois de sua terrível experiência no Overlook Hotel. Em Doutor Sono, King dá continuidade a essa história, contando a vida de Dan, agora um homem de meia-idade, e Abra Stone, uma menina de 12 anos com um grande poder. Assombrado pelos habitantes do Overlook Hotel, onde passou um ano terrível de sua infância, Dan ficou à deriva por décadas, desesperado para se livrar do legado de alcoolismo e violência do pai. ",
+        "Id_autor": 5,
+        "Id_cupom": 0,
+        "Classificacao_Indicativa": "L"
+
 }
