@@ -1,0 +1,68 @@
+.selectCoupon-wrapper {
+    display: flex;
+    background-color: rgb(41, 41, 41);
+}
+
+.selectCoupon-container {
+    width: 100%;
+    margin: 30px auto auto 60px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+}
+
+.selectCoupon-container h1 {
+    color: white;
+    font-size: 24px;
+}
+
+.selectCoupon-container ul {
+    margin-top: 50px;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.selectCoupon-container ul li {
+
+    position: relative;
+    transition: all .1s;
+}
+
+.selectCoupon-container ul li:hover {
+    transform: translate(-1px, -2px);
+}
+
+.selectCoupon-container ul li:active {
+    transform: translateY(2px);
+    box-shadow: none
+}
+
+.selectCoupon-container ul li a {
+    text-align: center;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectCoupon-container ul li img {
+    width: 228px;
+    height: auto;
+}
+
+
+.selectCoupon-container ul li h2 {
+    margin-top: 10px;
+    
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 400;
+
+    position: absolute;
+    top: 40px;
+}
