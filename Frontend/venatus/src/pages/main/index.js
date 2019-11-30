@@ -41,6 +41,7 @@ export default class main extends Component {
 						<section className="main-content">
 
 							<ul>
+								
 								{this.state.allRealeaseBooks.map(book => (
 								<li key={book.ID_Livro}>
 									<Link to={`/bookPage/${book.ID_Livro}`}>
