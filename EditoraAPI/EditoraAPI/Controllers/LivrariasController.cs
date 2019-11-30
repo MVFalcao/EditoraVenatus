@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
     public class LivrariasController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Livrarias
         public IQueryable<Livraria> Getlivrarias()
         {
@@ -26,6 +27,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Livraria))]
         public IHttpActionResult GetLivraria(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Livraria livraria = db.livrarias.Find(id);
             if (livraria == null)
             {
@@ -39,6 +57,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLivraria(int id, Livraria livraria)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +109,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Livraria))]
         public IHttpActionResult PostLivraria(Livraria livraria)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -89,6 +141,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Livraria))]
         public IHttpActionResult DeleteLivraria(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Livraria livraria = db.livrarias.Find(id);
             if (livraria == null)
             {

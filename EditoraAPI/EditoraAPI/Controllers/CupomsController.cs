@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
     public class CupomsController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Cupoms
         public IQueryable<Cupom> Getcupoms()
         {
@@ -43,6 +44,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Cupom))]
         public IHttpActionResult GetCupom(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Cupom cupom = db.cupoms.Find(id);
             if (cupom == null)
             {
@@ -56,6 +74,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCupom(int id, Cupom cupom)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -91,6 +126,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Cupom))]
         public IHttpActionResult PostCupom(Cupom cupom)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
