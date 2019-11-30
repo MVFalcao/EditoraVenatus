@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,700&display=swap');
 
 .search-wrapper {
     display: flex;
@@ -107,7 +107,7 @@
     justify-items: space-between;
 }
 
-.allBooks-Container ul li #bookImg img {
+.allBooks-Container ul li .bookImg img {
     max-width: 100%;
     width: 200px;
     height: 290px;
@@ -115,12 +115,12 @@
     transition: all .1s;
 }
 
-.allBooks-Container ul li #bookImg img:hover {
+.allBooks-Container ul li .bookImg img:hover {
     transform: scale(1.01);
     box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
 }
 
-.allBooks-Container ul li #bookImg img:active {
+.allBooks-Container ul li .bookImg img:active {
     transform: translateY(2px);
 }
 
@@ -137,20 +137,33 @@
     font: italic 400 20px Bahnschrift, Arial, sans-serif;
 }
 
-.allBooks-Container ul li #pagseguro {
+.allBooks-Container ul li .pagseguro {
     cursor: pointer;
     transition: all .1s;
 }
 
-.allBooks-Container ul li #pagseguro:hover {
+.allBooks-Container ul li .pagseguro:hover {
     transform: scale(1.05);
 }
 
-.allBooks-Container ul li #pagseguro:active {
+.allBooks-Container ul li .pagseguro:active {
     transform: scale(0.96);
 }
 
+.allBooks-Container #emptySearch-space {
+    height: 200px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
 
+.allBooks-Container ul #empty-search {
+    color: rgb(68, 68, 68);
+    font: 500 32px 'Poppins', Arial, sans-serif;
+
+    position: absolute;
+    top: 70%; left: auto; right: auto; bottom: auto;
+}
 
 
 

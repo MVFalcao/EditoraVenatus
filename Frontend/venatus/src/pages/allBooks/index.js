@@ -23,7 +23,7 @@ export default class books extends Component {
 
 	loadBooks = async () => {
       await api.get('/api/Livros').then(res => {
-			console.log(res.data);
+			// console.log(res.data);
 			this.setState({allBooks: res.data});
 		}).catch(error => {
 			console.log('Books -> ' + error);
@@ -33,7 +33,8 @@ export default class books extends Component {
 	handleSearch = async event => {
 		await this.setState({Search: event.target.value});
 		await api.get(`api/GetLivrosNome?Nome=${this.state.Search}`).then(res => {
-			console.log(res);
+			// console.log(res.data);
+			this.setState({searchBooks: res.data});
 		}).catch(error => {
 			console.log('Search -> ' + error);
 		});
@@ -88,7 +89,7 @@ export default class books extends Component {
 
 									this.state.allBooks.map(book => (
 										<li key={book.ID_Livro}>
-												<Link id="bookImg" to={`/bookPage/${book.ID_Livro}`}>
+												<Link className="bookImg" to={`/bookPage/${book.ID_Livro}`}>
 													<img src={book.Imagem_URL} alt={book.Titulo} />
 												</Link>
 
@@ -96,7 +97,7 @@ export default class books extends Component {
 
 												<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
 
-												<a id="pagseguro"
+												<a className="pagseguro"
 													href={book.Botao_URL} 
 													target="_blank" rel="noopener noreferrer">
 													<img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
@@ -106,12 +107,15 @@ export default class books extends Component {
 										)
 									)
 								:
-									this.state.Search === 0 ?
-										<p>Não foi encontrado nenhum livro <span role="img" aria-label="Sad">😥</span></p>
+									this.state.searchBooks.length === 0 ?
+										<>
+											<li id="emptySearch-space"> </li>
+											<p id="empty-search">Não foi encontrado nenhum livro <span role="img" aria-label="Sad">😥</span></p>
+										</>
 									:
 										this.state.searchBooks.map(book => (
 											<li key={book.ID_Livro}>
-													<Link to={`/bookPage/${book.ID_Livro}`}>
+													<Link className="bookImg" to={`/bookPage/${book.ID_Livro}`}>
 														<img src={book.Imagem_URL} alt={book.Titulo} />
 													</Link>
 
@@ -119,7 +123,7 @@ export default class books extends Component {
 
 													<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
 
-													<a 
+													<a className="pagseguro"
 														href={book.Botao_URL} 
 														target="_blank" rel="noopener noreferrer">
 														<img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
@@ -128,6 +132,7 @@ export default class books extends Component {
 											</li>
 										)
 									)}
+									{console.log(this.state.searchBooks)}
 							</ul>
 
 						</section>
