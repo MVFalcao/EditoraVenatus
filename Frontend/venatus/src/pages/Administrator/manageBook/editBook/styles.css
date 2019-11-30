@@ -52,6 +52,15 @@
     background-color: rgb(26, 26, 26);
 }
 
+.editBook-data #pagSeguro {
+    font-size: 14px;
+}
+
+.editBook-data #pagSeguro::placeholder {
+    font-size: 13px;
+    font-weight: 300;
+}
+
  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none;
   margin: 0;

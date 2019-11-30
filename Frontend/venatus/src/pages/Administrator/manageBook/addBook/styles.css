@@ -84,10 +84,19 @@ input[type=number] {
     
     color: white;
     font-family: 'Poppins', Arial, sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     border-color: rgba(255, 255, 255, 0.26);
     border-radius: 10px;
     background-color: rgb(26, 26, 26);
+}
+
+.addBook-data #pagSeguro {
+    font-size: 14px;
+}
+
+.addBook-data #pagSeguro::placeholder {
+    font-size: 13px;
+    font-weight: 300;
 }
 
 .addBook-data select:focus {
@@ -177,4 +186,28 @@ input[type=number] {
 
 .addBook-data button:hover {
     background-color: rgb(54, 74, 161);
+}
+
+.addBook-wrapper .addPopUp {
+    width: 400px;
+    height: 200px;
+    margin: 230px auto 0px 670px;
+    padding-top: 30px;
+
+    color: white;
+    background-color: rgba(45, 48, 50, 0.9);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.addBook-wrapper .addPopUp h1 {
+    margin: 0px;
+    margin-top: 20px;
+
+    font: 500 20px 'Poppins', arial, sans-serif;
 }
