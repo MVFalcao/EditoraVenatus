@@ -20,10 +20,11 @@ export default class editBookstore extends Component {
 	loadAuthor = async () => {
 		await api.get(`/api/Autors/${this.props.match.params.id}`).then(res => {
 			console.log(res.data);
+
 			this.setState({Author: res.data})
 			this.loadAuthorData();
 		}).catch(error => {
-      	console.log('Author -> ' + error);
+			console.log('Author -> ' + error);
 		});
 	}
     
@@ -80,24 +81,23 @@ export default class editBookstore extends Component {
   render() {
 
 	//#region AnimationSettins
+		const okAnimationSettings = {
+			loop: false,
+			autoplay: false, 
+			animationData: OkAnimation,
+			rendererSettings: {
+				preserveAspectRatio: 'xMidYMid slice'
+			}
+		};
 
-	const okAnimationSettings = {
-		loop: false,
-		autoplay: false, 
-		animationData: OkAnimation,
-		rendererSettings: {
+		const errorAnimationSettings = {
+			loop: false,
+			autoplay: false, 
+			animationData: ErrorAnimation,
+			rendererSettings: {
 			preserveAspectRatio: 'xMidYMid slice'
-		}
-	};
-
-	const errorAnimationSettings = {
-		loop: false,
-		autoplay: false, 
-		animationData: ErrorAnimation,
-		rendererSettings: {
-		preserveAspectRatio: 'xMidYMid slice'
-		}
-	};
+			}
+		};
 	//#endregion
 
 	return (

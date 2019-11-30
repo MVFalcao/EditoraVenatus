@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
+using EditoraAPI.Tokens;
 
 namespace EditoraAPI.Controllers
 {
     public class PessoasController : ApiController
     {
         private EditoraAPIContext db = new EditoraAPIContext();
-
+        private EncodingTokenLogin en = new EncodingTokenLogin();
         // GET: api/Pessoas
         public IQueryable<Pessoa> Getpessoas()
         {
@@ -26,6 +27,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Pessoa))]
         public IHttpActionResult GetPessoa(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             var pes = from p in db.pessoas where p.Id_cli == id select p.ID_Pessoa;
             Pessoa pessoa = db.pessoas.Find(pes.First());
             if (pessoa == null)
@@ -40,6 +58,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPessoa(int id, Pessoa pessoa)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -75,6 +110,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Pessoa))]
         public IHttpActionResult PostPessoa(Pessoa pessoa)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -90,6 +142,23 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Pessoa))]
         public IHttpActionResult DeletePessoa(int id)
         {
+            var headers = Request.Headers;
+            if (headers.Contains("jwt"))
+            {
+                try
+                {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                }
+                catch (Exception e)
+                {
+                    return NotFound();
+                }
+
+            }
+            else
+            {
+                return NotFound();
+            }
             Pessoa pessoa = db.pessoas.Find(id);
             if (pessoa == null)
             {
