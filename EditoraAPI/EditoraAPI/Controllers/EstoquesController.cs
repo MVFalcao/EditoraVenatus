@@ -101,7 +101,19 @@ namespace EditoraAPI.Controllers
                     throw;
                 }
             }
-
+            if (estoque.Quantidade <= 10)
+            {
+                try
+                {
+                    var livro = from l in db.livros join e in db.estoques on l.ID_Livro equals e.Livro select l.ID_Livro;
+                    if (livro == null) return NotFound();
+                    return Ok(livro);
+                }
+                catch (Exception e)
+                {
+                    return BadRequest();
+                }
+            }
             return StatusCode(HttpStatusCode.NoContent);
         }
 
