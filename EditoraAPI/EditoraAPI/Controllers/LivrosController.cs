@@ -67,13 +67,20 @@ namespace EditoraAPI.Controllers
         [Route("api/GetLivrosNome/")]
         public IHttpActionResult GetLivrosNome(string Nome)
         {
-            Livro livro = db.livros.Find(Nome);
-            if (livro == null)
+            try
+            {
+                var liv = from l in db.livros where l.Titulo.StartsWith(Nome) select new { l.ID_Livro,l.Imagem_URL,l.Titulo,l.SubTitulo,l.Preco,l.Botao_URL };
+                if (liv == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(liv);
+            }catch(Exception e)
             {
                 return NotFound();
             }
-
-            return Ok(livro);
+            
         }
 
         // PUT: api/Livros/5
