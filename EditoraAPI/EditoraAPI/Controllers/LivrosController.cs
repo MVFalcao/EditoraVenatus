@@ -17,6 +17,7 @@ namespace EditoraAPI.Controllers
     {
         private EditoraAPIContext db = new EditoraAPIContext();
         private EncodingTokenLogin en = new EncodingTokenLogin();
+        public string Categoria;
         // GET: api/Livros
         public IQueryable<Livro> Getlivros()
         {
@@ -239,6 +240,25 @@ namespace EditoraAPI.Controllers
                 return BadRequest();
             }
 
+        }
+        [Route("api/GetCategoria")]
+        public IHttpActionResult GetCat(string mat)
+        {
+            try
+            {
+                var livro = from l in db.livros where mat == l.Categoria select l.Categoria;
+                if(livro == null)
+                {
+                    NotFound();
+                }
+                Categoria = livro.FirstOrDefault();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            
         }
         protected override void Dispose(bool disposing)
         {
