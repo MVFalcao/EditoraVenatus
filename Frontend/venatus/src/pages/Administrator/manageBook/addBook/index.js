@@ -56,11 +56,17 @@ export default class addBook extends Component {
 	}
 
   	handleSubmit = async event => {
-    event.preventDefault();
+	event.preventDefault();
+	const jwt = localStorage.getItem("jwt");
+	const headersData = {
+		'Content-Type': 'application/json',
+		"jwt": jwt,
+	}
 
     await this.handleFileUpload();
 
     await api.post('api/Livros', {
+
 		"Titulo": this.state.Titulo,
 		"SubTitulo": this.state.SubTitulo,
 		"Numero_Paginas": this.state.Numero_Paginas,
@@ -78,8 +84,10 @@ export default class addBook extends Component {
 		"Sinopse": this.state.Sinopse,
 		"Id_autor": this.state.ID_Autor,
 		"Id_cupom": 0,
+		}, {
+			headers: headersData,
 		}).then(res => {
-			console.log(res);
+			console.log(res.data);
 
 			this.setState({isStopped: false});
 			this.handleAnimationPopUp("success");
@@ -168,7 +176,7 @@ export default class addBook extends Component {
 
 				<div className="addBook-container">
 
-            	<h1>Cadastro de Livro</h1>
+            		<h1>Cadastro de Livro</h1>
 
            		<div className="addBook-data">
           

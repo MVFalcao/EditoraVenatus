@@ -16,9 +16,9 @@ export default class editBook extends Component {
 		SubTitulo: "",
 		Numero_Paginas: 1,
 		Categoria: "",
-		Descricao: "a",
+		Descricao: "",
 		Idioma: "",
-		Classificacao_Indicativa: "L",
+		Classificacao_Indicativa: "",
 		ISBN: "",
 		Ilustrador: "",
 		ImagemURL: "",
@@ -35,7 +35,6 @@ export default class editBook extends Component {
 		Image: null,
 		ImagemPreview: "",
 
-		imageChanged: false,
 		isStopped: true,
 	}
 
@@ -47,7 +46,6 @@ export default class editBook extends Component {
 	handleUploadImage = event => {
 		this.setState({ImagemPreview: URL.createObjectURL(event.target.files[0])});
 		this.setState({Image: event.target.files[0]});
-		this.setState({imageChanged: true});
 	}
 
 	handleFileUpload = async () => {
@@ -96,24 +94,21 @@ export default class editBook extends Component {
 	}
 		
 	loadBookData = () => {
-		this.setState({
-			Titulo: this.state.Book.Titulo,
-			SubTitulo: this.state.Book.SubTitulo,
-			Numero_Paginas: this.state.Book.Numero_Paginas,
-			Categoria: this.state.Book.Categoria,
-			Idioma: this.state.Book.Idioma,
-			ImagemPreview: this.state.Book.Imagem_URL,
-			Image: this.state.Book.Imagem_URL,
-			PagSeguroURL: this.state.Book.Botao_URL,
-			Classificacao_Indicativa: this.state.Book.Classificacao_Indicativa,
-			ISBN: this.state.Book.ISBN,
-			Ilustrador: this.state.Book.Ilustrador,
-			Datapublicacao: this.handleDate(),
-			Formato: this.state.Book.Formato,
-			Preco: this.state.Book.Preco,
-			Sinopse: this.state.Book.Sinopse,
-			ID_Autor: this.state.Book.Id_autor,
-		});
+		this.setState({Titulo: this.state.Book.Titulo});
+		this.setState({SubTitulo: this.state.Book.SubTitulo});
+		this.setState({Numero_Paginas: this.state.Book.Numero_Paginas});
+		this.setState({Categoria: this.state.Book.Categoria});
+		this.setState({Idioma: this.state.Book.Idioma});
+		this.setState({ImagemPreview: this.state.Book.Imagem_URL});
+		this.setState({PagSeguroURL: this.state.Book.Botao_URL});
+		this.setState({Classificacao_Indicativa: this.state.Book.Classificacao_Indicativa});
+		this.setState({ISBN: this.state.Book.ISBN});
+		this.setState({Ilustrador: this.state.Book.Ilustrador});
+		this.setState({Datapublicacao: this.handleDate()});
+		this.setState({Formato: this.state.Book.Formato});
+		this.setState({Preco: this.state.Book.Preco});
+		this.setState({Sinopse: this.state.Book.Sinopse});
+		this.setState({ID_Autor: this.state.Book.Id_autor});
 	}
 
 	componentDidMount() {
@@ -132,89 +127,46 @@ export default class editBook extends Component {
 			"jwt": jwt,
 		}
 
-		if (this.state.imageChanged === true) {
+		await this.handleFileUpload();
 
-			await this.handleFileUpload();
+		await api.put(`api/Livros/${this.props.match.params.id}`, {
+			"ID_Livro": this.state.Book.ID_Livro,
+			"Titulo": this.state.Titulo,
+			"SubTitulo": this.state.SubTitulo,
+			"Numero_Paginas": this.state.Numero_Paginas,
+			"Categoria": this.state.Categoria,
+			"Descricao": "a",
+			"Idioma": this.state.Idioma,
+			"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
+			"ISBN": this.state.ISBN,
+			"Ilustrador": this.state.Ilustrador,
+			"Imagem_URL": this.state.ImagemURL,
+			"Botao_URL": this.state.PagSeguroURL,
+			"Datapublicacao": this.state.Datapublicacao,
+			"Preco": this.state.Preco,
+			"Formato": this.state.Formato,
+			"Sinopse": this.state.Sinopse,
+			"ID_Autor": this.state.ID_Autor,
+			"Id_cupom": 0,
+		}, {
+			headers: headersData,
+		}).then(res => {
+			console.log(res);
 
-			await api.put(`api/Livros/${this.props.match.params.id}`, {
-				"ID_Livro": this.state.Book.ID_Livro,
-				"Titulo": this.state.Titulo,
-				"SubTitulo": this.state.SubTitulo,
-				"Numero_Paginas": this.state.Numero_Paginas,
-				"Categoria": this.state.Categoria,
-				"Descricao": "a",
-				"Idioma": this.state.Idioma,
-				"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
-				"ISBN": this.state.ISBN,
-				"Ilustrador": this.state.Ilustrador,
-				"Imagem_URL": this.state.ImagemURL,
-				"Botao_URL": this.state.PagSeguroURL,
-				"Datapublicacao": this.state.Datapublicacao,
-				"Preco": this.state.Preco,
-				"Formato": this.state.Formato,
-				"Sinopse": this.state.Sinopse,
-				"ID_Autor": this.state.ID_Autor,
-				"Id_cupom": 0,
-			}, {
-				headers: headersData,
-			}).then(res => {
-				console.log(res);
+			this.setState({isStopped: false});
+			this.handlePopUp("success");
+			setTimeout(() => {
+			this.setState({isStopped: true});
+			}, 3000);
+		}).catch(error => {
+			console.log("Submit -> " + error);
 
-				this.setState({isStopped: false});
-				this.handlePopUp("success");
-				setTimeout(() => {
-				this.setState({isStopped: true});
-				}, 3000);
-			}).catch(error => {
-				console.log("Submit -> " + error);
-
-				this.setState({isStopped: false});
-				this.handlePopUp("error");
-				setTimeout(() => {
-				this.setState({isStopped: true});
-				}, 3000);
-			});
-
-		} else {
-
-			await api.put(`api/Livros/${this.props.match.params.id}`, {
-				"ID_Livro": this.state.Book.ID_Livro,
-				"Titulo": this.state.Titulo,
-				"SubTitulo": this.state.SubTitulo,
-				"Numero_Paginas": this.state.Numero_Paginas,
-				"Categoria": this.state.Categoria,
-				"Descricao": "a",
-				"Idioma": this.state.Idioma,
-				"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
-				"ISBN": this.state.ISBN,
-				"Ilustrador": this.state.Ilustrador,
-				"Botao_URL": this.state.PagSeguroURL,
-				"Datapublicacao": this.state.Datapublicacao,
-				"Preco": this.state.Preco,
-				"Formato": this.state.Formato,
-				"Sinopse": this.state.Sinopse,
-				"ID_Autor": this.state.ID_Autor,
-				"Id_cupom": 0,
-			}, {
-				headers: headersData,
-			}).then(res => {
-				console.log(res);
-
-				this.setState({isStopped: false});
-				this.handlePopUp("success");
-				setTimeout(() => {
-				this.setState({isStopped: true});
-				}, 3000);
-			}).catch(error => {
-				console.log("Submit -> " + error);
-
-				this.setState({isStopped: false});
-				this.handlePopUp("error");
-				setTimeout(() => {
-				this.setState({isStopped: true});
-				}, 3000);
-			});
-		}
+			this.setState({isStopped: false});
+			this.handlePopUp("error");
+			setTimeout(() => {
+			this.setState({isStopped: true});
+			}, 3000);
+		});
 	}
 
 	//#region HandleAnimation()
@@ -435,6 +387,7 @@ export default class editBook extends Component {
 										<input 
 											type="file" 
 											id="imagemURL"
+											required
 											accept=".png, .jpg, .jpeg"
 											onChange={this.handleUploadImage}
 										/>
@@ -445,7 +398,7 @@ export default class editBook extends Component {
 
 							</ul>
 
-							<button type="submit">Atualizar</button>
+							<button onClick={() => console.log("Oi")} type="submit">Atualizar</button>
 					
 						</form>
 

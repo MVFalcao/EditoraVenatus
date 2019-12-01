@@ -13,28 +13,49 @@ export default class addAuthor extends Component {
 		Name: "",
         DateIni: "",
         DateEnd: "",
-        PagSeguroURL: "",
+		PagSeguroURL: "",
+		ID_Livro: 0,
+		
+		allBooks: [],
 	
 		isStopped: true,
+	}
+
+	loadBooks = async () => {
+		await api.get('api/Livros').then(res => {
+			console.log(res.data);
+			this.setState({allBooks: res.data});
+		}).catch(error => {
+			console.log("Books -> " + error);
+		});
+	}
+
+	componentDidMount() {
+		this.loadBooks();
 	}
 
 	handleSubmit = async event => {
         event.preventDefault();
         const jwt = localStorage.getItem("jwt");
+		const headersData = {
+			'Content-Type': 'application/json',
+			"jwt": jwt,
+		}
 
-        await api.get('api/Cupoms',  {
-            headers: { "jwt": jwt },
+        await api.post('api/Cupoms',  {
 			"Nome": this.state.Name,
             "Data_Ini": this.state.DateIni,
             "Data_Fim": this.state.DateEnd,
             "Botao_URL": this.state.PagSeguroURL,
-            "Id_livro": 0,
+            "Id_livro": this.state.ID_Livro,
             "Id_pessoa": 0,
+		}, {
+			headers: headersData,
 		}).then(res => {
 			console.log(res.data);
 
 			this.setState({isStopped: false});
-			this.showAnimationPopUp("success");
+			this.handleAnimationPopUp("success");
 			setTimeout(() => {
 				this.setState({isStopped: true});
 			}, 3000);
@@ -42,7 +63,7 @@ export default class addAuthor extends Component {
 			console.log('Submit -> ' + error);
 
 			this.setState({isStopped: false});
-			this.showAnimationPopUp("error");
+			this.handleAnimationPopUp("error");
 			setTimeout(() => {
 				this.setState({isStopped: true});
 			}, 3000);
@@ -51,11 +72,11 @@ export default class addAuthor extends Component {
 
 	//#region HandleAnimationPopUp() {
 		showAnimationPopUp = (element="") => {
-			document.querySelector(`.editPopUp.${element}`).style.display = "block";
+			document.querySelector(`.addPopUp.${element}`).style.display = "block";
 		}
 	  
 		hideAnimationPopUp = (element="") => {
-			document.querySelector(`.editPopUp.${element}`).style.display = "none";
+			document.querySelector(`.addPopUp.${element}`).style.display = "none";
 		}
 	
         handleAnimationPopUp = (element = "") => {
@@ -110,9 +131,10 @@ export default class addAuthor extends Component {
 									<input 
 										type="text" 
 										id="nome"
+										style={{textTransform: 'uppercase'}}
 										required
-										value={this.state.Nome}
-										onChange={e => this.setState({Nome: e.target.value})}
+										defaultValue={this.state.Name}
+										onChange={e => this.setState({Name: e.target.value})}
 									/>
 
                                     <label htmlFor="pagSeguro">Link do PagSeguro <span>*</span></label>
@@ -122,7 +144,7 @@ export default class addAuthor extends Component {
 										title="Link do botão do PagSeguro"
 										placeholder="https://pag.ae/7US_QW_7Q/button"
 										required
-										value={this.state.PagSeguroURL} 
+										defaultValue={this.state.PagSeguroURL} 
 										onChange={e => this.setState({PagSeguroURL: e.target.value})}
 									/>
 
@@ -134,9 +156,16 @@ export default class addAuthor extends Component {
 										type="date" 
 										id="date-ini"
 										required
-										value={this.state.DateIni} 
+										defaultValue={this.state.DateIni} 
 										onChange={e => this.setState({DateIni: e.target.value})}
 									/>
+
+									<label>Livro <span>*</span></label>
+									<select id="book-select" value={this.state.ID_Livro} onChange={e => this.setState({ID_Livro: e.target.value})}>
+											{this.state.allBooks.map(book => (
+												<option key={book.ID_Livro} value={book.ID_Livro}>{book.Titulo} {book.SubTitulo} </option>
+											))}
+									</select>
 								</li>
 
 								<li>
@@ -145,7 +174,7 @@ export default class addAuthor extends Component {
 										type="date" 
 										id="date-fim"
 										required
-										value={this.state.DateEnd} 
+										defaultValue={this.state.DateEnd} 
 										onChange={e => this.setState({DateEnd: e.target.value})}
 									/>
 								</li>
