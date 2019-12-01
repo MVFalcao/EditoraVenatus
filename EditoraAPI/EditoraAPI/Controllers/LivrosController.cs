@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
 using EditoraAPI.Tokens;
+using Grafo;
+
 
 namespace EditoraAPI.Controllers
 {
@@ -17,7 +19,7 @@ namespace EditoraAPI.Controllers
     {
         private EditoraAPIContext db = new EditoraAPIContext();
         private EncodingTokenLogin en = new EncodingTokenLogin();
-        public string Categoria;
+        private string Categoria =null;
         // GET: api/Livros
         public IQueryable<Livro> Getlivros()
         {
@@ -259,6 +261,28 @@ namespace EditoraAPI.Controllers
                 return BadRequest();
             }
             
+        }
+
+        [Route("api/garfo")]
+        [HttpPost]
+        public IHttpActionResult GrafoLivros()
+        {
+            try
+            {
+                if (Categoria == null)
+                {
+                    return BadRequest();
+                }
+                else
+                    inicializagrafo();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+           
+
         }
         protected override void Dispose(bool disposing)
         {
