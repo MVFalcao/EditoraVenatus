@@ -270,14 +270,16 @@ namespace EditoraAPI.Controllers
             var g = new indicacao();
             try
             {
-                if (Categoria == null)
+                if (id_livro == 0)
                 {
                     return BadRequest();
                 }
                 else
-                    g.inicializagrafo()
+                {
+                    g.inicializagrafo(id_livro);
 
-                return Ok();
+                    return 0; 
+                }
             }
             catch
             {
