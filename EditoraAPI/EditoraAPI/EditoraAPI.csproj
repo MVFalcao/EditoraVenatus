@@ -287,13 +287,9 @@
     <Compile Include="Migrations\201911291826121_banco20.Designer.cs">
       <DependentUpon>201911291826121_banco20.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911301944279_banco22.cs" />
-    <Compile Include="Migrations\201911301944279_banco22.Designer.cs">
-      <DependentUpon>201911301944279_banco22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911302039112_banco221.cs" />
-    <Compile Include="Migrations\201911302039112_banco221.Designer.cs">
-      <DependentUpon>201911302039112_banco221.cs</DependentUpon>
+    <Compile Include="Migrations\201912012007141_Banco211.cs" />
+    <Compile Include="Migrations\201912012007141_Banco211.Designer.cs">
+      <DependentUpon>201912012007141_Banco211.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
@@ -471,11 +467,8 @@
     <EmbeddedResource Include="Migrations\201911291826121_banco20.resx">
       <DependentUpon>201911291826121_banco20.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911301944279_banco22.resx">
-      <DependentUpon>201911301944279_banco22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911302039112_banco221.resx">
-      <DependentUpon>201911302039112_banco221.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912012007141_Banco211.resx">
+      <DependentUpon>201912012007141_Banco211.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -101,7 +101,7 @@ namespace EditoraAPI.Controllers
                     throw;
                 }
             }
-            if (estoque.Quantidade <= 10)
+            if (estoque.Quantidade <= 100)
             {
                 try
                 {
