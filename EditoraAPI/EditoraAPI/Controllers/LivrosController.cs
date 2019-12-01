@@ -267,6 +267,7 @@ namespace EditoraAPI.Controllers
         [HttpPost]
         public IHttpActionResult GrafoLivros()
         {
+            var g = new indicacao();
             try
             {
                 if (Categoria == null)
@@ -274,7 +275,8 @@ namespace EditoraAPI.Controllers
                     return BadRequest();
                 }
                 else
-                    inicializagrafo();
+                    g.inicializagrafo()
+
                 return Ok();
             }
             catch
