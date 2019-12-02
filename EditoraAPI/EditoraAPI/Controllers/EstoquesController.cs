@@ -44,7 +44,7 @@ namespace EditoraAPI.Controllers
             {
                 return NotFound();
             }
-            Estoque estoque = db.estoques.Find(id);
+            var estoque = from e in db.estoques where id == e.Livro select new { e.Livro, e.Quantidade,e.ID_Estoque};
             if (estoque == null)
             {
                 return NotFound();
