@@ -95,7 +95,7 @@ export default class editBook extends Component {
 		}
 
 		loadStorage = async () => {
-			await api.get(`api/Estoques?id=${this.state.Book.ID_Livro}`, {
+			await api.get(`api/Estoques/${this.state.Book.ID_Livro}`, {
 				headers: {
 					'Content-Type': 'application/json',
 					"jwt": this.state.jwt,
@@ -193,7 +193,7 @@ export default class editBook extends Component {
 					this.handleAnimationPopUp("success");
 					setTimeout(() => {
 					  this.setState({isStopped: true});
-					}, 3000);
+					}, 1000);
 				}).catch(error => {
 					console.log("Storage => " + error);
 	
@@ -409,7 +409,7 @@ export default class editBook extends Component {
 										id="storage"
 										min="1"
 										required
-										value={this.state.StorageQuantity} 
+										defaultValue={this.state.StorageQuantity} 
 										onChange={e => this.setState({StorageQuantity: e.target.value})}
 										onFocus={e => e.target.select()}
 									/>
