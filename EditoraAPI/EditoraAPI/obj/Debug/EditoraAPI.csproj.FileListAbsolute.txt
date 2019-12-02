@@ -586,4 +586,3 @@ C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\E
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco19.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco20.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.Banco211.resources
-C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
