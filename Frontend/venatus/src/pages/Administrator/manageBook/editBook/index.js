@@ -31,12 +31,16 @@ export default class editBook extends Component {
 
 		Book: [],
 		allAuthors: [],
+		Storage: [],
+		StorageQuantity: 0,
 
 		Image: null,
 		ImagemPreview: "",
 
 		imageChanged: false,
 		isStopped: true,
+
+		jwt: localStorage.getItem("jwt"),
 	}
 
 	handleDashboardSize = () => {
@@ -73,8 +77,9 @@ export default class editBook extends Component {
 		loadBook = async () => {
 			await api.get(`/api/Livros/${this.props.match.params.id}`).then(res => {
 				console.log(res.data);
-				this.setState({Book: res.data})
-				this.loadBookData();
+				this.setState({Book: res.data});
+				this.loadStorage();
+				this.loadData();
 			}).catch(error => {
 				console.log('Error -> ' + error);
 			});
@@ -88,6 +93,20 @@ export default class editBook extends Component {
 				console.log('Authors -> ' + error);
 			});
 		}
+
+		loadStorage = async () => {
+			await api.get(`api/Estoques?id=${this.state.Book.ID_Livro}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					"jwt": this.state.jwt,
+				}
+			}).then(res => {
+				console.log(res.data);
+				this.setState({Storage: res.data});
+			}).catch(error => {
+				console.log("loadStorage => " + error);
+			});
+		}
 	//#endregion
 
 	handleDate = () => {
@@ -95,7 +114,7 @@ export default class editBook extends Component {
 		return dataPublicacao[0];
 	}
 		
-	loadBookData = () => {
+	loadData = () => {
 		this.setState({
 			Titulo: this.state.Book.Titulo,
 			SubTitulo: this.state.Book.SubTitulo,
@@ -113,6 +132,8 @@ export default class editBook extends Component {
 			Preco: this.state.Book.Preco,
 			Sinopse: this.state.Book.Sinopse,
 			ID_Autor: this.state.Book.Id_autor,
+
+			StorageQuantity: this.state.Storage.Quantidade,
 		});
 	}
 
@@ -126,10 +147,9 @@ export default class editBook extends Component {
 	handleSubmit = async event => {
 		event.preventDefault();
 
-		const jwt = localStorage.getItem("jwt");
 		const headersData = {
 			'Content-Type': 'application/json',
-			"jwt": jwt,
+			"jwt": this.state.jwt,
 		}
 
 		if (this.state.imageChanged === true) {
@@ -160,11 +180,29 @@ export default class editBook extends Component {
 			}).then(res => {
 				console.log(res);
 
-				this.setState({isStopped: false});
-				this.handlePopUp("success");
-				setTimeout(() => {
-				this.setState({isStopped: true});
-				}, 3000);
+				api.put(`api/Estoques/${this.state.Storage.ID_Estoque}`, {
+					"ID_Estoque": this.state.Storage.ID_Estoque,
+					"Quantidade": this.state.StorageQuantity,
+					"Livro": this.state.Book.ID_Livro,
+				} , {
+					headers: headersData,
+				}).then(res => {
+					console.log(res.data);
+					
+					this.setState({isStopped: false});
+					this.handleAnimationPopUp("success");
+					setTimeout(() => {
+					  this.setState({isStopped: true});
+					}, 3000);
+				}).catch(error => {
+					console.log("Storage => " + error);
+	
+					this.setState({isStopped: false});
+					this.handleAnimationPopUp("error", "Falha no estoque");
+					setTimeout(() => {
+						this.setState({isStopped: true});
+					}, 3000);
+				});
 			}).catch(error => {
 				console.log("Submit -> " + error);
 
@@ -218,8 +256,9 @@ export default class editBook extends Component {
 	}
 
 	//#region HandleAnimation()
-		showPopUp = (element="") => {
+		showPopUp = (element="", message="Algo deu errado") => {
 			document.querySelector(`.editPopUp.${element}`).style.display = "block";
+			document.querySelector('.editPopUp.error h1').innerHTML = message;
 		}
 		
 		hidePopUp = (element="") => {
@@ -361,6 +400,17 @@ export default class editBook extends Component {
 										required
 										value={this.state.Preco} 
 										onChange={e => this.setState({Preco: e.target.value})}
+										onFocus={e => e.target.select()}
+									/>
+
+									<label htmlFor="storage">Estoque <span>*</span></label>
+									<input 
+										type="number"
+										id="storage"
+										min="1"
+										required
+										value={this.state.StorageQuantity} 
+										onChange={e => this.setState({StorageQuantity: e.target.value})}
 										onFocus={e => e.target.select()}
 									/>
 

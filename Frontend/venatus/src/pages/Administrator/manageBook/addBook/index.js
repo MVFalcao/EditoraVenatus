@@ -26,7 +26,10 @@ export default class addBook extends Component {
 		Sinopse: "",
 		ImagemURL: "",
 		PagSeguroURL: "",
+
+		ID_Livro: 0,
 		ID_Autor: 1,
+		Storage: 1,
 		
 		allAuthors: [],
 
@@ -34,6 +37,8 @@ export default class addBook extends Component {
 		ImagemPreview: "",
 
 		isStopped: true,
+
+		jwt: localStorage.getItem("jwt"),		
 	}
 
 	handleDashboardSize = () => {
@@ -41,32 +46,55 @@ export default class addBook extends Component {
 		document.querySelector('.administrator-panel').style.minHeight = `${elementSize}px`;
 	}  
 
+	loadAuthors = async () => {
+		await api.get(`api/Autors`).then(res => {
+			console.log(res.data);
+			this.setState({allAuthors: res.data})
+		}).catch(error => {
+			console.log('loadAuthors => ' + error);   
+		});
+	}
+
+	
+	componentDidMount() {
+    	this.loadAuthors();
+    	this.handleDashboardSize();
+  	}
+
 	handleUploadImage = event => {
 		this.setState({ImagemPreview: URL.createObjectURL(event.target.files[0])});
 		this.setState({Image: event.target.files[0]});
 	}
 
-	async loadAuthors() {
-		await api.get(`api/Autors`).then(res => {
+	handleFileUpload = async () => {
+		let config = {
+			headers: {
+				'content-type': 'multipart/form-data',
+			},
+		};
+		let formData = new FormData();
+		formData.append('image', this.state.Image);
+		await api.post(`/Upload`,
+			formData,
+			config
+		).then(res => {
 			console.log(res.data);
-			this.setState({allAuthors: res.data})
+			this.setState({ImagemURL: res.data});
 		}).catch(error => {
-			console.log('Authors => ' + error);   
+			console.log('Image => ' + error);
 		});
-	}
+	 };
 
   	handleSubmit = async event => {
 	event.preventDefault();
-	const jwt = localStorage.getItem("jwt");
 	const headersData = {
 		'Content-Type': 'application/json',
-		"jwt": jwt,
+		"jwt": this.state.jwt,
 	}
 
     await this.handleFileUpload();
 
     await api.post('api/Livros', {
-
 		"Titulo": this.state.Titulo,
 		"SubTitulo": this.state.SubTitulo,
 		"Numero_Paginas": this.state.Numero_Paginas,
@@ -89,11 +117,28 @@ export default class addBook extends Component {
 		}).then(res => {
 			console.log(res.data);
 
-			this.setState({isStopped: false});
-			this.handleAnimationPopUp("success");
-			setTimeout(() => {
-			  this.setState({isStopped: true});
-			}, 3000);
+			api.post('api/Estoques', {
+				"Quantidade": this.state.Storage,
+				"Livro": res.data.ID_Livro,
+			} , {
+				headers: headersData,
+			}).then(res => {
+				console.log(res.data);
+				
+				this.setState({isStopped: false});
+				this.handleAnimationPopUp("success");
+				setTimeout(() => {
+				  this.setState({isStopped: true});
+				}, 3000);
+			}).catch(error => {
+				console.log("Storage => " + error);
+
+				this.setState({isStopped: false});
+				this.handleAnimationPopUp("error", "Falha no estoque");
+				setTimeout(() => {
+					this.setState({isStopped: true});
+				}, 3000);
+			});
 		}).catch(error => {
 			console.log("Book => " + error);
 
@@ -106,8 +151,9 @@ export default class addBook extends Component {
 	}
 	
 	//#region HandleAnimation()
-		showAnimationPopUp = (element="") => {
+		showAnimationPopUp = (element="", message="Algo deu errado") => {
 			document.querySelector(`.addPopUp.${element}`).style.display = "block";
+			document.querySelector('.addPopUp.error h1').innerHTML = message;
 		}
 	
 		hideAnimationPopUp = (element="") => {
@@ -121,30 +167,6 @@ export default class addBook extends Component {
 			}, 3000);
 		}
 	//#endregion
-
-	handleFileUpload = async () => {
-		let config = {
-			headers: {
-				'content-type': 'multipart/form-data',
-			},
-		};
-		let formData = new FormData();
-		formData.append('image', this.state.Image);
-		await api.post(`/Upload`,
-			formData,
-			config
-		).then(res => {
-			console.log(res.data);
-			this.setState({ImagemURL: res.data});
-		}).catch(error => {
-			console.log('Image => ' + error);
-		});
- 	};
-
-  	componentDidMount() {
-    	this.loadAuthors();
-    	this.handleDashboardSize();
-  	}
 
   	render() {
 
@@ -273,6 +295,17 @@ export default class addBook extends Component {
 										required
 										value={this.state.Preco} 
 										onChange={e => this.setState({Preco: e.target.value})}
+										onFocus={e => e.target.select()}
+									/>
+
+									<label htmlFor="storage">Estoque <span>*</span></label>
+									<input 
+										type="number"
+										id="storage"
+										min="1"
+										required
+										value={this.state.Storage} 
+										onChange={e => this.setState({Storage: e.target.value})}
 										onFocus={e => e.target.select()}
 									/>
 
