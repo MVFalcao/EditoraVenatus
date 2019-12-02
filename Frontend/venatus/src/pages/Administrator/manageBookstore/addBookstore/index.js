@@ -18,7 +18,13 @@ export default class addBook extends Component {
     }
 
   deleteCostumer = async () => {
-    const responseCliente = await api.delete(`/api/Clientes/${this.state.Costumer}`).catch(function(error) {
+    let jwt = localStorage.getItem("jwt");
+    const responseCliente = await api.delete(`/api/Clientes/${this.state.Costumer}`, {
+      headers: {
+			'Content-Type': 'application/json',
+			"jwt": jwt,
+		},
+    }).catch(function(error) {
       console.log('Error -> DeleteCostumer: ' + error.message);
     });
       if (responseCliente != null) {
@@ -26,41 +32,45 @@ export default class addBook extends Component {
       }
   }  
 
-  handleSubmit = async event => {
-    event.preventDefault();
+  	handleSubmit = async event => {
+		event.preventDefault();
+		let jwt = localStorage.getItem("jwt");
+		const headersData = {
+			'Content-Type': 'application/json',
+			"jwt": jwt,
+		}
 
-    const responseCliente = await api.post('/api/Clientes', {
+		await api.post('/api/Clientes', {
 
-    }).catch(error => {
-        console.log(error.response);
-        console.log("Error: " + error.message);
-      });
-    if (responseCliente.status === 201) {
-        console.log(responseCliente);
-        this.setState({Costumer: responseCliente.data.ID_Cliente});
-    }
+		}, { 
+			headers: headersData,
+		}).then(res => {
+			console.log(res.data);
+			this.setState({Costumer: res.data.ID_Cliente});
+		}).catch(error => {
+			console.log("Costumer -> " + error);
+		});
 
-    const responseLivraria = await api.post('/api/Livrarias', {
-		"Nome": this.state.Nome,
-		"CNPJ": this.state.CNPJ,
-		"Tipo_Consignacao": this.state.TipoConsignacao,
-		"cliente": this.state.Costumer
-    })
-    .catch(function (error) {
-        console.log(error.response);
-        console.log("Error: " + error.message);
-        this.deleteCostumer();
-    });
-    if (responseLivraria.status === 201) {
-        console.log(responseLivraria);
+		await api.post('/api/Livrarias', {
+			"Nome": this.state.Nome,
+			"CNPJ": this.state.CNPJ,
+			"Tipo_Consignacao": this.state.TipoConsignacao,
+			"cliente": this.state.Costumer,
+		}, {
+			headers: headersData,
+		}).then(res => {
+			console.log(res.data);
 
-        this.setState({isStopped: false});
-        this.handlePopUp();
-        setTimeout(() => {
-            this.setState({isStopped: true});
-        }, 3000);
-    }
-  }
+			this.setState({isStopped: false});
+			this.handlePopUp();
+			setTimeout(() => {
+				this.setState({isStopped: true});
+			}, 3000);
+		}).catch(error => {
+			console.log("Bookstore -> " + error);
+			this.deleteCostumer();
+		});
+	}
 
   //#region HandlePopUp() {
     showPopUp = () => {

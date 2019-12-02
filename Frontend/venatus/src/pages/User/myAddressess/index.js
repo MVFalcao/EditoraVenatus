@@ -18,15 +18,22 @@ export default class myAdressess extends Component {
 
         addIsClosed: true,
         editIsClosed: true,
+
+        jwt: localStorage.getItem("jwt"),
     }
     
     loadAdressess = async () => {
-        await api.get(`api/GetClienteEndereco?id=${this.state.ID_Cliente}`).then(res => {
+        await api.get(`api/GetClienteEndereco?id=${this.state.ID_Cliente}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                "jwt": this.state.jwt,
+            }
+        }).then(res => {
             this.setState({allAdressess: res.data});
 
             console.log(res.data);
         }).catch(error => {
-        console.log('Adressess Error: ' + error.message);
+            console.log('loadAdressess -> ' + error);
         });
     }
     
@@ -36,7 +43,12 @@ export default class myAdressess extends Component {
     }
 
     deleteAddress = async (ID_Endereco = 0) => {
-        await api.delete(`api/Enderecos/${ID_Endereco}`).then(res => {
+        await api.delete(`api/Enderecos/${ID_Endereco}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                "jwt": this.state.jwt,
+            }
+        }).then(res => {
             console.log(res.data);
             this.loadAdressess();
         }).catch(error => {
