@@ -582,7 +582,6 @@ C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\E
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco18.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco19.resources
 C:\Users\falca\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco20.resources
-E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco22.resources
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.GenerateResource.cache
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CopyComplete

@@ -173,7 +173,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AutorsController.cs" />
-    <Compile Include="Controllers\CarrinhoesController.cs" />
     <Compile Include="Controllers\ClassificaosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
@@ -297,7 +296,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
-    <Compile Include="Models\Carrinho.cs" />
     <Compile Include="Models\Classificacao.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compra.cs" />

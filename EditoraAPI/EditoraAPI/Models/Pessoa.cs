@@ -16,11 +16,9 @@ namespace EditoraAPI.Models
         [Required] [StringLength(50)] public string Sobrenome{ get; set; }
         [Required] public Boolean Desconto { get; set; }
         [Required] [StringLength(20)] public string Tipo_pessoa { get; set; }
-        [Required] [StringLength(1)] public string sexo { get; set; }
+        [Required] [StringLength(1)] public string Sexo { get; set; }
         [Required] public DateTime Data_Nascimento { get; set; }
         [JsonIgnore] public List<Cliente> id_cliente { get; set; } //FK
         [JsonIgnore] public virtual List<Cupom> cupoms { get; set; }
-        [ForeignKey("cupoms")] public int Id_cup { get; set; }
-        [Required] [ForeignKey("id_cliente")] public int Id_cli { get; set; }
     }
 }
