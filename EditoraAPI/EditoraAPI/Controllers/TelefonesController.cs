@@ -153,23 +153,7 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Telefone))]
         public IHttpActionResult PostTelefone(Telefone telefone)
         {
-            var headers = Request.Headers;
-            if (headers.Contains("jwt"))
-            {
-                try
-                {
-                    en.ValidToken(headers.GetValues("jwt").First());
-                }
-                catch (Exception e)
-                {
-                    return NotFound();
-                }
-
-            }
-            else
-            {
-                return NotFound();
-            }
+          
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -185,23 +169,7 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Telefone))]
         public IHttpActionResult DeleteTelefone(int id)
         {
-            var headers = Request.Headers;
-            if (headers.Contains("jwt"))
-            {
-                try
-                {
-                    en.ValidToken(headers.GetValues("jwt").First());
-                }
-                catch (Exception e)
-                {
-                    return NotFound();
-                }
-
-            }
-            else
-            {
-                return NotFound();
-            }
+            
             Telefone telefone = db.telefones.Find(id);
             if (telefone == null)
             {

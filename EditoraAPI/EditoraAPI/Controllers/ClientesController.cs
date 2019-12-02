@@ -109,23 +109,7 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult PostCliente(Cliente cliente)
         {
-            var headers = Request.Headers;
-            if (headers.Contains("jwt"))
-            {
-                try
-                {
-                    en.ValidToken(headers.GetValues("jwt").First());
-                }
-                catch (Exception e)
-                {
-                    return NotFound();
-                }
-
-            }
-            else
-            {
-                return NotFound();
-            }
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -141,23 +125,7 @@ namespace EditoraAPI.Controllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult DeleteCliente(int id)
         {
-            var headers = Request.Headers;
-            if (headers.Contains("jwt"))
-            {
-                try
-                {
-                    en.ValidToken(headers.GetValues("jwt").First());
-                }
-                catch (Exception e)
-                {
-                    return NotFound();
-                }
-
-            }
-            else
-            {
-                return NotFound();
-            }
+           
             Cliente cliente = db.clientes.Find(id);
             if (cliente == null)
             {

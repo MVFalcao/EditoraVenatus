@@ -15,7 +15,15 @@ export default class UserInfo extends Component {
   }
 
   loadPerson = async () => {
-    await api.get(`/api/Pessoas/${this.state.ID_Cliente}`).then(response => {
+    const jwt = localStorage.getItem("jwt");
+    const headersData = {
+      'Content-Type': 'application/json',
+      "jwt": jwt,
+    }
+
+    await api.get(`/api/Pessoas/${this.state.ID_Cliente}`, {
+      headers: headersData,
+    }).then(response => {
         this.setState({ person: response.data});
         // console.log(response.data);
     }

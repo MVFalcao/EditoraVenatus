@@ -7,7 +7,7 @@ import SignUp from './pages/register';
 import Main from './pages/main';
 import AllBooks from './pages/allBooks';
 import BookPage from './pages/book';
-import Events from './pages/allEvents';
+import Events from './Backup/allEvents';
 
 // Páginas da conta do usuário
 import Account from './pages/User/myAccount';
@@ -15,6 +15,7 @@ import Adressess from './pages/User/myAddressess';
 import Orders from './pages/User/myOrders';
 
 // Páginas do administrador
+	import administrator from './pages/Administrator';
 	/* Genrenciamento de Livro */
 		import addBook from './pages/Administrator/manageBook/addBook';
 		import editBookSelection from './pages/Administrator/manageBook/editBook/selection';
@@ -58,6 +59,7 @@ export default function Routes() {
 				<Route path="/orders" component={ Orders } />
 
             {/* Rotas do administrador */}
+				<Route path="/administrator" component={ administrator } />
               	{/* Gerenciamento de Livros */}
 					<Route path="/addbook" component={ addBook } />
 					<Route path="/editbook/selection" component={ editBookSelection } />

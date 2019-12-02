@@ -19,10 +19,17 @@ export default class newAddress extends Component {
         address: [],
         ID_Cliente: localStorage.getItem("ID_Cliente"),
         ID_Endereco: localStorage.getItem("ID_Endereco"),
+        jwt: localStorage.getItem("jwt"),
     }
 
     loadAddress = async () => {
-         await api.get(`api/GetEndereco?id=${this.state.ID_Endereco}`).then(res => {
+         await api.get(`api/GetEndereco?id=${this.state.ID_Endereco}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                "jwt": this.state.jwt,
+            }
+         }
+         ).then(res => {
              this.setState({address: res.data});
              this.loadAddressData();
             console.log(res.data);
@@ -60,6 +67,11 @@ export default class newAddress extends Component {
             "Numero": this.state.Numero,
             "Complemento": this.state.Complemento,
             "cliente": this.state.ID_Cliente,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                "jwt": this.state.jwt,
+            }
         }).then(res => {
             console.log(res.data);
             window.location.reload();

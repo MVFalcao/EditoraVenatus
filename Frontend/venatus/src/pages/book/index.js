@@ -12,93 +12,21 @@ import Age14 from '../../assets/ageRating/14.svg';
 import Age16 from '../../assets/ageRating/16.svg';
 import Age18 from '../../assets/ageRating/18.svg';
 import ErrorImg from '../../assets/ageRating/Error.svg';
+import Cupom from '../../assets/allBooks/cupoun.svg';
 
 export default class book extends Component {
 
     state = {
+        Cupom: "",
+        CupomData: [],
+
         divClosedList: [true, true, true],
-        allBooks: [],
+        Book: [],
         author: [],
-
-        Quantity: 1,
-    }
-    
-    async loadBooks() {
-        const response = await api.get(`api/Livros/${this.props.match.params.id}`).catch(function(error) {
-            console.log('Algo deu errado: ' + error.message);
-        });
-        if(response != null) {
-            console.log(response);
-            this.setState({allBooks: response.data});
-            this.handleAge();
-            this.loadAuthors();
-        }
     }
 
-    async loadAuthors() {
-        await api.get(`api/Autors/${this.state.allBooks.Id_autor}`).then(res => {
-            console.log(res.data);
-            this.setState({author: res.data});
-        }).catch(error => {
-            console.log('Authors -> : ' + error);   
-        });
-    }
-
-    componentDidMount() {
-        this.loadBooks();
-    }
-
-     handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
-        let SymbolEmt = document.querySelector(SymbolItem);
-        let dropdownContent = document.querySelector(contentDiv);
-
-        const showDiv = () => {
-            dropdownContent.style.display = "flex";
-        }
-        const hideDiv = () => {
-            dropdownContent.style.display = "none";
-        }
-        if (this.state.divClosedList[item]) {
-            showDiv();
-            SymbolEmt.innerHTML = "-";
-            let a = this.state.divClosedList;
-            a[item] = false;
-            this.setState({divClosedList: a});
-            this.handleDivClose(contentDiv);
-        } else {
-            hideDiv();
-            SymbolEmt.innerHTML = "+";
-            let a = this.state.divClosedList;
-            a[item] = true;
-            this.setState({divClosedList: a});
-        }
-    }
-
-    handleDivClose(contentDiv = "") {
-        let SymbolEmtList = document.querySelectorAll('.plus');
-        let dropdownContentList = document.querySelectorAll('.dropdown-content');
-        let a = this.state.divClosedList;
-        
-        if (contentDiv === '.dropdown-content.item-1') {
-            a[1] = a[2] = true;
-            this.setState({divClosedList: a});
-            dropdownContentList[1].style.display = dropdownContentList[2].style.display = "none";
-            SymbolEmtList[1].innerHTML = SymbolEmtList[2].innerHTML = "+";
-        } else if (contentDiv === '.dropdown-content.item-2') {
-            a[0] = a[2] = true;
-            this.setState({divClosedList: a});
-            dropdownContentList[0].style.display = dropdownContentList[2].style.display = "none";
-            SymbolEmtList[0].innerHTML = SymbolEmtList[2].innerHTML = "+";
-        } else {
-            a[0] = a[1] = true;
-            this.setState({divClosedList: a});
-            dropdownContentList[0].style.display = dropdownContentList[1].style.display = "none";
-            SymbolEmtList[0].innerHTML = SymbolEmtList[1].innerHTML = "+";
-        }
-    }
-    
     handleAge() {
-        const ageRating = this.state.allBooks.Classificacao_Indicativa;
+        const ageRating = this.state.Book.Classificacao_Indicativa;
         const ageText = document.querySelector('p#info01');
         const ageImg = document.querySelector('img#age-rating');        
 
@@ -133,12 +61,141 @@ export default class book extends Component {
             break;
         }
     }
+    
+    //#region APIcalls
+        loadBooks = async () => {
+            await api.get(`api/Livros/${this.props.match.params.id}`).then(res => {
+                console.log(res.data);
 
+                this.setState({Book: res.data});
+                this.handleAge();
+                this.loadAuthors();
+            }).catch(error => {
+                console.log('loadBooks -> ' + error);
+            });
+        }
+
+        async loadAuthors() {
+            await api.get(`api/Autors/${this.state.Book.Id_autor}`).then(res => {
+                console.log(res.data);
+                this.setState({author: res.data});
+            }).catch(error => {
+                console.log('Authors -> : ' + error);   
+            });
+        }
+    //#endregion
+
+    componentDidMount() {
+        this.loadBooks();
+    }
+
+    //#region HandleDropdown
+        handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
+            let SymbolEmt = document.querySelector(SymbolItem);
+            let dropdownContent = document.querySelector(contentDiv);
+
+            const showDiv = () => {
+                dropdownContent.style.display = "flex";
+            }
+            const hideDiv = () => {
+                dropdownContent.style.display = "none";
+            }
+            if (this.state.divClosedList[item]) {
+                showDiv();
+                SymbolEmt.innerHTML = "-";
+                let a = this.state.divClosedList;
+                a[item] = false;
+                this.setState({divClosedList: a});
+                this.handleDivClose(contentDiv);
+            } else {
+                hideDiv();
+                SymbolEmt.innerHTML = "+";
+                let a = this.state.divClosedList;
+                a[item] = true;
+                this.setState({divClosedList: a});
+            }
+        }
+
+        handleDivClose(contentDiv = "") {
+            let SymbolEmtList = document.querySelectorAll('.plus');
+            let dropdownContentList = document.querySelectorAll('.dropdown-content');
+            let a = this.state.divClosedList;
+            
+            if (contentDiv === '.dropdown-content.item-1') {
+                a[1] = a[2] = true;
+                this.setState({divClosedList: a});
+                dropdownContentList[1].style.display = dropdownContentList[2].style.display = "none";
+                SymbolEmtList[1].innerHTML = SymbolEmtList[2].innerHTML = "+";
+            } else if (contentDiv === '.dropdown-content.item-2') {
+                a[0] = a[2] = true;
+                this.setState({divClosedList: a});
+                dropdownContentList[0].style.display = dropdownContentList[2].style.display = "none";
+                SymbolEmtList[0].innerHTML = SymbolEmtList[2].innerHTML = "+";
+            } else {
+                a[0] = a[1] = true;
+                this.setState({divClosedList: a});
+                dropdownContentList[0].style.display = dropdownContentList[1].style.display = "none";
+                SymbolEmtList[0].innerHTML = SymbolEmtList[1].innerHTML = "+";
+            }
+        }
+    //#endregion
+
+    
+
+    clearCupounUI = () => {
+        document.querySelector('#cupoun-invalidError').style.display = "none";
+        document.querySelector("#cupoun-success").style.display = "none";
+        document.querySelector('#book-price').style.textDecoration = 'none';
+        document.querySelector('#new-price').style.display = "none";
+        document.querySelector('#pagseguroBtn').href = this.state.Book.Botao_URL;
+    }
+
+    handleCupoun = event => {
+        this.setState({Cupom: event.target.value});
+        this.clearCupounUI();
+    }
+    
+    validateCupoun = async () => {
+
+        let invalidCoupon = document.querySelector('#cupoun-invalidError');
+
+        await api.post(`api/ValidateCupom?senha=${this.state.Cupom}`).then(res => {
+            console.log(res);
+            const jwt = localStorage.getItem("jwt");
+
+            if (res.data !== null) {
+                const ID_Cupom = res.data;
+                
+                api.get(`api/Cupoms/${ID_Cupom}`, {
+                    headers: {'jwt': jwt},
+                }).then(res => {
+                    console.log(res.data);
+                    this.setState({CupomData: res.data});
+
+                    if (this.state.Book.ID_Livro === this.state.CupomData.Id_livro) {
+                        
+                        document.querySelector("#cupoun-success").style.display = "block";
+                        document.querySelector('#book-price').style.textDecoration = 'line-through';
+                        
+                        let newPrice = document.querySelector('#new-price');
+                        newPrice.style.display = 'block';
+                        newPrice.innerHTML= `R$ ${parseFloat(this.state.CupomData.Desconto).toFixed(2)}`
+
+                        document.querySelector('#pagseguroBtn').href = this.state.CupomData.Botao_URL;
+                    } else {
+                        invalidCoupon.style.display = "block";
+                    }
+                });
+            } else {
+                invalidCoupon.style.display = "block";
+            }
+        });
+    }
 
     render() {
         
-        const allBooks = this.state.allBooks;
-        const DatePublication = new Date(allBooks.Datapublicacao);
+        const Book = this.state.Book;
+        const DatePublication = new Date(Book.Datapublicacao);
         const author = this.state.author;
         
         return (
@@ -149,24 +206,51 @@ export default class book extends Component {
 
                     <div className="left-content">
 
-                        <img src={allBooks.Imagem_URL} alt={allBooks.Titulo} />
-                        <p id="ISBN">ISBN: {allBooks.ISBN}</p>
-                        <p id="synopsis">Sinopse: {allBooks.Sinopse}</p>
+                        <img src={Book.Imagem_URL} alt={Book.Titulo} />
+                        <p id="ISBN">ISBN: {Book.ISBN}</p>
+                        <p id="synopsis">Sinopse: {Book.Sinopse}</p>
 
                     </div>
 
                     <div className="main-content">
 
-                        <h1>{allBooks.Titulo}</h1>
-                        <h2>{allBooks.SubTitulo}</h2>
-                        <p id="book-price">R$ {parseFloat(allBooks.Preco * this.state.Quantity).toFixed(2)}</p>
+                        <h1>{Book.Titulo}</h1>
+                        <h2>{Book.SubTitulo}</h2>
+                        <p id="book-price">R$ {parseFloat(Book.Preco).toFixed(2)}</p>
+                        <p id="new-price"></p>
 
-                        <a 
-                            href={allBooks.Botao_URL} 
+                        <a  id="pagseguroBtn"
+                            href={Book.Botao_URL} 
                             target="_blank" rel="noopener noreferrer">
                             <img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar-azul.gif"
                             alt="Pague com PagSeguro - é rápido, grátis e seguro!"/>
                         </a>
+
+                        <div className="cupoun-container">
+                            <ul>
+                                <li>
+                                    <img src={Cupom} alt="Cupom"/>
+                                    <label htmlFor="cupom">Cupom de Desconto</label>
+                                </li>
+
+                                <li id="cupoun-input">
+                                    <input 
+                                        type="text" 
+                                        id="cupom"
+                                        style={{textTransform: 'uppercase'}}
+                                        value={this.state.Cupom}
+                                        onChange={this.handleCupoun}
+                                    />
+                                    <button onClick={() => this.validateCupoun()}>APLICAR</button>
+                                </li>
+                                <li id="cupoun-response">
+                                    <p id="cupoun-success" style={{color: 'green'}}>Cupom validado</p>
+                                    <p id="cupoun-dateError" style={{color: '#da3232'}}>Cupom Expirou</p>
+                                    <p id="cupoun-invalidError" style={{color: '#da3232'}}>Cupom Inválido</p>
+                                </li>
+                            </ul>
+
+                        </div>
 
                         <div className="dropdown-container">
 
@@ -181,7 +265,7 @@ export default class book extends Component {
 
                                     <div className="dropdown-content item-1">
 
-                                        <p>Categoria: {allBooks.Categoria} </p>
+                                        <p>Categoria: {Book.Categoria} </p>
 
                                         <div className="ageRating-container">
 
@@ -241,10 +325,10 @@ export default class book extends Component {
                     <div className="right-content">
 
                         <p id="book-Author">Autor(a): {author.Nome}</p>
-                        <p id="book-Illustrator">Ilustrador(a): {allBooks.Ilustrador}</p>
-                        <p id="book-Language">Idioma: {allBooks.Idioma}</p>
-                        <p id="book-Format">Formato: {allBooks.Formato} cm</p>
-                        <p id="book-pages">N° de Páginas: {allBooks.Numero_Paginas}</p>
+                        <p id="book-Illustrator">Ilustrador(a): {Book.Ilustrador}</p>
+                        <p id="book-Language">Idioma: {Book.Idioma}</p>
+                        <p id="book-Format">Formato: {Book.Formato} cm</p>
+                        <p id="book-pages">N° de Páginas: {Book.Numero_Paginas}</p>
                         <p id="book-year">Ano de Publicação: {DatePublication.getFullYear()}</p>
 
                     </div>
