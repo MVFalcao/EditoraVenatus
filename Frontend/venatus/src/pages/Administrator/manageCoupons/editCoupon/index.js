@@ -13,30 +13,19 @@ export default class addAuthor extends Component {
 		Name: "",
         DateIni: "",
         DateEnd: "",
-		PagSeguroURL: "",
-		ID_Livro: 0,
+        PagSeguroURL: "",
     
-		Coupon: [],
-		allBooks: [],
+        Coupon: [],
 
         isStopped: true,
-	}
-	
-	loadBooks = async () => {
-		await api.get('api/Livros').then(res => {
-			console.log(res.data);
-			this.setState({allBooks: res.data});
-		}).catch(error => {
-			console.log("Books -> " + error);
-		});
-	}
+    }
     
     loadCoupon = async () => {
         const jwt = localStorage.getItem("jwt");
-		
-		await api.get(`api/Cupoms/${this.props.match.params.id}`, 
-			{headers: {"jwt": jwt}
-		}).then(res => {
+
+		await api.get(`/api/Cupoms/${this.props.match.params.id}`, {
+            headers: { "jwt": jwt }
+        }).then(res => {
 			console.log(res.data);
             this.setState({Coupon: res.data});
             this.loadCouponData();
@@ -47,8 +36,7 @@ export default class addAuthor extends Component {
     
     loadCouponData = async () => {
         this.setState({Name: this.state.Coupon.Nome});
-		this.setState({PagSeguroURL: this.state.Coupon.Botao_URL});
-		this.setState({ID_Livro: this.state.Coupon.Id_livro});
+        this.setState({PagSeguroURL: this.state.Coupon.Botao_URL});
         this.handleDate();
     }
 
@@ -60,29 +48,22 @@ export default class addAuthor extends Component {
 	}
 
     componentDidMount() {
-		this.loadCoupon();
-		this.loadBooks();
+        this.loadCoupon();
     }
 
 	handleSubmit = async event => {
         event.preventDefault();
-        let jwt = localStorage.getItem("jwt");
-		const headersData = {
-			'Content-Type': 'application/json',
-			"jwt": jwt,
-		}
+        const jwt = localStorage.getItem("jwt");
 
-        await api.put(`api/Cupoms/${this.props.match.params.id}`, {
-            "ID_Cupom": this.state.Coupon.ID_Cupom,
+        await api.put('api/Cupoms',  {
+            headers: { "jwt": jwt },
+            "ID_Cupom": this.state.Coupon.ID_Cumpom,
 			"Nome": this.state.Name,
-			"Desconto": '30.00',
             "Data_Ini": this.state.DateIni,
             "Data_Fim": this.state.DateEnd,
             "Botao_URL": this.state.PagSeguroURL,
-            "Id_livro": this.state.ID_Livro,
+            "Id_livro": 0,
             "Id_pessoa": 0,
-		}, {
-			headers: headersData,
 		}).then(res => {
 			console.log(res.data);
 
@@ -193,13 +174,6 @@ export default class addAuthor extends Component {
 										defaultValue={this.state.DateIni} 
 										onChange={e => this.setState({DateIni: e.target.value})}
 									/>
-
-									<label>Livro <span>*</span></label>
-									<select id="book-select" value={this.state.ID_Livro} onChange={e => this.setState({ID_Livro: e.target.value})}>
-											{this.state.allBooks.map(book => (
-												<option key={book.ID_Livro} value={book.ID_Livro}>{book.Titulo} {book.SubTitulo} </option>
-											))}
-									</select>
 								</li>
 
 								<li>
@@ -227,7 +201,7 @@ export default class addAuthor extends Component {
 						width={100}
 						isStopped={this.state.isStopped}
 					/>
-             	 	<h1>Cupom editado com sucesso</h1>
+             	 	<h1>Cupom cadastrado com sucesso</h1>
 				</div>
 
 				<div className="editPopUp error">
