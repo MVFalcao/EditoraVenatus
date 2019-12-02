@@ -586,3 +586,5 @@ E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.dll
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.pdb
 E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.Banco211.resources
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csprojAssemblyReference.cache
+E:\Caique\Documents\Visual Studio 2019\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco22.resources
