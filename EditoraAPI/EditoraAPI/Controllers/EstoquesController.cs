@@ -33,6 +33,12 @@ namespace EditoraAPI.Controllers
                 try
                 {
                     en.ValidToken(headers.GetValues("jwt").First());
+                    var estoque = from e in db.estoques where id == e.Livro select new { e.Livro, e.Quantidade, e.ID_Estoque };
+                    if (estoque == null)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(estoque);
                 }
                 catch (Exception e)
                 {
@@ -43,19 +49,6 @@ namespace EditoraAPI.Controllers
             else
             {
                 return NotFound();
-            }
-            try
-            {
-                var estoque = from e in db.estoques where id == e.Livro select new { e.Livro, e.Quantidade, e.ID_Estoque };
-                if (estoque == null)
-                {
-                    return NotFound();
-                }
-                return Ok(estoque);
-            }
-            catch
-            {
-                return BadRequest();
             }
             
         }
