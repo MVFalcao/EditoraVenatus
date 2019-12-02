@@ -44,13 +44,20 @@ namespace EditoraAPI.Controllers
             {
                 return NotFound();
             }
-            var estoque = from e in db.estoques where id == e.Livro select new { e.Livro, e.Quantidade,e.ID_Estoque};
-            if (estoque == null)
+            try
             {
-                return NotFound();
+                var estoque = from e in db.estoques where id == e.Livro select new { e.Livro, e.Quantidade, e.ID_Estoque };
+                if (estoque == null)
+                {
+                    return NotFound();
+                }
+                return Ok(estoque);
+            }
+            catch
+            {
+                return BadRequest();
             }
             
-            return Ok(estoque);
         }
 
         // PUT: api/Estoques/5
