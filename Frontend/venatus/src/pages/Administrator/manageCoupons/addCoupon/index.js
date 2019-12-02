@@ -15,6 +15,7 @@ export default class addAuthor extends Component {
         DateEnd: "",
 		PagSeguroURL: "",
 		ID_Livro: 0,
+		Preco: 1,
 		
 		allBooks: [],
 	
@@ -46,7 +47,8 @@ export default class addAuthor extends Component {
 			"Nome": this.state.Name,
             "Data_Ini": this.state.DateIni,
             "Data_Fim": this.state.DateEnd,
-            "Botao_URL": this.state.PagSeguroURL,
+			"Botao_URL": this.state.PagSeguroURL,
+			"Desconto": this.state.Preco,
             "Id_livro": this.state.ID_Livro,
             "Id_pessoa": 0,
 		}, {
@@ -176,6 +178,17 @@ export default class addAuthor extends Component {
 										required
 										defaultValue={this.state.DateEnd} 
 										onChange={e => this.setState({DateEnd: e.target.value})}
+									/>
+
+									<label htmlFor="desconto">Novo Preço <span>*</span></label>
+									<input 
+										type="number"
+										id="desconto"
+										step=".01"
+										min="1"
+										required
+										value={this.state.Preco} 
+										onChange={e => this.setState({Preco: e.target.value})}
 									/>
 								</li>
 

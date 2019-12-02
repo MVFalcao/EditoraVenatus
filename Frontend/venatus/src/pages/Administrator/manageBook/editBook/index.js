@@ -32,7 +32,8 @@ export default class editBook extends Component {
 		Book: [],
 		allAuthors: [],
 		Storage: [],
-		StorageQuantity: 0,
+		ID_Storage: 0,
+		StorageQuantity: 1,
 
 		Image: null,
 		ImagemPreview: "",
@@ -102,7 +103,8 @@ export default class editBook extends Component {
 				}
 			}).then(res => {
 				console.log(res.data);
-				this.setState({Storage: res.data});
+				
+				this.setState({ID_Storage: res.data[0].ID_Estoque, StorageQuantity: res.data[0].Quantidade});
 			}).catch(error => {
 				console.log("loadStorage => " + error);
 			});
@@ -122,7 +124,7 @@ export default class editBook extends Component {
 			Categoria: this.state.Book.Categoria,
 			Idioma: this.state.Book.Idioma,
 			ImagemPreview: this.state.Book.Imagem_URL,
-			Image: this.state.Book.Imagem_URL,
+			Imagem_URL: this.state.Book.Imagem_URL,
 			PagSeguroURL: this.state.Book.Botao_URL,
 			Classificacao_Indicativa: this.state.Book.Classificacao_Indicativa,
 			ISBN: this.state.Book.ISBN,
@@ -132,9 +134,8 @@ export default class editBook extends Component {
 			Preco: this.state.Book.Preco,
 			Sinopse: this.state.Book.Sinopse,
 			ID_Autor: this.state.Book.Id_autor,
-
-			StorageQuantity: this.state.Storage.Quantidade,
 		});
+		
 	}
 
 	componentDidMount() {
@@ -153,7 +154,6 @@ export default class editBook extends Component {
 		}
 
 		if (this.state.imageChanged === true) {
-
 			await this.handleFileUpload();
 
 			await api.put(`api/Livros/${this.props.match.params.id}`, {
@@ -180,8 +180,8 @@ export default class editBook extends Component {
 			}).then(res => {
 				console.log(res);
 
-				api.put(`api/Estoques/${this.state.Storage.ID_Estoque}`, {
-					"ID_Estoque": this.state.Storage.ID_Estoque,
+				api.put(`api/Estoques/${this.state.ID_Storage}`, {
+					"ID_Estoque": this.state.ID_Storage,
 					"Quantidade": this.state.StorageQuantity,
 					"Livro": this.state.Book.ID_Livro,
 				} , {
@@ -207,7 +207,7 @@ export default class editBook extends Component {
 				console.log("Submit -> " + error);
 
 				this.setState({isStopped: false});
-				this.handlePopUp("error");
+				this.showAnimationPopUp("error");
 				setTimeout(() => {
 				this.setState({isStopped: true});
 				}, 3000);
@@ -226,6 +226,7 @@ export default class editBook extends Component {
 				"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
 				"ISBN": this.state.ISBN,
 				"Ilustrador": this.state.Ilustrador,
+				"Imagem_URL": this.state.Imagem_URL,
 				"Botao_URL": this.state.PagSeguroURL,
 				"Datapublicacao": this.state.Datapublicacao,
 				"Preco": this.state.Preco,
@@ -238,16 +239,34 @@ export default class editBook extends Component {
 			}).then(res => {
 				console.log(res);
 
-				this.setState({isStopped: false});
-				this.handlePopUp("success");
-				setTimeout(() => {
-				this.setState({isStopped: true});
-				}, 3000);
+				api.put(`api/Estoques/${this.state.ID_Storage}`, {
+					"ID_Estoque": this.state.ID_Storage,
+					"Quantidade": this.state.StorageQuantity,
+					"Livro": this.state.Book.ID_Livro,
+				} , {
+					headers: headersData,
+				}).then(res => {
+					console.log(res.data);
+					
+					this.setState({isStopped: false});
+					this.handleAnimationPopUp("success");
+					setTimeout(() => {
+					  this.setState({isStopped: true});
+					}, 1000);
+				}).catch(error => {
+					console.log("Storage => " + error);
+	
+					this.setState({isStopped: false});
+					this.handleAnimationPopUp("error", "Falha no estoque");
+					setTimeout(() => {
+						this.setState({isStopped: true});
+					}, 3000);
+				});
 			}).catch(error => {
 				console.log("Submit -> " + error);
 
 				this.setState({isStopped: false});
-				this.handlePopUp("error");
+				this.showAnimationPopUp("error");
 				setTimeout(() => {
 				this.setState({isStopped: true});
 				}, 3000);
@@ -256,19 +275,19 @@ export default class editBook extends Component {
 	}
 
 	//#region HandleAnimation()
-		showPopUp = (element="", message="Algo deu errado") => {
+		showAnimationPopUp = (element="", message="Algo deu errado") => {
 			document.querySelector(`.editPopUp.${element}`).style.display = "block";
 			document.querySelector('.editPopUp.error h1').innerHTML = message;
 		}
 		
-		hidePopUp = (element="") => {
+		hideAnimationPopUp = (element="") => {
 			document.querySelector(`.editPopUp.${element}`).style.display = "none";
 		}
 
-		handlePopUp = (element = "") => {
-			this.showPopUp(element);
+		handleAnimationPopUp = (element = "") => {
+			this.showAnimationPopUp(element);
 			setTimeout(() => {
-				this.hidePopUp(element);
+				this.hideAnimationPopUp(element);
 			}, 3000);
 		}
 	//#endregion
@@ -409,7 +428,7 @@ export default class editBook extends Component {
 										id="storage"
 										min="1"
 										required
-										defaultValue={this.state.StorageQuantity} 
+										value={this.state.StorageQuantity} 
 										onChange={e => this.setState({StorageQuantity: e.target.value})}
 										onFocus={e => e.target.select()}
 									/>

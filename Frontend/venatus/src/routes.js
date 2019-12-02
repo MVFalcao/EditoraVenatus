@@ -7,7 +7,7 @@ import SignUp from './pages/register';
 import Main from './pages/main';
 import AllBooks from './pages/allBooks';
 import BookPage from './pages/book';
-import Events from './pages/allEvents';
+import Events from './Backup/allEvents';
 
 // Páginas da conta do usuário
 import Account from './pages/User/myAccount';

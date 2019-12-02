@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Lottie from 'react-lottie';
+import api from '../../services/api';
 
 import Dashboard from '../../components/Dashboard';
 
@@ -10,6 +11,40 @@ import AdminAnimation from '../../assets/Animations/administrator.json';
 export default class Administrator extends Component {
 
     state = {
+        Storages: [],
+
+        lowStorage: false,
+
+        jwt: localStorage.getItem("jwt"),
+    }
+
+    loadBook = async (ID_Livro=0, index) => {
+        await api.get(`api/Livros/${ID_Livro}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                "jwt": this.state.jwt,
+            }
+        }).then(res => {
+            console.log(res.data);
+            document.querySelector(`.storage-waring.${index} p`).innerHTML = `Livro ${res.data.Titulo} ${res.data.SubTitulo}: Baixo Estoque`;
+        }).catch(error => {
+            console.log('loadBook -> ' + error);
+        });
+    }
+
+    loadStorages = async () => {
+        await api.get('api/Estoques').then(res => {
+            console.log(res.data);
+            this.setState({Storages: res.data});
+            this.loadBook();
+        }).catch(error => {
+            console.log('loadStorages -> ' + error);
+            
+        });
+    }
+
+    componentDidMount() {
+        this.loadStorages();
     }
 
   render() {
@@ -28,9 +63,19 @@ export default class Administrator extends Component {
 
             <Dashboard />
 
-            <div className="bookStorage-warning">
-
-            </div>
+            {/* <div className="bookStorage-warning">
+                <ul>
+                    {this.state.Storages.map((storage, index) => (
+                        storage.Quantidade < 10 ?
+                            <li className={`storage-waring ${index}`} key={storage.ID_Estoque}>
+                                {() => this.loadBook(this,storage.Livro, index)}
+                                <p></p>
+                            </li>
+                        :
+                            <></>
+                    ))}
+                </ul>
+            </div> */}
             
             <div className="administrator-container">
 
@@ -47,7 +92,7 @@ export default class Administrator extends Component {
 			    </div>
 
             </div>
-            
+
         </div>
     );
   }
