@@ -17,7 +17,12 @@ export default class deleteAuthor extends Component {
 		author: [],
 
 		isStopped: true,
-  	}
+	}
+	  
+	handleDashboardSize = () => {
+		let elementSize = document.querySelector('.selectAuthor-wrapper').offsetHeight;
+		document.querySelector('.administrator-panel').style.minHeight = `${elementSize}px`;
+	}  
 
   	async loadAuthors() {
    	await api.get('/api/Autors').then(res => {
@@ -32,13 +37,12 @@ export default class deleteAuthor extends Component {
       await api.delete(`/api/Autors/${ID_Autor}`).then(() => {
       	this.setState({isStopped: false});
 			this.handlePopUp();
-			this.load();
+			this.loadAuthors();
 			setTimeout(() => {
 			  this.setState({isStopped: true});
 			}, 3000);
 		}).catch(error => {
 			console.log('deleteAuthor -> ' + error);
-			this.loadAuthors();
 			this.setState({isStopped: false});
 			this.handlePopUp("error");
 			setTimeout(() => {
