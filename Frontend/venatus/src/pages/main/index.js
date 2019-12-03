@@ -17,7 +17,9 @@ export default class main extends Component {
 	loadReleaseBooks = async () => {
 		await api.get('/api/Livros/Lancamento').then(res => {
 			console.log(res.data);
-			this.setState({allRealeaseBooks: res.data});
+			
+			let sliceBooks = res.data.slice(0, 4);			
+			this.setState({allRealeaseBooks: sliceBooks});
 		}).catch(error => {
 			console.log('Books -> ' + error);
 		});
@@ -41,9 +43,7 @@ export default class main extends Component {
 						<section className="main-content">
 
 							<ul>
-								
-								{this.state.allRealeaseBooks.map((book, index) => (
-									(index < 4) ?
+								{this.state.allRealeaseBooks.map(book => (
 									<li key={book.ID_Livro}>
 										<Link to={`/bookPage/${book.ID_Livro}`}>
 											<img src={book.Imagem_URL} alt="" />
@@ -52,8 +52,6 @@ export default class main extends Component {
 										<p>R$ {parseFloat(book.Preco).toFixed(2)}</p>
 										<Link to={`/bookPage/${book.ID_Livro}`} id="BookBtn">Saiba mais</Link>
 									</li>
-								:
-									<></>
 								))}
 								
 							</ul>

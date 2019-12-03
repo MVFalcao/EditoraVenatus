@@ -11,7 +11,7 @@ namespace EditoraAPI.Models
     public class RedeSocial
     {
         [Key] public int ID_RedeSocial { get; set; }
-        public string email { get; set; } = null;
+        public string Email { get; set; } = null;
         public string Instagram { get; set; } = null;
         public string Twitter { get; set; } = null;
         public string Facebook { get; set; } = null;

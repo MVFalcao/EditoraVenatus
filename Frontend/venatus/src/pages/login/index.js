@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import api from '../../services/api';
 
 import './styles.css'
-import logo from '../../assets/header/logo.svg';
+import logo from '../../assets/header/logo_n.svg';
 
 export default class Login extends Component {
 

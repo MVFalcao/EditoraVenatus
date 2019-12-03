@@ -13,7 +13,7 @@ import Age16 from '../../assets/ageRating/16.svg';
 import Age18 from '../../assets/ageRating/18.svg';
 import ErrorImg from '../../assets/ageRating/Error.svg';
 
-export default class book extends Component {
+export default class Book extends Component {
 
     state = {
         divClosedList: [true, true, true],

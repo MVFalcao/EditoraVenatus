@@ -20,7 +20,6 @@ namespace EditoraAPI.Models
         }
 
         public System.Data.Entity.DbSet<EditoraAPI.Models.Autor> autors { get; set; }
-        public System.Data.Entity.DbSet<EditoraAPI.Models.Carrinho> carrinhos { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Classificao> classificaos { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Cliente> clientes { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Compra> compras { get; set; }
