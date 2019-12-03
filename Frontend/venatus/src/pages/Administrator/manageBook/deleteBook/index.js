@@ -15,37 +15,28 @@ export default class editBook extends Component {
     isStopped: true,
   }
 
-  loadBooks = async () => {
-    await api.get('/api/Livros').then(res => {
-      console.log(res.data);
-      this.setState({allBooks: res.data});
-    }).catch(error => {
+  async loadBooks() {
+    const response = await api.get('/api/Livros').catch(function (error) {
       console.log('Error: ' + error.message);
     });
+    if (response != null) {
+      console.log(response);
+      this.setState({allBooks: response.data});
+    }
   }
 
-  	deleteBook = async (ID_Livro = 0) => {
-
-		const jwt = localStorage.getItem("jwt");
-		const headersData = {
-			'Content-Type': 'application/json',
-			"jwt": jwt,
-		}
-
-   	await api.delete(`/api/Livros/${ID_Livro}`, {
-      	headers: headersData,
-    	}).then(res => {
-			console.log(res.data);
-			
-			this.setState({isStopped: false});
-			this.handlePopUp();
-			this.loadBooks();
-			setTimeout(() => {
-			  this.setState({isStopped: true});
-			}, 3000);
-		}).catch(error => {
-      	console.log('deleteBook -> ' + error);
-    	});
+  async deleteBook(ID_Livro = 0) {
+    const response = await api.delete(`/api/Livros/${ID_Livro}`).catch(function(error) {
+      console.log('Error: ' + error.message);
+    });
+    if (response != null) {
+      this.setState({isStopped: false});
+      this.handlePopUp();
+      this.loadBooks();
+      setTimeout(() => {
+        this.setState({isStopped: true});
+      }, 3000);
+    }
   }
 
   handleDeleteBook = (ID_Livro = 0, index = 0) => {

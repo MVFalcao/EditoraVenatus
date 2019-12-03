@@ -45,61 +45,61 @@ export default class signup extends Component {
 	}
 
 	//#region handlePassword
-		handlePassword = () => {
-			let passwordElement = document.querySelector('.password-warning');
+	handlePassword = () => {
+		let passwordElement = document.querySelector('.password-warning');
 
-			let passwordInput = document.querySelector('#password')
-			let confirmPasswordInput = document.querySelector('#confirm-password')
+		let passwordInput = document.querySelector('#password')
+		let confirmPasswordInput = document.querySelector('#confirm-password')
 
-			if (passwordInput.value.length === 0 || confirmPasswordInput.value.length === 0) {
-				passwordElement.style.display = "none";
+        if (passwordInput.value.length === 0 || confirmPasswordInput.value.length === 0) {
+			passwordElement.style.display = "none";
+			this.setState({matchPassword: false});
+        } else {
+			if (this.state.Password !== this.state.ConfirmPassword) {
+				passwordElement.style.display = "block";
 				this.setState({matchPassword: false});
-			} else {
-				if (this.state.Password !== this.state.ConfirmPassword) {
-					passwordElement.style.display = "block";
-					this.setState({matchPassword: false});
-				} else {
-					passwordElement.style.display = "none";
-					this.setState({matchPassword: true});
-				}
-			}    
-		}
+          	} else {
+            	passwordElement.style.display = "none";
+            	this.setState({matchPassword: true});
+          	}
+        }    
+	}
 
-		handlePasswordVerification = async e => {
-			await this.setState({Password: e.target.value});
-			this.handlePassword();
-		}
+	handlePasswordVerification = async e => {
+		await this.setState({Password: e.target.value});
+		this.handlePassword();
+	}
 
-		handleConfirmPasswordVerification = async e => {
-			await this.setState({ConfirmPassword: e.target.value});
-			this.handlePassword();
-		}
+	handleConfirmPasswordVerification = async e => {
+		await this.setState({ConfirmPassword: e.target.value});
+		this.handlePassword();
+	}
 
 
-		handlePasswordVision(element="", item=0) {
-			const EyeElement = document.querySelector(element);
+	handlePasswordVision(element="", item=0) {
+        const EyeElement = document.querySelector(element);
 
-			const showPassword = () => {
-			EyeElement.type = "text";
-			}
+        const showPassword = () => {
+          EyeElement.type = "text";
+        }
 
-			const hidePassword = () => {
-			EyeElement.type = "password";
-			}
+        const hidePassword = () => {
+          EyeElement.type = "password";
+        }
 
-			if (this.state.hideList[item] === true) {
-			showPassword();
-			let a = this.state.hideList;
-			a[item] = false;
-			this.setState({hideList: a});
-			} else {
-			hidePassword();
-			let a = this.state.hideList;
-			a[item] = true;
-			this.setState({hideList: a});
-			}
-		}
-	//#endregion
+        if (this.state.hideList[item] === true) {
+          showPassword();
+          let a = this.state.hideList;
+          a[item] = false;
+          this.setState({hideList: a});
+        } else {
+          hidePassword();
+          let a = this.state.hideList;
+          a[item] = true;
+          this.setState({hideList: a});
+        }
+      }
+	  //#endregion
 
 	handleDelete = () => {
 		

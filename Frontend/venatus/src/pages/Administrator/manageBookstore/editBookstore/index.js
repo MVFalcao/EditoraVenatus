@@ -16,17 +16,10 @@ export default class editBookstore extends Component {
 
     Bookstore: [],
     isStopped: true,
-
-    "jwt": localStorage.getItem("jwt"),
   }
   
   async loadBookstore() {
-    const response = await api.get(`/api/Livrarias/${this.props.match.params.id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        "jwt": this.state.jwt,
-    }
-    }).catch(function(error) {
+    const response = await api.get(`/api/Livrarias/${this.props.match.params.id}`).catch(function(error) {
       console.log('Erro: ' + error.message);
     });
     if (response != null) {
@@ -55,11 +48,6 @@ export default class editBookstore extends Component {
       "CNPJ": this.state.CNPJ,
       "Tipo_Consignacao": this.state.TipoConsignacao,
       "cliente": this.state.Bookstore.cliente,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        "jwt": this.state.jwt,
-      }
     }).catch(error => {
       console.log("Error: " + error.message);
       
