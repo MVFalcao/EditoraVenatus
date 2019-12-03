@@ -189,11 +189,11 @@ namespace EditoraAPI.Controllers
         }
         [ResponseType(typeof(Livro))]
         [Route("api/LivrosName")]
-        public IHttpActionResult VizualizeByStringLivro(string nome)
+        public IHttpActionResult VizualizeByStringLivro(string search)
         {
             try
             {
-                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where nome == l.Titulo select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
+                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where l.Titulo.StartsWith(search) select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
                 if (livro == null)
                 {
                     return NotFound();
@@ -208,11 +208,11 @@ namespace EditoraAPI.Controllers
         }
         [ResponseType(typeof(Livro))]
         [Route("api/LivrosISBN")]
-        public IHttpActionResult VizualizeByISBNLivro(string nome)
+        public IHttpActionResult VizualizeByISBNLivro(string search)
         {
             try
             {
-                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where nome == l.ISBN select new { l.Titulo,aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
+                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where search == l.ISBN select new { l.Titulo,aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
                 if (livro == null)
                 {
                     return NotFound();
@@ -227,11 +227,30 @@ namespace EditoraAPI.Controllers
         }
         [ResponseType(typeof(Livro))]
         [Route("api/LivrosSubtitle")]
-        public IHttpActionResult VizualizeBySubtitleLivro(string nome)
+        public IHttpActionResult VizualizeBySubtitleLivro(string search)
         {
             try
             {
-                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where nome == l.SubTitulo select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
+                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where l.SubTitulo.StartsWith(search) select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
+                if (livro == null)
+                {
+                    return NotFound();
+                }
+                else return Ok(livro);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+        }
+        [ResponseType(typeof(Livro))]
+        [Route("api/LivrosAutor")]
+        public IHttpActionResult VizualizeByAutorLivro(string search)
+        {
+            try
+            {
+                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where aut.Nome.StartsWith(search) select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
                 if (livro == null)
                 {
                     return NotFound();
