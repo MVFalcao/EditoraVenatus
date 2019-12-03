@@ -164,7 +164,13 @@ export default class Dashboard extends Component {
 
                     </div>
                 </div>
+                
+                <div className="line" />
+                
+                <a id="see-website" href="/" target="_blank" rel="noopener noreferrer" >Ver site</a>
+            
             </div>
+
         </div>
     );
   }

@@ -17,11 +17,10 @@
 }
 
 /* Redimensiona a logo */
-.main-header a {
+.main-header .header-logo a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .main-header a img {
@@ -93,6 +92,12 @@
     display: none;
 }
 
+.header-login .account-dropdown a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .header-login .account-dropdown ul {
     padding: 10px 10px;
     list-style: none;
@@ -106,8 +111,8 @@
 }
 
 .header-login .account-dropdown ul li #logoff {
+    margin: auto;
     margin-top: 20px;
-    margin-left: 40px;
     
     color: #535353;
     font: 400 20px 'Poppins', arial, sans-serif;
