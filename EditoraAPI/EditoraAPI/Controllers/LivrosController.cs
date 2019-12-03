@@ -231,7 +231,7 @@ namespace EditoraAPI.Controllers
         {
             try
             {
-                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where l.SubTitulo.StartsWith(search) select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
+                var livro = from l in db.livros join aut in db.autors on l.Id_autor equals aut.ID_Autor where l.SubTitulo.Contains(search) select new { l.Titulo, aut.Nome, l.SubTitulo, l.Sinopse, l.Numero_Paginas, l.ISBN, l.Ilustrador, l.Descricao, l.Classificacao_Indicativa, l.Datapublicacao, l.Formato, l.Idioma };
                 if (livro == null)
                 {
                     return NotFound();
