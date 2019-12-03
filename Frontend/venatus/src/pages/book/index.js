@@ -14,7 +14,7 @@ import Age18 from '../../assets/ageRating/18.svg';
 import ErrorImg from '../../assets/ageRating/Error.svg';
 import Cupom from '../../assets/allBooks/cupoun.svg';
 
-export default class book extends Component {
+export default class Book extends Component {
 
     state = {
         Cupom: "",

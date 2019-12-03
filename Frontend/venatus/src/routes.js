@@ -6,8 +6,10 @@ import Login from './pages/login';
 import SignUp from './pages/register';
 import Main from './pages/main';
 import AllBooks from './pages/allBooks';
-import BookPage from './pages/book';
+import BookPage from './pages/Book';
 import Events from './Backup/allEvents';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/Contact';
 
 // Páginas da conta do usuário
 import Account from './pages/User/myAccount';
@@ -47,11 +49,13 @@ export default function Routes() {
             
 			{/* Rotas do usuário */}
 				<Route path="/" exact component={ Main } />
-				<Route path="/allBooks" component ={ AllBooks } />
-				<Route path="/bookPage/:id" component ={ BookPage } />
 				<Route path="/Login" component ={ Login } />
 				<Route path="/signup" component ={ SignUp } />
+				<Route path="/allBooks" component ={ AllBooks } />
+				<Route path="/bookPage/:id" component ={ BookPage } />
+				<Route path="/aboutus" component={ AboutUs } />
 				<Route path="/events" component={ Events } />
+				<Route path="/contactus" component={ ContactUs } />
 
             {/* Rotas da conta do usuário */}
 				<Route path="/account" component={ Account } />

@@ -5,7 +5,7 @@ import api from '../../services/api';
 import Dashboard from '../../components/Dashboard';
 
 import './styles.css';
-import Logo from '../../assets/header/logo.svg'
+import Logo from '../../assets/header/logo_n.svg';
 import AdminAnimation from '../../assets/Animations/administrator.json';
 
 export default class Administrator extends Component {

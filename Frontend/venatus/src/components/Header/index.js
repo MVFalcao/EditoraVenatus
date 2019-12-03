@@ -3,8 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import api from '../../services/api';
 
 import "./styles.css";
-import logo from '../../assets/header/logo.svg';
-import carrinho from '../../assets/header/carrinho.svg';
+import logo from '../../assets/header/logo_l.svg';
 import line from '../../assets/header/linha.svg';
 import userArrow from '../../assets/main/user-arrow.svg';
 import userArrowBlue from '../../assets/main/user-arrow-blue.svg';
@@ -191,19 +190,13 @@ export default class Header extends Component {
                             <Link to="/allBooks">Livros</Link>
                         </div>
                         <div className="item item-2">
-                            <Link to="/">Sobre Nós</Link>
+                            <Link to="/aboutus">Sobre Nós</Link>
                         </div>
                         <div className="item item-3">
                             <Link to="/events">Eventos</Link>
                         </div>
                         <div className="item item-4">
-                            <Link to="/">Contato</Link>
-                        </div>
-                        <div className="item-cart">
-                            <Link to='/'>
-                                <img src={carrinho} alt="Carrinho" />
-                                <div className="cart-background">0</div>
-                            </Link>
+                            <Link to="/contactus">Contato</Link>
                         </div>
                     </div>
                     <div className="header-line">
