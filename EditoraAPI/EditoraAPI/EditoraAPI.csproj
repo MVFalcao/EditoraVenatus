@@ -173,7 +173,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AutorsController.cs" />
-    <Compile Include="Controllers\CarrinhoesController.cs" />
     <Compile Include="Controllers\ClassificaosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
@@ -291,9 +290,12 @@
     <Compile Include="Migrations\201912012007141_Banco211.Designer.cs">
       <DependentUpon>201912012007141_Banco211.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912022312268_banco22.cs" />
+    <Compile Include="Migrations\201912022312268_banco22.Designer.cs">
+      <DependentUpon>201912022312268_banco22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
-    <Compile Include="Models\Carrinho.cs" />
     <Compile Include="Models\Classificacao.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compra.cs" />
@@ -469,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912012007141_Banco211.resx">
       <DependentUpon>201912012007141_Banco211.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912022312268_banco22.resx">
+      <DependentUpon>201912022312268_banco22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
