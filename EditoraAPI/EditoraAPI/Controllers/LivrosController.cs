@@ -19,6 +19,7 @@ namespace EditoraAPI.Controllers
     {
         private EditoraAPIContext db = new EditoraAPIContext();
         private EncodingTokenLogin en = new EncodingTokenLogin();
+        private indicacao g = new indicacao();
         public int id_livro;
         // GET: api/Livros
         public IQueryable<Livro> Getlivros()
@@ -243,42 +244,27 @@ namespace EditoraAPI.Controllers
             }
 
         }
-        [Route("api/GetID")]
-        public IHttpActionResult GetCat(int id)
+
+        [Route("api/garfo")]
+        [HttpPost]
+        public IHttpActionResult GrafoLivros(int id)
         {
             try
             {
+
                 var livro = from l in db.livros where id == l.ID_Livro select l.ID_Livro;
-                if(livro == null)
+                if (livro == null)
                 {
                     NotFound();
                 }
                 id_livro = livro.FirstOrDefault();
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
-            
-        }
-
-        [Route("api/garfo")]
-        [HttpPost]
-        public IHttpActionResult GrafoLivros()
-        {
-            var g = new indicacao();
-            try
-            {
                 if (id_livro == 0)
                 {
                     return BadRequest();
                 }
                 else
                 {
-                    g.inicializagrafo(id_livro);
-
-                    return 0; 
+                    return Ok(g.inicializagrafo(id_livro)); 
                 }
             }
             catch
