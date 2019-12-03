@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using EditoraAPI.Models;
 using EditoraAPI.Tokens;
+using Grafo;
+
 
 namespace EditoraAPI.Controllers
 {
@@ -259,6 +261,32 @@ namespace EditoraAPI.Controllers
                 return BadRequest();
             }
             
+        }
+
+        [Route("api/garfo")]
+        [HttpPost]
+        public IHttpActionResult GrafoLivros()
+        {
+            var g = new indicacao();
+            try
+            {
+                if (id_livro == 0)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    g.inicializagrafo(id_livro);
+
+                    return 0; 
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+           
+
         }
         protected override void Dispose(bool disposing)
         {
