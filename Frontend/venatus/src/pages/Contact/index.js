@@ -16,10 +16,9 @@ export default class Contact extends Component {
 					
 					<div className="contact-background">
 
-					<h1>Contate nossa Editora</h1>
-					<h2>Dúvidas ou Parcerias? Sinta-se livre para nos enviar uma mensagem</h2>
-					<p>EditoraVenatus@gmail.com</p>
-						
+						<h1>Contate nossa Editora</h1>
+						<h2>Dúvidas ou Parcerias? Sinta-se livre para nos enviar uma mensagem</h2>
+						<p>EditoraVenatus@gmail.com</p>
 
 					</div>
 
