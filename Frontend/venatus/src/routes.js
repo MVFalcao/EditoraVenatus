@@ -2,17 +2,23 @@ import React from 'react';
 import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Páginas do usuário
-import Login from './pages/login';
-import SignUp from './pages/register';
-import Main from './pages/main';
-import AllBooks from './pages/allBooks';
-import BookPage from './pages/book';
-import Events from './Backup/allEvents';
+	import Login from './pages/login';
+	import SignUp from './pages/register';
+	import Main from './pages/main';
+	import AllBooks from './pages/allBooks';
+	import BookPage from './pages/Book';
+	import Events from './Backup/allEvents';
+	import AboutUs from './pages/AboutUs';
+	import ContactUs from './pages/Contact';
 
 // Páginas da conta do usuário
-import Account from './pages/User/myAccount';
-import Adressess from './pages/User/myAddressess';
-import Orders from './pages/User/myOrders';
+	import Account from './pages/User/myAccount';
+	import Adressess from './pages/User/myAddressess';
+	import Orders from './pages/User/myOrders';
+
+// Páginas dos Grafos
+	import GrafoLA from './components/Grafo/LivrosAutores';
+	import GrafoLC from './components/Grafo/LivrosCupons';
 
 // Páginas do administrador
 	import administrator from './pages/Administrator';
@@ -37,9 +43,6 @@ import Orders from './pages/User/myOrders';
 		import editCoupon from './pages/Administrator/manageCoupons/editCoupon';
 		import deleteCoupon from './pages/Administrator/manageCoupons/deleteCoupon';
 
-    
-    	import Grafo from './components/Grafo';
-
 export default function Routes() {
 	return (
       	<BrowserRouter>
@@ -47,16 +50,22 @@ export default function Routes() {
             
 			{/* Rotas do usuário */}
 				<Route path="/" exact component={ Main } />
-				<Route path="/allBooks" component ={ AllBooks } />
-				<Route path="/bookPage/:id" component ={ BookPage } />
 				<Route path="/Login" component ={ Login } />
 				<Route path="/signup" component ={ SignUp } />
+				<Route path="/allBooks" component ={ AllBooks } />
+				<Route path="/bookPage/:id" component ={ BookPage } />
+				<Route path="/aboutus" component={ AboutUs } />
 				<Route path="/events" component={ Events } />
+				<Route path="/contactus" component={ ContactUs } />
 
             {/* Rotas da conta do usuário */}
 				<Route path="/account" component={ Account } />
 				<Route path="/addressess" component={ Adressess } />
 				<Route path="/orders" component={ Orders } />
+
+			{/* Grafos */}
+				<Route path="/grafola" component={ GrafoLA } />	
+				<Route path="/grafolc" component={ GrafoLC } />	
 
             {/* Rotas do administrador */}
 				<Route path="/administrator" component={ administrator } />
@@ -80,8 +89,6 @@ export default function Routes() {
 					<Route path="/editcoupon/selection" component={ editCouponSelection } />
 					<Route path="/editcoupon/:id" component={ editCoupon } />
 					<Route path="/deletecoupon" component={ deleteCoupon } />
-
-                	<Route path="/grafo" component={ Grafo } />
         	</Switch>
       </BrowserRouter>
  	);

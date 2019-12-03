@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+
+
+.aboutUs-container {
+    max-width: 100%;
+    min-height: 700px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.aboutUs-container h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: rgb(16, 93, 109);
+}
+
+.aboutUs-container .aboutUs-background {
+    max-width: 1200px;
+    height: 300px;
+    margin: 20px auto;
+    padding: 20px 0px 10px;
+
+    background: #d4e4e2;
+}
+
+.venatus-workers {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+}
+
+.venatus-workers ul {
+    margin-top: 30px;
+    list-style: none;
+}
+
+/* .venatus-workers ul li {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+} */
+
+.venatus-workers .image-container {
+    position: relative;
+}
+
+.venatus-workers img#author {
+    width: 911px;
+    height: 331px;
+    object-fit: cover;
+}
+
+.venatus-workers #faixa {
+    width: 77%;
+    height: auto;
+    position: absolute;
+    top: 320px; left: auto; right: 139px;
+    /* object-fit: cover; */
+}
+
+.venatus-workers h1 {
+    margin-top: 25px;
+
+    color: rgb(34, 106, 116);
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.venatus-workers p {
+    margin: auto;
+    margin-top: 25px;
+    max-width: 800px;
+
+    font-size: 18px;
+    line-height: 30px;   
+}

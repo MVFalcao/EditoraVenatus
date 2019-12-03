@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
-import Logo from '../../assets/header/logo.svg';
+import Logo from '../../assets/header/logo_n.svg';
 import AngleDown from '../../assets/Dashboard/angle-down.svg';
 import AngleRight from '../../assets/Dashboard/angle-right.svg';
 
@@ -164,7 +164,13 @@ export default class Dashboard extends Component {
 
                     </div>
                 </div>
+                
+                <div className="line" />
+                
+                <a id="see-website" href="/" target="_blank" rel="noopener noreferrer" >Ver site</a>
+            
             </div>
+
         </div>
     );
   }

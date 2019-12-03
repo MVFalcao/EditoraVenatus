@@ -28,13 +28,13 @@
 }
 
 .login-container a img {
-    width: 75%;
+    width: 40%;
     height: auto;
     margin: auto;
 }
 
 .login-content {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
     border-radius: 4px;
 }
