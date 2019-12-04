@@ -40,6 +40,27 @@ namespace EditoraAPI.Controllers
                 return BadRequest();
             }
         }
+        [ResponseType(typeof(Cupom))]
+        [Route("api/GetCupomLivro/")]
+        [HttpGet]
+        public IHttpActionResult GetLivroCupom(int id) {
+            var headers = Request.Headers;
+            if(headers.Contains("jwt")) {
+                try {
+                    en.ValidToken(headers.GetValues("jwt").First());
+                    var cup = from c in db.cupoms where c.Id_livro == id select c.ID_Cupom;
+                    if(cup == null) {
+                        return NotFound();
+                    }
+                    return Ok(cup);
+                }
+                catch(Exception e) {
+                    return BadRequest();
+                }
+            } else {
+                return BadRequest();
+            }
+        }
         // GET: api/Cupoms/5
         [ResponseType(typeof(Cupom))]
         public IHttpActionResult GetCupom(int id)
