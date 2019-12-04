@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
@@ -19,6 +20,7 @@ export default class Book extends Component {
     state = {
         Cupom: "",
         CupomData: [],
+        RecommendedBooks: [],
 
         divClosedList: [true, true, true],
         Book: [],
@@ -70,6 +72,7 @@ export default class Book extends Component {
                 this.setState({Book: res.data});
                 this.handleAge();
                 this.loadAuthors();
+                this.loadRecommendations(this.props.match.params.id);
             }).catch(error => {
                 console.log('loadBooks -> ' + error);
             });
@@ -82,6 +85,31 @@ export default class Book extends Component {
             }).catch(error => {
                 console.log('Authors -> : ' + error);   
             });
+        }
+
+        loadRecommendations = async (ID_Livro = 0) => {
+            await api.post(`api/garfoTeste?id=${ID_Livro}`).then(res => {
+                console.log(res.data);
+
+                for (const recommendation of res.data) {
+                    api.get(`api/Livros/${recommendation}`).then(res => {
+                        console.log(res.data);
+                        let book = res.data;
+                        this.setState({RecommendedBooks: this.state.RecommendedBooks.concat(book)});
+                    }).catch(error => {
+                        console.log('loadRecommendation -> ' + error);
+                    });
+                }
+            }).catch(error => {
+                console.log('loadRecommendations -> ' + error);
+            });
+        }
+
+        loadBook = async (ID_Livro=0) => {
+            await api.get(`api/Livros/${ID_Livro}`).then(res => {
+                console.log();
+                
+            })
         }
     //#endregion
 
@@ -332,6 +360,25 @@ export default class Book extends Component {
                         <p id="book-year">Ano de Publicação: {DatePublication.getFullYear()}</p>
 
                     </div>
+
+
+                </div>
+                
+                <div className="recommendations-container">
+                    <h1>Sugestões de livros similares</h1>
+
+                    <ul>
+                        {this.state.RecommendedBooks.map(book => (
+                            <li key={book.ID_Livro}>
+                                <Link to={`/bookPage/${book.ID_Livro}`}>
+                                    <img src={book.Imagem_URL} alt="" />
+                                </Link>
+                                <h2>{book.Titulo} {book.SubTitulo}</h2>
+                                <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => window.location.reload()} id="BookBtn">Saiba mais</Link>
+                            </li>
+                        ))}
+                    </ul>
+
                 </div>
 
             <Footer />
