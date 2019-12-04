@@ -121,11 +121,11 @@ namespace Grafo
                 {
                     if(livro1.Categoria == livro2.Categoria)
                     {
-                        if (livro1.Classificacao_Indicativa == "L" || livro2.Classificacao_Indicativa == "L")
-                        {
-                            livro1.Classificacao_Indicativa = 0;
-                            livro2.Classificacao_Indicativa = 0;
-                        }
+                        //if (livro1.Classificacao_Indicativa == "L" || livro2.Classificacao_Indicativa == "L")
+                        //{
+                        //    livro1.Classificacao_Indicativa = 0;
+                        //    livro2.Classificacao_Indicativa = 0;
+                        //}
                         if (livro1.Classificacao_Indicativa > livro2.Classificacao_Indicativa)
                         {
                            g.inserir_aresta(livro1.ID_Livro, livro2.ID_Livro, (livro1.Classificacao_Indicativa - livro2.Classificacao_Indicativa));

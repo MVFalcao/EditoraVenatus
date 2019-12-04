@@ -304,10 +304,10 @@ namespace EditoraAPI.Controllers
                 var AuxLivro = from l in db.livros where id == l.ID_Livro select l.Categoria;
                 string AuxCat = AuxLivro.FirstOrDefault();
 
-                var LivrosCat = from l in db.livros where l.Categoria == AuxCat select l.ID_Livro ;
+                var LivrosCat = from l in db.livros where l.Categoria == AuxCat && l.ID_Livro != id select l.ID_Livro;
 
 
-                int LivroCatId = LivrosCat.FirstOrDefault();
+               // int LivroCatId = LivrosCat.FirstOrDefault();
 
                 return Ok(LivrosCat);
                 
