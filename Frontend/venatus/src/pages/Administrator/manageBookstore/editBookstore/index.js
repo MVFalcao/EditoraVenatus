@@ -16,8 +16,6 @@ export default class editBookstore extends Component {
 
     Bookstore: [],
     isStopped: true,
-
-    "jwt": localStorage.getItem("jwt"),
   }
   
 	async loadBookstore() {

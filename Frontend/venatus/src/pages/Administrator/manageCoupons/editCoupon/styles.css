@@ -94,20 +94,6 @@
     background-color: rgb(54, 74, 161);
 }
 
-.editCoupon-data select {
-    width: 300px;
-    height: 40px;
-    margin-bottom: 20px;
-    padding-left: 10px;
-    
-    color: white;
-    font-family: 'Poppins', Arial, sans-serif;
-    font-size: 18px;
-    border-color: rgba(255, 255, 255, 0.26);
-    border-radius: 10px;
-    background-color: rgb(26, 26, 26);
-}
-
 .editCoupon-wrapper .editPopUp {
     width: 400px;
     height: 200px;
@@ -131,4 +117,3 @@
 
     font: 500 20px 'Poppins', arial, sans-serif;
 }
-

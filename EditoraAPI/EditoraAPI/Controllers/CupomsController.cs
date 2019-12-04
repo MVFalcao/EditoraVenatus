@@ -84,7 +84,7 @@ namespace EditoraAPI.Controllers
                 catch (Exception e)
                 {
                     return NotFound();
-                }
+                } 
 
             }
             else

@@ -13,51 +13,28 @@ export default class addAuthor extends Component {
 		Name: "",
         DateIni: "",
         DateEnd: "",
-		PagSeguroURL: "",
-		ID_Livro: 0,
-		Preco: 1,
-		
-		allBooks: [],
+        PagSeguroURL: "",
 	
 		isStopped: true,
-	}
-
-	loadBooks = async () => {
-		await api.get('api/Livros').then(res => {
-			console.log(res.data);
-			this.setState({allBooks: res.data});
-		}).catch(error => {
-			console.log("Books -> " + error);
-		});
-	}
-
-	componentDidMount() {
-		this.loadBooks();
 	}
 
 	handleSubmit = async event => {
         event.preventDefault();
         const jwt = localStorage.getItem("jwt");
-		const headersData = {
-			'Content-Type': 'application/json',
-			"jwt": jwt,
-		}
 
-        await api.post('api/Cupoms',  {
+        await api.get('api/Cupoms',  {
+            headers: { "jwt": jwt },
 			"Nome": this.state.Name,
             "Data_Ini": this.state.DateIni,
             "Data_Fim": this.state.DateEnd,
-			"Botao_URL": this.state.PagSeguroURL,
-			"Desconto": this.state.Preco,
-            "Id_livro": this.state.ID_Livro,
+            "Botao_URL": this.state.PagSeguroURL,
+            "Id_livro": 0,
             "Id_pessoa": 0,
-		}, {
-			headers: headersData,
 		}).then(res => {
 			console.log(res.data);
 
 			this.setState({isStopped: false});
-			this.handleAnimationPopUp("success");
+			this.showAnimationPopUp("success");
 			setTimeout(() => {
 				this.setState({isStopped: true});
 			}, 3000);
@@ -65,7 +42,7 @@ export default class addAuthor extends Component {
 			console.log('Submit -> ' + error);
 
 			this.setState({isStopped: false});
-			this.handleAnimationPopUp("error");
+			this.showAnimationPopUp("error");
 			setTimeout(() => {
 				this.setState({isStopped: true});
 			}, 3000);
@@ -74,11 +51,11 @@ export default class addAuthor extends Component {
 
 	//#region HandleAnimationPopUp() {
 		showAnimationPopUp = (element="") => {
-			document.querySelector(`.addPopUp.${element}`).style.display = "block";
+			document.querySelector(`.editPopUp.${element}`).style.display = "block";
 		}
 	  
 		hideAnimationPopUp = (element="") => {
-			document.querySelector(`.addPopUp.${element}`).style.display = "none";
+			document.querySelector(`.editPopUp.${element}`).style.display = "none";
 		}
 	
         handleAnimationPopUp = (element = "") => {
@@ -133,10 +110,9 @@ export default class addAuthor extends Component {
 									<input 
 										type="text" 
 										id="nome"
-										style={{textTransform: 'uppercase'}}
 										required
-										defaultValue={this.state.Name}
-										onChange={e => this.setState({Name: e.target.value})}
+										value={this.state.Nome}
+										onChange={e => this.setState({Nome: e.target.value})}
 									/>
 
                                     <label htmlFor="pagSeguro">Link do PagSeguro <span>*</span></label>
@@ -146,7 +122,7 @@ export default class addAuthor extends Component {
 										title="Link do botão do PagSeguro"
 										placeholder="https://pag.ae/7US_QW_7Q/button"
 										required
-										defaultValue={this.state.PagSeguroURL} 
+										value={this.state.PagSeguroURL} 
 										onChange={e => this.setState({PagSeguroURL: e.target.value})}
 									/>
 
@@ -158,7 +134,7 @@ export default class addAuthor extends Component {
 										type="date" 
 										id="date-ini"
 										required
-										defaultValue={this.state.DateIni} 
+										value={this.state.DateIni} 
 										onChange={e => this.setState({DateIni: e.target.value})}
 									/>
 
@@ -176,19 +152,8 @@ export default class addAuthor extends Component {
 										type="date" 
 										id="date-fim"
 										required
-										defaultValue={this.state.DateEnd} 
+										value={this.state.DateEnd} 
 										onChange={e => this.setState({DateEnd: e.target.value})}
-									/>
-
-									<label htmlFor="desconto">Novo Preço <span>*</span></label>
-									<input 
-										type="number"
-										id="desconto"
-										step=".01"
-										min="1"
-										required
-										value={this.state.Preco} 
-										onChange={e => this.setState({Preco: e.target.value})}
 									/>
 								</li>
 

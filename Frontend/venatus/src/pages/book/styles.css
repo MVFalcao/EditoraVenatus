@@ -62,100 +62,21 @@
     font-size: 30px;
     font-style: italic;
     color: rgb(80, 80, 80);
+    margin-bottom: 20px;
 }
 
-.main-content p#new-price {
-    font-weight: 300;
-    font-size: 20px;
-    font-style: italic;
-    color: rgb(58, 58, 58);
-}
+.main-content img {
+    margin-top: 20px;
 
-
-.main-content #pagseguroBtn img {
-    margin-top: 30px;
-    
-    cursor: pointer;
     transition: all .1s;
 }
 
-.main-content #pagseguroBtn img:hover {
-    transform: scale(1.03);
+.main-content img:hover {
+    transform: scale(1.1);
 }
 
-.main-content #pagseguroBtn img:active {
+.main-content img:active {
     transform: translateY(2px);
-}
-
-.main-content .cupoun-container {
-    margin-top: 30px;
-
-    display: flex;
-    align-items: center;
-}
-
-.main-content .cupoun-container ul {
-    list-style: none;
-}
-
-.main-content .cupoun-container ul li {
-    color: #309AAC;
-    font-family: 'Poppins', Arial, sans-serif;
-    font-weight: 400;
-
-    display: flex;
-    align-items: center;
-}
-
-.main-content .cupoun-container ul li img {
-    width: 21px;
-    height: auto;
-    margin-right: 10px;
-}
-
-.main-content .cupoun-container #cupoun-input {
-    height: 31px;
-    margin-top: 7px;
-
-    border: 1px solid #309AAC;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.main-content .cupoun-container input {
-    width: 145px;
-    height: 29px;
-    padding-left: 5px;
-
-    color: rgb(65, 65, 65);
-    font: 400 16px Bahnschrift, Arial, sans-serif;
-    letter-spacing: 1px;
-
-    border: none;
-    background: none;
-}
-
-.main-content .cupoun-container button {
-    width: 70px;
-    height: 100%;
-
-    border: none;
-
-    color: white;
-    font: 300 14px 'Poppins', Arial, sans-serif;
-    background-color: #309AAC;
-
-    cursor: pointer;
-}
-
-.main-content .cupoun-container #cupoun-response p {
-    margin-top: 5px;
-
-    font-family: Bahnschrift, Helvetica, sans-serif;
-    font-weight: 400;
-    display: none;
 }
 
 .dropdown-container {
