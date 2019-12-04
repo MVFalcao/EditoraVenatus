@@ -198,6 +198,9 @@ export default class Header extends Component {
                         <div className="item item-4">
                             <Link to="/contactus">Contato</Link>
                         </div>
+                        <div className="item item-5">
+                            <Link to="/api">API</Link>
+                        </div>
                     </div>
                     <div className="header-line">
                         <img src={line} alt="line1" />

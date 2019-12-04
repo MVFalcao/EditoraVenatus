@@ -50,12 +50,12 @@ export default class addAuthor extends Component {
 			document.querySelector(`.addPopUp.${element}`).style.display = "none";
 		}
 	
-		  handlePopUp = (element = "") => {
-			this.showPopUp(element);
-			setTimeout(() => {
+		handlePopUp = (element = "") => {
+		this.showPopUp(element);
+		setTimeout(() => {
 			this.hidePopUp(element);
-			}, 3000);
-		  }
+		}, 3000);
+		}
 	//#endregion
 
 
