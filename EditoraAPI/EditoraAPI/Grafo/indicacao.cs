@@ -63,10 +63,10 @@ namespace Grafo
             }
         }
 
-        public static ArrayList Dijkstra(Grafoh g, Vertice s)
+        public static List<dynamic> Dijkstra(Grafoh g, Vertice s)
         {
             SortedDictionary<int, Vertice> Q = new SortedDictionary<int, Vertice>();
-            ArrayList livros = new ArrayList();
+            List<dynamic> livros = new List<dynamic>();
             initialize_single_source(g, s);
 
             Q = g.get_vertices();
@@ -87,7 +87,7 @@ namespace Grafo
                 }
                 add_S(u, S);
                 livros.Add(u);
-                //Console.Write(u.get_id() + ",");
+               // Console.Write(u.get_id() + ",");
             }
 
             /* S tem os pesos finais de caminho mínimos a partir da fonte determinada, assim atualiza o grafo 
@@ -96,10 +96,10 @@ namespace Grafo
             return livros;
         }
 
-        public ArrayList inicializagrafo(int Id_Livro_Pesquisado)
+        public List<dynamic> inicializagrafo(int Id_Livro_Pesquisado)
         {
 
-            ArrayList result = new ArrayList();
+            List<dynamic> result = new List<dynamic>();
             Grafoh g = new Grafoh(true);
             Vertice origem;
            
@@ -121,11 +121,19 @@ namespace Grafo
                 {
                     if(livro1.Categoria == livro2.Categoria)
                     {
-                        g.inserir_aresta(livro1.ID_Livro, livro2.ID_Livro,(livro1.Classificacao_Indicativa - livro2.Classificacao_Indicativa));
+                        if (livro1.Classificacao_Indicativa > livro2.Classificacao_Indicativa)
+                        {
+                           g.inserir_aresta(livro1.ID_Livro, livro2.ID_Livro, (livro1.Classificacao_Indicativa - livro2.Classificacao_Indicativa));
+                        }
+                        else
+                        {
+                           g.inserir_aresta(livro1.ID_Livro, livro2.ID_Livro, (livro2.Classificacao_Indicativa - livro1.Classificacao_Indicativa));
+                        }
+                        
                     }
                 }
             }
-            result = new ArrayList();
+            result = new List<dynamic>();
 
 
             origem = g.get_vertice(Id_Livro_Pesquisado);
