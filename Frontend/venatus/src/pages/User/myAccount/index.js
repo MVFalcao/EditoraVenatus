@@ -136,8 +136,8 @@ export default class myAccount extends Component {
 
       loadTelephone = async () => {
         await api.get(`/api/Telefones/GetTelefoneByCliente?id=${this.state.id_Cliente}`, {
-			  headers: this.handleHeaders(),
-		  }).then(response => {
+			    headers: this.handleHeaders(),
+		    }).then(response => {
             this.setState({ telephone: response.data});
 
             this.loadTelephoneData();
@@ -148,13 +148,13 @@ export default class myAccount extends Component {
       }
 
       loadSocialNetwork = async () => {
-        await api.get(`/api/RedeSocials/GetRedeSocialByCLiente?id=${this.state.id_Cliente}`, {
-			headers: this.handleHeaders(),
-		  }).then(response => {
-            this.setState({ socialNetwork: response.data});
+      await api.get(`/api/RedeSocials/GetRedeSocialByCLiente?id=${this.state.id_Cliente}`, {
+			  headers: this.handleHeaders(),
+		  }).then(res => {
+            this.setState({socialNetwork: res.data});
 
             this.loadSocialNetworkData();
-            console.log(response.data);
+            console.log(res.data);
         }
         ).catch(error => {
             console.log('RedeSocial Error: ' + error.message);
@@ -181,7 +181,7 @@ export default class myAccount extends Component {
       }
 
       loadSocialNetworkData = () => {
-			this.setState({Email: this.state.socialNetwork.email});
+        this.setState({Email: this.state.socialNetwork.Email});
       }
 	//#endregion
 

@@ -20,63 +20,61 @@ export default class editBookstore extends Component {
     "jwt": localStorage.getItem("jwt"),
   }
   
-  async loadBookstore() {
-    const response = await api.get(`/api/Livrarias/${this.props.match.params.id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        "jwt": this.state.jwt,
-    }
-    }).catch(function(error) {
-      console.log('Erro: ' + error.message);
-    });
-    if (response != null) {
-      console.log(response);
-      this.setState({Bookstore: response.data})
-      this.loadBookstoreData();
-    }
-  }
+	async loadBookstore() {
+		await api.get(`/api/Livrarias/${this.props.match.params.id}`, {
+			headers: {
+			'Content-Type': 'application/json',
+			"jwt": this.state.jwt,
+		}
+		}).then(res => {
+			console.log(res.data);
+			this.setState({Bookstore: res.data})
+			this.loadBookstoreData();
+		}).catch(error => {
+			console.log('loadBookstore ' + error);
+		});
+	}
     
-  loadBookstoreData = () => {
-    this.setState({Nome: this.state.Bookstore.Nome});
-    this.setState({CNPJ: this.state.Bookstore.CNPJ});
-    this.setState({TipoConsignacao: this.state.Bookstore.Tipo_Consignacao});
-  }
+	loadBookstoreData = () => {
+		this.setState({Nome: this.state.Bookstore.Nome});
+		this.setState({CNPJ: this.state.Bookstore.CNPJ});
+		this.setState({TipoConsignacao: this.state.Bookstore.Tipo_Consignacao});
+	}
 
-  componentDidMount() {
-    this.loadBookstore();
-  }
+	componentDidMount() {
+		this.loadBookstore();
+	}
 
-  handleSubmit = async event => {
-    event.preventDefault();
+	handleSubmit = async event => {
+		event.preventDefault();
 
-    const response = await api.put(`api/Livrarias/${this.props.match.params.id}`, {
-      "ID_Livraria": this.state.Bookstore.ID_Livraria,
-      "Nome": this.state.Nome,
-      "CNPJ": this.state.CNPJ,
-      "Tipo_Consignacao": this.state.TipoConsignacao,
-      "cliente": this.state.Bookstore.cliente,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        "jwt": this.state.jwt,
-      }
-    }).catch(error => {
-      console.log("Error: " + error.message);
-      
-      this.setState({isStopped: false});
-      this.handlePopUp("error");
-      setTimeout(() => {
-        this.setState({isStopped: true});
-      }, 3000);
-    });
-    if (response != null) {
-      this.setState({isStopped: false});
-      this.handlePopUp("success");
-      setTimeout(() => {
-        this.setState({isStopped: true});
-      }, 3000);
-    }
-  }
+		await api.put(`api/Livrarias/${this.props.match.params.id}`, {
+			"ID_Livraria": this.state.Bookstore.ID_Livraria,
+			"Nome": this.state.Nome,
+			"CNPJ": this.state.CNPJ,
+			"Tipo_Consignacao": this.state.TipoConsignacao,
+			"Cliente": this.state.Bookstore.Cliente,
+		}, {
+			headers: {
+			'Content-Type': 'application/json',
+			"jwt": this.state.jwt,
+			}
+		}).then(res => {
+			this.setState({isStopped: false});
+			this.handlePopUp("success");
+			setTimeout(() => {
+			this.setState({isStopped: true});
+			}, 3000);
+		}).catch(error => {
+			console.log("Error: " + error.message);
+			
+			this.setState({isStopped: false});
+			this.handlePopUp("error");
+			setTimeout(() => {
+			this.setState({isStopped: true});
+			}, 3000);
+		});
+		}	
 
   showPopUp = (element="") => {
     document.querySelector(`.editPopUp.${element}`).style.display = "block";
@@ -182,7 +180,7 @@ export default class editBookstore extends Component {
                 width={100}
                 isStopped={this.state.isStopped}
               />
-              <h1>Livraria editada com sucesso</h1>
+              <h1>Algo deu errado</h1>
           </div>
 
       </div>
