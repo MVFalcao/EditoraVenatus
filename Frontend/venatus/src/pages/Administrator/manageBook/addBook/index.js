@@ -334,7 +334,7 @@ export default class addBook extends Component {
 
 									<label>Classificação Indicativa <span>*</span></label>
 									<select value={this.state.Classificacao_Indicativa} onChange={e => this.setState({Classificacao_Indicativa: e.target.value})}>
-										<option value="L">Livre</option>
+										<option value="0">Livre</option>
 										<option value="10">Maiores de 10 anos</option>
 										<option value="12">Maiores de 12 anos</option>
 										<option value="14">Maiores de 14 anos</option>

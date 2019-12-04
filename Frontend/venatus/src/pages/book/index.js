@@ -31,7 +31,7 @@ export default class Book extends Component {
         const ageImg = document.querySelector('img#age-rating');        
 
         switch (ageRating) {
-            case 'L':
+            case '0':
                 ageText.innerHTML = "Indicação: Livre para todas as idades";
                 ageImg.src = AgeL;
             break;
