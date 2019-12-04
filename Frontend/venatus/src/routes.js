@@ -10,6 +10,7 @@ import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 	import Events from './Backup/allEvents';
 	import AboutUs from './pages/AboutUs';
 	import ContactUs from './pages/Contact';
+	import API from './pages/API';
 
 // Páginas da conta do usuário
 	import Account from './pages/User/myAccount';
@@ -57,6 +58,7 @@ export default function Routes() {
 				<Route path="/aboutus" component={ AboutUs } />
 				<Route path="/events" component={ Events } />
 				<Route path="/contactus" component={ ContactUs } />
+				<Route path="/api" component={ API } />
 
             {/* Rotas da conta do usuário */}
 				<Route path="/account" component={ Account } />
