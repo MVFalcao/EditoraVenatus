@@ -43,11 +43,11 @@ export default class addAuthor extends Component {
 
 	//#region HandleAnimationPopUp() {
 		showPopUp = (element="") => {
-			document.querySelector(`.editPopUp.${element}`).style.display = "block";
+			document.querySelector(`.addPopUp.${element}`).style.display = "block";
 		}
 	  
 		hidePopUp = (element="") => {
-			document.querySelector(`.editPopUp.${element}`).style.display = "none";
+			document.querySelector(`.addPopUp.${element}`).style.display = "none";
 		}
 	
 		handlePopUp = (element = "") => {
@@ -132,7 +132,7 @@ export default class addAuthor extends Component {
                 width={100}
                 isStopped={this.state.isStopped}
               />
-              <h1>Livraria editada com sucesso</h1>
+              <h1>Autor adicionado com sucesso</h1>
 			</div>
 
 			<div className="addPopUp error">
@@ -141,7 +141,7 @@ export default class addAuthor extends Component {
 					width={100}
 					isStopped={this.state.isStopped}
 				/>
-				<h1>Livraria editada com sucesso</h1>
+				<h1>Algo deu errado</h1>
 			</div>
 		</div>
     );

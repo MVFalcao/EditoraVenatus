@@ -46,7 +46,9 @@ export default class Dashboard extends Component {
             <div className="administrator-panel">
 
                 <div className="dashboard-header">
-                    <img src={Logo} alt="Logo Venatus"/>
+                    <Link to="/administrator">
+                        <img src={Logo} alt="Logo Venatus"/>
+                    </Link>
                     <h1>Painel do Administrador</h1>
                 </div>
 

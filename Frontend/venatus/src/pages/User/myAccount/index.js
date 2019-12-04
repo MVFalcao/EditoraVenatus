@@ -13,30 +13,97 @@ import ErrorAnimation from '../../../assets/Animations/ErrorPopUp.json';
 
 export default class myAccount extends Component {
 
-    state = {
-        Name: '',
-        LastName: '',
-        CPF: '',
-        Telefone: '',
-        Email: '',
-        Data_Nascimento: '',
+	state = {
+		Name: '',
+		LastName: '',
+		CPF: '',
+		Telefone: '',
+		Email: '',
+		Data_Nascimento: '',
 
-        NewPassword: '',
-        ConfirmPassword: '',
-        OldPassword: '',
-        matchPassword: false,
+		NewPassword: '',
+		ConfirmPassword: '',
+		OldPassword: '',
+		matchPassword: false,
 
-        id_Cliente: 0,
-        user: [],
-        person: [],
-        telephone: [],
-        socialNetwork: [],
+		id_Cliente: 0,
+		user: [],
+		person: [],
+		telephone: [],
+		socialNetwork: [],
 
-        isStopped: true,
-        hideList: [true, true, true],
-      }
+		isStopped: true,
+		hideList: [true, true, true],
 
-      //#region LoadAPI
+		jwt: localStorage.getItem("jwt"),
+	}
+		
+	//#region handlePassword
+		handlePassword = () => {
+			let passwordElement = document.querySelector('.password-warning');
+			let passwordInput = document.querySelector('#new-password')
+			let confirmPasswordInput = document.querySelector('#confirm-password')
+
+			if (passwordInput.value.length === 0 || confirmPasswordInput.value.length === 0) {
+				passwordElement.style.display = "none";
+				this.setState({matchPassword: false});
+			} else {
+				if (this.state.NewPassword !== this.state.ConfirmPassword) {
+					passwordElement.style.display = "block";
+					this.setState({matchPassword: false});
+					} else {
+						passwordElement.style.display = "none";
+						this.setState({matchPassword: true});
+					}
+			}    
+		}
+
+		handlePasswordVerification = async e => {
+			await this.setState({NewPassword: e.target.value});
+			this.handlePassword();
+		}
+
+		handleConfirmPasswordVerification = async e => {
+			await this.setState({ConfirmPassword: e.target.value});
+			this.handlePassword();
+		}
+
+
+		handlePasswordVision(element="", item=0) {
+			const EyeElement = document.querySelector(element);
+
+			const showPassword = () => {
+				EyeElement.type = "text";
+			}
+
+			const hidePassword = () => {
+				EyeElement.type = "password";
+			}
+
+			if (this.state.hideList[item] === true) {
+				showPassword();
+				let a = this.state.hideList;
+				a[item] = false;
+				this.setState({hideList: a});
+			} else {
+				hidePassword();
+				let a = this.state.hideList;
+				a[item] = true;
+				this.setState({hideList: a});
+			}
+		}
+	//#endregion
+
+	//#region LoadAPI
+		handleHeaders = () => {
+			const headersData = {
+				'Content-Type': 'application/json',
+				"jwt": this.state.jwt,
+			}
+			return headersData;
+		}
+
+
       loadLogin = async () => {
         const jwt = localStorage.getItem("jwt");
         await api.get('api/getToken', { headers: { "jwt": jwt }}).then(response => {
@@ -53,15 +120,18 @@ export default class myAccount extends Component {
       }
     
       loadPerson = async () => {
-        await api.get(`/api/Pessoas/${this.state.id_Cliente}`).then(response => {
-            this.setState({ person: response.data});
 
-            this.loadPersonData();
-            console.log(response.data);
-        }
-        ).catch(error => {
-            console.log('Pessoa Error: ' + error.message);
-        });
+			await api.get(`/api/Pessoas/${this.state.id_Cliente}`, {
+				headers: this.handleHeaders(),
+			}).then(response => {
+					this.setState({ person: response.data});
+
+					this.loadPersonData();
+					console.log(response.data);
+			}
+			).catch(error => {
+					console.log('Pessoa Error: ' + error.message);
+			});
       }
 
       loadTelephone = async () => {
@@ -90,9 +160,9 @@ export default class myAccount extends Component {
             console.log('RedeSocial Error: ' + error.message);
         });
       }
-      //#endregion
+	//#endregion
 
-      //#region LoadData
+	//#region LoadData
 
       handleDate = () => {
         const dataPublicacao = this.state.person.Data_Nascimento.split("T");
@@ -113,240 +183,203 @@ export default class myAccount extends Component {
       loadSocialNetworkData = () => {
         this.setState({Email: this.state.socialNetwork.Email});
       }
-      //#endregion
+	//#endregion
 
-      //#region submits
-        handlePersonSubmit = async event => {
-          event.preventDefault();
+	//#region submits
+		handlePersonSubmit = async event => {
+			event.preventDefault();
+	
+			const pResponse = await api.put(`api/Pessoas/${this.state.person.ID_Pessoa}`, {
+				"ID_Pessoa": this.state.person.ID_Pessoa,    
+				"CPF": this.state.CPF,
+				"Nome": this.state.Name,
+				"Sobrenome": this.state.LastName,
+				"Desconto": this.state.person.Desconto,
+				"Tipo_pessoa": this.state.person.Tipo_pessoa,
+				"sexo": this.state.person.sexo,
+				"Data_Nascimento": this.state.Data_Nascimento,
+				"Id_cli": this.state.person.Id_cli,
+			}).catch(error => {
+				console.log("PersonSubmit Error: " + error.message);
+			});
+
+			const tResponse = await api.put(`api/Telefones/${this.state.telephone.ID_Telefone}`, {
+					"ID_Telefone": this.state.telephone.ID_Telefone,
+					"Tipo_Telefone": this.state.telephone.Tipo_Telefone,
+					"Numero": this.state.Telefone,
+					"Id_c": this.state.telephone.Id_c
+			}).catch(error => {
+				console.log("TelephoneSubmit Error: " + error.message);
+			});
+
+			const sResponse = await api.put(`api/RedeSocials/${this.state.socialNetwork.ID_RedeSocial}`, {
+			"ID_RedeSocial": this.state.socialNetwork.ID_RedeSocial,    
+			"email": this.state.Email,
+			"Id_cli": this.state.id_Cliente,
+			}).catch(error => {
+				console.log("SocialNetworkSubmit Error: " + error.message);
+			});
+
+			if (tResponse.status === 204 && pResponse.status === 204 && sResponse.status === 204) {
+			this.setState({isStopped: false});
+			this.handleAnimationPopUp("success");
+			setTimeout(() => {
+				this.setState({isStopped: true});
+			}, 3000);
+			} else {
+			this.setState({isStopped: false});
+			this.handleAnimationPopUp("error");
+			setTimeout(() => {
+					this.setState({isStopped: true});
+			}, 3000);
+			}
+		}  
+
+		handlePasswordSubmit = async event => {
+			event.preventDefault();
+	
+			if (this.state.OldPassword === this.state.user.Senha && this.state.matchPassword) {
+				await api.put(`api/Logins/${this.state.user.ID_Login}`, {
+				"ID_Login": this.state.user.ID_Login,    
+				"Usuario": this.state.user.Usuario,
+				"Senha": this.state.NewPassword,
+				"cliente": this.state.user.cliente,
+				}).then(res => {
+					this.loadLogin();
+					console.log(res.data);
+
+					this.setState({isStopped: false});
+					this.handleAnimationPopUp("success");
+					setTimeout(() => {
+						this.setState({isStopped: true});
+					}, 3000);
+				}).catch(error => {
+					console.log("PersonSubmit Error: " + error.message);
+
+					this.setState({isStopped: false});
+					this.handleAnimationPopUp("error");
+					setTimeout(() => {
+						this.setState({isStopped: true});
+					}, 3000);
+				});
+			} else {
+				console.log('Verifique suas senhas');
+			}
+		}
+	//#endregion
+
+	componentDidMount() {
+		this.handlePageColor(2);
+		this.loadLogin();
+	}
       
-          const pResponse = await api.put(`api/Pessoas/${this.state.person.ID_Pessoa}`, {
-              "ID_Pessoa": this.state.person.ID_Pessoa,    
-              "CPF": this.state.CPF,
-              "Nome": this.state.Name,
-              "Sobrenome": this.state.LastName,
-              "Desconto": this.state.person.Desconto,
-              "Tipo_pessoa": this.state.person.Tipo_pessoa,
-              "sexo": this.state.person.sexo,
-              "Data_Nascimento": this.state.Data_Nascimento,
-              "Id_cli": this.state.person.Id_cli,
-          }).catch(error => {
-              console.log("PersonSubmit Error: " + error.message);
-          });
-  
-          const tResponse = await api.put(`api/Telefones/${this.state.telephone.ID_Telefone}`, {
-                "ID_Telefone": this.state.telephone.ID_Telefone,
-                "Tipo_Telefone": this.state.telephone.Tipo_Telefone,
-                "Numero": this.state.Telefone,
-                "Id_c": this.state.telephone.Id_c
-          }).catch(error => {
-              console.log("TelephoneSubmit Error: " + error.message);
-          });
+	handlePageColor = (item = 0) => {
+		let pageElement = document.querySelectorAll('.pages');
+		let textElement = document.querySelectorAll('.pages a');
 
-          const sResponse = await api.put(`api/RedeSocials/${this.state.socialNetwork.ID_RedeSocial}`, {
-            "ID_RedeSocial": this.state.socialNetwork.ID_RedeSocial,    
-            "email": this.state.Email,
-            "Id_cli": this.state.id_Cliente,
-          }).catch(error => {
-              console.log("SocialNetworkSubmit Error: " + error.message);
-          });
+		pageElement[item].style.backgroundColor = '#FFF5B3';
+		textElement[item].style.color = "#2F99AC";
+	}
 
-          if (tResponse.status === 204 && pResponse.status === 204 && sResponse.status === 204) {
-            this.setState({isStopped: false});
-            this.handlePopUp("success");
-            setTimeout(() => {
-              this.setState({isStopped: true});
-            }, 3000);
-          } else {
-            this.setState({isStopped: false});
-            this.handlePopUp("error");
-            setTimeout(() => {
-                this.setState({isStopped: true});
-            }, 3000);
-          }
-        }  
-
-        handlePasswordSubmit = async event => {
-          event.preventDefault();
-      
-          if (this.state.OldPassword === this.state.user.Senha && this.state.matchPassword) {
-            const response = await api.put(`api/Logins/${this.state.user.ID_Login}`, {
-              "ID_Login": this.state.user.ID_Login,    
-              "Usuario": this.state.user.Usuario,
-              "Senha": this.state.NewPassword,
-              "cliente": this.state.user.cliente,
-            }).then(res => {
-                this.loadLogin();
-                console.log(response);
-
-                this.setState({isStopped: false});
-                this.handlePopUp("success");
-                setTimeout(() => {
-                  this.setState({isStopped: true});
-                }, 3000);
-            }).catch(error => {
-                console.log("PersonSubmit Error: " + error.message);
-
-                this.setState({isStopped: false});
-                this.handlePopUp("error");
-                setTimeout(() => {
-                    this.setState({isStopped: true});
-                }, 3000);
-            });
-          } else {
-            console.log('Senha antiga incorreta');
-          }
-        }
-      //#endregion
-
-      componentDidMount() {
-        this.handlePageColor(2);
-        this.loadLogin();
-      }
-      
-      handlePageColor = (item = 0) => {
-        let pageElement = document.querySelectorAll('.pages');
-        let textElement = document.querySelectorAll('.pages a');
-
-        pageElement[item].style.backgroundColor = '#FFF5B3';
-        textElement[item].style.color = "#2F99AC";
-      }
-
-      handlePassword = () => {
-        let passwordElement = document.querySelector('.password-warning')
-        if (document.querySelector('#confirm-password').value.length === 0) {
-          return
-        } else {
-          if (this.state.NewPassword !== this.state.ConfirmPassword) {
-            passwordElement.style.display = "block";
-          } else {
-            passwordElement.style.display = "none";
-            this.setState({matchPassword: true});
-          }
-        }    
-      }
-
-      handlePasswordVision(element="", item=0) {
-        const EyeElement = document.querySelector(element);
-
-        const showPassword = () => {
-          EyeElement.type = "text";
-        }
-
-        const hidePassword = () => {
-          EyeElement.type = "password";
-        }
-
-        if (this.state.hideList[item] === true) {
-          showPassword();
-          let a = this.state.hideList;
-          a[item] = false;
-          this.setState({hideList: a});
-        } else {
-          hidePassword();
-          let a = this.state.hideList;
-          a[item] = true;
-          this.setState({hideList: a});
-        }
-      }
-
-      //#region PopUp
-      showPopUp = (element="") => {
+	//#region HandleAnimationPopUp
+      showAnimationPopUp = (element="") => {
         document.querySelector(`.putPopUp.${element}`).style.display = "block";
       }
       
-      hidePopUp = (element="") => {
+      hideAnimationPopUp = (element="") => {
         document.querySelector(`.putPopUp.${element}`).style.display = "none";
       }
     
-      handlePopUp = (element = "") => {
-        this.showPopUp(element);
+      handleAnimationPopUp = (element = "") => {
+        this.showAnimationPopUp(element);
         setTimeout(() => {
-          this.hidePopUp(element);
+          this.hideAnimationPopUp(element);
         }, 3000);
       }
-      //#endregion
+	//#endregion
 
-  render() {
+  	render() {
 
-    //#region AnimationSettings
-    const okAnimation = {
-        loop: false,
-        autoplay: false, 
-        animationData: OkAnimation,
-        rendererSettings: {
-          preserveAspectRatio: 'xMidYMid slice'
-        }
-      };
-  
-    const errorAnimation = {
-      loop: false,
-      autoplay: false, 
-      animationData: ErrorAnimation,
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-      }
-    };
-    //#endregion
+		//#region AnimationSettings
+			const okAnimation = {
+				loop: false,
+				autoplay: false, 
+				animationData: OkAnimation,
+				rendererSettings: {
+					preserveAspectRatio: 'xMidYMid slice'
+				}
+				};
+		
+			const errorAnimation = {
+				loop: false,
+				autoplay: false, 
+				animationData: ErrorAnimation,
+				rendererSettings: {
+				preserveAspectRatio: 'xMidYMid slice'
+				}
+			};
+		//#endregion
 
-    const passwordDiv = {
-      position: 'absolute',
-      top: '1065px', left: '795px', right: '0px', bottom: '0px',
-      color: 'red',
-      fontSize: '14px', 
-      fontWeight: '300',
-      display: 'none',
-    }
+		//#region eyeStyles
+			const eyeImg = {
+				width: '1.5%',
+				height: 'auto',
+				position: 'absolute',
+				top: '1036px', left: '970px', right: '0px', bottom: '0px',
+				cursor: 'pointer',
+			}
+			
+			const eyeImg2 = {
+				width: '1.5%',
+				height: 'auto',
+				position: 'absolute',
+				top: '1121px', left: '970px', right: '0px', bottom: '0px',
+				cursor: 'pointer',
+			}
+			
+			const eyeImg3 = {
+				width: '1.5%',
+				height: 'auto',
+				position: 'absolute',
+				top: '1207px', left: '970px', right: '0px', bottom: '0px',
+				cursor: 'pointer',
+			}
+		//#endregion
 
-    //#region eyeStyles
-    const eyeImg = {
-      width: '1.5%',
-      height: 'auto',
-      position: 'absolute',
-      top: '1036px', left: '970px', right: '0px', bottom: '0px',
-      cursor: 'pointer',
-    }
-    
-    const eyeImg2 = {
-      width: '1.5%',
-      height: 'auto',
-      position: 'absolute',
-      top: '1121px', left: '970px', right: '0px', bottom: '0px',
-      cursor: 'pointer',
-    }
-    
-    const eyeImg3 = {
-      width: '1.5%',
-      height: 'auto',
-      position: 'absolute',
-      top: '1207px', left: '970px', right: '0px', bottom: '0px',
-      cursor: 'pointer',
-    }
-    //#endregion
+		const passwordDiv = {
+			position: 'absolute',
+			top: '1075px', left: '795px', right: '0px', bottom: '0px',
+			color: 'red',
+			fontSize: '14px', 
+			fontWeight: '300',
+			display: 'none',
+		}
 
-    return (
-        <div className="myaccount-wrapper">
+    	return (
+
+        	<div className="myaccount-wrapper">
 
             <Header />
 
             <div className="myaccount-container">
                 
-                <div className="left-info">
+					<div className="left-info">
 
-                    <UserInfo />
-                    <AccountPages />
+						<UserInfo />
+						<AccountPages />
 
-                </div>
+					</div>
 
-                <div className="middle-wrapper">
+					<div className="middle-wrapper">
 
-                  <div className="middle-content">
+					<div className="middle-content">
 
-                      <h2>Minha Conta</h2>
-                      <p>Visualize e edite suas informações pessoais.</p>
+							<h2>Minha Conta</h2>
+							<p>Visualize e edite suas informações pessoais.</p>
 
-                      <div className="line" />
+							<div className="line" />
 
-                      <div className="user-info">
+							<div className="user-info">
 
                           <h3>Dados:</h3>
 
@@ -393,6 +426,7 @@ export default class myAccount extends Component {
                                         value={this.state.CPF}
                                       />
                                   </li>
+
                                   <li>
                                       <label htmlFor="telephone">Telefone</label>
                                       <input type="text" id="telephone"
@@ -407,7 +441,8 @@ export default class myAccount extends Component {
 
                           </form>
                       </div>
-                  </div>
+					
+					</div>
                 
                   <div className="middle-content i2">
 
@@ -424,8 +459,7 @@ export default class myAccount extends Component {
                                       <input type="password" id="new-password"
                                         required
                                         defaultValue={this.state.NewPassword} 
-                                        onChange={e => this.setState({NewPassword: e.target.value})}
-                                        onBlur={() => this.handlePassword()}
+                                        onChange={e => this.handlePasswordVerification(e)}
                                       />
                                       <img src={eye} alt="" draggable="false" style={eyeImg} onMouseDown={() => this.handlePasswordVision('#new-password', 0)} onMouseUp={() => this.handlePasswordVision('#new-password', 0)}/>
                                   </li>
@@ -434,9 +468,8 @@ export default class myAccount extends Component {
                                       <input type="password" id="confirm-password"
                                         autoComplete="nope"
                                         required
-                                        defaultValue={this.state.ConfirmPassword} 
-                                        onChange={e => this.setState({ConfirmPassword: e.target.value})}
-                                        onBlur={() => this.handlePassword()}
+													 defaultValue={this.state.ConfirmPassword}
+													 onChange={e => this.handleConfirmPasswordVerification(e)}
                                       />
                                       <img src={eye} alt="" style={eyeImg2} 
                                         draggable="false" 

@@ -22,6 +22,7 @@ import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 	import GrafoLC from './components/Grafo/LivrosCupons';
 
 // Páginas do administrador
+	import administrator from './pages/Administrator';
 	/* Genrenciamento de Livro */
 		import addBook from './pages/Administrator/manageBook/addBook';
 		import editBookSelection from './pages/Administrator/manageBook/editBook/selection';
@@ -69,6 +70,7 @@ export default function Routes() {
 				<Route path="/grafolc" component={ GrafoLC } />	
 
             {/* Rotas do administrador */}
+				<Route path="/administrator" component={ administrator } />
               	{/* Gerenciamento de Livros */}
 					<Route path="/addbook" component={ addBook } />
 					<Route path="/editbook/selection" component={ editBookSelection } />
