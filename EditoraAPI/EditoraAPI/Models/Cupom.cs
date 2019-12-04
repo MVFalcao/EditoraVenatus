@@ -12,6 +12,7 @@ namespace EditoraAPI.Models
     {
         [Key] public int ID_Cupom { get; set; }
         [Required] public float Desconto { get; set; }
+        public string Botao_URL { get; set; }
         [Required] [StringLength(50)] public string Nome { get; set; }
         [Required] public DateTime Data_Ini { get; set; }
         [Required] public DateTime Data_Fim { get; set; }
