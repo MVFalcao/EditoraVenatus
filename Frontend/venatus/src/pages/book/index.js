@@ -365,20 +365,26 @@ export default class Book extends Component {
                 </div>
                 
                 <div className="recommendations-container">
-                    <h1>Sugestões de livros similares</h1>
 
-                    <ul>
-                        {this.state.RecommendedBooks.map(book => (
-                            <li key={book.ID_Livro}>
-                                <Link to={`/bookPage/${book.ID_Livro}`}>
-                                    <img src={book.Imagem_URL} alt="" />
-                                </Link>
-                                <h2>{book.Titulo} {book.SubTitulo}</h2>
-                                <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => window.location.reload()} id="BookBtn">Saiba mais</Link>
-                            </li>
-                        ))}
-                    </ul>
+                    {this.state.RecommendedBooks.length === 0 ? 
+                        <></>
+                    :
+                        <>
+                            <h1>Sugestões de livros similares</h1>
 
+                            <ul>
+                                {this.state.RecommendedBooks.map(book => (
+                                    <li key={book.ID_Livro}>
+                                        <Link to={`/bookPage/${book.ID_Livro}`}>
+                                            <img src={book.Imagem_URL} alt="" />
+                                        </Link>
+                                        <h2>{book.Titulo} {book.SubTitulo}</h2>
+                                        <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => window.location.reload()} id="BookBtn">Saiba mais</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    }
                 </div>
 
             <Footer />

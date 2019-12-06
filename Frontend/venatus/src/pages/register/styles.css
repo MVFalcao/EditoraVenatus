@@ -26,7 +26,11 @@
 }
 
 .registerType-popup img {
-    width: 45%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 60%;
+    height: auto;
 }
 
 .signin-container .line {
@@ -118,9 +122,9 @@
 }
 
 .signin-content img {
-    width: 80%;
+    width: 50%;
     height: auto;
-    margin: 0px auto 20px;
+    margin: 10px auto 20px;
 }
 
 .signin-content p {
@@ -172,6 +176,10 @@
     height: auto;
     margin-top: 15px;
     margin-right: 6px;
+}
+
+.signin-content input[type="password"] {
+    position: relative;
 }
 
 .signin-content label {

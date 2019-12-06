@@ -4,7 +4,7 @@ import api from '../../services/api';
 import Lottie from 'react-lottie';
 
 import './styles.css';
-import logo from '../../assets/header/logo.svg';
+import logo from '../../assets/header/logo_l.svg';
 import imgUpload from '../../assets/administrator/imgUpload.svg';
 import eye from '../../assets/myAccount/olho.svg'
 import OkAnimation from '../../assets/Animations/OkPopUp.json';
@@ -313,11 +313,11 @@ export default class signup extends Component {
 
 		//#region eyeStyles
 		const eyeImg = {
-			top: '43px', left: '260px',
+			top: '32px', left: '260px',
 		}
 		
 		const eyeImg2 = {
-			top: '43px', left: '263px',
+			top: '32px', left: '263px',
 		}
 		//#endregion
 

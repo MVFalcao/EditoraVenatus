@@ -305,6 +305,10 @@
     <Compile Include="Migrations\201912041205445_banco24.Designer.cs">
       <DependentUpon>201912041205445_banco24.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912041549183_Banco25.cs" />
+    <Compile Include="Migrations\201912041549183_Banco25.Designer.cs">
+      <DependentUpon>201912041549183_Banco25.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Classificacao.cs" />
@@ -491,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912041205445_banco24.resx">
       <DependentUpon>201912041205445_banco24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912041549183_Banco25.resx">
+      <DependentUpon>201912041549183_Banco25.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

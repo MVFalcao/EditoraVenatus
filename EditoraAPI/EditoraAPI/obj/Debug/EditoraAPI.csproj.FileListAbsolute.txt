@@ -720,3 +720,8 @@ C:\Users\Jafe Ferreira\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj
 C:\Users\Jafe Ferreira\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.csproj.CopyComplete
 C:\Users\Jafe Ferreira\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.dll
 C:\Users\Jafe Ferreira\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.pdb
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.Banco211.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco22.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.Banco23.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.banco24.resources
+D:\Jander Silva\Documents\GitHub\EditoraVenatus\EditoraAPI\EditoraAPI\obj\Debug\EditoraAPI.Migrations.Banco25.resources
