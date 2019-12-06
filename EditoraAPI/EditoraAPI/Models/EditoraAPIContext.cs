@@ -38,5 +38,7 @@ namespace EditoraAPI.Models
 
         public System.Data.Entity.DbSet<EditoraAPI.Models.Login> Logins { get; set; }
         public System.Data.Entity.DbSet<EditoraAPI.Models.Evento> eventos { get; set; }
+
+        public System.Data.Entity.DbSet<EditoraAPI.Models.RegistroControleMercadoria> RegistroControleMercadorias { get; set; }
     }
 }

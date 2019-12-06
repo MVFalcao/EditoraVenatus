@@ -16,6 +16,6 @@ namespace EditoraAPI.Models
         [Required] public int Quantidade { get; set; }
         [Required] public int Tipo { get; set; } // 1 = Venda (para o cliente) 2 = Compra (para a editora)
         [Required] public DateTime DataReg { get; set; }
-        
+
     }
 }

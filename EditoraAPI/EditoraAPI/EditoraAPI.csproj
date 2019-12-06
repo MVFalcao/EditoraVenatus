@@ -187,6 +187,7 @@
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RedeSocialsController.cs" />
+    <Compile Include="Controllers\RegistroControleMercadoriasController.cs" />
     <Compile Include="Controllers\TelefonesController.cs" />
     <Compile Include="Controllers\TipoesController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -294,6 +295,14 @@
     <Compile Include="Migrations\201912022312268_banco22.Designer.cs">
       <DependentUpon>201912022312268_banco22.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912061320329_banco23.cs" />
+    <Compile Include="Migrations\201912061320329_banco23.Designer.cs">
+      <DependentUpon>201912061320329_banco23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912061323233_banco24.cs" />
+    <Compile Include="Migrations\201912061323233_banco24.Designer.cs">
+      <DependentUpon>201912061323233_banco24.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Classificacao.cs" />
@@ -366,6 +375,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\RegistroControleMercadorias\Create.cshtml" />
+    <Content Include="Views\RegistroControleMercadorias\Delete.cshtml" />
+    <Content Include="Views\RegistroControleMercadorias\Details.cshtml" />
+    <Content Include="Views\RegistroControleMercadorias\Edit.cshtml" />
+    <Content Include="Views\RegistroControleMercadorias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -474,6 +488,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912022312268_banco22.resx">
       <DependentUpon>201912022312268_banco22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912061320329_banco23.resx">
+      <DependentUpon>201912061320329_banco23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912061323233_banco24.resx">
+      <DependentUpon>201912061323233_banco24.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
