@@ -9,7 +9,7 @@ import AngleRight from '../../assets/Dashboard/angle-right.svg';
 export default class Dashboard extends Component {
 
     state = {
-        divClosedList: [true, true, true, true, true, true, true, true],
+        divClosedList: [true, true, true, true, true, true, true, true, true],
     }
 
      handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
@@ -160,6 +160,24 @@ export default class Dashboard extends Component {
                             <li><Link to="/addcoupon">Adicionar Cupom</Link></li>
                             <li><Link to="/editcoupon/selection">Editar Cupom</Link></li>
                             <li><Link to="/deletecoupon">Deletar Cupom</Link></li>
+                        </ol>
+
+                    </div>
+                </div>
+               
+                <div className="categories sell-manager">
+
+                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-8', '.dropdown.sell', 7)}>
+                        <h2><span role="img" aria-label="calendar">💲 </span>Gerenciamento de Vendas</h2>
+                        <img className="angle item-8" src={AngleRight} alt="Seta" />
+                    </button>
+
+                    <div className="dropdown sell">
+
+                        <ol>
+                            <li><Link to="/addsell">Adicionar Venda</Link></li>
+                            <li><Link to="/editcoupon/selection">Editar Venda</Link></li>
+                            <li><Link to="/deletecoupon">Deletar Venda</Link></li>
                         </ol>
 
                     </div>

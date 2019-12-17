@@ -43,6 +43,8 @@ import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 		import editCouponSelection from './pages/Administrator/manageCoupons/editCoupon/selection';
 		import editCoupon from './pages/Administrator/manageCoupons/editCoupon';
 		import deleteCoupon from './pages/Administrator/manageCoupons/deleteCoupon';
+	/* Gerencimaneto de Vendas */
+		import addSell from './pages/Administrator/manageSells/addSell';
 
 export default function Routes() {
 	return (
@@ -91,6 +93,8 @@ export default function Routes() {
 					<Route path="/editcoupon/selection" component={ editCouponSelection } />
 					<Route path="/editcoupon/:id" component={ editCoupon } />
 					<Route path="/deletecoupon" component={ deleteCoupon } />
+				{/* Gerenciamento de Vendas */}
+					<Route path="/addsell" component={ addSell } />
         	</Switch>
       </BrowserRouter>
  	);
