@@ -20,6 +20,8 @@ export default class Book extends Component {
     state = {
         Cupom: "",
         CupomData: [],
+        dateIsValid: false,
+
         RecommendedBooks: [],
 
         divClosedList: [true, true, true],
@@ -67,7 +69,7 @@ export default class Book extends Component {
     //#region APIcalls
         loadBooks = async () => {
             await api.get(`api/Livros/${this.props.match.params.id}`).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
 
                 this.setState({Book: res.data});
                 this.handleAge();
@@ -80,7 +82,8 @@ export default class Book extends Component {
 
         async loadAuthors() {
             await api.get(`api/Autors/${this.state.Book.Id_autor}`).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
+
                 this.setState({author: res.data});
             }).catch(error => {
                 console.log('Authors -> : ' + error);   
@@ -89,7 +92,7 @@ export default class Book extends Component {
 
         loadRecommendations = async (ID_Livro = 0) => {
             await api.post(`api/garfoTeste?id=${ID_Livro}`).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
 
                 for (const recommendation of res.data) {
                     api.get(`api/Livros/${recommendation}`).then(res => {
@@ -103,13 +106,6 @@ export default class Book extends Component {
             }).catch(error => {
                 console.log('loadRecommendations -> ' + error);
             });
-        }
-
-        loadBook = async (ID_Livro=0) => {
-            await api.get(`api/Livros/${ID_Livro}`).then(res => {
-                console.log();
-                
-            })
         }
     //#endregion
 
@@ -168,7 +164,34 @@ export default class Book extends Component {
         }
     //#endregion
 
-    
+    handleDateSplit = (Date="") => {
+        let SplitDate = Date.split('T');
+        SplitDate = SplitDate[0].split('-');
+        SplitDate = `${SplitDate[2]}/${SplitDate[1]}/${SplitDate[0]}`;
+
+        return SplitDate;
+    }
+
+    validateCouponDate = (DateIni, DateEnd) => {
+        let SystemDate =  new Date();
+
+        DateIni = this.handleDateSplit(DateIni);
+        DateEnd = this.handleDateSplit(DateEnd);
+        SystemDate = `${SystemDate.getDate()}/${SystemDate.getMonth()+1}/${SystemDate.getFullYear()}`;
+        console.log(`System: ${SystemDate}`);
+        
+
+        let d1 = DateIni.split("/");
+        let d2 = DateEnd.split("/");
+        let c = SystemDate.split("/");
+
+        let from = new Date(d1[2], parseInt(d1[1])-1, d1[0]);
+        let to   = new Date(d2[2], parseInt(d2[1])-1, d2[0]);
+        let check = new Date(c[2], parseInt(c[1])-1, c[0]);
+
+
+        if (check > from && check < to) this.setState({dateIsValid: true});
+    }
 
     clearCupounUI = () => {
         document.querySelector('#cupoun-invalidError').style.display = "none";
@@ -188,34 +211,44 @@ export default class Book extends Component {
         let invalidCoupon = document.querySelector('#cupoun-invalidError');
 
         await api.post(`api/ValidateCupom?senha=${this.state.Cupom}`).then(res => {
-            console.log(res);
+            console.log(res.data);
             const jwt = localStorage.getItem("jwt");
 
-            if (res.data !== null) {
+            if (res.data.length !== 0) {
                 const ID_Cupom = res.data;
                 
                 api.get(`api/Cupoms/${ID_Cupom}`, {
                     headers: {'jwt': jwt},
                 }).then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     this.setState({CupomData: res.data});
+                    this.validateCouponDate(this.state.CupomData.Data_Ini, this.state.CupomData.Data_Fim);
 
                     if (this.state.Book.ID_Livro === this.state.CupomData.Id_livro) {
-                        
-                        document.querySelector("#cupoun-success").style.display = "block";
-                        document.querySelector('#book-price').style.textDecoration = 'line-through';
-                        
-                        let newPrice = document.querySelector('#new-price');
-                        newPrice.style.display = 'block';
-                        newPrice.innerHTML= `R$ ${parseFloat(this.state.CupomData.Desconto).toFixed(2)}`
+                            
+                        if (this.state.dateIsValid) {
 
-                        document.querySelector('#pagseguroBtn').href = this.state.CupomData.Botao_URL;
+                            document.querySelector("#cupoun-success").style.display = "block";
+                            document.querySelector('#book-price').style.textDecoration = 'line-through';
+                            
+                            let newPrice = document.querySelector('#new-price');
+                            newPrice.style.display = 'block';
+                            newPrice.innerHTML= `R$ ${parseFloat(this.state.CupomData.Desconto).toFixed(2)}`
+                            
+                            document.querySelector('#pagseguroBtn').href = this.state.CupomData.Botao_URL;
+                        
+                        } else {
+                            invalidCoupon.style.display = "block";
+                            invalidCoupon.innerHTML= "Cupom Expirado";
+                        }
                     } else {
                         invalidCoupon.style.display = "block";
+                        
                     }
                 });
             } else {
                 invalidCoupon.style.display = "block";
+                invalidCoupon.innerHTML= "Cupom Inválido";
             }
         });
     }
