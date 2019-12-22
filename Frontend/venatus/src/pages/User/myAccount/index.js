@@ -26,7 +26,6 @@ export default class myAccount extends Component {
 		OldPassword: '',
 		matchPassword: false,
 
-		id_Cliente: 0,
 		user: [],
 		person: [],
 		telephone: [],
@@ -35,6 +34,7 @@ export default class myAccount extends Component {
 		isStopped: true,
 		hideList: [true, true, true],
 
+		ID_Cliente: localStorage.getItem("ID_Cliente"),
 		jwt: localStorage.getItem("jwt"),
 	}
 		
@@ -108,7 +108,6 @@ export default class myAccount extends Component {
 			const jwt = localStorage.getItem("jwt");
 			await api.get('api/getToken', { headers: { "jwt": jwt }}).then(res => {
 				this.setState({ user: res.data});
-				this.setState({id_Cliente: this.state.user.cliente});
 				
 				this.loadPerson();
 				this.loadTelephone();
@@ -121,7 +120,7 @@ export default class myAccount extends Component {
 		
 		loadPerson = async () => {
 
-				await api.get(`/api/Pessoas/${this.state.id_Cliente}`, {
+				await api.get(`/api/Pessoas/${this.state.ID_Cliente}`, {
 					headers: this.handleHeaders(),
 				}).then(response => {
 						this.setState({ person: response.data});
@@ -135,7 +134,7 @@ export default class myAccount extends Component {
 		}
 
 		loadTelephone = async () => {
-			await api.get(`/api/Telefones/GetTelefoneByCliente?id=${this.state.id_Cliente}`, {
+			await api.get(`/api/Telefones/GetTelefoneByCliente?id=${this.state.ID_Cliente}`, {
 					headers: this.handleHeaders(),
 				}).then(response => {
 				this.setState({ telephone: response.data});
@@ -148,7 +147,7 @@ export default class myAccount extends Component {
 		}
 
 		loadSocialNetwork = async () => {
-		await api.get(`/api/RedeSocials/GetRedeSocialByCLiente?id=${this.state.id_Cliente}`, {
+		await api.get(`/api/RedeSocials/GetRedeSocialByCLiente?id=${this.state.ID_Cliente}`, {
 				headers: this.handleHeaders(),
 			}).then(res => {
 				this.setState({socialNetwork: res.data});
@@ -219,7 +218,7 @@ export default class myAccount extends Component {
 			const sResponse = await api.put(`api/RedeSocials/${this.state.socialNetwork.ID_RedeSocial}`, {
 				"ID_RedeSocial": this.state.socialNetwork.ID_RedeSocial,    
 				"email": this.state.Email,
-				"Id_cli": this.state.id_Cliente,
+				"Id_cli": this.state.ID_Cliente,
 			}, {
 				headers: this.handleHeaders(),
 			}).catch(error => {

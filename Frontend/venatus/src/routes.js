@@ -7,7 +7,7 @@ import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 	import Main from './pages/main';
 	import AllBooks from './pages/allBooks';
 	import BookPage from './pages/Book';
-	import Events from './Backup/allEvents';
+	import Events from './pages/allEvents';
 	import AboutUs from './pages/AboutUs';
 	import ContactUs from './pages/Contact';
 	import API from './pages/API';

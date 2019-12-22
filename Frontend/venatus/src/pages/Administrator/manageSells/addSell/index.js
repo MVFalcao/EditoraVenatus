@@ -38,23 +38,7 @@ export default class addSell extends Component {
 	}
 
     await api.post('api/Livros', {
-		"Nome": this.state.Titulo,
-		"SubTitulo": this.state.SubTitulo,
-		"Numero_Paginas": this.state.Numero_Paginas,
-		"Categoria": this.state.Categoria,
-		"Descricao": "a",
-		"Idioma": this.state.Idioma,
-		"Classificacao_Indicativa": this.state.Classificacao_Indicativa,
-		"ISBN": this.state.ISBN,
-		"Ilustrador": this.state.Ilustrador,
-		"Imagem_URL": this.state.ImagemURL,
-		"Botao_URL": this.state.PagSeguroURL,
-		"Datapublicacao": this.state.Datapublicacao,
-		"Preco": this.state.Preco,
-		"Formato": this.state.Formato,
-		"Sinopse": this.state.Sinopse,
-		"Id_autor": this.state.ID_Autor,
-		"Id_cupom": 0,
+		
 		}, {
 			headers: headersData,
 		}).then(res => {
