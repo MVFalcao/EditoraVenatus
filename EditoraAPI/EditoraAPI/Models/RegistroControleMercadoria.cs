@@ -14,7 +14,7 @@ namespace EditoraAPI.Models
         [JsonIgnore] public virtual List<Livro> ID_Livro { get; set; }
         [Required] [ForeignKey("ID_Livro")] public int Livro { get; set; }
         [Required] public int Quantidade { get; set; }
-        [Required] public int Tipo { get; set; } // 1 = Venda (para o cliente) 2 = Compra (para a editora)
+        [Required] public int Tipo { get; set; } // 1 = Venda (para o cliente) 2 = Reabastecimento (para a editora)
         [Required] public DateTime DataReg { get; set; }
 
     }
