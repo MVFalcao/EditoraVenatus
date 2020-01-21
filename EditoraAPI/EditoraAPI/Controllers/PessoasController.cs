@@ -33,6 +33,13 @@ namespace EditoraAPI.Controllers
                 try
                 {
                     en.ValidToken(headers.GetValues("jwt").First());
+                    var pes = from p in db.pessoas where p.Id_cli == id select p.ID_Pessoa;
+                    Pessoa pessoa = db.pessoas.Find(pes.First());
+                    if(pessoa == null) {
+                        return NotFound();
+                    }
+
+                    return Ok(pessoa);
                 }
                 catch (Exception e)
                 {
@@ -44,14 +51,8 @@ namespace EditoraAPI.Controllers
             {
                 return NotFound();
             }
-            var pes = from p in db.pessoas where p.Id_cli == id select p.ID_Pessoa;
-            Pessoa pessoa = db.pessoas.Find(pes.First());
-            if (pessoa == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(pessoa);
+
         }
 
         // PUT: api/Pessoas/5

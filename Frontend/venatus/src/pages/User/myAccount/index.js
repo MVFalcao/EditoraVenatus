@@ -26,7 +26,6 @@ export default class myAccount extends Component {
 		OldPassword: '',
 		matchPassword: false,
 
-		id_Cliente: 0,
 		user: [],
 		person: [],
 		telephone: [],
@@ -35,6 +34,7 @@ export default class myAccount extends Component {
 		isStopped: true,
 		hideList: [true, true, true],
 
+		ID_Cliente: localStorage.getItem("ID_Cliente"),
 		jwt: localStorage.getItem("jwt"),
 	}
 		
@@ -104,85 +104,84 @@ export default class myAccount extends Component {
 		}
 
 
-      loadLogin = async () => {
-        const jwt = localStorage.getItem("jwt");
-        await api.get('api/getToken', { headers: { "jwt": jwt }}).then(response => {
-            this.setState({ user: response.data});
-            this.setState({id_Cliente: this.state.user.cliente});
-            
-            this.loadPerson();
-            this.loadTelephone();
-            this.loadSocialNetwork();
-            console.log(response.data);
-        }).catch(error => {
-            console.log('Token Error: ' + error.message);
-        });
-      }
-    
-      loadPerson = async () => {
+		loadLogin = async () => {
+			const jwt = localStorage.getItem("jwt");
+			await api.get('api/getToken', { headers: { "jwt": jwt }}).then(res => {
+				this.setState({ user: res.data});
+				
+				this.loadPerson();
+				this.loadTelephone();
+				this.loadSocialNetwork();
+				console.log(res.data);
+			}).catch(error => {
+				console.log('Token Error: ' + error.message);
+			});
+		}
+		
+		loadPerson = async () => {
 
-			await api.get(`/api/Pessoas/${this.state.id_Cliente}`, {
+				await api.get(`/api/Pessoas/${this.state.ID_Cliente}`, {
+					headers: this.handleHeaders(),
+				}).then(response => {
+						this.setState({ person: response.data});
+
+						this.loadPersonData();
+						console.log(response.data);
+				}
+				).catch(error => {
+						console.log('Pessoa Error: ' + error.message);
+				});
+		}
+
+		loadTelephone = async () => {
+			await api.get(`/api/Telefones/GetTelefoneByCliente?id=${this.state.ID_Cliente}`, {
+					headers: this.handleHeaders(),
+				}).then(response => {
+				this.setState({ telephone: response.data});
+
+				this.loadTelephoneData();
+				console.log(response.data);  
+			}).catch(error => {
+				console.log('Telefone Error: ' + error.message);
+			});
+		}
+
+		loadSocialNetwork = async () => {
+		await api.get(`/api/RedeSocials/GetRedeSocialByCLiente?id=${this.state.ID_Cliente}`, {
 				headers: this.handleHeaders(),
-			}).then(response => {
-					this.setState({ person: response.data});
+			}).then(res => {
+				this.setState({socialNetwork: res.data});
 
-					this.loadPersonData();
-					console.log(response.data);
+				this.loadSocialNetworkData();
+				console.log(res.data);
 			}
 			).catch(error => {
-					console.log('Pessoa Error: ' + error.message);
+				console.log('RedeSocial Error: ' + error.message);
 			});
-      }
-
-      loadTelephone = async () => {
-        await api.get(`/api/Telefones/GetTelefoneByCliente?id=${this.state.id_Cliente}`, {
-			  headers: this.handleHeaders(),
-		  }).then(response => {
-            this.setState({ telephone: response.data});
-
-            this.loadTelephoneData();
-            console.log(response.data);  
-        }).catch(error => {
-            console.log('Telefone Error: ' + error.message);
-        });
-      }
-
-      loadSocialNetwork = async () => {
-        await api.get(`/api/RedeSocials/GetRedeSocialByCLiente?id=${this.state.id_Cliente}`, {
-			headers: this.handleHeaders(),
-		  }).then(response => {
-            this.setState({ socialNetwork: response.data});
-
-            this.loadSocialNetworkData();
-            console.log(response.data);
-        }
-        ).catch(error => {
-            console.log('RedeSocial Error: ' + error.message);
-        });
-      }
+		}
 	//#endregion
 
 	//#region LoadData
 
-      handleDate = () => {
-        const dataPublicacao = this.state.person.Data_Nascimento.split("T");
-        return dataPublicacao[0];
-      }
+		handleDate = () => {
+			const dataPublicacao = this.state.person.Data_Nascimento.split("T");
+			return dataPublicacao[0];
+		}
 
-      loadPersonData = () => {
-        this.setState({Name: this.state.person.Nome});
-        this.setState({LastName: this.state.person.Sobrenome});
-        this.setState({CPF: this.state.person.CPF});   
-        this.setState({Data_Nascimento: this.handleDate()});  
-      }
+		loadPersonData = () => {
+			this.setState({Name: this.state.person.Nome});
+			this.setState({LastName: this.state.person.Sobrenome});
+			this.setState({CPF: this.state.person.CPF});   
+			this.setState({Data_Nascimento: this.handleDate()});  
+		}
 
-      loadTelephoneData = () => {
-          this.setState({Telefone: this.state.telephone.Numero})
-      }
+		loadTelephoneData = () => {
+			this.setState({Telefone: this.state.telephone.Numero})
+		}
 
-      loadSocialNetworkData = () => {
-			this.setState({Email: this.state.socialNetwork.email});
-      }
+		loadSocialNetworkData = () => {
+			this.setState({Email: this.state.socialNetwork.Email});
+		}
 	//#endregion
 
 	//#region submits
@@ -199,6 +198,8 @@ export default class myAccount extends Component {
 				"sexo": this.state.person.sexo,
 				"Data_Nascimento": this.state.Data_Nascimento,
 				"Id_cli": this.state.person.Id_cli,
+			}, {
+				headers: this.handleHeaders(),
 			}).catch(error => {
 				console.log("PersonSubmit Error: " + error.message);
 			});
@@ -208,30 +209,34 @@ export default class myAccount extends Component {
 					"Tipo_Telefone": this.state.telephone.Tipo_Telefone,
 					"Numero": this.state.Telefone,
 					"Id_c": this.state.telephone.Id_c
+			}, {
+				headers: this.handleHeaders(),
 			}).catch(error => {
 				console.log("TelephoneSubmit Error: " + error.message);
 			});
 
 			const sResponse = await api.put(`api/RedeSocials/${this.state.socialNetwork.ID_RedeSocial}`, {
-			"ID_RedeSocial": this.state.socialNetwork.ID_RedeSocial,    
-			"email": this.state.Email,
-			"Id_cli": this.state.id_Cliente,
+				"ID_RedeSocial": this.state.socialNetwork.ID_RedeSocial,    
+				"email": this.state.Email,
+				"Id_cli": this.state.ID_Cliente,
+			}, {
+				headers: this.handleHeaders(),
 			}).catch(error => {
 				console.log("SocialNetworkSubmit Error: " + error.message);
 			});
 
 			if (tResponse.status === 204 && pResponse.status === 204 && sResponse.status === 204) {
-			this.setState({isStopped: false});
-			this.handleAnimationPopUp("success");
-			setTimeout(() => {
-				this.setState({isStopped: true});
-			}, 3000);
-			} else {
-			this.setState({isStopped: false});
-			this.handleAnimationPopUp("error");
-			setTimeout(() => {
+				this.setState({isStopped: false});
+				this.handleAnimationPopUp("success");
+				setTimeout(() => {
 					this.setState({isStopped: true});
-			}, 3000);
+				}, 3000);
+				} else {
+				this.setState({isStopped: false});
+				this.handleAnimationPopUp("error");
+				setTimeout(() => {
+						this.setState({isStopped: true});
+				}, 3000);
 			}
 		}  
 

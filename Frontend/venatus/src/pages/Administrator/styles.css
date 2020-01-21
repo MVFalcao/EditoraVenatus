@@ -9,19 +9,20 @@
 
 .administrator-container {
     width: 100%;
-    margin: 120px auto;
+    margin: 110px auto;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* .administrator-container img {
-
-} */
+.administrator-container img {
+    width: 20%;
+    height: auto;
+}
 
 .administrator-container h1 {
-    margin-top: 20px;
+    margin-top: 30px;
     
     color: white;
     font-size: 30px;

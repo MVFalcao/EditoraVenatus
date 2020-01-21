@@ -10,7 +10,8 @@ export default class Graph extends Component {
 	 	elements: [],
 	 
 	 	allBooks: [],
-	 	allAuthors: [],
+		allAuthors: [],
+		Coupons: []
 	}
 	
 
@@ -29,6 +30,17 @@ export default class Graph extends Component {
 	 
 	loadAuthors = async () => {
 		await api.get(`api/Autors`).then(res => {
+			console.log(res.data);
+			this.setState({allAuthors: res.data});
+
+			this.handleNodes();
+		}).catch(function(error) {
+			console.log('Authors -> ' + error);   
+	  });
+	}
+	 
+	loadCoupons = async () => {
+		await api.get(`api/Cupoms`).then(res => {
 			console.log(res.data);
 			this.setState({allAuthors: res.data});
 
@@ -192,7 +204,8 @@ export default class Graph extends Component {
 		minTemp: 1.0
 	};
 
-	return(
+	return (
+		<>
         	<CytoscapeComponent
 				elements={this.state.elements}
 				stylesheet={styles}
@@ -200,8 +213,7 @@ export default class Graph extends Component {
 				layout={layout}
 				cy={(cy) => {this.cy = cy}}
         	/>
-
-			// <div style={{font}}></div>
+		</>
     );
   }
 }

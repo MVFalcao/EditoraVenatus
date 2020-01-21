@@ -7,13 +7,13 @@ namespace EditoraAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class banco221 : IMigrationMetadata
+    public sealed partial class banco24 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(banco221));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(banco24));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911302039112_banco221"; }
+            get { return "201912041205445_banco24"; }
         }
         
         string IMigrationMetadata.Source

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
-import Logo from '../../assets/header/logo.svg';
+import Logo from '../../assets/header/logo_n.svg';
 import AngleDown from '../../assets/Dashboard/angle-down.svg';
 import AngleRight from '../../assets/Dashboard/angle-right.svg';
 
 export default class Dashboard extends Component {
 
     state = {
-        divClosedList: [true, true, true, true, true, true, true, true],
+        divClosedList: [true, true, true, true, true, true, true, true, true],
     }
 
      handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
@@ -164,7 +164,31 @@ export default class Dashboard extends Component {
 
                     </div>
                 </div>
+               
+                <div className="categories sell-manager">
+
+                    <button className="categoriesBtn" onClick={() => this.handleDiv('.angle.item-8', '.dropdown.sell', 7)}>
+                        <h2><span role="img" aria-label="calendar">💲 </span>Gerenciamento de Vendas</h2>
+                        <img className="angle item-8" src={AngleRight} alt="Seta" />
+                    </button>
+
+                    <div className="dropdown sell">
+
+                        <ol>
+                            <li><Link to="/addsell">Adicionar Venda</Link></li>
+                            <li><Link to="/editcoupon/selection">Editar Venda</Link></li>
+                            <li><Link to="/deletecoupon">Deletar Venda</Link></li>
+                        </ol>
+
+                    </div>
+                </div>
+                
+                <div className="line" />
+                
+                <a id="see-website" href="/" target="_blank" rel="noopener noreferrer" >Ver site</a>
+            
             </div>
+
         </div>
     );
   }

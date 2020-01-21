@@ -10,64 +10,69 @@ import OkAnimation from '../../../../assets/Animations/OkPopUp.json';
 
 export default class deleteBookstore extends Component {
 
-  state = {
-    allBookstores: [],
-    index: 0,
-    books: [],
+	state = {
+		allBookstores: [],
+		index: 0,
+		books: [],
 
-    isStopped: true,
-  }
+		isStopped: true,
+		jwt: localStorage.getItem("jwt"),
+	}
 
-  async loadBookstores() {
-    const response = await api.get('/api/Livrarias').catch(function (error) {
-      console.log('Error: ' + error.message);
-    });
-    if (response != null) {
-      console.log(response);
-      this.setState({allBookstores: response.data});
-    }
-  }
+	async loadBookstores() {
+		await api.get('/api/Livrarias', {
+			headers: {"jwt": this.state.jwt}
+		}).then(res => {
+			console.log(res.data);
+			this.setState({allBookstores: res.data});
+		}).catch(error => {
+			console.log('loadBookstore: ' + error);
+		});
+	}
 
-  deleteBookstore = async (ID_Livraria = 0) => {
-    const response = await api.delete(`/api/Livrarias/${ID_Livraria}`).catch(function(error) {
-      console.log('Error: ' + error.message);
-    });
-    if (response != null) {
-      this.setState({isStopped: false});
-      this.handlePopUp();
-      this.loadBookstores();
-      setTimeout(() => {
-        this.setState({isStopped: true});
-      }, 3000);
-    }
-  }
+	deleteBookstore = async (ID_Livraria = 0) => {
+		await api.delete(`/api/Livrarias/${ID_Livraria}`, {
+			headers: {"jwt": this.state.jwt}
+		}).then(res => {
+			console.log(res.data);
 
-  handleDeleteBookstore = (ID_Livraria = 0, index = 0) => {
-    let confirmDelete = window.confirm(`Deseja realmente deletar a livraria ${this.state.allBookstores[index].Nome}?`);
-    if (confirmDelete) this.deleteBookstore(ID_Livraria);
-    else return;
-  }
+			this.setState({isStopped: false});
+			this.handlePopUp();
+			this.loadBookstores();
+			setTimeout(() => {
+				this.setState({isStopped: true});
+			}, 3000);
+		}).catch(function(error) {
+			console.log('Error: ' + error.message);
+		});
+	}
 
-   //#region HandlePopUp() {
-    showPopUp = () => {
-      document.querySelector('.deletePopUp').style.display = "block";
-    }
-  
-    hidePopUp = () => {
-      document.querySelector('.deletePopUp').style.display = "none";
-    }
+	handleDeleteBookstore = (ID_Livraria = 0, index = 0) => {
+		let confirmDelete = window.confirm(`Deseja realmente deletar a livraria ${this.state.allBookstores[index].Nome}?`);
+		if (confirmDelete) this.deleteBookstore(ID_Livraria);
+		else return;
+	}
 
-    handlePopUp = () => {
-      this.showPopUp();
-      setTimeout(() => {
-        this.hidePopUp();
-      }, 3000);
-    }
-  //#endregion
+		//#region HandlePopUp() {
+		showPopUp = () => {
+			document.querySelector('.deletePopUp').style.display = "block";
+		}
+	
+		hidePopUp = () => {
+			document.querySelector('.deletePopUp').style.display = "none";
+		}
 
-  componentDidMount() {
-    this.loadBookstores();
-  }
+		handlePopUp = () => {
+			this.showPopUp();
+			setTimeout(() => {
+			this.hidePopUp();
+			}, 3000);
+		}
+	//#endregion
+
+	componentDidMount() {
+		this.loadBookstores();
+	}
 
   render() {
 

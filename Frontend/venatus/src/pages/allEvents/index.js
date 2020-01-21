@@ -10,13 +10,14 @@ import './styles.css';
 export default class allEvents extends Component {
 
 	state = {
+		lastEvent: [],
 		allEvents: [],
 	}
 
 	loadEvents = async () => {
 		await api.get(`api/Eventos`).then(res => {
 			console.log(res.data);
-			this.setState({allEvents: res.data});
+			this.setState({allEvents: res.data, lastEvent: res.data[0]});
 		}).catch(error => {
       	console.log('Events -> ' + error);
 		});
@@ -28,11 +29,12 @@ export default class allEvents extends Component {
 	
 	render() {
 
-		const lastEvent = this.state.allEvents[0];
+		const lastEvent = this.state.lastEvent;
+		const allEvents = this.state.allEvents.slice(1);
 
   		return (
 
-      	<div className="event-wrapper">
+      		<div className="event-wrapper">
             
 				<Header />
         		
@@ -42,60 +44,45 @@ export default class allEvents extends Component {
             
 					<div className="recentEvent-container">
 
-                	<div className="recent-event">
+                		<div className="recent-event">
 						
-                    	<Link to="/">
+							<Link to="/">
 								<img src={lastEvent.Imagem_URL} alt={lastEvent.Titulo}/>
-                    	</Link>
-							<h2>{lastEvent.Titulo} - Livraria Cultura</h2>
-		  					<p>{lastEvent.d}</p>
-                    	<Link to="/" id="know-more">Saiba Mais</Link>
+							</Link>
+								<h2>{lastEvent.Titulo} - Livraria Cultura</h2>
+								<p>{lastEvent.Data_Evento}</p>
+							<Link to="/" id="know-more">Saiba Mais</Link>
 
 						</div>
 
 					</div>
 
-            	<div className="events-list">
+            		<div className="events-list">
 
-                	<h1>Todos os eventos</h1>
+                		<h1>Todos os eventos</h1>
                 
 					 	<ul>
+						
+							{allEvents.map(event => (
+								<li key={event.ID_Evento}>
+									<Link to="/">
+										<img src={event.Imagem_URL} alt={event.Titulo} />
+									</Link>
+									<h3>{event.Titulo}</h3>
+									<p>{event.Data_Evento} </p>
+									<Link to="/" className="know-more">Saiba Mais</Link>
+								</li>
+							))}
                     
-						  	<li>
-								<Link to="/">
-                            <img src="https://ericafalcaoescritora.files.wordpress.com/2019/10/img-20190929-wa0054.jpg?w=1024" alt="Evento 2"/>
-                        </Link>
-                        <h3>Semana da Criança - Escola Mais Perfil</h3>
-                        <p>09 de Outubro de 2019</p>
-                        <Link to="/" className="know-more">Saiba Mais</Link>
-                    	</li>
-                    
-						  	<li>
-                        <img src="https://ericafalcaoescritora.files.wordpress.com/2019/10/img-20190919-wa0036.jpg?w=600&h=450" alt="Evento 2"/>
-                        <h3>Abertura da FLICA 2019</h3>
-                        <p>19 de Setembro de 2019</p>
-                        <Link to="/" className="know-more">Saiba Mais</Link>
-                    	</li>
-
-                    <li>
-                        <img src="https://ericafalcaoescritora.files.wordpress.com/2019/08/img_20190713_195137_157.jpg?w=612&h=&zoom=2" alt="Evento 2"/>
-                        <h3>Café Literário na Livraria Saraiva – Blog Literário Estante da Mandy</h3>
-                        <p>13 de Julho de 2019</p>
-                        <Link to="/" className="know-more">Saiba Mais</Link>
-                    </li>
-                    <li>
-                        <img src="https://ericafalcaoescritora.files.wordpress.com/2019/08/img-20190516-wa0053.jpg?w=591&h=&crop=1&zoom=2" alt="Evento 2"/>
-                        <h3>Oficina Criativa – Livraria Mãe que Lê</h3>
-                        <p>13 de Julho de 2019</p>
-                        <Link to="/" className="know-more">Saiba Mais</Link>
-                    </li>
-                	</ul>
+                		</ul>
                 
-            </div>
+            		</div>
 
-        </div>
-        <Footer />
-      </div>
-  );
-}
+        		</div>
+
+        		<Footer />
+
+      		</div>
+  		);
+	}
 }

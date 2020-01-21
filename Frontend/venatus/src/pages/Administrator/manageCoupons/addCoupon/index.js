@@ -164,9 +164,9 @@ export default class addAuthor extends Component {
 
 									<label>Livro <span>*</span></label>
 									<select id="book-select" value={this.state.ID_Livro} onChange={e => this.setState({ID_Livro: e.target.value})}>
-											{this.state.allBooks.map(book => (
-												<option key={book.ID_Livro} value={book.ID_Livro}>{book.Titulo} {book.SubTitulo} </option>
-											))}
+										{this.state.allBooks.map(book => (
+											<option key={book.ID_Livro} value={book.ID_Livro}>{book.Titulo} {book.SubTitulo} </option>
+										))}
 									</select>
 								</li>
 

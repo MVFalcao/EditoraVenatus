@@ -3,7 +3,7 @@ namespace EditoraAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class banco221 : DbMigration
+    public partial class Banco25 : DbMigration
     {
         public override void Up()
         {
