@@ -69,9 +69,9 @@ export default class Dashboard extends Component {
                         <div className="dropdown bookstore ">
 
                             <ol>
-                                <li><Link to="/addbookstore">Adicionar Livraria</Link></li>
-                                <li><Link to="/editbookstore/selection">Editar Livraria</Link></li>
-                                <li><Link to="/deletebookstore">Deletar Livraria</Link></li>
+                                <li><Link to="/administrator/addbookstore">Adicionar Livraria</Link></li>
+                                <li><Link to="/administrator/editbookstore/selection">Editar Livraria</Link></li>
+                                <li><Link to="/administrator/deletebookstore">Deletar Livraria</Link></li>
                             </ol>
 
                         </div>
@@ -103,9 +103,9 @@ export default class Dashboard extends Component {
                     <div className="dropdown author">
 
                         <ol>
-                            <li><Link to="/addauthor">Adicionar Autor</Link></li>
-                            <li><Link to="/editauthor/selection">Editar Autor</Link></li>
-                            <li><Link to="/deleteauthor">Deletar Autor</Link></li>
+                            <li><Link to="/administrator/addauthor">Adicionar Autor</Link></li>
+                            <li><Link to="/administrator/editauthor/selection">Editar Autor</Link></li>
+                            <li><Link to="/administrator/deleteauthor">Deletar Autor</Link></li>
                         </ol>
 
                     </div>
@@ -121,9 +121,9 @@ export default class Dashboard extends Component {
                     <div className="dropdown book">
 
                         <ol>
-                            <li><Link to="/addbook">Adicionar Livro</Link></li>
-                            <li><Link to="/editbook/selection">Editar Livro</Link></li>
-                            <li><Link to="/deletebook">Deletar Livro</Link></li>
+                            <li><Link to="/administrator/addbook">Adicionar Livro</Link></li>
+                            <li><Link to="/administrator/editbook/selection">Editar Livro</Link></li>
+                            <li><Link to="/administrator/deletebook">Deletar Livro</Link></li>
                         </ol>
 
                     </div>
@@ -157,9 +157,9 @@ export default class Dashboard extends Component {
                     <div className="dropdown coupon">
 
                         <ol>
-                            <li><Link to="/addcoupon">Adicionar Cupom</Link></li>
-                            <li><Link to="/editcoupon/selection">Editar Cupom</Link></li>
-                            <li><Link to="/deletecoupon">Deletar Cupom</Link></li>
+                            <li><Link to="/administrator/addcoupon">Adicionar Cupom</Link></li>
+                            <li><Link to="/administrator/editcoupon/selection">Editar Cupom</Link></li>
+                            <li><Link to="/administrator/deletecoupon">Deletar Cupom</Link></li>
                         </ol>
 
                     </div>
@@ -175,9 +175,9 @@ export default class Dashboard extends Component {
                     <div className="dropdown sell">
 
                         <ol>
-                            <li><Link to="/addsell">Adicionar Venda</Link></li>
-                            <li><Link to="/editcoupon/selection">Editar Venda</Link></li>
-                            <li><Link to="/deletecoupon">Deletar Venda</Link></li>
+                            <li><Link to="/administrator/addsell">Adicionar Venda</Link></li>
+                            <li><Link to="/administrator/editcoupon/selection">Editar Venda</Link></li>
+                            <li><Link to="/administrator/deletecoupon">Deletar Venda</Link></li>
                         </ol>
 
                     </div>

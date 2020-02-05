@@ -133,51 +133,52 @@ export default class Header extends Component {
 
                     <div className="header-login">
                     
-                    { this.state.isLogged ?
-                        <>
+                        { this.state.isLogged ?
+                            <>
 
-                            <button onClick={() => this.handleDropdown()} onMouseOver={this.handleArrow} onMouseOut={this.handleArrow}>
-                                <p>{this.state.user.Usuario}</p>
-                                <img src={userArrow} alt="seta" />    
-                            </button>
+                                <button onClick={() => this.handleDropdown()} onMouseOver={this.handleArrow} onMouseOut={this.handleArrow}>
+                                    <p>{this.state.user.Usuario}</p>
+                                    <img src={userArrow} alt="seta" />    
+                                </button>
 
-                            <div className="account-dropdown">
+                                <div className="account-dropdown">
 
-                                <ul>
-                                    <li>
-                                        <Link to="/orders">Meus Pedidos</Link>
-                                    </li>
+                                    <ul>
+                                        <li>
+                                            <Link to="/orders">Meus Pedidos</Link>
+                                        </li>
 
-                                    <li>
-                                        <Link to="/addressess">Meus Endereços</Link>
-                                    </li>
+                                        <li>
+                                            <Link to="/addressess">Meus Endereços</Link>
+                                        </li>
 
-                                    <li>
-                                        <Link to="/account">Minha Conta</Link>
-                                    </li>
+                                        <li>
+                                            <Link to="/account">Minha Conta</Link>
+                                        </li>
 
-                                    <div className="line" />
+                                        <div className="line" />
 
-                                    <li>
-                                        <button id="logoff" onClick={() => this.handleLogoff()}>
-                                            <p>Sair</p>
-                                            <img src={out} alt="sair"/>    
-                                        </button>
-                                    </li>
+                                        <li>
+                                            <button id="logoff" onClick={() => this.handleLogoff()}>
+                                                <p>Sair</p>
+                                                <img src={out} alt="sair"/>    
+                                            </button>
+                                        </li>
 
-                                </ul>
+                                    </ul>
 
-                            </div>
+                                </div>
 
-                        </>
+                            </>
 
-                    :
+                        :
 
-                        <Link to="/Login">Entre ou Cadastre-se</Link>
-                    }
+                            <Link to="/Login">Entre ou Cadastre-se</Link>
+                        
+                        }
                     </div>
 
-                    </div>
+                </div>
 
                 <div className="menu-container">
 
@@ -197,9 +198,6 @@ export default class Header extends Component {
                         </div>
                         <div className="item item-4">
                             <Link to="/contactus">Contato</Link>
-                        </div>
-                        <div className="item item-5">
-                            <Link to="/api">API</Link>
                         </div>
                     </div>
                     <div className="header-line">
