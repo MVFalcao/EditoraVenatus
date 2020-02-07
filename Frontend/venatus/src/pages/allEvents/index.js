@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 
 import './styles.css';
 
-const ConvertDate = require('../../utils/ConvertDate'); // usar require no React?
+import ConvertDate from '../../utils/ConvertDate';
 
 export default class allEvents extends Component {
 
@@ -46,6 +46,11 @@ export default class allEvents extends Component {
 		const lastEvent = this.state.lastEvent;
 		const allEvents = this.state.allEvents.slice(1);
 
+		const noEvents = {
+			marginTop: '70px', 
+			marginBottom: '199px',
+		}
+		
   		return (
 
       		<div className="event-wrapper">
@@ -79,16 +84,16 @@ export default class allEvents extends Component {
 
 					:
 
-						<h1>Nenhum evento por enquanto.</h1>
+						<h1 style={noEvents}>Nenhum evento por enquanto <span role="img" aria-label="Sad">😥</span></h1>
 
 					}
 
-					{allEvents !== null ? 
+					{allEvents.length !== 0 ? 
 
 						<div className="events-list">
 
 							<h1>Todos os eventos</h1>
-					
+				
 							<ul>
 							
 								{allEvents.map(event => (

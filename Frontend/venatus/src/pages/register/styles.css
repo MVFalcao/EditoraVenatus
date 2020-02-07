@@ -4,33 +4,13 @@
     padding: 40px 0px 30px;
     width: 100%;
     min-height: 805px;
+
     background-color: rgb(56, 56, 56);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.registerType-popup {
-    max-width: 500px;
-    height: 325px;
-    margin: 125px auto 25px;
-    padding-top: 10px;
-    
-    border: 1px solid gray;
-    border-radius: 10px;
-    
-    color: rgb(255, 255, 255);
-    font-family: 'Poppins', Arial, sans-serif;
-    text-align: center;
-    
-    background-color: rgb(49, 49, 49);
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-}
-
-.registerType-popup img {
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    width: 60%;
-    height: auto;
+.signin-content a img {
+    width: 40%;
 }
 
 .signin-container .line {
@@ -48,56 +28,8 @@
     background-color: rgb(177, 177, 177);
 }
 
-.registerType-popup h1 {
-    font-size: 28px;
-    font-weight: 400;
-}
-
-.register-buttons {
-    width: 100%;
-    margin-top: 40px;
-    padding: 0px 40px;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.registerBtn {
-    width: 120px;
-    height: 40px;
-
-    font: italic 400 16px 'Poppins', arial, sans-serif;
-    color: white;
-
-    border-radius: 20px;
-    border: none;
-
-    cursor: pointer;
-}
-
-.registerBtn.item-1 {
-    background-color: rgb(32, 127, 236);
-}
-
-.registerBtn.item-1:hover {
-    background-color: rgb(25, 94, 173);
-}
-
-.registerBtn.item-2 {
-    background-color: rgb(233, 131, 35);
-}
-
-.registerBtn.item-2:hover {
-    background-color: rgb(182, 103, 30);
-}
-
-.registerBtn.item-3 {
-    background-color: rgb(235, 96, 78);
-}
-
-.registerBtn.item-3:hover {
-    background-color: rgb(184, 73, 58);
+.signin-content .header-text {
+    text-align: center;
 }
 
 .signin-content {
@@ -111,7 +43,6 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     background-color: white;
 
-    display: none;
     flex-direction: column;
     align-items: center;
 }

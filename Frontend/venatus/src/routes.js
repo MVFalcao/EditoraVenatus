@@ -94,7 +94,7 @@ export default function Routes() {
 					<Route path="/administrator/editcoupon/:id" component={ editCoupon } />
 					<Route path="/administrator/deletecoupon" component={ deleteCoupon } />
 				{/* Gerenciamento de Vendas */}
-					<Route path="/addsell" component={ addSell } />
+					<Route path="/administrator/addsell" component={ addSell } />
         	</Switch>
       </BrowserRouter>
  	);

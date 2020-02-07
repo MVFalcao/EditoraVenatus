@@ -38,7 +38,7 @@ export default class editBook extends Component {
             <ul>
               {this.state.allBookstores.map(bookstore => (
                 <li key={bookstore.ID_Livraria}>
-                  <Link to={`/editbookstore/${bookstore.ID_Livraria}`}>
+                  <Link to={`/administrator/editbookstore/${bookstore.ID_Livraria}`}>
                     <img src={BookstoreImg} alt={bookstore.Titulo}/>
                     <h2>{bookstore.Nome}</h2>
                   </Link>

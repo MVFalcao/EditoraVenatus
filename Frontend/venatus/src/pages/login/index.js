@@ -87,7 +87,6 @@ export default class Login extends Component {
               <Link to="/" id="forgot">Esqueceu a senha?</Link>
               <button type="submit" onClick={(e) => this.handleSubmit(e)}>Entrar</button>
             </form>
-            <p id="signup">Novo na Venatus? <Link to="/signup">Crie uma conta</Link></p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-module.exports = function ConvertDate(date="") {
+export default function ConvertDate(date="") {
 
     date = date.split('T');
     date = date[0].split('-');

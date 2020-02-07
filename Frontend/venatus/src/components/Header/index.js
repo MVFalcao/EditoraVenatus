@@ -5,9 +5,9 @@ import api from '../../services/api';
 import "./styles.css";
 import logo from '../../assets/header/logo_l.svg';
 import line from '../../assets/header/linha.svg';
-import userArrow from '../../assets/main/user-arrow.svg';
-import userArrowBlue from '../../assets/main/user-arrow-blue.svg';
-import out from '../../assets/main/out.svg';
+// import userArrow from '../../assets/main/user-arrow.svg';
+// import userArrowBlue from '../../assets/main/user-arrow-blue.svg';
+// import out from '../../assets/main/out.svg';
 
 // function paintActualTab() {
 //     let actualTab;    
@@ -57,70 +57,72 @@ export default class Header extends Component {
     //     });
     // }
 
-    handleArrow = () => {
-        if (this.state.isOver) {
-            document.querySelector('.header-login img').src = userArrow;
-            this.setState({isOver: false});
-        } else {
-            document.querySelector('.header-login img').src = userArrowBlue;
-            this.setState({isOver: true});
-        }
-    }
+    //#region HeaderLogin
+    // handleArrow = () => {
+    //     if (this.state.isOver) {
+    //         document.querySelector('.header-login img').src = userArrow;
+    //         this.setState({isOver: false});
+    //     } else {
+    //         document.querySelector('.header-login img').src = userArrowBlue;
+    //         this.setState({isOver: true});
+    //     }
+    // }
 
-    handleDropdown = () => {
-        let accountDropdown = document.querySelector('.account-dropdown');
-        let divHide = document.querySelector('.hide-menu');
+    // handleDropdown = () => {
+    //     let accountDropdown = document.querySelector('.account-dropdown');
+    //     let divHide = document.querySelector('.hide-menu');
         
-        const show = () => {
-            divHide.style.display = "block";
-            accountDropdown.style.display = "block";
-            this.setState({isClosed: false});
-        }
+    //     const show = () => {
+    //         divHide.style.display = "block";
+    //         accountDropdown.style.display = "block";
+    //         this.setState({isClosed: false});
+    //     }
 
-        const hide = () => {
-            divHide.style.display = "none";
-            accountDropdown.style.display = "none";
-            this.setState({isClosed: true});
-        }
+    //     const hide = () => {
+    //         divHide.style.display = "none";
+    //         accountDropdown.style.display = "none";
+    //         this.setState({isClosed: true});
+    //     }
 
-        if (this.state.isClosed) {
-            show();
-        } else {
-            hide();
-        } 
-    }
+    //     if (this.state.isClosed) {
+    //         show();
+    //     } else {
+    //         hide();
+    //     } 
+    // }
     
-    hidebyDiv = () => {
-        document.querySelector('.hide-menu').style.display = "none";
-        document.querySelector('.account-dropdown').style.display = "none";
-        this.setState({isClosed: true});
-    }
+    // hidebyDiv = () => {
+    //     document.querySelector('.hide-menu').style.display = "none";
+    //     document.querySelector('.account-dropdown').style.display = "none";
+    //     this.setState({isClosed: true});
+    // }
 
-    handleLogoff = () => {
-        localStorage.removeItem("jwt");
-        if (window.location.href === "http://localhost:3000/") {
-            window.location.reload();
-        } else {
-            this.setState({redirect: true});
-        } 
-    }
+    // handleLogoff = () => {
+    //     localStorage.removeItem("jwt");
+    //     if (window.location.href === "http://localhost:3000/") {
+    //         window.location.reload();
+    //     } else {
+    //         this.setState({redirect: true});
+    //     } 
+    // }
+    //#endregion
 
     render() {
 
         if (this.state.redirect) return <Redirect to='/' />;
 
-        const hideMenu = {
-            width: '100%', 
-            minHeight: "900px",
-            position: "fixed",
-            display: "none",
-            top: "0px",
-        }
+        // const hideMenu = {
+        //     width: '100%', 
+        //     minHeight: "900px",
+        //     position: "fixed",
+        //     display: "none",
+        //     top: "0px",
+        // }
 
         return (
             <>
 
-            <div className="hide-menu" style={hideMenu} onClick={this.hidebyDiv} />
+            {/* <div className="hide-menu" style={hideMenu} onClick={this.hidebyDiv} /> */}
 
             <header className="main-header">
 
@@ -131,7 +133,7 @@ export default class Header extends Component {
                     </Link>
                     
 
-                    <div className="header-login">
+                    {/* <div className="header-login">
                     
                         { this.state.isLogged ?
                             <>
@@ -176,7 +178,7 @@ export default class Header extends Component {
                             <Link to="/Login">Entre ou Cadastre-se</Link>
                         
                         }
-                    </div>
+                    </div> */}
 
                 </div>
 
