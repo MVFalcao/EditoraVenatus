@@ -2,26 +2,26 @@ import React from 'react';
 import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Páginas do usuário
-	import Login from './pages/login';
-	import SignUp from './pages/register';
 	import Main from './pages/main';
 	import AllBooks from './pages/allBooks';
 	import BookPage from './pages/Book';
 	import Events from './pages/allEvents';
 	import AboutUs from './pages/AboutUs';
 	import ContactUs from './pages/Contact';
-	import API from './pages/API';
+// import API from './pages/API';
 
 // Páginas da conta do usuário
-	import Account from './pages/User/myAccount';
-	import Adressess from './pages/User/myAddressess';
-	import Orders from './pages/User/myOrders';
+	// import Account from './pages/User/myAccount';
+	// import Adressess from './pages/User/myAddressess';
+	// import Orders from './pages/User/myOrders';
 
 // Páginas dos Grafos
 	import GrafoLA from './components/Grafo/LivrosAutores';
 	import GrafoLC from './components/Grafo/LivrosCupons';
 
 // Páginas do administrador
+	import Login from './pages/login';
+	import SignUp from './pages/register';
 	import administrator from './pages/Administrator';
 	/* Genrenciamento de Livro */
 		import addBook from './pages/Administrator/manageBook/addBook';
@@ -60,41 +60,41 @@ export default function Routes() {
 				<Route path="/aboutus" component={ AboutUs } />
 				<Route path="/events" component={ Events } />
 				<Route path="/contactus" component={ ContactUs } />
-				<Route path="/api" component={ API } />
+				{/* <Route path="/api" component={ API } /> */}
 
             {/* Rotas da conta do usuário */}
-				<Route path="/account" component={ Account } />
-				<Route path="/addressess" component={ Adressess } />
-				<Route path="/orders" component={ Orders } />
+				{/* <Route path="/account" component={ Account } /> */}
+				{/* <Route path="/addressess" component={ Adressess } /> */}
+				{/* <Route path="/orders" component={ Orders } /> */}
 
 			{/* Grafos */}
 				<Route path="/grafola" component={ GrafoLA } />	
 				<Route path="/grafolc" component={ GrafoLC } />	
 
             {/* Rotas do administrador */}
-				<Route path="/administrator" component={ administrator } />
+				<Route path="/administrator" exact component={ administrator } />
               	{/* Gerenciamento de Livros */}
-					<Route path="/addbook" component={ addBook } />
-					<Route path="/editbook/selection" component={ editBookSelection } />
-					<Route path="/editbook/:id" component={ editBook } />
-					<Route path="/deletebook" component ={ deleteBook } />
+					<Route path="/administrator/addbook" component={ addBook } />
+					<Route path="/administrator/editbook/selection" component={ editBookSelection } />
+					<Route path="/administrator/editbook/:id" component={ editBook } />
+					<Route path="/administrator/deletebook" component ={ deleteBook } />
               	{/* Gerenciamento de Livrarias */}
-					<Route path="/addbookstore" component={addBookstore} />
-					<Route path="/editbookstore/selection" component={ editBookstoreSelection } />
-					<Route path="/editbookstore/:id" component={ editBookstore } />
-					<Route path="/deletebookstore/" component={ deleteBookstore } />
+					<Route path="/administrator/addbookstore" component={addBookstore} />
+					<Route path="/administrator/editbookstore/selection" component={ editBookstoreSelection } />
+					<Route path="/administrator/editbookstore/:id" component={ editBookstore } />
+					<Route path="/administrator/deletebookstore/" component={ deleteBookstore } />
               	{/* Gerenciamento de Autores */}
-					<Route path="/addauthor" component={ addAuthor } />
-					<Route path="/editauthor/selection" component={ editAuthorSelection } />
-					<Route path="/editauthor/:id" component={ editAuthor } />
-					<Route path="/deleteauthor" component={ deleteAuthor } />
+					<Route path="/administrator/addauthor" component={ addAuthor } />
+					<Route path="/administrator/editauthor/selection" component={ editAuthorSelection } />
+					<Route path="/administrator/editauthor/:id" component={ editAuthor } />
+					<Route path="/administrator/deleteauthor" component={ deleteAuthor } />
                 {/* Gerenciamento de Cupom */}
-					<Route path="/addcoupon" component={ addCoupon } />
-					<Route path="/editcoupon/selection" component={ editCouponSelection } />
-					<Route path="/editcoupon/:id" component={ editCoupon } />
-					<Route path="/deletecoupon" component={ deleteCoupon } />
+					<Route path="/administrator/addcoupon" component={ addCoupon } />
+					<Route path="/administrator/editcoupon/selection" component={ editCouponSelection } />
+					<Route path="/administrator/editcoupon/:id" component={ editCoupon } />
+					<Route path="/administrator/deletecoupon" component={ deleteCoupon } />
 				{/* Gerenciamento de Vendas */}
-					<Route path="/addsell" component={ addSell } />
+					<Route path="/administrator/addsell" component={ addSell } />
         	</Switch>
       </BrowserRouter>
  	);

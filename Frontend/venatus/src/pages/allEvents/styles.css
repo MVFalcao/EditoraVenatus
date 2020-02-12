@@ -71,7 +71,7 @@
     width: 100%;
     
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 30px;
     
     list-style: none;
@@ -82,7 +82,7 @@
     max-width: 250px;
     padding-bottom: 20px;
 
-    border-radius: 15px;
+    border-radius: 10px;
     border: 1px solid rgb(173, 173, 173);
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
     
@@ -91,9 +91,9 @@
 
 .events-list ul li img {
     width: 100%;
-    max-width: 285px;
+    max-width: 250px;
     height: 186px;
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
 }
 
 .events-list ul li h3 {

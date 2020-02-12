@@ -37,7 +37,7 @@ export default class editBook extends Component {
             <ul>
               {this.state.allAuthors.map(author => (
                 <li key={author.ID_Autor}>
-                  <Link to={`/editauthor/${author.ID_Autor}`}>
+                  <Link to={`/administrator/editauthor/${author.ID_Autor}`}>
                     <img src={BookstoreImg} alt={author.Nome}/>
                     <h2>{author.Nome}</h2>
                   </Link>
