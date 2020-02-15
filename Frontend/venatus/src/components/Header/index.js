@@ -193,13 +193,13 @@ export default class Header extends Component {
                             <Link to="/allBooks">Livros</Link>
                         </div>
                         <div className="item item-2">
-                            <Link to="/aboutus">Sobre Nós</Link>
+                            <Link to="/aboutus">Editora</Link>
                         </div>
                         <div className="item item-3">
                             <Link to="/events">Eventos</Link>
                         </div>
                         <div className="item item-4">
-                            <Link to="/contactus">Contato</Link>
+                            <Link to="/contactus">Fale Conosco</Link>
                         </div>
                     </div>
                     <div className="header-line">

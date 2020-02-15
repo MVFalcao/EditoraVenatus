@@ -38,6 +38,11 @@ import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 		import editAuthor from './pages/Administrator/manageAuthor/editAuthor';
 		import editAuthorSelection from './pages/Administrator/manageAuthor/editAuthor/selection';
 		import deleteAuthor from './pages/Administrator/manageAuthor/deleteAuthor';
+	/* Gerenciamento de Eventos */
+		import addEvent from './pages/Administrator/manageEvents/addEvent';
+		// import editCouponSelection from './pages/Administrator/manageCoupons/editCoupon/selection';
+		// import editCoupon from './pages/Administrator/manageCoupons/editCoupon';
+		// import deleteCoupon from './pages/Administrator/manageCoupons/deleteCoupon';
 	/* Gerenciamento de Cupons */
 		import addCoupon from './pages/Administrator/manageCoupons/addCoupon';
 		import editCouponSelection from './pages/Administrator/manageCoupons/editCoupon/selection';
@@ -53,8 +58,6 @@ export default function Routes() {
             
 			{/* Rotas do usuário */}
 				<Route path="/" exact component={ Main } />
-				<Route path="/Login" component ={ Login } />
-				<Route path="/signup" component ={ SignUp } />
 				<Route path="/allBooks" component ={ AllBooks } />
 				<Route path="/bookPage/:id" component ={ BookPage } />
 				<Route path="/aboutus" component={ AboutUs } />
@@ -73,6 +76,8 @@ export default function Routes() {
 
             {/* Rotas do administrador */}
 				<Route path="/administrator" exact component={ administrator } />
+				<Route path="/administrator/login" component ={ Login } />
+				<Route path="/administrador/signup" component ={ SignUp } />
               	{/* Gerenciamento de Livros */}
 					<Route path="/administrator/addbook" component={ addBook } />
 					<Route path="/administrator/editbook/selection" component={ editBookSelection } />
@@ -88,6 +93,11 @@ export default function Routes() {
 					<Route path="/administrator/editauthor/selection" component={ editAuthorSelection } />
 					<Route path="/administrator/editauthor/:id" component={ editAuthor } />
 					<Route path="/administrator/deleteauthor" component={ deleteAuthor } />
+                {/* Gerenciamento de Eventos */}
+					<Route path="/administrator/addevent" component={ addEvent } />
+					{/* <Route path="/administrator/editcoupon/selection" component={ editCouponSelection } />
+					<Route path="/administrator/editcoupon/:id" component={ editCoupon } />
+					<Route path="/administrator/deletecoupon" component={ deleteCoupon } /> */}
                 {/* Gerenciamento de Cupom */}
 					<Route path="/administrator/addcoupon" component={ addCoupon } />
 					<Route path="/administrator/editcoupon/selection" component={ editCouponSelection } />

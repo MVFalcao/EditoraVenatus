@@ -9,18 +9,32 @@ import AngleRight from '../../assets/Dashboard/angle-right.svg';
 export default class Dashboard extends Component {
 
     state = {
-        divClosedList: [true, true, true, true, true, true, true, true, true],
+        divClosedList: [],
     }
 
-     handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
+    fillClosedList = () => {
+        let item = [];
+        for (let i = 0; i < 8; i++) {
+            item[i] = true;
+        }
+        this.setState({divClosedList: item});
+    }
+
+    componentDidMount() {
+        this.fillClosedList();
+    }
+
+    handleDiv = (SymbolItem = "", contentDiv = "", item = 0) => {
         let SymbolEmt = document.querySelector(SymbolItem);
         let dropdownContent = document.querySelector(contentDiv);
 
         const showDiv = () => {
             dropdownContent.style.display = "flex";
+            dropdownContent.style.opacity = 1;
         }
         const hideDiv = () => {
             dropdownContent.style.display = "none";
+            dropdownContent.style.opacity = 0;
         }
         if (this.state.divClosedList[item]) {
             showDiv();
@@ -181,6 +195,12 @@ export default class Dashboard extends Component {
                         </ol>
 
                     </div>
+                </div>
+               
+                <div className="categories employee">
+
+                    <Link to="/administrador/signup"><span role="img" aria-label="Woman Technologist">👩🏻‍💻 </span> Cadastro de Funcionário</Link>
+                    
                 </div>
                 
                 <div className="line" />

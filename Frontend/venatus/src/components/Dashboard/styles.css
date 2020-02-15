@@ -4,9 +4,9 @@
     scrollbar-color: #2a2c2e #1c1e1f;
 }
 
-body {
+/* body {
     overflow-x: hidden;
-}
+} */
 
 .administrator-panel {
     width: 320px;
@@ -20,10 +20,12 @@ body {
 
 .administrator-panel .line {
     width: 85%;
+    height: 1px;
     margin: auto;
     margin-top: 50px;
 
     background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
 
 }
 
@@ -89,6 +91,8 @@ body {
 .categories {
     margin-top: 15px;
     padding-left: 10px;
+
+    transition: all .5s;
 }
 
 .categories button {
@@ -148,8 +152,18 @@ body {
     text-decoration: none;
 }
 
+.categories.employee {
+    margin-top: 40px;
+    margin-left: 5px;
+}
+.categories.employee a {
+    font-weight: 500;
+}
+
 .dropdown {
     display: none;
+    transition: all .5s ease;
+    opacity: 0;
 }
 
 .dropdown.register {
