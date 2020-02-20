@@ -12,6 +12,7 @@ namespace EditoraAPI.Models
     {
         [Key] public int ID_Evento { get; set; }
         [Required] public string Imagem_URL { get; set; }
+        [Required] public string Link { get; set; }
         [Required] public string Titulo { get; set; }
         [Required] public string Descrição { get; set; }
         [Required] public DateTime Data_Evento { get; set; }

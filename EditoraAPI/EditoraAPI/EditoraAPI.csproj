@@ -46,19 +46,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
     <Reference Include="JWT, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JWT.5.3.1\lib\net46\JWT.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.EntityFramework.8.0.19\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -124,6 +145,9 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -198,118 +222,6 @@
     <Compile Include="Grafo\grafoh.cs" />
     <Compile Include="Grafo\indicacao.cs" />
     <Compile Include="Grafo\Vertice.cs" />
-    <Compile Include="Migrations\201910291258558_InitialCreate.cs" />
-    <Compile Include="Migrations\201910291258558_InitialCreate.Designer.cs">
-      <DependentUpon>201910291258558_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910291400027_EditoraBanco1.cs" />
-    <Compile Include="Migrations\201910291400027_EditoraBanco1.Designer.cs">
-      <DependentUpon>201910291400027_EditoraBanco1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910291411552_Banco2.cs" />
-    <Compile Include="Migrations\201910291411552_Banco2.Designer.cs">
-      <DependentUpon>201910291411552_Banco2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910291709242_Banco21.cs" />
-    <Compile Include="Migrations\201910291709242_Banco21.Designer.cs">
-      <DependentUpon>201910291709242_Banco21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910291926011_banco3.cs" />
-    <Compile Include="Migrations\201910291926011_banco3.Designer.cs">
-      <DependentUpon>201910291926011_banco3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910291934399_banco4.cs" />
-    <Compile Include="Migrations\201910291934399_banco4.Designer.cs">
-      <DependentUpon>201910291934399_banco4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910292026161_2910Caique1.cs" />
-    <Compile Include="Migrations\201910292026161_2910Caique1.Designer.cs">
-      <DependentUpon>201910292026161_2910Caique1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910300001429_teste1.cs" />
-    <Compile Include="Migrations\201910300001429_teste1.Designer.cs">
-      <DependentUpon>201910300001429_teste1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910300009319_2910Caique2.cs" />
-    <Compile Include="Migrations\201910300009319_2910Caique2.Designer.cs">
-      <DependentUpon>201910300009319_2910Caique2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911051358150_banco7.cs" />
-    <Compile Include="Migrations\201911051358150_banco7.Designer.cs">
-      <DependentUpon>201911051358150_banco7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911061403405_banco8.cs" />
-    <Compile Include="Migrations\201911061403405_banco8.Designer.cs">
-      <DependentUpon>201911061403405_banco8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911141229049_banco9.cs" />
-    <Compile Include="Migrations\201911141229049_banco9.Designer.cs">
-      <DependentUpon>201911141229049_banco9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911141238092_banco10.cs" />
-    <Compile Include="Migrations\201911141238092_banco10.Designer.cs">
-      <DependentUpon>201911141238092_banco10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911172042358_banco11.cs" />
-    <Compile Include="Migrations\201911172042358_banco11.Designer.cs">
-      <DependentUpon>201911172042358_banco11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911180059408_banco12.cs" />
-    <Compile Include="Migrations\201911180059408_banco12.Designer.cs">
-      <DependentUpon>201911180059408_banco12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911180102119_banco13.cs" />
-    <Compile Include="Migrations\201911180102119_banco13.Designer.cs">
-      <DependentUpon>201911180102119_banco13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911191851253_banco14.cs" />
-    <Compile Include="Migrations\201911191851253_banco14.Designer.cs">
-      <DependentUpon>201911191851253_banco14.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911192128574_banco15.cs" />
-    <Compile Include="Migrations\201911192128574_banco15.Designer.cs">
-      <DependentUpon>201911192128574_banco15.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911212029589_banco16.cs" />
-    <Compile Include="Migrations\201911212029589_banco16.Designer.cs">
-      <DependentUpon>201911212029589_banco16.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911212226140_banco17.cs" />
-    <Compile Include="Migrations\201911212226140_banco17.Designer.cs">
-      <DependentUpon>201911212226140_banco17.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911291651520_banco18.cs" />
-    <Compile Include="Migrations\201911291651520_banco18.Designer.cs">
-      <DependentUpon>201911291651520_banco18.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911291658030_banco19.cs" />
-    <Compile Include="Migrations\201911291658030_banco19.Designer.cs">
-      <DependentUpon>201911291658030_banco19.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911291826121_banco20.cs" />
-    <Compile Include="Migrations\201911291826121_banco20.Designer.cs">
-      <DependentUpon>201911291826121_banco20.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912012007141_Banco211.cs" />
-    <Compile Include="Migrations\201912012007141_Banco211.Designer.cs">
-      <DependentUpon>201912012007141_Banco211.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912022312268_banco22.cs" />
-    <Compile Include="Migrations\201912022312268_banco22.Designer.cs">
-      <DependentUpon>201912022312268_banco22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912032023225_Banco23.cs" />
-    <Compile Include="Migrations\201912032023225_Banco23.Designer.cs">
-      <DependentUpon>201912032023225_Banco23.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912041205445_banco24.cs" />
-    <Compile Include="Migrations\201912041205445_banco24.Designer.cs">
-      <DependentUpon>201912041205445_banco24.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912041549183_Banco25.cs" />
-    <Compile Include="Migrations\201912041549183_Banco25.Designer.cs">
-      <DependentUpon>201912041549183_Banco25.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Classificacao.cs" />
@@ -419,92 +331,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910291258558_InitialCreate.resx">
-      <DependentUpon>201910291258558_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910291400027_EditoraBanco1.resx">
-      <DependentUpon>201910291400027_EditoraBanco1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910291411552_Banco2.resx">
-      <DependentUpon>201910291411552_Banco2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910291709242_Banco21.resx">
-      <DependentUpon>201910291709242_Banco21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910291926011_banco3.resx">
-      <DependentUpon>201910291926011_banco3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910291934399_banco4.resx">
-      <DependentUpon>201910291934399_banco4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910292026161_2910Caique1.resx">
-      <DependentUpon>201910292026161_2910Caique1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910300001429_teste1.resx">
-      <DependentUpon>201910300001429_teste1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910300009319_2910Caique2.resx">
-      <DependentUpon>201910300009319_2910Caique2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911051358150_banco7.resx">
-      <DependentUpon>201911051358150_banco7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911061403405_banco8.resx">
-      <DependentUpon>201911061403405_banco8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911141229049_banco9.resx">
-      <DependentUpon>201911141229049_banco9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911141238092_banco10.resx">
-      <DependentUpon>201911141238092_banco10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911172042358_banco11.resx">
-      <DependentUpon>201911172042358_banco11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911180059408_banco12.resx">
-      <DependentUpon>201911180059408_banco12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911180102119_banco13.resx">
-      <DependentUpon>201911180102119_banco13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911191851253_banco14.resx">
-      <DependentUpon>201911191851253_banco14.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911192128574_banco15.resx">
-      <DependentUpon>201911192128574_banco15.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911212029589_banco16.resx">
-      <DependentUpon>201911212029589_banco16.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911212226140_banco17.resx">
-      <DependentUpon>201911212226140_banco17.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911291651520_banco18.resx">
-      <DependentUpon>201911291651520_banco18.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911291658030_banco19.resx">
-      <DependentUpon>201911291658030_banco19.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911291826121_banco20.resx">
-      <DependentUpon>201911291826121_banco20.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912012007141_Banco211.resx">
-      <DependentUpon>201912012007141_Banco211.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912022312268_banco22.resx">
-      <DependentUpon>201912022312268_banco22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912032023225_Banco23.resx">
-      <DependentUpon>201912032023225_Banco23.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912041205445_banco24.resx">
-      <DependentUpon>201912041205445_banco24.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912041549183_Banco25.resx">
-      <DependentUpon>201912041549183_Banco25.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

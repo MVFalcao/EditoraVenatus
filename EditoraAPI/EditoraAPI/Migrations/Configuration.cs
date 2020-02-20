@@ -10,7 +10,6 @@ namespace EditoraAPI.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "EditoraAPI.Models.EditoraAPIContext";
         }
 
         protected override void Seed(EditoraAPI.Models.EditoraAPIContext context)
