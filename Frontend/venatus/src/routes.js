@@ -1,5 +1,5 @@
 import React from 'react';
-import  { BrowserRouter, Switch, Route } from 'react-router-dom';
+import  { Switch, Route, HashRouter } from 'react-router-dom';
 
 // Páginas do usuário
 	import Main from './pages/main';
@@ -53,7 +53,7 @@ import  { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 export default function Routes() {
 	return (
-      	<BrowserRouter>
+      	<HashRouter>
         	<Switch>
             
 			{/* Rotas do usuário */}
@@ -106,6 +106,6 @@ export default function Routes() {
 				{/* Gerenciamento de Vendas */}
 					<Route path="/administrator/addsell" component={ addSell } />
         	</Switch>
-      </BrowserRouter>
+      </HashRouter>
  	);
 }

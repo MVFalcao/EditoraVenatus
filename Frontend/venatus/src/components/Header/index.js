@@ -4,26 +4,12 @@ import api from '../../services/api';
 
 import "./styles.css";
 import logo from '../../assets/header/logo_l.svg';
-import line from '../../assets/header/linha.svg';
+
+//#region LoginImports
 // import userArrow from '../../assets/main/user-arrow.svg';
 // import userArrowBlue from '../../assets/main/user-arrow-blue.svg';
 // import out from '../../assets/main/out.svg';
-
-// function paintActualTab() {
-//     let actualTab;    
-
-//     switch(window.location.pathname) {
-//         case "/allBooks":
-//             actualTab = document.querySelector('.item.item-1 a');
-//             actualTab.style.color = "#309AAC";    
-//         break;
-//         default:
-//             actualTab = document.querySelectorAll('.item a');
-//             actualTab.forEach(element => {
-//                 element.style.color = "#535151"
-//             }); 
-//     }
-// }
+//#endregion
 
 export default class Header extends Component {
 
@@ -133,7 +119,9 @@ export default class Header extends Component {
                     </Link>
                     
 
-                    {/* <div className="header-login">
+                    {
+                    //#region login
+                    /* <div className="header-login">
                     
                         { this.state.isLogged ?
                             <>
@@ -178,32 +166,34 @@ export default class Header extends Component {
                             <Link to="/Login">Entre ou Cadastre-se</Link>
                         
                         }
-                    </div> */}
+                    </div> */
+                    //#endregion
+                    }
 
                 </div>
 
                 <div className="menu-container">
 
-                    <div className="header-line">
-                        <img src={line} alt="line1" />
+                    <div className="line-container">
+                        <div className="header-line" />
                     </div>
                     
-                    <div className="menu-navbar">
-                        <div className="item item-1">
+                    <ul className="menu-navbar">
+                        <li className="item">
                             <Link to="/allBooks">Livros</Link>
-                        </div>
-                        <div className="item item-2">
+                        </li>
+                        <li className="item">
                             <Link to="/aboutus">Editora</Link>
-                        </div>
-                        <div className="item item-3">
+                        </li>
+                        <li className="item">
                             <Link to="/events">Eventos</Link>
-                        </div>
-                        <div className="item item-4">
+                        </li>
+                        <li className="item">
                             <Link to="/contactus">Fale Conosco</Link>
-                        </div>
-                    </div>
-                    <div className="header-line">
-                        <img src={line} alt="line1" />
+                        </li>
+                    </ul>
+                    <div className="line-container">
+                        <div className="header-line" />
                     </div>
                 </div>
             </header>
