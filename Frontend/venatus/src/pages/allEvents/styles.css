@@ -59,6 +59,7 @@
 }
 
 .events-list {
+    width: 85%;
     margin-top: 100px;
     text-align: center;
 }
@@ -68,10 +69,9 @@
 }
 
 .events-list ul {
-    width: 100%;
-    
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
     gap: 30px;
     
     list-style: none;
@@ -79,6 +79,7 @@
 }
 
 .events-list ul li {
+    width: 100%;
     max-width: 250px;
     padding-bottom: 20px;
 
@@ -126,3 +127,15 @@
 .events-list ul li a.know-more {
     background-color: rgb(21, 75, 75);
 }    
+
+@media (max-width: 700px) {
+
+    .recent-event {
+        width: 30%;
+    }
+        
+    .recent-event img {
+        width: 100%;
+        height: auto;
+    }
+}

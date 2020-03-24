@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
 
-
 .aboutUs-container {
     max-width: 100%;
     min-height: 700px;
@@ -24,7 +23,7 @@
 }
 
 .venatus-workers {
-    display: block;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -34,18 +33,13 @@
     list-style: none;
 }
 
-/* .venatus-workers ul li {
-    display: block;
-    flex-direction: column;
-    align-items: center;
-} */
-
 .venatus-workers .image-container {
     position: relative;
 }
 
 .venatus-workers img#author {
-    width: 911px;
+    width: 90%;
+    max-width: 911px;
     height: 331px;
     object-fit: cover;
 }
@@ -54,8 +48,7 @@
     width: 77%;
     height: auto;
     position: absolute;
-    top: 320px; left: auto; right: 139px;
-    /* object-fit: cover; */
+    top: 320px; right: 139px;
 }
 
 .venatus-workers h1 {
@@ -74,4 +67,12 @@
 
     font-size: 18px;
     line-height: 30px;   
+}
+
+@media (max-width: 700px) {
+    .venatus-workers #faixa {
+        width: 91%;
+        height: auto;
+        top: 327px; right: 17px;
+    }
 }

@@ -27,6 +27,8 @@ export default class Book extends Component {
         divClosedList: [true, true, true],
         Book: [],
         author: [],
+
+        reloadPage: false,
     }
 
     handleAge() {
@@ -65,6 +67,14 @@ export default class Book extends Component {
             break;
         }
     }
+
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.reloadPage !== this.state.reloadPage) {
+            window.location.reload();
+        }
+    }
+
+    
     
     //#region APIcalls
         loadBooks = async () => {
@@ -408,11 +418,11 @@ export default class Book extends Component {
                             <ul>
                                 {this.state.RecommendedBooks.map(book => (
                                     <li key={book.ID_Livro}>
-                                        <Link to={`/bookPage/${book.ID_Livro}`}>
+                                        <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => this.setState({reloadPage: true})}>
                                             <img src={book.Imagem_URL} alt="" />
                                         </Link>
                                         <h2>{book.Titulo} {book.SubTitulo}</h2>
-                                        <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => window.location.reload()} id="BookBtn">Saiba mais</Link>
+                                        <Link to={`/bookPage/${book.ID_Livro}`} id="BookBtn" onClick={() => this.setState({reloadPage: true})}>Saiba mais</Link>
                                     </li>
                                 ))}
                             </ul>

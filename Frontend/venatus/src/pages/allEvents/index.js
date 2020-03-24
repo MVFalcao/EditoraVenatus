@@ -21,16 +21,19 @@ export default class allEvents extends Component {
 		await api.get(`api/Eventos`).then(res => {
 			// console.log(res.data);
 			
-			this.setState({allEvents: res.data});
+			let allEvents = res.data;
 
-			const newDates = this.state.allEvents.map(item => (item.Data_Evento = ConvertDate(item.Data_Evento)));
-			let allEvents = this.state.allEvents;
+			const newDates = allEvents.map(item => (item.Data_Evento = ConvertDate(item.Data_Evento)));
 
 			for (let i = 0; i < newDates.length; i++) {
 				allEvents[i].Data_Evento = newDates[i];
 			}
 
-			this.setState({allEvents: allEvents, lastEvent: allEvents[0]});
+			allEvents = allEvents.reverse();
+			this.setState({lastEvent: allEvents[0]});
+
+			// allEvents = allEvents.slice(0);
+			this.setState({allEvents: allEvents});
 
 		}).catch(error => {
       		console.log('Events -> ' + error);
