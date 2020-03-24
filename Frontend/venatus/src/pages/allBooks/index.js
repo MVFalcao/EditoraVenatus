@@ -132,7 +132,7 @@ export default class books extends Component {
 											</li>
 										)
 									)}
-									{console.log(this.state.searchBooks)}
+									{/* {console.log(this.state.searchBooks)} */}
 							</ul>
 
 						</section>
