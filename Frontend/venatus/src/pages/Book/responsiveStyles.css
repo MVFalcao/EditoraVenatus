@@ -1,0 +1,296 @@
+@media (max-width: 1000px) {
+    
+    .menu-container {
+        margin-bottom: 50px;
+    }
+
+    .book-container {
+        flex-wrap: wrap;
+        margin: auto;
+        padding: 0px 15px;
+    }
+
+    /*#region LeftContent*/
+    .left-content {
+        width: 49%;
+        margin-right: 14px;
+        text-align: center;
+    }
+
+    /*#endregion*/
+
+    /*#region MainContent*/
+    .main-content {
+        width: 49%;
+    }
+
+    /*#region RightContent*/
+    .right-content {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
+    /*#endregion*/
+
+    /*#region DropdownStyles*/
+    .dropdown-container {
+        width: 80%;
+        margin-top: 30px;
+    
+        position: relative;
+    }
+    
+    .dropdown-container ul {
+        width: 100%;
+        
+        list-style: none;
+    }
+    
+    .dropdown-container button.dropbtn {
+        width: 100%;
+    }
+    
+    .dropdown-container button.dropbtn h3 {
+        font-size: 16px;
+    }
+    
+    .dropdown-container .plus {
+        font-size: 20px;
+    }
+    
+    .dropdown-content p {
+        font-size: 14px;
+    }
+    
+    .categories-line {
+        width: 100%;
+        height: 1px;
+        margin: 15px 0px;
+    }
+    /*#endregion*/
+
+    /*#region RecommendationStyles*/
+        .recommendations-container h1 {
+            width: 90%;
+            margin: 50px auto 0px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .recommendations-container ul {
+            margin-top: 30px;
+            padding: 0px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            justify-items: center;
+            gap: 20px;
+        }
+
+        .recommendations-container ul li {
+            max-width: 200px;
+        }
+        
+        .recommendations-container ul li h2 {
+            margin-bottom: 0px;
+            font-size: 16px;
+        }
+        
+        .recommendations-container ul li img {
+            width: 170px;
+            height: auto;
+        }
+        
+        .recommendations-container ul li a#BookBtn {
+            font-size: 16px;
+        }
+    /*#endregion*/
+}
+
+@media (max-width: 700px) {
+    
+    .menu-container {
+        margin-bottom: 50px;
+    }
+
+    .book-container {
+        flex-wrap: wrap;
+        margin: auto;
+        padding: 0px 15px;
+        /* align-content: center; */
+        /* justify-content: space-between; */
+    }
+
+    /*#region LeftContent*/
+    .left-content {
+        width: 40%;
+        text-align: center;
+    }
+    
+    .left-content img {
+        width: 100%;
+        max-width: 130px;
+        height: auto;
+        max-height: 515px;
+    }
+
+    .left-content p#ISBN {
+        font-size: 12px;
+    }
+    
+    .left-content p#synopsis {
+        font-size: 14px;
+    }
+    /*#endregion*/
+
+    /*#region MainContent*/
+    .main-content {
+        width: 50%;
+    }
+
+    .main-content h1 {
+        font-size: 20px;
+    }
+
+    .main-content h2 {
+        font-size: 14px;
+    }
+
+    .main-content p#book-price {
+        font-size: 22px;
+    }
+    
+    .main-content p#new-price {
+        font-size: 18px;
+    }
+    
+    .main-content #pagseguroBtn img {
+        width: 170px;
+        height: auto;
+    }
+    /*#endregion*/
+
+    /*#region RightContent*/
+    .right-content {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .right-content p {
+        font-size: 16px;
+    }
+    /*#endregion*/
+
+    /* #region CouponStyles */
+    .main-content .cupoun-container ul li img {
+        width: 18px;
+        height: auto;
+        margin-right: 10px;
+    }
+    
+    .main-content .cupoun-container ul label {
+        font-size: 13px;
+    }
+
+    .main-content .cupoun-container input {
+        width: 110px;
+        font-size: 14px;
+    }
+
+    .main-content .cupoun-container button {
+        width: 60px;
+        height: 100%;
+
+        border: none;
+
+        color: white;
+        font: 300 12px 'Poppins', Arial, sans-serif;
+        background-color: #309AAC;
+
+        cursor: pointer;
+    }
+
+    .main-content .cupoun-container #cupoun-response p {
+        margin-top: 5px;
+
+        font-family: Bahnschrift, Helvetica, sans-serif;
+        font-weight: 400;
+        display: none;
+    }
+    /*#endregion*/
+
+    /*#region DropdownStyles*/
+    .dropdown-container {
+        width: 100%;
+        margin-top: 30px;
+    
+        position: relative;
+    }
+    
+    .dropdown-container ul {
+        width: 100%;
+        
+        list-style: none;
+    }
+    
+    .dropdown-container button.dropbtn {
+        width: 100%;
+    }
+    
+    .dropdown-container button.dropbtn h3 {
+        font-size: 16px;
+    }
+    
+    .dropdown-container .plus {
+        font-size: 20px;
+    }
+    
+    .dropdown-content p {
+        font-size: 14px;
+    }
+    
+    .dropdown-content img {
+        width: 13%;
+        margin-right: 7px;
+    }
+    
+    .categories-line {
+        width: 100%;
+        height: 1px;
+        margin: 15px 0px;
+    }
+    /*#endregion*/
+
+    /*#region RecommendationStyles*/
+        .recommendations-container h1 {
+            width: 90%;
+            margin: 50px auto 0px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .recommendations-container ul {
+            padding: 0px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            justify-items: center;
+            gap: 20px;
+        }
+
+        .recommendations-container ul li {
+            max-width: 200px;
+        }
+        
+        .recommendations-container ul li h2 {
+            margin-bottom: 0px;
+            font-size: 16px;
+        }
+        
+        .recommendations-container ul li img {
+            width: 170px;
+            height: auto;
+        }
+        
+        .recommendations-container ul li a#BookBtn {
+            font-size: 16px;
+        }
+    /*#endregion*/
+}

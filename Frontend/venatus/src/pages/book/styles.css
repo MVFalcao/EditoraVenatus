@@ -66,7 +66,7 @@
     color: rgb(58, 58, 58);
 }
 
-
+/*#region PagSeguro*/
 .main-content #pagseguroBtn img {
     margin-top: 30px;
     
@@ -81,7 +81,9 @@
 .main-content #pagseguroBtn img:active {
     transform: translateY(2px);
 }
+/*#endregion*/
 
+/*#region CouponStyles */
 .main-content .cupoun-container {
     margin-top: 30px;
 
@@ -152,7 +154,9 @@
     font-weight: 400;
     display: none;
 }
+/*#endregion*/
 
+/* #region DropdownStyles */
 .dropdown-container {
     max-width: 100%;
     margin-top: 40px;
@@ -214,7 +218,6 @@
     color: #585858;
 }
 
-
 .dropdown-content .ageRating-container {
     display: flex;
     align-content: center;
@@ -225,7 +228,7 @@
     height: auto;
     margin: 0px 0px 5px 10px;
 }
-
+/*#endregion*/
 
 .categories-line {
     width: 410px;
@@ -345,34 +348,6 @@
         max-height: 515px;
     }
 
-    
-    .left-content p#synopsis {
-        font-size: 14px;
-        margin-bottom: ;
-    }
-}
-
-@media (max-width: 700px) {
-    
-    .book-container {
-        flex-wrap: wrap;
-        margin: auto;
-        padding: 0px 15px;
-        align-content: stretch;
-        justify-content: space-between;
-    }
-    
-    .left-content img {
-        width: 100%;
-        max-width: 200px;
-        height: auto;
-        max-height: 515px;
-    }
-
-    
-    .left-content {
-        margin-bottom: 20px;
-    }
     
     .left-content p#synopsis {
         font-size: 14px;

@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 import './styles.css';
+import './responsiveStyles.css';
 import AgeL from '../../assets/ageRating/L.svg';
 import Age10 from '../../assets/ageRating/10.svg';
 import Age12 from '../../assets/ageRating/12.svg';
@@ -73,8 +74,6 @@ export default class Book extends Component {
             window.location.reload();
         }
     }
-
-    
     
     //#region APIcalls
         loadBooks = async () => {
@@ -173,7 +172,8 @@ export default class Book extends Component {
             }
         }
     //#endregion
-
+    
+    //#region handleCoupon
     handleDateSplit = (Date="") => {
         let SplitDate = Date.split('T');
         SplitDate = SplitDate[0].split('-');
@@ -183,7 +183,6 @@ export default class Book extends Component {
         return SplitDate;
     }
 
-    //#region handleCoupon
     validateCouponDate = (DateIni, DateEnd) => {
         let SystemDate =  new Date();
 
