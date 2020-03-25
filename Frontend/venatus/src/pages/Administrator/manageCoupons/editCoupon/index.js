@@ -14,6 +14,7 @@ export default class addAuthor extends Component {
         DateIni: "",
         DateEnd: "",
 		PagSeguroURL: "",
+		Desconto: 0,
 		ID_Livro: 0,
     
 		Coupon: [],
@@ -46,9 +47,12 @@ export default class addAuthor extends Component {
     }
     
     loadCouponData = async () => {
-        this.setState({Name: this.state.Coupon.Nome});
-		this.setState({PagSeguroURL: this.state.Coupon.Botao_URL});
-		this.setState({ID_Livro: this.state.Coupon.Id_livro});
+        this.setState({
+			Name: this.state.Coupon.Nome, 
+			PagSeguroURL: this.state.Coupon.Botao_URL, 
+			Desconto: this.state.Coupon.Desconto,
+			ID_Livro: this.state.Coupon.Id_livro
+		});
         this.handleDate();
     }
 
@@ -75,7 +79,7 @@ export default class addAuthor extends Component {
         await api.put(`api/Cupoms/${this.props.match.params.id}`, {
             "ID_Cupom": this.state.Coupon.ID_Cupom,
 			"Nome": this.state.Name,
-			"Desconto": '30.00',
+			"Desconto": this.state.Desconto,
             "Data_Ini": this.state.DateIni,
             "Data_Fim": this.state.DateEnd,
             "Botao_URL": this.state.PagSeguroURL,
@@ -84,7 +88,7 @@ export default class addAuthor extends Component {
 		}, {
 			headers: headersData,
 		}).then(res => {
-			console.log(res.data);
+			// console.log(res.data);
 
 			this.setState({isStopped: false});
 			this.handleAnimationPopUp("success");
@@ -210,6 +214,17 @@ export default class addAuthor extends Component {
 										required
 										defaultValue={this.state.DateEnd} 
 										onChange={e => this.setState({DateEnd: e.target.value})}
+									/>
+
+									<label htmlFor="desconto">Novo Preço <span>*</span></label>
+									<input 
+										type="number"
+										id="desconto"
+										step=".01"
+										min="1"
+										required
+										value={this.state.Desconto} 
+										onChange={e => this.setState({Desconto: e.target.value})}
 									/>
 								</li>
 

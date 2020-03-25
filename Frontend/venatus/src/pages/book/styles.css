@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,600,700&display=swap');
 
-.loading {
-    width: 400px;
-    height: 200px;
-    background-color: black;
-}
-
 .book-container {
     max-width: 100%;
     margin: 80px auto 50px;
@@ -22,9 +16,10 @@
 }
 
 .left-content img {
-    max-width: 100%;
-    width: 360px;
-    height: 515px;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    max-height: 515px;
 }
 
 .left-content p#ISBN {
@@ -331,4 +326,55 @@
 
 #main-footer {
     margin-top: 100px;
+}
+
+@media (max-width: 1000px) {
+    
+    .book-container {
+        flex-wrap: wrap;
+        margin: auto;
+        padding: 0px 15px;
+        align-content: stretch;
+        justify-content: space-between;
+    }
+    
+    .left-content img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        max-height: 515px;
+    }
+
+    
+    .left-content p#synopsis {
+        font-size: 14px;
+        margin-bottom: ;
+    }
+}
+
+@media (max-width: 700px) {
+    
+    .book-container {
+        flex-wrap: wrap;
+        margin: auto;
+        padding: 0px 15px;
+        align-content: stretch;
+        justify-content: space-between;
+    }
+    
+    .left-content img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        max-height: 515px;
+    }
+
+    
+    .left-content {
+        margin-bottom: 20px;
+    }
+    
+    .left-content p#synopsis {
+        font-size: 14px;
+    }
 }

@@ -36,15 +36,17 @@ export default class addAuthor extends Component {
 	}
 
 	handleSubmit = async event => {
-        event.preventDefault();
+		event.preventDefault();
         const jwt = localStorage.getItem("jwt");
 		const headersData = {
 			'Content-Type': 'application/json',
 			"jwt": jwt,
 		}
+		
+		const upperName = this.state.Name.toUpperCase();
 
         await api.post('api/Cupoms',  {
-			"Nome": this.state.Name,
+			"Nome": upperName,
             "Data_Ini": this.state.DateIni,
             "Data_Fim": this.state.DateEnd,
 			"Botao_URL": this.state.PagSeguroURL,

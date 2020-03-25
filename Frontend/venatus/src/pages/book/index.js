@@ -106,7 +106,7 @@ export default class Book extends Component {
 
                 for (const recommendation of res.data) {
                     api.get(`api/Livros/${recommendation}`).then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         let book = res.data;
                         this.setState({RecommendedBooks: this.state.RecommendedBooks.concat(book)});
                     }).catch(error => {
@@ -177,19 +177,20 @@ export default class Book extends Component {
     handleDateSplit = (Date="") => {
         let SplitDate = Date.split('T');
         SplitDate = SplitDate[0].split('-');
-        SplitDate = `${SplitDate[2]}/${SplitDate[1]}/${SplitDate[0]}`;
-
+        SplitDate = `${SplitDate[2]}/${SplitDate[1]}/${SplitDate[0]}`;        
+        // console.log(SplitDate);
+        
         return SplitDate;
     }
 
+    //#region handleCoupon
     validateCouponDate = (DateIni, DateEnd) => {
         let SystemDate =  new Date();
 
         DateIni = this.handleDateSplit(DateIni);
         DateEnd = this.handleDateSplit(DateEnd);
         SystemDate = `${SystemDate.getDate()}/${SystemDate.getMonth()+1}/${SystemDate.getFullYear()}`;
-        console.log(`System: ${SystemDate}`);
-        
+        // console.log(`System: ${SystemDate}`);
 
         let d1 = DateIni.split("/");
         let d2 = DateEnd.split("/");
@@ -199,8 +200,7 @@ export default class Book extends Component {
         let to   = new Date(d2[2], parseInt(d2[1])-1, d2[0]);
         let check = new Date(c[2], parseInt(c[1])-1, c[0]);
 
-
-        if (check > from && check < to) this.setState({dateIsValid: true});
+        if (check >= from && check <= to) this.setState({dateIsValid: true});
     }
 
     clearCupounUI = () => {
@@ -262,6 +262,7 @@ export default class Book extends Component {
             }
         });
     }
+    //#endregion
 
     render() {
         
@@ -393,17 +394,15 @@ export default class Book extends Component {
                         </div>
 
                     </div>
-                    <div className="right-content">
 
+                    <div className="right-content">
                         <p id="book-Author">Autor(a): {author.Nome}</p>
                         <p id="book-Illustrator">Ilustrador(a): {Book.Ilustrador}</p>
                         <p id="book-Language">Idioma: {Book.Idioma}</p>
                         <p id="book-Format">Formato: {Book.Formato} cm</p>
                         <p id="book-pages">N° de Páginas: {Book.Numero_Paginas}</p>
                         <p id="book-year">Ano de Publicação: {DatePublication.getFullYear()}</p>
-
                     </div>
-
 
                 </div>
                 
@@ -414,7 +413,6 @@ export default class Book extends Component {
                     :
                         <>
                             <h1>Sugestões de livros similares</h1>
-
                             <ul>
                                 {this.state.RecommendedBooks.map(book => (
                                     <li key={book.ID_Livro}>
