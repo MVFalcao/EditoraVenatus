@@ -1,167 +1,165 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap");
 
 .main-container {
-    max-width: 100%;
-    text-align: center;
+  max-width: 100%;
+  text-align: center;
 }
 
 .main-container h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    color: #092F37;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #092f37;
 }
 
 .main-container .main-background {
-    max-width: 1230px;
-    margin: 20px auto;
-    padding: 30px;
+  max-width: 1230px;
+  margin: 20px auto;
+  padding: 30px;
 
-    background: rgba(255, 191, 191, 0.74);
+  background: rgba(255, 191, 191, 0.74);
 }
 
 .main-container .main-background .main-content ul {
-    margin: auto;
+  margin: auto;
 
-    list-style: none;
+  list-style: none;
 
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 50px;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  justify-items: center;
 }
 
 .main-container .main-background .main-content ul li {
-    max-width: 250px;
-    padding: 16px;
+  max-width: 250px;
+  padding: 16px;
 
-    background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    
-    display: flex;
-    flex-direction: column;
-    justify-items: space-between;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: space-between;
 }
 
 .main-container .main-background .main-content ul li img {
-    width: 211px;
-    height: 312px;
-    margin-bottom: 15px;
+  width: 211px;
+  height: 312px;
+  margin-bottom: 15px;
 }
 
 /* Titulo livro */
 .main-container .main-background .main-content ul li h2 {
-    font: italic 400 18px 'Poppins', sans-serif;
-    color: #494646;
-    margin-bottom: 22px;
-    cursor: default;
+  font: italic 400 18px "Poppins", sans-serif;
+  color: #494646;
+  margin-bottom: 22px;
+  cursor: default;
 }
 
 .main-container .main-background .main-content ul li p {
-    font: 19px bahnschrift, Arial, sans-serif;
-    color: rgb(65, 59, 59);
-    cursor: default;
+  font: 19px bahnschrift, Arial, sans-serif;
+  color: rgb(65, 59, 59);
+  cursor: default;
 }
 
 .main-container .main-background .main-content ul li a img {
-    transition: all .1s;
+  transition: all 0.1s;
 }
 
 .main-container .main-background .main-content ul li a img:hover {
-    transform: scale(1.01);
-    box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
+  transform: scale(1.01);
+  box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Botão: saiba mais */
 .main-container .main-background .main-content ul li a#BookBtn {
-    margin-top: 25px;
-    padding: 6px 18px;
-    border-radius: 20px;
-    border: transparent;
+  margin-top: 25px;
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: transparent;
 
-    font: 300 18px 'Poppins', Arial, sans-serif;
-    color:#464343;
-    background-color: rgb(255, 255, 255);
+  font: 300 18px "Poppins", Arial, sans-serif;
+  color: #464343;
+  background-color: rgb(255, 255, 255);
 
-    text-decoration: none;
-    cursor: pointer;
-    transition: all .2s
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .main-container .main-background .main-content ul li a#BookBtn:hover {
-    background-color: #46434327;
+  background-color: #46434327;
 }
 
 .main-container .about-venatus {
-    max-width: 900px;
-    margin: 0px auto 100px;
-    padding: 5px 5px;
+  max-width: 900px;
+  margin: 0px auto 100px;
+  padding: 5px 5px;
 
-    background-color: #B2E0FF;
-    border-radius: 10px 10px 0px 0px;
+  background-color: #b2e0ff;
+  border-radius: 10px 10px 0px 0px;
 
-    position: relative;
+  position: relative;
 }
 
 .main-container .about-venatus p {
-    font-family: bahnschrift, Arial, sans-serif;
-    padding: 0px 40px;
-    margin: 20px 0px 30px;
+  font-family: bahnschrift, Arial, sans-serif;
+  padding: 0px 40px;
+  margin: 20px 0px 30px;
 }
 
 .main-container .about-venatus .about-line {
-    max-width: 950px;
-    position: absolute;
-    bottom: -15px;
-    right: 10px;
+  max-width: 950px;
+  position: absolute;
+  bottom: -15px;
+  right: 10px;
 }
 
 .main-container .about-venatus .about-line img {
-    width: 101%;
-    height: auto;
+  width: 101%;
+  height: auto;
 }
 
 @media (max-width: 1151px) {
-    .main-container .main-background .main-content ul {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .main-container .main-background .main-content ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 870px) {
-    .main-container .main-background .main-content ul {
-        grid-template-columns: repeat(2, 1fr);
-        margin-left: 19%;
-    }
+  .main-container .main-background .main-content ul {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 19%;
+  }
 }
 
 @media (max-width: 500px) {
-    .header-line {
-        width: 95%;
-    }
+  .header-line {
+    width: 95%;
+  }
 
-    .menu-navbar {
-        width: 95%;
-    }
-    .menu-navbar .item a {
-        font-size: 12px;
-    }
+  .menu-navbar {
+    width: 95%;
+  }
+  .menu-navbar .item a {
+    font-size: 12px;
+  }
 
-    .main-container .main-background .main-content ul {
-        grid-template-columns: repeat(1, 1fr);
-        margin-left: 0px;
-        row-gap: 30px;
-    }
-    
-    .main-container .about-venatus p {
-        padding: 0px 7px;
-    }
+  .main-container .main-background .main-content ul {
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 28px;
+    row-gap: 30px;
+  }
 
-    .main-container .about-venatus .about-line {
-        max-width: 950px;
-        position: absolute;
-        bottom: -6px;
-        /* right: 10px; */
-    }
+  .main-container .about-venatus p {
+    padding: 0px 7px;
+  }
+
+  .main-container .about-venatus .about-line {
+    max-width: 950px;
+    position: absolute;
+    bottom: -6px;
+    /* right: 10px; */
+  }
 }
-
-
