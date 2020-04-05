@@ -43,7 +43,7 @@ export default class editBook extends Component {
 
 						<li key={coupon.ID_Cupom}>
 
-							<Link to={`/editcoupon/${coupon.ID_Cupom}`}>
+							<Link to={`/administrator/editcoupon/${coupon.ID_Cupom}`}>
 								<img src={Cupom} alt={coupon.Nome}/>
 								<h2>{coupon.Nome}</h2>
 							</Link>

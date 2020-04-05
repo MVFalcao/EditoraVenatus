@@ -5,7 +5,6 @@ import Lottie from 'react-lottie';
 
 import './styles.css';
 import logo from '../../assets/header/logo_l.svg';
-import imgUpload from '../../assets/administrator/imgUpload.svg';
 import eye from '../../assets/myAccount/olho.svg'
 import OkAnimation from '../../assets/Animations/OkPopUp.json';
 import ErrorAnimation from '../../assets/Animations/ErrorPopUp.json';
@@ -27,14 +26,11 @@ export default class signup extends Component {
 		CPF: '',
 		Telephone: '',
 		Gender: 'M',
-		Desconto: '',
-		TipoPessoa: '',
+		Desconto: false,
+		TipoPessoa: '0',
 		Birthdate: '',
 		Password: '',
 		ConfirmPassword: '',
-
-		ProfessorImage: null,
-		BlogURL: '',
 
 		isStopped: true,
 		matchPassword: false,
@@ -225,43 +221,6 @@ export default class signup extends Component {
 		}
 	}
 
-	handlePreview = event => {
-		this.setState({ProfessorImage: URL.createObjectURL(event.target.files[0])});
-	};
-
-	handlePopUp = (item = 0) => {
-		const registerPopup = document.querySelector('.registerType-popup');
-		const signupContent = document.querySelector('.signin-content');
-
-		switch(item) {
-		case 1:
-			document.querySelector('#organizer-li').style.display = "flex";
-			registerPopup.style.display = "none";
-			signupContent.style.display = "flex";
-			this.setState({TipoPessoa: "normal"});
-			this.setState({Desconto: false});
-		break;
-		case 2:
-			const professorImage = document.querySelector('#professorImage-container');
-			registerPopup.style.display = "none";
-			signupContent.style.display = "flex";
-			professorImage.style.display = "flex";
-			this.setState({TipoPessoa: "professor"});
-			this.setState({Desconto: true});
-		break;
-		case 3:
-			const socialMedia = document.querySelector('#socialMedia-container');
-			registerPopup.style.display = "none";
-			signupContent.style.display = "flex";
-			socialMedia.style.display = "block";
-			this.setState({TipoPessoa: "blog"});
-			this.setState({Desconto: true});
-		break;
-		default:
-			console.log("Continua a vida");
-		break;
-		}
-	}
 
 	//#region AnimationPopUp
 	showAnimationPopUp = (element = "") => {
@@ -325,34 +284,16 @@ export default class signup extends Component {
 
 			<div className="signin-container">
 
-				<div className="registerType-popup">
-
-					<Link to="/">
-						<img src={logo} alt="Logo Venatus"/>
-					</Link>
-
-					<div className="line" />
-
-					<h1>Qual será o tipo de cadastro?</h1>
-
-					<div className="register-buttons">
-
-						<button className="registerBtn item-1" onClick={() => this.handlePopUp(1)}>Normal</button>
-						<button className="registerBtn item-2" onClick={() => this.handlePopUp(2)}>Professor</button>
-						<button className="registerBtn item-3" onClick={() => this.handlePopUp(3)}>Blogueiro</button>
-
-					</div> 
-					     
-				</div>
-
 				<div className="signin-content">
 
 					<Link to="/">
 						<img src={logo} alt="Logo da Venatus"/>
 					</Link>
 
-					<p>Entre na Venatus</p>
-					<h1>Crie sua conta</h1>
+					<div className="header-text">
+						<p>Entre na Venatus</p>
+						<h1>Crie sua conta</h1>
+					</div>
 
 					<div className="line item-2" />
 
@@ -439,28 +380,6 @@ export default class signup extends Component {
 								/>
 							</li>
 
-							<li id="socialMedia-container">
-								<label htmlFor="social-media">Link da rede social <span>*</span></label>
-								<input type="text" 
-									id="social-media"
-									placeholder="Sua rede social mais relevante"
-									value={this.state.BlogURL}
-									onChange={e => this.setState({BlogURL: e.target.value})} 
-								/>
-							</li>
-					
-							<li id="professorImage-container">
-								<label htmlFor="professor-input">Comprovante de profissão <span>*</span></label>
-								<label id="professor-image" htmlFor="professor-input" className={this.state.ProfessorImage ? 'has-image' : ''} style={{ backgroundImage: `url(${this.state.ProfessorImage})`}}>  
-								<input type="file" 
-									id="professor-input"
-									accept=".png, .jpg, .jpeg"
-									onChange={this.handlePreview} 
-								/>
-								<img src={imgUpload} alt="IconeDeImagem"/>
-								</label>
-							</li>
-
 							<li id="gender-wrapper">
 								<label>Sexo <span>*</span></label>
 								<div className="gender-container">
@@ -487,7 +406,7 @@ export default class signup extends Component {
 								{/* {console.log(this.state.Gender)} */}
 							</li>
 
-							<li id="organizer-li" style={{display: "none"}} />
+							<li id="organizer-li" />
 
 							<li style={{position: 'relative'}}>
 								<label id="password-label" htmlFor="password">Senha <span>*</span></label>
@@ -520,7 +439,7 @@ export default class signup extends Component {
 
 						<div className="buttons">
 							<button type="submit">Criar Conta</button>
-							<Link to="/Login">Cancelar</Link>
+							<Link to="/login">Cancelar</Link>
 						</div>
 				
 					</form>

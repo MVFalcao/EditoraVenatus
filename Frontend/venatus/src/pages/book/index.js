@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 import './styles.css';
+import './responsiveStyles.css';
 import AgeL from '../../assets/ageRating/L.svg';
 import Age10 from '../../assets/ageRating/10.svg';
 import Age12 from '../../assets/ageRating/12.svg';
@@ -27,6 +28,8 @@ export default class Book extends Component {
         divClosedList: [true, true, true],
         Book: [],
         author: [],
+
+        reloadPage: false,
     }
 
     handleAge() {
@@ -65,6 +68,12 @@ export default class Book extends Component {
             break;
         }
     }
+
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.reloadPage !== this.state.reloadPage) {
+            window.location.reload();
+        }
+    }
     
     //#region APIcalls
         loadBooks = async () => {
@@ -96,7 +105,7 @@ export default class Book extends Component {
 
                 for (const recommendation of res.data) {
                     api.get(`api/Livros/${recommendation}`).then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         let book = res.data;
                         this.setState({RecommendedBooks: this.state.RecommendedBooks.concat(book)});
                     }).catch(error => {
@@ -163,12 +172,14 @@ export default class Book extends Component {
             }
         }
     //#endregion
-
+    
+    //#region handleCoupon
     handleDateSplit = (Date="") => {
         let SplitDate = Date.split('T');
         SplitDate = SplitDate[0].split('-');
-        SplitDate = `${SplitDate[2]}/${SplitDate[1]}/${SplitDate[0]}`;
-
+        SplitDate = `${SplitDate[2]}/${SplitDate[1]}/${SplitDate[0]}`;        
+        // console.log(SplitDate);
+        
         return SplitDate;
     }
 
@@ -178,8 +189,7 @@ export default class Book extends Component {
         DateIni = this.handleDateSplit(DateIni);
         DateEnd = this.handleDateSplit(DateEnd);
         SystemDate = `${SystemDate.getDate()}/${SystemDate.getMonth()+1}/${SystemDate.getFullYear()}`;
-        console.log(`System: ${SystemDate}`);
-        
+        // console.log(`System: ${SystemDate}`);
 
         let d1 = DateIni.split("/");
         let d2 = DateEnd.split("/");
@@ -189,8 +199,7 @@ export default class Book extends Component {
         let to   = new Date(d2[2], parseInt(d2[1])-1, d2[0]);
         let check = new Date(c[2], parseInt(c[1])-1, c[0]);
 
-
-        if (check > from && check < to) this.setState({dateIsValid: true});
+        if (check >= from && check <= to) this.setState({dateIsValid: true});
     }
 
     clearCupounUI = () => {
@@ -252,6 +261,7 @@ export default class Book extends Component {
             }
         });
     }
+    //#endregion
 
     render() {
         
@@ -383,17 +393,15 @@ export default class Book extends Component {
                         </div>
 
                     </div>
-                    <div className="right-content">
 
+                    <div className="right-content">
                         <p id="book-Author">Autor(a): {author.Nome}</p>
                         <p id="book-Illustrator">Ilustrador(a): {Book.Ilustrador}</p>
                         <p id="book-Language">Idioma: {Book.Idioma}</p>
                         <p id="book-Format">Formato: {Book.Formato} cm</p>
                         <p id="book-pages">N° de Páginas: {Book.Numero_Paginas}</p>
                         <p id="book-year">Ano de Publicação: {DatePublication.getFullYear()}</p>
-
                     </div>
-
 
                 </div>
                 
@@ -404,15 +412,14 @@ export default class Book extends Component {
                     :
                         <>
                             <h1>Sugestões de livros similares</h1>
-
                             <ul>
                                 {this.state.RecommendedBooks.map(book => (
                                     <li key={book.ID_Livro}>
-                                        <Link to={`/bookPage/${book.ID_Livro}`}>
+                                        <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => this.setState({reloadPage: true})}>
                                             <img src={book.Imagem_URL} alt="" />
                                         </Link>
                                         <h2>{book.Titulo} {book.SubTitulo}</h2>
-                                        <Link to={`/bookPage/${book.ID_Livro}`} onClick={() => window.location.reload()} id="BookBtn">Saiba mais</Link>
+                                        <Link to={`/bookPage/${book.ID_Livro}`} id="BookBtn" onClick={() => this.setState({reloadPage: true})}>Saiba mais</Link>
                                     </li>
                                 ))}
                             </ul>

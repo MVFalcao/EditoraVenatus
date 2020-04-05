@@ -1,0 +1,213 @@
+.addBook-wrapper {
+    display: flex;
+    background-color: rgb(32, 32, 32);
+}
+
+.addBook-container {
+    width: 100%;
+    margin-top: 40px;
+
+    font: 400 18px 'Poppins', arial, sans-serif;
+    color: white;
+}
+
+.addBook-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.addBook-data {
+    margin: auto 40px;
+    padding: 20px 20px;
+
+    border-radius: 20px;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+}
+
+.addBook-data form {
+    display: flex;
+    flex-direction: column;
+}
+
+.addBook-data form ul.section.item-1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.addBook-data form ul.section.item-1 input {
+    width: 300px;
+    margin-bottom: 20px;
+    height: 40px;
+    padding-left: 10px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    color: white;
+    border-color: rgb(83, 83, 83);
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: rgb(26, 26, 26);
+}
+
+ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.addBook-data form ul.section.item-1 input:focus {
+    box-shadow: 0px 0px 7px rgb(0, 153, 255);
+}
+
+.addBook-data form ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+.addBook-data label {
+    margin-bottom: 10px;
+}
+
+.addBook-data span {
+    color: rgb(226, 68, 68);
+}
+
+.addBook-data select {
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    
+    color: white;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 18px;
+    border-color: rgba(255, 255, 255, 0.26);
+    border-radius: 10px;
+    background-color: rgb(26, 26, 26);
+}
+
+.addBook-data #pagSeguro {
+    font-size: 14px;
+}
+
+.addBook-data #pagSeguro::placeholder {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.addBook-data select:focus {
+    box-shadow: 0px 0px 7px rgb(0, 153, 255);
+}
+
+.addBook-data option {
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.addBook-data form ul.section.item-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.addBook-data form ul.section.item-2 textarea {
+    max-width: 500px;
+    min-height: 260px;
+    resize: none;
+    padding-left: 5px;
+
+    color: white;
+    font: 400 16px 'Poppins', arial, sans-serif;
+    border-color: rgba(255, 255, 255, 0.26);
+    border-radius: 10px;
+    background-color: rgb(26, 26, 26);
+}
+
+.addBook-data form ul.section.item-2 textarea:focus {
+    box-shadow: 0px 0px 7px rgb(0, 153, 255);
+}
+
+.addBook-data #imagem-container {
+    margin-top: 4px;
+}
+
+.addBook-data #imagem-container #label-imagem {
+    margin-bottom: 7px;
+}
+
+.addBook-data #imagem-livro {
+    width: 500px;
+    height: 270px;
+
+    background: center no-repeat;
+    background-size: contain;
+    border: 3px dashed rgb(51, 51, 51);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.addBook-data input[type="file"] {
+    display: none;
+}
+
+.addBook-data .has-image img {
+    display: none;
+}
+
+.addBook-data button {
+    width: 200px;
+    height: 40px;
+    margin: 40px auto 30px;
+
+    font: 300 16px 'Poppins', arial, sans-serif;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(80, 103, 207);
+
+    cursor: pointer;
+}
+
+.addBook-data button:hover {
+    background-color: rgb(54, 74, 161);
+}
+
+.addBook-wrapper .addPopUp {
+    width: 400px;
+    height: 200px;
+    margin: 230px auto 0px 670px;
+    padding-top: 30px;
+
+    color: white;
+    background-color: rgba(45, 48, 50, 0.9);
+    border-radius: 10px;
+
+    text-align: center;
+    position: fixed;
+    top: 0px; right: 0px; left: 0px; bottom: 0px;
+
+    display: none;
+}
+
+.addBook-wrapper .addPopUp h1 {
+    margin: 0px;
+    margin-top: 20px;
+
+    font: 500 20px 'Poppins', arial, sans-serif;
+}
